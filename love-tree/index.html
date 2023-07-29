@@ -17,11 +17,6 @@
     <script type="text/javascript" src="./jscex-async-powerpack.min.js"></script>
     <script type="text/javascript" src="./functions.js" charset="utf-8"></script>
     <script type="text/javascript" src="./love-tree.js" charset="utf-8"></script>
-    <style type="text/css">
-        .STYLE1 {
-            color: #666666
-        }
-    </style>
 </head>
 
 <body>
@@ -33,15 +28,21 @@
         <div id="wrap">
             <div id="text">
                 <div id="code">
-                    <span class="say">Dear 鮭魚子：</span><br>
-                    <span class="say"></span><br>
-                    <span
-                        class="say">你不開心的時候，我陪你，你哭泣的時候，我陪你，你心情很不爽的時候，我陪你，你不想回家的時候，我陪你，無論怎樣，我都陪你，只因為你是我最愛的人，你就是我的音樂，你給我帶來好聽的音符。你是我的全部，你給我生命帶來了色彩。</span><br>
-                    <span class="say"><span class="space"></span>❤️❤️❤️ 哲哲子 ❤️❤️❤️</span>
+                    <span class="say">Dear 鮭魚子：</span>
+                    <br>
+                    <span class="say"></span>
+                    <br>
+                    <span id="content" class="say"></span>
+                    <br>
+                    <span class="say"></span>
+                    <br>
+                    <span class="say">
+                        <span class="space"></span>   ❤️❤️❤️ 哲哲子 ❤️❤️❤️
+                    </span>
                 </div>
             </div>
             <div id="clock-box">
-                哲哲子<span> 👫 </span>鮭魚子 <span class="STYLE1">已經認識了</span>
+                哲哲子<span> 👫 </span>鮭魚子 <span class="text-color-1">已經認識了</span>
                 <div id="clock"></div>
             </div>
             <canvas id="canvas"></canvas>
@@ -49,13 +50,11 @@
 
     </div>
 
-    <div class="bg1">
-        <div class="main">
-            <footer style="line-height:20px">
-                <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
-            </footer>
-        </div>
-    </div>
+
+    <footer style="line-height:20px">
+        <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
+    </footer>
+
 
     <script>
         (function () {
@@ -172,7 +171,7 @@
                 tree.snapshot("p2", 500, 0, 610, 680);
 
                 canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-                canvas.css("background", "#F8D7DF");
+                canvas.css("background", "#FFB6C1");
                 $await(Jscex.Async.sleep(300));
                 canvas.css("background", "none");
             }));
@@ -194,7 +193,9 @@
                 together.setMinutes(0);
                 together.setSeconds(0);
                 together.setMilliseconds(0);
-
+                $("#content").text("你不開心的時候，我陪你，你哭泣的時候，我陪你，你心情很不爽的時候，我陪你，"
+                        +"你不想回家的時候，我陪你，無論怎樣，我都陪你，只因為你是我最愛的人，你就是我的音樂"
+                        +"，你給我帶來好聽的音符。你是我的全部，你給我生命帶來了色彩。");
                 $("#code").show().typewriter();
                 $("#clock-box").fadeIn(500);
                 while (true) {
