@@ -5,18 +5,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <base href=".">
+    <link rel="icon" href="./love-icon.png">
     <title>哲哲子 ❤️ 鮭魚子</title>
-
-    <link type="text/css" rel="stylesheet" href="./LoveTreeFiles/default.css">
-    <script type="text/javascript" src="./LoveTreeFiles/jquery.min.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex.min.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex-parser.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex-jit.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./LoveTreeFiles/love-tree.js" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="./default.css">
+    <script type="text/javascript" src="./jquery.min.js"></script>
+    <script type="text/javascript" src="./jscex.min.js"></script>
+    <script type="text/javascript" src="./jscex-parser.js"></script>
+    <script type="text/javascript" src="./jscex-jit.js"></script>
+    <script type="text/javascript" src="./jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./jscex-async.min.js"></script>
+    <script type="text/javascript" src="./jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./love-tree.js" charset="utf-8"></script>
     <style type="text/css">
         .STYLE1 {
             color: #666666
@@ -52,7 +52,7 @@
     <div class="bg1">
         <div class="main">
             <footer style="line-height:20px">
-                <audio src="./LoveTreeFiles/music.mp3" autoplay loop type="audio/mpeg"></audio>
+                <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
             </footer>
         </div>
     </div>
@@ -172,7 +172,7 @@
                 tree.snapshot("p2", 500, 0, 610, 680);
 
                 canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-                canvas.css("background", "#ffe");
+                canvas.css("background", "#F8D7DF");
                 $await(Jscex.Async.sleep(300));
                 canvas.css("background", "none");
             }));
