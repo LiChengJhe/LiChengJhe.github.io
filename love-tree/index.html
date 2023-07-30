@@ -23,13 +23,13 @@
 
 <body class="d-flex align-items-center justify-content-center">
 
-    <div id="error">Dear 鮭魚子 : 請下載Microsoft Edge瀏覽器(<a href="https://www.microsoft.com/zh-tw/edge/download">Microsoft
+    <div id="error">親愛的鮭魚子 : 請下載Microsoft Edge瀏覽器(<a href="https://www.microsoft.com/zh-tw/edge/download">Microsoft
             Edge</a>)，才能看哲哲子給你的驚喜唷! ❤️❤️❤️
     </div>
     <div id="wrap">
         <div id="text">
             <div id="code">
-                <span class="say">Dear 鮭魚子：</span>
+                <span class="say">親愛的鮭魚子：</span>
                 <br>
                 <span class="say"></span>
                 <br>
@@ -38,7 +38,15 @@
                 <span class="say"></span>
                 <br>
                 <span class="say">
-                    <span class="space"></span> 🧡💗❤️ 哲哲子 ❤️💗🧡
+                    <span class="space"></span> 🧡 祝 平安、順心、健康、快樂 🧡
+                </span>
+                <br>
+                <span class="say">
+                    <span class="space"></span> 💗  愛  妳  的  哲  哲  子  💗
+                </span>
+                <br>
+                <span class="say">
+                    <span class="space"></span> ❤️   2 0 2 3 / 0 8 / 2 4   ❤️
                 </span>
             </div>
         </div>
@@ -48,14 +56,12 @@
         </div>
         <canvas id="canvas"></canvas>
     </div>
-
     <footer style="line-height:20px">
         <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
     </footer>
-
-
     <script>
-        (function () {
+        $(document).ready(function () {
+        
             var canvas = $('#canvas');
 
             if (!canvas[0].getContext) {
@@ -199,6 +205,7 @@
                     timeElapse(together);
                     $await(Jscex.Async.sleep(1000));
                 }
+
             }));
 
             var runAsync = eval(Jscex.compile("async", function () {
@@ -212,7 +219,8 @@
             }));
 
             runAsync().start();
-        })();
+         
+        });
     </script>
     <div style="display:none"></div>
 </body>
