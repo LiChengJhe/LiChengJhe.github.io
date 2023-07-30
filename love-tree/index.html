@@ -8,6 +8,8 @@
     <link rel="icon" href="./love-icon.png">
     <title>哲哲子 ❤️ 鮭魚子</title>
     <link type="text/css" rel="stylesheet" href="./default.css">
+    <link type="text/css" rel="stylesheet" href="./bootstrap.min.css">
+    <script type="text/javascript" src="./bootstrap.min.js"></script>
     <script type="text/javascript" src="./jquery.min.js"></script>
     <script type="text/javascript" src="./jscex.min.js"></script>
     <script type="text/javascript" src="./jscex-parser.js"></script>
@@ -19,37 +21,33 @@
     <script type="text/javascript" src="./love-tree.js" charset="utf-8"></script>
 </head>
 
-<body>
+<body class="d-flex align-items-center justify-content-center">
 
-    <div id="main">
-        <div id="error">Dear 鮭魚子 : 請下載Microsoft Edge瀏覽器(<a
-                href="https://www.microsoft.com/zh-tw/edge/download">Microsoft Edge</a>)，才能看哲哲子給你的驚喜唷! ❤️❤️❤️
-        </div>
-        <div id="wrap">
-            <div id="text">
-                <div id="code">
-                    <span class="say">Dear 鮭魚子：</span>
-                    <br>
-                    <span class="say"></span>
-                    <br>
-                    <span id="content" class="say"></span>
-                    <br>
-                    <span class="say"></span>
-                    <br>
-                    <span class="say">
-                        <span class="space"></span>   ❤️❤️❤️ 哲哲子 ❤️❤️❤️
-                    </span>
-                </div>
-            </div>
-            <div id="clock-box">
-                哲哲子<span> 👫 </span>鮭魚子 <span class="text-color-1">已經認識了</span>
-                <div id="clock"></div>
-            </div>
-            <canvas id="canvas"></canvas>
-        </div>
-
+    <div id="error">Dear 鮭魚子 : 請下載Microsoft Edge瀏覽器(<a href="https://www.microsoft.com/zh-tw/edge/download">Microsoft
+            Edge</a>)，才能看哲哲子給你的驚喜唷! ❤️❤️❤️
     </div>
-
+    <div id="wrap">
+        <div id="text">
+            <div id="code">
+                <span class="say">Dear 鮭魚子：</span>
+                <br>
+                <span class="say"></span>
+                <br>
+                <span id="content" class="say"></span>
+                <br>
+                <span class="say"></span>
+                <br>
+                <span class="say">
+                    <span class="space"></span> 🧡💗❤️ 哲哲子 ❤️💗🧡
+                </span>
+            </div>
+        </div>
+        <div id="clock-box">
+            鮭魚子<span> 💑🏻 </span>哲哲子 <span class="text-color-1">已經認識了</span>
+            <div id="clock"></div>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
 
     <footer style="line-height:20px">
         <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
@@ -171,7 +169,6 @@
                 tree.snapshot("p2", 500, 0, 610, 680);
 
                 canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-                canvas.css("background", "#FFB6C1");
                 $await(Jscex.Async.sleep(300));
                 canvas.css("background", "none");
             }));
@@ -194,8 +191,8 @@
                 together.setSeconds(0);
                 together.setMilliseconds(0);
                 $("#content").text("你不開心的時候，我陪你，你哭泣的時候，我陪你，你心情很不爽的時候，我陪你，"
-                        +"你不想回家的時候，我陪你，無論怎樣，我都陪你，只因為你是我最愛的人，你就是我的音樂"
-                        +"，你給我帶來好聽的音符。你是我的全部，你給我生命帶來了色彩。");
+                    + "你不想回家的時候，我陪你，無論怎樣，我都陪你，只因為你是我最愛的人，你就是我的音樂"
+                    + "，你給我帶來好聽的音符。你是我的全部，你給我生命帶來了色彩。");
                 $("#code").show().typewriter();
                 $("#clock-box").fadeIn(500);
                 while (true) {
