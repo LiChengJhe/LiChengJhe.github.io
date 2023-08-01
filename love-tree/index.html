@@ -9,6 +9,7 @@
     <title>哲哲子 ❤️ 鮭魚子</title>
     <link type="text/css" rel="stylesheet" href="./default.css">
     <link type="text/css" rel="stylesheet" href="./bootstrap.min.css">
+    <script type="text/javascript" src="./lodash.min.js"></script>
     <script type="text/javascript" src="./bootstrap.min.js"></script>
     <script type="text/javascript" src="./jquery.min.js"></script>
     <script type="text/javascript" src="./jscex.min.js"></script>
@@ -60,6 +61,7 @@
         <audio src="./music.mp3" autoplay loop type="audio/mpeg"></audio>
     </footer>
     <script>
+        isWriting = false;
         $(document).ready(function () {
 
             var canvas = $('#canvas');
@@ -196,13 +198,14 @@
                 together.setMinutes(0);
                 together.setSeconds(0);
                 together.setMilliseconds(0);
+
                 $("#content").html(
                     "在這個特別的日子，我為妳準備了一份「特別的禮物🎁」，希望妳會喜歡~"
                     + "這是一份虛實合一的禮物，每個東西都有其意義且互相呼應。<br/>"
                     + "妳聽👂這是我們第一次約會看電影「鈴芽之旅的主題音樂🎵」，再看看妳剛剛打開的「愛心禮物盒❤️」，它代表打開我們彼此的「心門❤️」，"
                     + "同時也是代表著動畫一開始出現的「愛心種子❤️」，種下它讓它在我們心中發芽茁壯，相信我們的愛情能夠像「愛心樹❤️」一樣堅韌穩固而強大。"
                     + "在愛心樹上的「愛心樹葉❤️」總共有999片，代表「我對妳的愛是天長地久」。<br/>"
-                    + "現在我撿起落下的愛心樹葉，將它們做成一枚「戒指💍」送給妳。<br/>"
+                    + "我撿起落下的愛心樹葉，將它們做成一枚「戒指💍」送給妳。<br/>"
                     + "P.S.我藏了一個「小彩蛋👫🏻」等著妳來發現😉"
                 );
                 $("#code").show().typewriter();
