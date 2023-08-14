@@ -92,8 +92,10 @@ function timeElapse(date) {
 
 		} else {
 			if (playContents.length == 0) {
-				playContents = _.shuffle(contents);
-				playContents.push("哇~ 妳實在太厲害啦! 竟然能全部看完，愛妳❤️<br/><br/>現在哲哲子出考題來考考妳，如果答對會有小禮物喔!<br/><br/>請問哲哲子一共寫了多少情書給鮭魚子?");
+				playContents = [
+					"哇~ 妳實在太厲害啦! 竟然能全部看完!! 愛妳❤️<br/><br/>現在哲哲子出考題來考考妳，如果答對會有小禮物喔!<br/><br/>請問哲哲子一共寫了多少情書給鮭魚子?",
+					..._.shuffle(contents)
+				];
 			}
 			$("#content").html(playContents.pop());
 			$("#code").show().typewriter();
