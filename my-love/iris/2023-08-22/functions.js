@@ -34,7 +34,7 @@ $(window).resize(function () {
 					$ele.html(str.substring(0, progress - 1));
 					isWriting = false;
 				}
-			}, 75);
+			}, 30);
 		});
 		return this;
 	};
