@@ -36,6 +36,7 @@
     left: 50.1%;
   }
   .inside {
+    font-size:14px;
     background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
     padding: 0 20px;
     text-align: center;
