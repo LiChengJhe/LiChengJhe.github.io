@@ -46,11 +46,13 @@
     align-items: center;
     left: 50%;
   }
-  .inside .textLeft {
+  .textLeft {
+    line-height: 1;
     text-align: left;
     align-items: left;
   }
-  .inside .textRight {
+  .textRight {
+    line-height: 1;
     text-align: right;
     align-items: right;
   }
