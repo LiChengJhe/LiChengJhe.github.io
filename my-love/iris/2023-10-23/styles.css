@@ -37,24 +37,18 @@
   }
   .inside {
     background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
-    line-height: 3;
     padding: 0 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
     left: 50%;
   }
   .textLeft {
-    line-height: 1;
     text-align: left;
-    align-items: left;
   }
   .textRight {
-    line-height: 1;
     text-align: right;
-    align-items: right;
   }
   .outside {
     -webkit-transform-style: preserve-3d;
