@@ -36,7 +36,7 @@
     left: 50.1%;
   }
   .inside {
-    font-size:14px;
+    font-size:12px;
     background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
     padding: 0 20px;
     text-align: center;
@@ -50,6 +50,12 @@
   }
   .textRight {
     text-align: right;
+  }
+  .content {
+    margin-top: 20px;
+  }
+  .giftImg{
+    margin: auto;
   }
   .outside {
     -webkit-transform-style: preserve-3d;
