@@ -148,7 +148,7 @@ var contents = ["在某個春日的中午，與妳一同用餐，難掩我內心
 var playContents = [];
 function changeContent(typewriter) {
 	if (isWriting) {
-		alert("親愛的鮭魚子別著急🤣\r哲哲子還沒寫完情書捏😘");
+		alert("親愛的鮭魚子別著急🤣\r存摺子還沒寫完情書捏😘");
 	} else {
 		playContents = JSON.parse(localStorage.getItem("playContents"));
 		if (!_.isArray(playContents)) playContents = [];
@@ -158,9 +158,9 @@ function changeContent(typewriter) {
 				shuffleContents[i] = shuffleContents[i] + "<br/>😘給鮭魚子的第" + (shuffleContents.length - i + 1) + "封情書💌";
 			}
 			playContents = [
-				"哇~ 鮭魚子實在太厲害啦! 竟然能全部看完!! 愛妳❤️<br/><br/>現在哲哲子出考題，如果答對會有小禮物喔😘<br/><br/>請問哲哲子一共寫了多少情書給鮭魚子?",
+				"哇~ 鮭魚子實在太厲害啦! 竟然能全部看完!! 愛妳❤️<br/><br/>現在存摺子出考題，如果答對會有小禮物喔😘<br/><br/>請問存摺子一共寫了多少情書給鮭魚子?",
 				...shuffleContents,
-				"哲哲子寫了很多情書給鮭魚子，等鮭魚子看完所有的情書，哲哲子會出一個考題，如果答對會有小禮物喔😘"
+				"存摺子寫了很多情書給鮭魚子，等鮭魚子看完所有的情書，存摺子會出一個考題，如果答對會有小禮物喔😘"
 			];
 		}
 		$("#content").html(playContents.pop());

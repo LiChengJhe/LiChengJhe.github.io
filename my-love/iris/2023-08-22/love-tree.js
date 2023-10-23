@@ -170,7 +170,7 @@
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
             ctx.font = "10px 'Microsoft Yahei'";
-            ctx.fillText("觸碰哲哲子的💗", 23, 10, 75);
+            ctx.fillText("觸碰存摺子的💗", 23, 10, 75);
             ctx.restore();
         },
         clear: function () {
