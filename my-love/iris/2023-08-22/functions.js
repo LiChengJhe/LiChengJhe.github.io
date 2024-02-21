@@ -173,7 +173,9 @@ function changeContent(typewriter) {
 function timeElapse(date) {
 	const current = Date();
 	let seconds = (Date.parse(current) - Date.parse(date)) / 1000;
-	const days = Math.floor(seconds / (3600 * 24));
+	const today = new Date();
+	const diffDays = (d) => Math.floor((today.getTime() - d.getTime()) / (1000 * 3600 * 24));
+	const days = diffDays(date);
 	seconds = seconds % (3600 * 24);
 	let hours = Math.floor(seconds / 3600);
 	if (hours < 10) {
