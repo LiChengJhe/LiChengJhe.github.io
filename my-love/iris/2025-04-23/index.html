@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>存摺子 & 鮭魚子｜戀愛紀念日相簿</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+TC:wght@400;700&family=Sawarabi+Mincho&family=Noto+Serif+JP&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Sawarabi Mincho', 'Noto Serif JP', 'Noto Sans TC', serif;
+      background: linear-gradient(135deg, #e3f6e8 0%, #f7f3e3 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* 加入淡淡的紙張紋理 */
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-blend-mode: lighten;
+    }
+
+    /* 讓愛心動畫覆蓋整個畫面 */
+    .love-anim {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    /* 主要內容都要在愛心動畫之上 */
+    .header, .gallery, .quotes, .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      text-align: center;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      position: relative;
+    }
+
+    .header h1 {
+      font-family: 'Sawarabi Mincho', 'Pacifico', 'Noto Serif JP', cursive, serif;
+      font-size: 3.2rem;
+      color: #3e5c3a;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px #e6e6d6;
+      filter: drop-shadow(0 2px 0 #b7cbb0);
+    }
+
+    .header h2 {
+      font-size: 1.5rem;
+      color: #6a8c5a;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
+      letter-spacing: 1px;
+    }
+
+    .countdown {
+      font-size: 1.2rem;
+      color: #3e5c3a;
+      margin-bottom: 1.5rem;
+      background: #f7f3e3cc;
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      box-shadow: 0 2px 8px #b7cbb0, 0 1px 2px #00000011;
+      font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .photo-card {
+      background: #f7f3e3;
+      border-radius: 1.5rem 2.2rem 1.5rem 2.2rem/2.2rem 1.5rem 2.2rem 1.5rem;
+      box-shadow: 0 4px 16px #b7cbb0aa, 0 1.5px 4px #00000022;
+      overflow: hidden;
+      width: 260px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 2.5px dashed #a3b18a;
+      outline: 3px solid #e3f6e8;
+      outline-offset: -8px;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px) scale(1.04) rotate(-1.5deg);
+      box-shadow: 0 8px 32px #b7cbb0cc, 0 4px 16px #00000033;
+      border-color: #6a8c5a;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      border-top-left-radius: 1.5rem;
+      border-top-right-radius: 2.2rem;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 2.2rem;
+      filter: brightness(0.97) contrast(1.05) saturate(1.08);
+      box-shadow: 0 2px 8px #b7cbb055;
+    }
+
+    .caption {
+      padding: 1rem 0.5rem 0.5rem 0.5rem;
+      font-size: 1.05rem;
+      color: #3e5c3a;
+      background: #e3f6e8;
+      text-align: center;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 2.2rem;
+      position: relative;
+      min-height: 3.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
+      border-top: 1px dashed #a3b18a;
+    }
+
+    .material-icons {
+      font-size: 1.3em;
+      vertical-align: middle;
+      color: #a3b18a;
+      margin-right: 0.3em;
+    }
+
+    .quotes {
+      text-align: center;
+      margin: 2rem 0 3rem 0;
+    }
+
+    .quotes blockquote {
+      font-size: 1.2rem;
+      color: #3e5c3a;
+      background: #e3f6e8;
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 2px 8px #b7cbb0, 0 1px 2px #00000011;
+      margin: 0 0 1rem 0;
+      font-style: italic;
+      font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
+      border: 1.5px dashed #a3b18a;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6a8c5a;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
+    }
+
+    .footer .material-icons {
+      color: #3e5c3a;
+      font-size: 1.2em;
+      margin: 0 0.2em;
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .photo-card {
+        width: 90vw;
+      }
+
+      .timeline {
+        padding: 1rem;
+      }
+    }
+
+    /* Ripple effect for cards */
+    .photo-card:active::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 120%;
+      height: 120%;
+      background: rgba(163, 177, 138, 0.18);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      animation: ripple 0.5s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.8);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <canvas class="love-anim"></canvas>
+    <h1>存摺子 ❤ 鮭魚子</h1>
+    <h2>戀愛紀念日快樂！</h2>
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+  <div class="quotes">
+    <blockquote>「有你在的每一天，都是值得紀念的日子。」</blockquote><br>
+    <blockquote>「存摺子 & 鮭魚子，永遠幸福下去！」</blockquote>
+  </div>
+
+  <div class="gallery">
+    <div class="photo-card">
+      <img src="https://photos.app.goo.gl/SB9D8StRpEHNUU2y9" alt="回憶1">
+      <div class="caption">第一次約會的合照</div>
+    </div>
+    <div class="photo-card">
+      <img src="PXL_20231005_073303656.jpg" alt="回憶2">
+      <div class="caption">一起去旅行的風景</div>
+    </div>
+    <div class="photo-card">
+      <img src="PXL_20241122_015857500.jpg" alt="回憶3">
+      <div class="caption">甜蜜的日常時光</div>
+    </div>
+    <div class="photo-card">
+      <img src="PXL_20250222_095806491.jpg" alt="回憶4">
+      <div class="caption">我們的幸福瞬間</div>
+    </div>
+    <div class="photo-card">
+      <img src="PXL_20250222_101246195.NIGHT.jpg" alt="回憶5">
+      <div class="caption">夜晚的浪漫散步</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 存摺子 & 鮭魚子｜戀愛永遠進行中 <span class="material-icons">favorite</span>
+  </div>
+
+  <script>
+    // 交往天數與周年計算
+    function updateAnniversary() {
+      const startDate = new Date('2023-04-23T00:00:00');
+      const now = new Date();
+      // 計算交往天數（含今天）
+      const diffTime = now.setHours(0,0,0,0) - startDate.getTime();
+      const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      // 計算第幾周年
+      const years = now.getFullYear() - startDate.getFullYear() - (now.getMonth() < startDate.getMonth() || (now.getMonth() === startDate.getMonth() && now.getDate() < startDate.getDate()) ? 1 : 0);
+      // 是否為周年日
+      const isAnniversary = now.getMonth() === startDate.getMonth() && now.getDate() === startDate.getDate();
+      let text = `今天是我們交往的第 ${days} 天`;
+      if (isAnniversary && years > 0) {
+        text += `，也是我們交往第 ${years} 周年紀念日！`;
+      } else if (years > 0) {
+        text += `，已經第 ${years} 周年啦！`;
+      }
+      document.getElementById('countdown').textContent = text;
+    }
+    setInterval(updateAnniversary, 1000 * 60 * 10); // 每 10 分鐘更新一次即可
+    updateAnniversary();
+
+    // 愛心動畫
+    const canvas = document.querySelector('.love-anim');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    function drawHeart(x, y, size, color, alpha) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.moveTo(x, y + size / 4);
+      ctx.bezierCurveTo(x, y, x - size / 2, y, x - size / 2, y + size / 4);
+      ctx.bezierCurveTo(x - size / 2, y + size / 2, x, y + size * 0.8, x, y + size);
+      ctx.bezierCurveTo(x, y + size * 0.8, x + size / 2, y + size / 2, x + size / 2, y + size / 4);
+      ctx.bezierCurveTo(x + size / 2, y, x, y, x, y + size / 4);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
+    }
+    function randomColor() {
+      const colors = ['#ff6f91', '#ffb6c1', '#ff8fab', '#ffd6e0', '#fff0f5'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    function spawnHeart() {
+      hearts.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 20,
+        size: 18 + Math.random() * 18,
+        color: randomColor(),
+        alpha: 0.7 + Math.random() * 0.3,
+        speed: 1 + Math.random() * 1.5,
+        drift: (Math.random() - 0.5) * 1.2
+      });
+    }
+    function animateHearts() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = hearts.length - 1; i >= 0; i--) {
+        const h = hearts[i];
+        h.y -= h.speed;
+        h.x += h.drift;
+        h.alpha -= 0.0015;
+        drawHeart(h.x, h.y, h.size, h.color, h.alpha);
+        if (h.y < -30 || h.alpha <= 0) hearts.splice(i, 1);
+      }
+      if (hearts.length < 30 && Math.random() < 0.5) spawnHeart();
+      requestAnimationFrame(animateHearts);
+    }
+    animateHearts();
+  </script>
+</body>
+
+</html>
