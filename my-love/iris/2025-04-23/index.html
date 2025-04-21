@@ -339,7 +339,7 @@
       } else if (years > 0) {
         text += `這段旅程，已悄悄寫下第 ${years} 年的詩行`;
       }
-      document.getElementById('countdown').textContent = text;
+      document.getElementById('countdown').innerHTML = text;
     }
     setInterval(updateAnniversary, 1000 * 60 * 10); // 每 10 分鐘更新一次即可
     updateAnniversary();
