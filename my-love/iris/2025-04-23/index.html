@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>存摺子 & 鮭魚子｜戀愛紀念相簿</title>
+  <title>存摺子 & 鮭魚子 ❤️ 戀愛紀念相簿</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+TC:wght@400;700&family=Sawarabi+Mincho&family=Noto+Serif+JP&display=swap"
     rel="stylesheet">
@@ -34,7 +34,10 @@
     }
 
     /* 主要內容都要在愛心動畫之上 */
-    .header, .gallery, .quotes, .footer {
+    .header,
+    .gallery,
+    .quotes,
+    .footer {
       position: relative;
       z-index: 1;
     }
@@ -159,6 +162,7 @@
       font-style: italic;
       font-family: 'Noto Serif JP', 'Noto Sans TC', serif;
       border: 1.5px dashed #a3b18a;
+      text-align: left;
     }
 
     .footer {
@@ -215,74 +219,101 @@
         transform: translate(-50%, -50%) scale(1.8);
       }
     }
+
+    .anniversary-title {
+      font-family: 'Pacifico', 'Noto Serif JP', cursive, serif;
+      letter-spacing: 2px;
+      color: #7a5c3a;
+      font-weight: normal;
+    }
+
+    .anniversary-highlight {
+      font-size: 1.1em;
+      color: #a3b18a;
+    }
   </style>
 </head>
 
 <body>
   <div class="header">
     <canvas class="love-anim"></canvas>
-    <h1>存摺子 ❤ 鮭魚子</h1>
-    <h2>交往紀念日快樂！</h2>
+    <h1>存摺子 ❤️ 鮭魚子</h1>
+    <h2 class="anniversary-title">
+      兩個靈魂，攜手走過無數四季流轉。<br>
+      每一張照片，都是愛的詩行。<br>
+      <span class="anniversary-highlight">交往紀念日快樂！</span>
+    </h2>
     <div class="countdown" id="countdown"></div>
   </div>
 
   <div class="quotes">
-    <blockquote>「有你在的每一天，都是值得紀念的日子。」</blockquote><br>
-    <blockquote>「存摺子 & 鮭魚子，永遠幸福下去！」</blockquote>
+    <blockquote>
+      親愛的鮭魚子：<br /><br />
+      時光如白駒過隙，轉眼間我們已攜手走過兩個春夏秋冬。<br />
+      還記得初次約會的青澀與緊張嗎？那時的我們，像兩條小魚在陌生的水域裡試探彼此，卻在不知不覺間，游進了對方的心湖。<br />
+      這一路上，從羞澀的微笑到如今的默契眼神，每一個片刻都成為我心中最珍貴的風景。<br />
+      謝謝妳溫柔地走進我的生命，讓我的世界多了溫度與色彩。<br />
+      謝謝妳的包容與體貼，總在我迷惘或低落時，給我最溫暖的擁抱與鼓勵。<br />
+      有妳在身邊，平凡的日子也能閃閃發光，未來的路也因此充滿希望。<br />
+      願我們繼續攜手，去看更多的風景，去經歷更多的故事，把每一個平凡的日子都過成詩。<br /><br />
+      我愛妳，勝過昨日，卻不及明天。<br />
+      存摺子敬上<br />
+      2025/04/23
+    </blockquote>
   </div>
 
   <div class="gallery">
     <div class="photo-card">
       <img src="./1.png" alt="XPark水族館">
-      <div class="caption">水族館映襯著溫馨，愛情如同魚兒悠游，自在美好，永遠幸福。</div>
+      <div class="caption">在水族館的玻璃世界裡，魚兒悠游，妳的笑容倒映在水光間，愛情也悄悄流淌成溫柔的河流。</div>
     </div>
     <div class="photo-card">
       <img src="./2.png" alt="油桐花">
-      <div class="caption">初見的寧靜與好奇，妳像初開的油桐花，保有純粹，綻放希望與美好。</div>
+      <div class="caption">初見時的妳，如同油桐花初綻，純白無瑕，帶著一點靦腆與好奇，讓我的世界也跟著明亮起來。</div>
     </div>
     <div class="photo-card">
       <img src="./3.png" alt="淺草&和服">
-      <div class="caption">和服映照著幸福笑顏，漫步在日本街頭，每一步都充滿愛與喜悅，留下如畫般的回憶。</div>
+      <div class="caption">和服下的笑顏，是旅途中最美的風景。漫步異鄉街頭，彼此的陪伴讓每一步都溫柔而踏實。</div>
     </div>
     <div class="photo-card">
       <img src="./4.png" alt="東京迪士尼">
-      <div class="caption">充滿溫馨快樂感的東京迪士尼，創造更多如童話般美好的歡樂回憶！</div>
+      <div class="caption">在童話國度裡，我們像孩子一樣歡笑奔跑，把快樂和夢想都收藏進彼此的心裡。</div>
     </div>
     <div class="photo-card">
       <img src="./5.png" alt="埔心牧場&划船">
-      <div class="caption">共乘一船，未來人生旅途一帆風順，享受每個快樂時光！</div>
+      <div class="caption">同舟共渡的時光，無論前方風平浪靜或波瀾壯闊，有妳在身旁，未來都值得期待。</div>
     </div>
     <div class="photo-card">
       <img src="./6.png" alt="小人國遊樂園">
-      <div class="caption">青春喜悅！玩遍遊樂園、勇闖激流泛舟，永遠笑容燦爛，感情長存！</div>
+      <div class="caption">青春的笑聲在遊樂園裡迴盪，妳的快樂感染著我，讓愛情也變得勇敢又燦爛。</div>
     </div>
     <div class="photo-card">
       <img src="./7.png" alt="花之舞光影展">
-      <div class="caption">時光如畫溫馨，笑容常在，快樂永伴，情誼長存。</div>
+      <div class="caption">光影流轉，花影搖曳。妳的身影在燈光下格外溫柔，時光彷彿也慢了下來，只為記住這一刻。</div>
     </div>
     <div class="photo-card">
       <img src="./8.png" alt="新竹公園櫻花">
-      <div class="caption">櫻花樹下，溫馨甜蜜。愛情如花綻放，幸福綿長，共享美好。</div>
+      <div class="caption">櫻花樹下，妳的笑容比花還燦爛。愛情如春日花雨，悄悄落在我們的肩上，溫柔又長久。</div>
     </div>
     <div class="photo-card">
       <img src="./9.png" alt="六福村遊樂園">
-      <div class="caption">遊樂園旋轉木馬前的開心合照！快樂時光如木馬般旋轉不息，留下燦爛回憶！</div>
+      <div class="caption">旋轉木馬上的歡笑，是我們青春最純真的記號。願快樂如木馬般，永不止息地旋轉。</div>
     </div>
     <div class="photo-card">
       <img src="./10.png" alt="自嘲熊展覽">
-      <div class="caption">和可愛的自嘲熊合照，真開心！保有童心，笑看生活，享受每個可愛的相伴時刻！</div>
+      <div class="caption">和自嘲熊合影的瞬間，妳的童心與可愛讓我深深著迷。一起傻笑，是最幸福的日常。</div>
     </div>
     <div class="photo-card">
       <img src="./11.png" alt="2025竹北燈會">
-      <div class="caption">充滿溫馨喜悅，永遠快樂，幸福相隨。</div>
+      <div class="caption">燈火點亮夜色，也照亮我們的未來。妳在身邊，平凡的夜晚也變得溫馨而明亮。</div>
     </div>
     <div class="photo-card">
       <img src="./12.png" alt="2025桃園燈會">
-      <div class="caption">溫馨依偎，暖意流淌。在人潮中，共享此刻靜好，幸福長伴。</div>
+      <div class="caption">在人潮中依偎，感受彼此的溫度。幸福其實很簡單，就是和妳一起靜靜走過每個夜晚。</div>
     </div>
     <div class="photo-card">
       <img src="./13.png" alt="攀岩">
-      <div class="caption">準備挑戰！拿出勇氣，克服弱點，享受攀登過程中的每一次突破與成長！</div>
+      <div class="caption">每一次攀登，都是勇氣的證明。謝謝妳陪我一起突破自己，讓愛情也不斷成長茁壯。</div>
     </div>
   </div>
 
@@ -296,7 +327,7 @@
       const startDate = new Date('2023-04-23T00:00:00');
       const now = new Date();
       // 計算交往天數（含今天）
-      const diffTime = now.setHours(0,0,0,0) - startDate.getTime();
+      const diffTime = now.setHours(0, 0, 0, 0) - startDate.getTime();
       const days = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
       // 計算第幾周年
       const years = now.getFullYear() - startDate.getFullYear() - (now.getMonth() < startDate.getMonth() || (now.getMonth() === startDate.getMonth() && now.getDate() < startDate.getDate()) ? 1 : 0);
