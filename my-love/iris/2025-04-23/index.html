@@ -111,7 +111,10 @@
     .photo-card img {
       width: 100%;
       height: 260px;
-      object-fit: cover;
+      object-fit: contain;
+      /* 由 cover 改為 contain */
+      background: #f7f3e3;
+      /* 增加背景色，避免空白區域突兀 */
       display: block;
       border-top-left-radius: 1.5rem;
       border-top-right-radius: 2.2rem;
