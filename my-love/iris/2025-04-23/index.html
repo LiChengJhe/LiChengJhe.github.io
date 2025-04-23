@@ -333,11 +333,11 @@
       const years = now.getFullYear() - startDate.getFullYear() - (now.getMonth() < startDate.getMonth() || (now.getMonth() === startDate.getMonth() && now.getDate() < startDate.getDate()) ? 1 : 0);
       // 是否為周年日
       const isAnniversary = now.getMonth() === startDate.getMonth() && now.getDate() === startDate.getDate();
-      let text = `我們已攜手走過第 ${days} 個晨昏<br/>`;
+      let text = `我們已攜手走過第 ${days} 個晨昏。<br/>`;
       if (isAnniversary && years > 0) {
-        text += `今天是屬於我們的第 ${years} 個春天，也是愛情悄然盛開的紀念日<br/>`;
+        text += `今天是屬於我們的第 ${years} 個春天，也是愛情悄然盛開的紀念日。<br/>`;
       } else if (years > 0) {
-        text += `這段旅程，已悄悄寫下第 ${years} 年的詩行`;
+        text += `這段旅程，已悄悄寫下第 ${years} 年的詩行。`;
       }
       document.getElementById('countdown').innerHTML = text;
     }
