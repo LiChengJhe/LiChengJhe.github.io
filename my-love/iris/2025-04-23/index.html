@@ -117,10 +117,6 @@
       object-fit: cover;
       background: #f7f3e3;
       display: block;
-      border-top-left-radius: 1.5rem;
-      border-top-right-radius: 2.2rem;
-      border-bottom-left-radius: 1.5rem;
-      border-bottom-right-radius: 2.2rem;
       filter: brightness(0.97) contrast(1.05) saturate(1.08);
       box-shadow: 0 2px 8px #b7cbb055;
     }
@@ -330,6 +326,13 @@
     </div>
   </div>
 
+  <!-- 放大圖片的燈箱遮罩與大圖容器 -->
+  <div id="lightbox-overlay"
+    style="display:none;position:fixed;z-index:1000;top:0;left:0;width:100vw;height:100vh;background:rgba(40,40,40,0.75);justify-content:center;align-items:center;">
+    <img id="lightbox-img" src="" alt="放大圖片"
+      style="max-width:90vw;max-height:90vh;border-radius:1.5rem;box-shadow:0 8px 32px #0008;">
+  </div>
+
   <div class="footer">
     &copy; 2025 存摺子 & 鮭魚子｜戀愛永遠進行中 <span class="material-icons">favorite</span>
   </div>
@@ -410,6 +413,24 @@
       requestAnimationFrame(animateHearts);
     }
     animateHearts();
+
+    // 圖片點擊放大（燈箱效果）
+    document.querySelectorAll('.photo-card img').forEach(function (img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function () {
+        var overlay = document.getElementById('lightbox-overlay');
+        var bigImg = document.getElementById('lightbox-img');
+        bigImg.src = this.src;
+        bigImg.alt = this.alt;
+        overlay.style.display = 'flex';
+      });
+    });
+    document.getElementById('lightbox-overlay').addEventListener('click', function (e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+        document.getElementById('lightbox-img').src = '';
+      }
+    });
   </script>
 </body>
 
