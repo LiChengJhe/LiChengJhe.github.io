@@ -55,7 +55,7 @@
 const props = defineProps({
   nickname: {
     type: String,
-    default: '寶貝'
+    default: '鮭魚子'
   },
   signature: {
     type: String,

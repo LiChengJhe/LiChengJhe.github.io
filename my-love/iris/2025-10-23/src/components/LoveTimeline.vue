@@ -158,7 +158,7 @@ const events = [
     image: new URL('../assets/memories/16.png', import.meta.url).href,
     photoCaption: '把我們的回憶剪成星圖，投映在妳生日的夜空。',
     accent: '#ffd0e8',
-    align: 'left'
+    align: 'right'
   },
   {
     id: '2025-anniversary',
@@ -180,7 +180,7 @@ const events = [
     image: new URL('../assets/memories/17.png', import.meta.url).href,
     photoCaption: '紀念日的擁抱，把未來的冒險都打包進心跳裡。',
     accent: '#ffb9da',
-    align: 'right'
+    align: 'left'
   }
 ];
 
