@@ -42,6 +42,20 @@
               <ul class="timeline-card__chips">
                 <li v-for="chip in event.keywords" :key="chip">{{ chip }}</li>
               </ul>
+              <div v-if="event.links?.length" class="timeline-card__links">
+                <a
+                  v-for="link in event.links"
+                  :key="link.url"
+                  class="timeline-card__link"
+                  :href="link.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :aria-label="`開啟 ${link.label}`"
+                >
+                  <span>{{ link.label }}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
             <figure v-if="event.image" class="timeline-card__photo">
               <img :src="event.image" :alt="`${event.title} 的回憶照片`" loading="lazy" />
@@ -59,84 +73,114 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const events = [
   {
-    id: '2019-glance',
-    year: '2019',
-    month: '04 月',
-    title: '那杯拿鐵寫下的命運',
-    description: '在新竹的小巷咖啡，我們爭奪最後一杯拿鐵。從那天起，我開始習慣妳的笑聲和眼神。',
-    quote: '「如果命運要安排意外相遇，那一定是你。」',
-    location: '新竹 · 巷弄咖啡館',
-    keywords: ['命定初遇', '偷喝的拿鐵', '怦然心跳'],
-    badge: 'First Spark',
-    icon: '☕️',
-    image: new URL('../assets/memories/1.png', import.meta.url).href,
-    photoCaption: '第一次約會就決定一起守護彼此的笑容。',
-    accent: '#f45d90',
-    align: 'left'
-  },
-  {
-    id: '2020voyage',
-    year: '2020',
-    month: '09 月',
-    title: '黃昏湖畔的旅程宣言',
-    description: '在日月潭的泛舟夕陽裡，妳說想收藏更多天空的顏色，我答應把每一道晚霞都留給妳。',
-    quote: '「只要妳在，平凡湖光也會長出浪漫。」',
-    location: '南投 · 日月潭',
-    keywords: ['旅行同盟', '夕陽誓言', '兩人小宇宙'],
-    badge: 'Adventure Mode',
-    icon: '🛶',
-    image: new URL('../assets/memories/5.png', import.meta.url).href,
-    photoCaption: '夕陽映著妳的側臉，我決定每天都陪妳看海。',
-    accent: '#ff9cb6',
-    align: 'right'
-  },
-  {
-    id: '2022-harbor',
-    year: '2022',
-    month: '03 月',
-    title: '櫻花雨下的避風港',
-    description: '疫情讓世界按下暫停，我們在櫻花樹下約定，無論外面多吵，彼此的擁抱永遠有空位。',
-    quote: '「妳的肩膀是我最柔軟的防線。」',
-    location: '新竹 · 櫻花步道',
-    keywords: ['守候', '肩並肩', '小宇宙'],
-    badge: 'Safe Haven',
-    icon: '🌸',
-    image: new URL('../assets/memories/8.png', import.meta.url).href,
-    photoCaption: '花雨落下時，我只想緊緊把妳擁在懷裡。',
-    accent: '#ffbad4',
-    align: 'left'
-  },
-  {
-    id: '2023-lights',
+    id: '2023-savings-birthday',
     year: '2023',
-    month: '02 月',
-    title: '燈會裡的未來倒影',
-    description: '在熱鬧的人群裡，我們牽手走過光廊，聊著未來的家與旅程，原來幸福離我們這麼近。',
-    quote: '「燈火再亮，也比不上妳看我的眼睛。」',
-    location: '竹北 · 燈會',
-    keywords: ['彼此承諾', '光影紀念', '心動日常'],
-    badge: 'Heartbeat Glow',
-    icon: '🎆',
-    image: new URL('../assets/memories/11.png', import.meta.url).href,
-    photoCaption: '燈火萬千，我只覺得妳的手最溫暖。',
-    accent: '#ffd4e7',
+    month: '08 月',
+    title: '存摺子的生日星河',
+    description: '為妳鋪好了專屬生日網站，每一段文字和照片都在說：你的願望我會一個個收藏。',
+    quote: '「妳的每一次吹蠟燭，我都會站在光裡守護。」',
+    location: '線上 · 生日驚喜站',
+    keywords: ['生日儀式感', '專屬故事', '甜蜜祝福'],
+    badge: 'Birthday Bloom',
+    icon: '🎂',
+    links: [
+      {
+        label: '存摺子的生日頁',
+        url: 'https://lichengjhe.github.io/my-love/iris/2023-08-22/index.html'
+      }
+    ],
+    image: new URL('../assets/memories/12.png', import.meta.url).href,
+    photoCaption: '在星河主題的生日驚喜裡，一起點亮妳的願望宇宙。',
+    accent: '#ffc8e4',
+    align: 'left'
+  },
+  {
+    id: '2023-salmon-birthday',
+    year: '2023',
+    month: '10 月',
+    title: '鮭魚子的生日海潮',
+    description: '我們把好多彩蛋藏在網站裡，妳的笑聲和期待串成一場亮晶晶的生日浪潮。',
+    quote: '「願妳的笑意像海浪，一圈圈拍進我的心。」',
+    location: '線上 · 驚喜舞台',
+    keywords: ['生日祝歌', '彩蛋影片', '浪漫打卡'],
+    badge: 'Birthday Wave',
+    icon: '🐟',
+    links: [
+      {
+        label: '鮭魚子的生日頁',
+        url: 'https://lichengjhe.github.io/my-love/iris/2023-10-23/index.html'
+      }
+    ],
+    image: new URL('../assets/memories/13.png', import.meta.url).href,
+    photoCaption: '妳拆禮物時的笑眼，就像海浪一層層溫柔拍進心裡。',
+    accent: '#ffb4d6',
     align: 'right'
   },
   {
-    id: '2024-everyday',
-    year: '2024',
-    month: '08 月',
-    title: '把平凡綁成永遠',
-    description: '我們學會在忙碌裡偷空，一起煮晚餐、聽音樂、分享小確幸，把日常練成幸福的雛形。',
-    quote: '「和妳在一起，日常也會閃亮。」',
-    location: '我們的家 · 晚餐檯前',
-    keywords: ['溫柔家務', '靜靜相伴', '幸福練習'],
-    badge: 'Everyday Miracle',
-    icon: '✨',
-    image: new URL('../assets/memories/14.png', import.meta.url).href,
-    photoCaption: '廚房的光最溫柔，因為有妳的笑聲。',
-    accent: '#ffe2f1',
+    id: '2023-christmas',
+    year: '2023',
+    month: '12 月',
+    title: '聖誕夜的暖光',
+    description: '我們在冬夜裡鋪滿燈火，把祝福寫進每一句話，等妳拆開愛的禮物。',
+    quote: '「只要妳在身旁，冬天就會長出暖色。」',
+    location: '線上 · 聖誕特製頁',
+    keywords: ['聖誕祝福', '心願清單', '冬日甜蜜'],
+    badge: 'Holiday Magic',
+    icon: '🎄',
+    links: [
+      {
+        label: '聖誕節驚喜頁',
+        url: 'https://lichengjhe.github.io/my-love/iris/2023-12-25/index.html'
+      }
+    ],
+    image: new URL('../assets/memories/15.png', import.meta.url).href,
+    photoCaption: '聖誕樹下的我們，被祝福的光點包圍著。',
+    accent: '#ffe1f2',
     align: 'left'
+  },
+  {
+    id: '2024-salmon-birthday',
+    year: '2024',
+    month: '10 月',
+    title: '2024 鮭魚子生日星圖',
+    description: '這次換我把相片和心願放進雲端星空，陪妳再一次許下最重要的生日願望。',
+    quote: '「你的願望，是我最真心的航線。」',
+    location: 'Google Photos · 精選影集',
+    keywords: ['生日影集', '年度回顧', '星圖心願'],
+    badge: 'Celestial Wish',
+    icon: '🌌',
+    links: [
+      {
+        label: '2024 鮭魚子生日影集',
+        url: 'https://photos.app.goo.gl/d8x6uiy9m7uXYpmm6'
+      }
+    ],
+    image: new URL('../assets/memories/16.png', import.meta.url).href,
+    photoCaption: '把我們的回憶剪成星圖，投映在妳生日的夜空。',
+    accent: '#ffd0e8',
+    align: 'left'
+  },
+  {
+    id: '2025-anniversary',
+    year: '2025',
+    month: '04 月',
+    title: '交往紀念日的心跳',
+    description: '把我們的旅程剪成一首歌，寫在新的一年紀念日裡，提醒自己要繼續同頻心動。',
+    quote: '「每一個交往的日子，都是我再選擇妳一次。」',
+    location: '線上 · 紀念日特輯',
+    keywords: ['紀念日', '心跳樂章', '未來藍圖'],
+    badge: 'Anniversary Pulse',
+    icon: '💞',
+    links: [
+      {
+        label: '2025 交往紀念日頁',
+        url: 'https://lichengjhe.github.io/my-love/iris/2025-04-23/index.html'
+      }
+    ],
+    image: new URL('../assets/memories/17.png', import.meta.url).href,
+    photoCaption: '紀念日的擁抱，把未來的冒險都打包進心跳裡。',
+    accent: '#ffb9da',
+    align: 'right'
   }
 ];
 
@@ -409,6 +453,34 @@ onBeforeUnmount(() => {
   color: var(--primary-dark);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
+}
+
+.timeline-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.timeline-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(244, 93, 144, 0.16);
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 16px rgba(244, 93, 144, 0.16);
+}
+
+.timeline-card__link:hover,
+.timeline-card__link:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(244, 93, 144, 0.26);
+  box-shadow: 0 10px 20px rgba(244, 93, 144, 0.22);
 }
 
 .timeline-card__photo {
