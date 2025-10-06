@@ -1,16 +1,55 @@
 <template>
   <section class="wishes" aria-labelledby="wishes-title">
+
     <article
       class="wish-card fade-up"
       @mousemove="handleCardMouseMove"
       @mouseleave="resetTilt"
       :style="{ transform: cardTransform }"
     >
+      <span class="wish-card__halo" aria-hidden="true"></span>
+      <span class="wish-card__glint" :class="{ 'wish-card__glint--active': shimmerActive }" aria-hidden="true"></span>
+
+      <div class="wish-card__petals" aria-hidden="true">
+        <span
+          v-for="petal in floatingPetals"
+          :key="petal.id"
+          class="wish-card__petal"
+          :style="{
+            '--petal-left': petal.left,
+            '--petal-top': petal.top,
+            '--petal-delay': petal.delay,
+            '--petal-duration': petal.duration,
+            '--petal-scale': petal.scale,
+            '--petal-rotation': petal.rotation,
+            '--petal-blur': petal.blur
+          }"
+        ></span>
+      </div>
+
+      <div class="wish-card__sparkles" aria-hidden="true">
+        <span
+          v-for="sparkle in sparkleSeeds"
+          :key="sparkle.id"
+          class="wish-card__sparkle"
+          :style="{
+            '--sparkle-left': sparkle.left,
+            '--sparkle-top': sparkle.top,
+            '--sparkle-delay': sparkle.delay,
+            '--sparkle-duration': sparkle.duration,
+            '--sparkle-scale': sparkle.scale
+          }"
+        ></span>
+      </div>
+
       <div class="wish-card__noise" aria-hidden="true"></div>
 
       <header class="wish-card__header">
         <span class="wish-card__badge">Birthday Blessing</span>
-        <h2 id="wishes-title">給妳的一封序曲</h2>
+        <h2 id="wishes-title">
+          <span class="wish-card__title-glow" aria-hidden="true"></span>
+          給妳的一封序曲
+        </h2>
         <p class="wish-card__tagline">把今晚所有星光，寫成只屬於妳的情書</p>
       </header>
 
@@ -19,21 +58,38 @@
       </p>
 
       <div class="wish-card__content" aria-live="polite">
-        <div class="wish-card__icon" aria-hidden="true">{{ messageIcon }}</div>
-        <div class="wish-card__message-block">
-          <p v-for="paragraph in messageParagraphs" :key="paragraph" class="wish-card__message">{{ paragraph }}</p>
+        <div class="wish-card__icon" :class="{ 'wish-card__icon--glow': revealedCount > 0 }" aria-hidden="true">
+          {{ activeIcon }}
         </div>
-        <div class="wish-card__divider" aria-hidden="true"></div>
-        <p class="wish-card__closing">{{ closingLine }}</p>
+
+        <transition-group
+          name="wish-message"
+          tag="div"
+          class="wish-card__message-block"
+        >
+          <p
+            v-for="paragraph in visibleParagraphs"
+            :key="paragraph"
+            class="wish-card__message"
+          >
+            {{ paragraph }}
+          </p>
+        </transition-group>
+
+        <div class="wish-card__divider" :class="{ 'wish-card__divider--visible': closingVisible }" aria-hidden="true"></div>
+
+        <p class="wish-card__closing" :class="{ 'wish-card__closing--visible': closingVisible }">
+          {{ closingLine }}
+        </p>
       </div>
     </article>
   </section>
 </template>
 
 <script setup>
-import { computed, reactive } from 'vue';
+import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
-const messageIcon = '💌';
+const baseIcon = '💌';
 
 const messageParagraphs = [
   '謝謝妳讓平凡的日子也帶著煙火，我總覺得和妳說晚安時，整個宇宙都會變得柔軟一些。',
@@ -41,9 +97,34 @@ const messageParagraphs = [
   '未來的路上，就由我把驚喜和安心輪流放進妳口袋，讓妳無論何時想起我，都會先想起被滿滿地愛著。'
 ];
 
-const closingLine = '愛妳的，存摺子';
+const closingLine = '愛妳的存摺子';
 
 const tilt = reactive({ x: 0, y: 0 });
+const revealedCount = ref(0);
+const closingVisible = ref(false);
+const shimmerActive = ref(false);
+
+const visibleParagraphs = computed(() => messageParagraphs.slice(0, revealedCount.value));
+const activeIcon = computed(() => (closingVisible.value ? '💞' : baseIcon));
+
+const sparkleSeeds = Object.freeze([
+  { id: 'sparkle-1', left: '18%', top: '18%', delay: '0s', duration: '7.5s', scale: '1' },
+  { id: 'sparkle-2', left: '82%', top: '28%', delay: '-2.6s', duration: '9.4s', scale: '0.86' },
+  { id: 'sparkle-3', left: '14%', top: '68%', delay: '-1.4s', duration: '8.6s', scale: '0.92' },
+  { id: 'sparkle-4', left: '72%', top: '78%', delay: '-3.2s', duration: '10.8s', scale: '1.04' },
+  { id: 'sparkle-5', left: '50%', top: '12%', delay: '-4.6s', duration: '11.6s', scale: '0.78' },
+  { id: 'sparkle-6', left: '92%', top: '54%', delay: '-6.2s', duration: '9.8s', scale: '0.7' }
+]);
+
+const floatingPetals = Object.freeze([
+  { id: 'petal-1', left: '12%', top: '26%', delay: '-2.4s', duration: '12.4s', scale: '1.05', rotation: '18deg', blur: '0px' },
+  { id: 'petal-2', left: '28%', top: '84%', delay: '-6.8s', duration: '14.2s', scale: '0.88', rotation: '-16deg', blur: '1px' },
+  { id: 'petal-3', left: '78%', top: '18%', delay: '-4.2s', duration: '13.6s', scale: '0.96', rotation: '26deg', blur: '0px' },
+  { id: 'petal-4', left: '88%', top: '76%', delay: '-8.6s', duration: '15s', scale: '1.14', rotation: '-12deg', blur: '2px' },
+  { id: 'petal-5', left: '6%', top: '62%', delay: '-10s', duration: '16s', scale: '1.28', rotation: '34deg', blur: '1px' }
+]);
+
+const timers = [];
 
 const handleCardMouseMove = (event) => {
   const card = event.currentTarget;
@@ -65,9 +146,40 @@ const resetTilt = () => {
   tilt.y = 0;
 };
 
-const cardTransform = computed(
-  () => `rotateX(${tilt.x.toFixed(2)}deg) rotateY(${tilt.y.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`
-);
+const cardTransform = computed(() => {
+  const scale = closingVisible.value ? 1.02 : 1.01;
+  return `rotateX(${tilt.x.toFixed(2)}deg) rotateY(${tilt.y.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`;
+});
+
+onMounted(() => {
+  shimmerActive.value = true;
+
+  if (typeof window === 'undefined') {
+    revealedCount.value = messageParagraphs.length;
+    closingVisible.value = true;
+    return;
+  }
+
+  const baseDelay = 420;
+  const stepDuration = 1250;
+
+  messageParagraphs.forEach((_, index) => {
+    const timer = window.setTimeout(() => {
+      revealedCount.value = index + 1;
+    }, baseDelay + index * stepDuration);
+    timers.push(timer);
+  });
+
+  const closingTimer = window.setTimeout(() => {
+    closingVisible.value = true;
+  }, baseDelay + messageParagraphs.length * stepDuration + 640);
+  timers.push(closingTimer);
+});
+
+onBeforeUnmount(() => {
+  if (typeof window === 'undefined') return;
+  timers.forEach((timer) => window.clearTimeout(timer));
+});
 </script>
 
 <style scoped>
@@ -76,60 +188,135 @@ const cardTransform = computed(
   display: flex;
   justify-content: center;
   padding: clamp(4rem, 9vw, 8rem) clamp(1.5rem, 6vw, 4rem);
+  overflow: hidden;
 }
 
 .wish-card {
   position: relative;
   width: min(720px, 100%);
-  padding: clamp(2.4rem, 5vw, 3.8rem);
-  border-radius: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: linear-gradient(155deg, rgba(255, 245, 250, 0.76), rgba(255, 213, 232, 0.55));
-  box-shadow: 0 50px 140px rgba(244, 93, 144, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.32);
-  backdrop-filter: blur(26px);
+  padding: clamp(2.6rem, 6vw, 4rem);
+  border-radius: 44px;
+  background: transparent;
+  box-shadow: 0 60px 160px rgba(244, 93, 144, 0.2);
+  backdrop-filter: blur(28px) saturate(120%);
   overflow: hidden;
   transform-style: preserve-3d;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .wish-card:hover {
-  box-shadow: 0 60px 160px rgba(244, 93, 144, 0.32);
+  box-shadow: 0 70px 180px rgba(244, 93, 144, 0.26);
+}
+
+.wish-card__halo {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 60%);
+  opacity: 0.6;
+  transform: translateZ(-40px);
+}
+
+.wish-card__glint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.28) 45%, rgba(255, 193, 218, 0.6) 50%, rgba(255, 255, 255, 0.28) 55%, transparent 100%);
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.wish-card__glint--active {
+  animation: glintSweep 6s ease-in-out 0.8s infinite;
 }
 
 .wish-card__noise {
   position: absolute;
   inset: 0;
   background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 4px);
-  opacity: 0.22;
+  opacity: 0.2;
   mix-blend-mode: soft-light;
   pointer-events: none;
+}
+
+.wish-card__petals,
+.wish-card__sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wish-card__petal {
+  position: absolute;
+  left: var(--petal-left);
+  top: var(--petal-top);
+  width: clamp(24px, 4vw, 36px);
+  height: clamp(28px, 4.5vw, 44px);
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 173, 208, 0.85) 40%, rgba(244, 93, 144, 0.7) 100%);
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.25;
+  filter: blur(var(--petal-blur));
+  transform: translate(-50%, -50%) scale(var(--petal-scale)) rotate(var(--petal-rotation));
+  animation: petalFloat var(--petal-duration) ease-in-out infinite;
+  animation-delay: var(--petal-delay);
+}
+
+.wish-card__sparkle {
+  position: absolute;
+  left: var(--sparkle-left);
+  top: var(--sparkle-top);
+  width: clamp(8px, 1.8vw, 14px);
+  height: clamp(8px, 1.8vw, 14px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 194, 223, 0.75) 45%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(var(--sparkle-scale));
+  opacity: 0;
+  animation: sparkleTwinkle var(--sparkle-duration) ease-in-out infinite;
+  animation-delay: var(--sparkle-delay);
 }
 
 .wish-card__header {
   position: relative;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.75rem;
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;
+  z-index: 1;
 }
 
 .wish-card__badge {
   justify-self: center;
-  padding: 0.5rem 1.6rem;
+  padding: 0.55rem 1.7rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.38);
   color: var(--primary-dark);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-size: 0.72rem;
   font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
 }
 
 .wish-card__header h2 {
+  position: relative;
   margin: 0;
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-size: clamp(1.7rem, 4.2vw, 2.75rem);
   color: var(--primary-dark);
-  text-shadow: 0 16px 30px rgba(51, 28, 46, 0.14);
+  text-shadow: 0 18px 42px rgba(51, 28, 46, 0.15);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 1rem;
+}
+
+.wish-card__title-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 65%);
+  opacity: 0.6;
+  filter: blur(18px);
+  z-index: -1;
 }
 
 .wish-card__tagline {
@@ -140,70 +327,177 @@ const cardTransform = computed(
 }
 
 .wish-card__intro {
-  margin: 0 auto clamp(1.8rem, 4vw, 2.4rem);
-  max-width: 46ch;
+  margin: 0 auto clamp(2rem, 4.2vw, 2.6rem);
+  max-width: 48ch;
   text-align: center;
-  color: rgba(51, 28, 46, 0.62);
-  font-size: 0.98rem;
-  line-height: 1.8;
+  color: rgba(51, 28, 46, 0.64);
+  font-size: 1rem;
+  line-height: 1.9;
+  position: relative;
+  z-index: 1;
 }
 
 .wish-card__content {
   position: relative;
   display: grid;
-  gap: clamp(1rem, 3vw, 1.6rem);
+  gap: clamp(1rem, 3vw, 1.8rem);
   text-align: center;
+  z-index: 1;
 }
-
 
 .wish-card__icon {
   justify-self: center;
-  width: 74px;
-  height: 74px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.45);
+  width: clamp(74px, 12vw, 88px);
+  height: clamp(74px, 12vw, 88px);
+  border-radius: 28px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.6), rgba(255, 214, 232, 0.52));
   display: grid;
   place-items: center;
-  font-size: 2.2rem;
-  box-shadow: 0 22px 48px rgba(244, 93, 144, 0.28);
+  font-size: clamp(2.1rem, 4vw, 2.6rem);
+  box-shadow: 0 24px 58px rgba(244, 93, 144, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.wish-card__icon--glow {
+  animation: iconPulse 3.2s ease-in-out infinite;
+  box-shadow: 0 28px 66px rgba(244, 93, 144, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.55);
 }
 
 .wish-card__message-block {
   display: grid;
-  gap: 1.1rem;
+  gap: 1.25rem;
 }
 
 .wish-card__message {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.9;
+  font-size: 1.06rem;
+  line-height: 1.95;
   color: rgba(51, 28, 46, 0.78);
+  text-shadow: 0 12px 30px rgba(244, 93, 144, 0.08);
+}
+
+.wish-message-enter-from {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+}
+
+.wish-message-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.wish-message-enter-active {
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .wish-card__divider {
   height: 1px;
   width: 100%;
   background: linear-gradient(90deg, transparent, rgba(244, 93, 144, 0.5), transparent);
-  opacity: 0.7;
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.wish-card__divider--visible {
+  opacity: 0.75;
+  transform: scaleX(1);
 }
 
 .wish-card__closing {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.02rem;
   color: rgba(51, 28, 46, 0.64);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.wish-card__closing--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 640px) {
   .wish-card {
-    padding: clamp(2.1rem, 8vw, 2.6rem);
+    padding: clamp(2.2rem, 8vw, 2.8rem);
+  }
+
+  .wish-card__title-glow {
+    filter: blur(12px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wish-card {
+  .wishes__aurora,
+  .wish-card__glint,
+  .wish-card__petal,
+  .wish-card__sparkle,
+  .wish-card__icon--glow {
+    animation: none !important;
+  }
+
+  .wish-message-enter-active {
     transition: none !important;
+  }
+
+  .wish-card__divider,
+  .wish-card__closing {
+    transition: none !important;
+  }
+}
+
+@keyframes glintSweep {
+  0%,
+  70% {
+    opacity: 0;
+    transform: translateX(-140%);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(140%);
+  }
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translate(-50%, -50%) scale(var(--petal-scale)) rotate(var(--petal-rotation));
+  }
+  50% {
+    transform: translate(calc(-50% + 6px), calc(-50% - 14px)) scale(calc(var(--petal-scale) * 1.05)) rotate(calc(var(--petal-rotation) + 10deg));
+  }
+  100% {
+    transform: translate(calc(-50% - 6px), calc(-50% + 12px)) scale(var(--petal-scale)) rotate(calc(var(--petal-rotation) - 8deg));
+  }
+}
+
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(var(--sparkle-scale) * 0.8));
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(calc(var(--sparkle-scale) * 1.25));
+  }
+}
+
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  60% {
+    transform: scale(0.96);
   }
 }
 </style>
