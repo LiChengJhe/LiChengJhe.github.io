@@ -52,7 +52,9 @@
 			>
 				<div class="lightbox__content">
 					<button type="button" class="lightbox__close" aria-label="關閉放大視窗" @click="closeLightbox">×</button>
-					<img :src="activeMemory.image" :alt="activeMemory.alt" />
+					<div class="lightbox__media">
+						<img :src="activeMemory.image" :alt="activeMemory.alt" />
+					</div>
 					<div class="lightbox__text">
 						<h3 id="lightbox-title">{{ activeMemory.title }}</h3>
 						<p>{{ activeMemory.caption }}</p>
@@ -234,6 +236,7 @@ const getImageStyle = (memory) =>
 			}
 		: {};
 
+
 const handleKeydown = (event) => {
 	if (event.key === 'Escape') {
 		closeLightbox();
@@ -325,6 +328,7 @@ onBeforeUnmount(() => {
 	outline-offset: 4px;
 }
 
+
 .memory-card__image img {
 	width: 100%;
 	height: 100%;
@@ -401,18 +405,27 @@ onBeforeUnmount(() => {
 	place-items: center;
 	padding: clamp(1.5rem, 4vw, 3rem);
 	z-index: 20;
+	overflow-y: auto;
 }
 
 .lightbox__content {
 	position: relative;
 	background: rgba(255, 255, 255, 0.96);
 	border-radius: 28px;
-	max-width: min(840px, 90vw);
+	max-width: min(880px, 92vw);
 	width: 100%;
 	display: grid;
-	gap: 1.8rem;
+	gap: clamp(1.4rem, 4vw, 2.2rem);
+	grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+	align-items: center;
 	padding: clamp(1.5rem, 4vw, 2.5rem);
 	box-shadow: 0 40px 120px rgba(244, 93, 144, 0.35);
+}
+
+.lightbox__media {
+	display: grid;
+	place-items: center;
+	justify-self: center;
 }
 
 .lightbox__close {
@@ -436,15 +449,19 @@ onBeforeUnmount(() => {
 	background: rgba(51, 28, 46, 0.28);
 }
 
-.lightbox img {
-	width: 100%;
+.lightbox__media img {
+	width: min(360px, 45vw);
+	max-width: 100%;
+	max-height: min(360px, 45vw);
 	border-radius: 22px;
 	box-shadow: 0 18px 60px rgba(51, 28, 46, 0.25);
+	object-fit: cover;
 }
 
 .lightbox__text {
 	display: grid;
 	gap: 0.8rem;
+	max-width: 460px;
 }
 
 .lightbox__text p {
@@ -464,6 +481,12 @@ onBeforeUnmount(() => {
 
 	.lightbox__content {
 		gap: 1.2rem;
+		grid-template-columns: 1fr;
+	}
+
+	.lightbox__media img {
+		width: min(70vw, 320px);
+		max-height: min(70vw, 320px);
 	}
 }
 </style>

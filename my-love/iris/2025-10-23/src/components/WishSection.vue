@@ -1,320 +1,304 @@
 <template>
   <section class="wishes" aria-labelledby="wishes-title">
-    <div class="wishes__header fade-up">
-      <h2 id="wishes-title">給鮭魚子的祝福儀式</h2>
-      <p>挑一張祝福卡，或是調整心情刻度，讓存摺子的愛意以妳喜歡的節奏慢慢展開。</p>
-    </div>
-
-    <div class="wishes__mood fade-up" aria-live="polite">
-      <div class="wishes__mood-top">
-        <span class="wishes__badge">Mood Meter</span>
-        <span class="wishes__value">{{ moodLevel }}%</span>
+    <article
+      class="wish-card fade-up"
+      @mousemove="handleCardMouseMove"
+      @mouseleave="resetTilt"
+      :style="{ transform: cardTransform }"
+    >
+      <div class="wish-card__glow" :style="{ backgroundImage: glowGradient }" aria-hidden="true"></div>
+      <div class="wish-card__noise" aria-hidden="true"></div>
+      <div class="wish-card__sparkles" aria-hidden="true">
+        <span
+          v-for="sparkle in sparkles"
+          :key="sparkle.id"
+          class="wish-card__sparkle"
+          :style="getSparkleStyle(sparkle)"
+        ></span>
       </div>
-      <input
-        v-model="moodLevel"
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        :style="{ background: sliderBackground }"
-        aria-label="調整今日心情溫度"
-      />
-      <p class="wishes__mood-message">{{ moodMessage }}</p>
-    </div>
 
-    <div class="wishes__grid">
-      <article
-        v-for="wish in wishes"
-        :key="wish.id"
-        class="wish fade-up"
-        :class="{ 'wish--active': activeWish === wish.id }"
-        :style="{ animationDelay: `${wish.delay}s` }"
-      >
-        <button type="button" class="wish-card" @click="toggleWish(wish.id)">
-          <div class="wish-card__icon" aria-hidden="true">{{ wish.icon }}</div>
-          <div class="wish-card__content">
-            <h3>{{ wish.title }}</h3>
-            <p class="wish-card__tagline">{{ wish.tagline }}</p>
-          </div>
-          <span class="wish-card__chevron" aria-hidden="true">↗</span>
-        </button>
-        <transition name="wish-reveal">
-          <div v-if="activeWish === wish.id" class="wish-card__details">
-            <p class="wish-card__message">{{ wish.message }}</p>
-            <ul class="wish-card__promises">
-              <li v-for="promise in wish.promises" :key="promise">{{ promise }}</li>
-            </ul>
-          </div>
-        </transition>
-      </article>
-    </div>
+      <header class="wish-card__header">
+        <span class="wish-card__badge">Birthday Blessing</span>
+        <h2 id="wishes-title">給妳的一封序曲</h2>
+        <p class="wish-card__tagline">把今晚所有星光，寫成只屬於妳的情書</p>
+      </header>
+
+      <p class="wish-card__intro">
+        妳曾笑著問我，如果把心聲寫成卡片會是什麼模樣。於是我把所有想說的話都放在這裡，讓它隨著指尖的光暈慢慢住進妳心裡。
+      </p>
+
+      <div class="wish-card__content" aria-live="polite">
+        <div class="wish-card__icon" aria-hidden="true">{{ messageIcon }}</div>
+        <div class="wish-card__message-block">
+          <p v-for="paragraph in messageParagraphs" :key="paragraph" class="wish-card__message">{{ paragraph }}</p>
+        </div>
+        <div class="wish-card__divider" aria-hidden="true"></div>
+        <p class="wish-card__closing">{{ closingLine }}</p>
+      </div>
+    </article>
   </section>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
-const moodLevel = ref(68);
-const activeWish = ref('sunshine');
+const messageIcon = '💌';
 
-const wishes = [
-  {
-    id: 'sunshine',
-    icon: '☀️',
-    title: '笑顏是我永遠的太陽',
-    tagline: '為妳放晴的日常承諾',
-    message: '每天睜開眼的第一件事，就是確認妳的笑容依舊明亮，因為它是我所有勇敢的來源。',
-    promises: ['每日一則暖心留言', '遇到煩心事時我先抱緊妳', '累的時候就換我逗妳笑'],
-    delay: 0
-  },
-  {
-    id: 'adventure',
-    icon: '🗺️',
-    title: '旅途永遠不孤單',
-    tagline: '我們的世界地圖還畫不完',
-    message: '無論是巷弄小店還是跨國旅程，只要牽著妳的手，世界就會乖乖地對我們溫柔。',
-    promises: ['每季安排一場驚喜小旅行', '迷路時我負責冷靜導航', '紀錄每站的專屬回憶'],
-    delay: 0.12
-  },
-  {
-    id: 'dream',
-    icon: '🌙',
-    title: '妳所有的夢都有人守護',
-    tagline: '把不安交給我，把光芒留給妳',
-    message: '當妳奔向理想的時候，我就是背後那盞不熄滅的夜燈，陪妳一起熬夜、一起期待。',
-    promises: ['每月一次夢想檢查小聚', '重要時刻在場當專屬應援', '心累時包辦甜點和擁抱'],
-    delay: 0.24
-  },
-  {
-    id: 'home',
-    icon: '🏡',
-    title: '回到我們的溫柔宇宙',
-    tagline: '把平凡練習成永遠的幸福',
-    message: '不管外面多嘈雜，只要妳回頭，就會看見我備好熱茶、毛毯，還有無窮盡的耐心。',
-    promises: ['共煮週末的儀式感晚餐', '聆聽妳的每一個情緒', '睡前小聊十分鐘只說甜話'],
-    delay: 0.36
-  }
+const messageParagraphs = [
+  '謝謝妳讓平凡的日子也帶著煙火，我總覺得和妳說晚安時，整個宇宙都會變得柔軟一些。',
+  '我喜歡妳躲在被窩裡偷笑的樣子，也喜歡妳為理想努力時專注的眼神。妳的每一個模樣，我都想用心收藏。',
+  '未來的路上，就由我把驚喜和安心輪流放進妳口袋，讓妳無論何時想起我，都會先想起被滿滿地愛著。'
 ];
 
-const sliderBackground = computed(
-  () => `linear-gradient(90deg, var(--secondary) 0%, var(--primary) ${moodLevel.value}%, rgba(255, 255, 255, 0.4) ${moodLevel.value}%)`
+const closingLine = '愛妳的，存摺子';
+
+const generateSparkles = () =>
+  Array.from({ length: 18 }, (_, index) => ({
+    id: index,
+    top: 6 + Math.random() * 88,
+    left: 6 + Math.random() * 88,
+    size: 12 + Math.random() * 20,
+    delay: Math.random() * 6,
+    duration: 6 + Math.random() * 6,
+    brightness: 0.45 + Math.random() * 0.5
+  }));
+
+const sparkles = ref(generateSparkles());
+
+const tilt = reactive({ x: 0, y: 0 });
+const glow = ref(0.65);
+
+const handleCardMouseMove = (event) => {
+  const card = event.currentTarget;
+  if (!card) return;
+
+  const rect = card.getBoundingClientRect();
+  const offsetX = event.clientX - rect.left;
+  const offsetY = event.clientY - rect.top;
+
+  const percentX = (offsetX / rect.width) * 2 - 1;
+  const percentY = (offsetY / rect.height) * 2 - 1;
+
+  tilt.x = -(percentY * 6);
+  tilt.y = percentX * 6;
+  glow.value = 0.6 + Math.max(Math.min(-percentY * 0.25, 0.18), -0.18);
+};
+
+const resetTilt = () => {
+  tilt.x = 0;
+  tilt.y = 0;
+  glow.value = 0.65;
+};
+
+const cardTransform = computed(
+  () => `rotateX(${tilt.x.toFixed(2)}deg) rotateY(${tilt.y.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`
 );
 
-const moodMessage = computed(() => {
-  if (moodLevel.value < 25) return '今天想偷懶也沒關係，我會是妳最柔軟的靠山。';
-  if (moodLevel.value < 55) return '慢慢來，我們用剛好的速度感受每一份溫度。';
-  if (moodLevel.value < 85) return '精神滿滿！不如挑張卡片，看我準備了什麼冒險。';
-  return '亮度爆表！存摺子正在備妳最閃亮的大驚喜，敬請期待。';
+const glowGradient = computed(() => {
+  const x = 50 + tilt.y * 3;
+  const y = 50 - tilt.x * 3;
+  const strength = Math.min(Math.max(glow.value, 0.4), 0.9);
+
+  return `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, ${strength}), transparent 70%)`;
 });
 
-const toggleWish = (id) => {
-  activeWish.value = activeWish.value === id ? null : id;
-};
+const getSparkleStyle = (sparkle) => ({
+  top: `${sparkle.top}%`,
+  left: `${sparkle.left}%`,
+  width: `${sparkle.size}px`,
+  height: `${sparkle.size}px`,
+  animationDelay: `${sparkle.delay}s`,
+  animationDuration: `${sparkle.duration}s`,
+  '--spark-opacity': sparkle.brightness
+});
 </script>
 
 <style scoped>
 .wishes {
-  padding-block: clamp(4rem, 8vw, 7rem);
-  display: grid;
-  gap: clamp(2.5rem, 5vw, 3.5rem);
-}
-
-.wishes__header {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
-}
-
-.wishes__header p {
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.wishes__mood {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 28px;
-  padding: clamp(1.8rem, 4vw, 2.6rem);
-  box-shadow: 0 18px 48px rgba(51, 28, 46, 0.08);
-  display: grid;
-  gap: 1.2rem;
-}
-
-.wishes__mood-top {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.wishes__badge {
-  background: rgba(244, 93, 144, 0.12);
-  color: var(--primary-dark);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-.wishes__value {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-}
-
-.wishes__mood input[type='range'] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100%;
-  height: 12px;
-  border-radius: 999px;
-  outline: none;
-  cursor: pointer;
-  transition: filter 0.3s ease;
-}
-
-.wishes__mood input[type='range']::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--primary);
-  box-shadow: 0 0 0 6px rgba(244, 93, 144, 0.2);
-}
-
-.wishes__mood-message {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.wishes__grid {
-  display: grid;
-  gap: 1.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.wish {
-  display: grid;
-  gap: 0.75rem;
+  justify-content: center;
+  padding: clamp(4rem, 9vw, 8rem) clamp(1.5rem, 6vw, 4rem);
 }
 
 .wish-card {
-  width: 100%;
-  border: none;
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 26px;
-  padding: clamp(1.6rem, 3vw, 2rem);
-  box-shadow: 0 18px 40px rgba(51, 28, 46, 0.08);
+  position: relative;
+  width: min(720px, 100%);
+  padding: clamp(2.4rem, 5vw, 3.8rem);
+  border-radius: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(155deg, rgba(255, 245, 250, 0.76), rgba(255, 213, 232, 0.55));
+  box-shadow: 0 50px 140px rgba(244, 93, 144, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(26px);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wish-card:hover {
+  box-shadow: 0 60px 160px rgba(244, 93, 144, 0.32);
+}
+
+.wish-card__glow {
+  position: absolute;
+  inset: -35%;
+  filter: blur(100px);
+  opacity: 0.85;
+  transition: background-image 0.3s ease;
+  pointer-events: none;
+}
+
+.wish-card__noise {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 4px);
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.wish-card__sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wish-card__sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), transparent 60%);
+  transform: translate3d(-50%, -50%, 0);
+  animation-name: sparkleFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: var(--spark-opacity, 0.7);
+}
+
+.wish-card__header {
+  position: relative;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 0.7rem;
+  text-align: center;
+  margin-bottom: 1.8rem;
 }
 
-.wish-card:hover,
-.wish-card:focus-visible {
-  transform: translateY(-6px);
-  box-shadow: 0 26px 70px rgba(244, 93, 144, 0.25);
-  outline: none;
+.wish-card__badge {
+  justify-self: center;
+  padding: 0.5rem 1.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  color: var(--primary-dark);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
-.wish-card__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: rgba(255, 194, 214, 0.4);
-  display: grid;
-  place-items: center;
-  font-size: 1.6rem;
-}
-
-.wish-card__content {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.wish-card__content h3 {
-  font-size: 1.2rem;
+.wish-card__header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: var(--primary-dark);
+  text-shadow: 0 16px 30px rgba(51, 28, 46, 0.14);
 }
 
 .wish-card__tagline {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  margin: 0;
+  font-size: 1.05rem;
+  color: rgba(51, 28, 46, 0.68);
+  letter-spacing: 0.06em;
 }
 
-.wish-card__chevron {
-  font-size: 1.2rem;
-  color: rgba(51, 28, 46, 0.35);
-  transition: transform 0.3s ease;
+.wish-card__intro {
+  margin: 0 auto clamp(1.8rem, 4vw, 2.4rem);
+  max-width: 46ch;
+  text-align: center;
+  color: rgba(51, 28, 46, 0.62);
+  font-size: 0.98rem;
+  line-height: 1.8;
 }
 
-.wish--active .wish-card__chevron {
-  transform: rotate(90deg);
-}
-
-.wish-card__details {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 22px;
-  padding: 1.4rem 1.8rem;
-  box-shadow: inset 0 0 0 1px rgba(244, 93, 144, 0.12);
+.wish-card__content {
+  position: relative;
   display: grid;
-  gap: 1rem;
+  gap: clamp(1rem, 3vw, 1.6rem);
+  text-align: center;
+}
+
+
+.wish-card__icon {
+  justify-self: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.45);
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  box-shadow: 0 22px 48px rgba(244, 93, 144, 0.28);
+}
+
+.wish-card__message-block {
+  display: grid;
+  gap: 1.1rem;
 }
 
 .wish-card__message {
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.wish-card__promises {
-  list-style: none;
-  display: grid;
-  gap: 0.6rem;
   margin: 0;
-  padding: 0;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(51, 28, 46, 0.78);
 }
 
-.wish-card__promises li {
-  position: relative;
-  padding-left: 1.4rem;
-  color: var(--primary-dark);
-  font-weight: 500;
+.wish-card__divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(244, 93, 144, 0.5), transparent);
+  opacity: 0.7;
 }
 
-.wish-card__promises li::before {
-  content: '❤';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--primary);
-  font-size: 0.85rem;
+.wish-card__closing {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(51, 28, 46, 0.64);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.wish-reveal-enter-active,
-.wish-reveal-leave-active {
-  transition: all 0.35s ease;
-}
-
-.wish-reveal-enter-from,
-.wish-reveal-leave-to {
-  opacity: 0;
-  transform: translateY(-8px);
-}
-
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .wish-card {
-    grid-template-columns: auto 1fr;
+    padding: clamp(2.1rem, 8vw, 2.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wish-card {
+    transition: none !important;
   }
 
-  .wish-card__chevron {
-    display: none;
+  .wish-card__sparkle {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: translate3d(-50%, -30%, 0) scale(0.6);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: var(--spark-opacity, 0.8);
+  }
+
+  70% {
+    opacity: calc(var(--spark-opacity, 0.8) * 0.6);
+  }
+
+  100% {
+    transform: translate3d(-50%, -160%, 0) scale(1.4);
+    opacity: 0;
   }
 }
 </style>
