@@ -1,27 +1,48 @@
 <template>
 	<section class="memory-gallery" aria-labelledby="memories-title">
-		<div class="memory-gallery__header fade-up">
+		<div class="memory-gallery__background" aria-hidden="true">
+			<span class="memory-gallery__glow memory-gallery__glow--left"></span>
+			<span class="memory-gallery__glow memory-gallery__glow--right"></span>
+			<span class="memory-gallery__ring memory-gallery__ring--outer"></span>
+			<span class="memory-gallery__ring memory-gallery__ring--inner"></span>
+			<span
+				v-for="particle in particles"
+				:key="particle.id"
+				class="memory-gallery__sparkle"
+				:style="getParticleStyle(particle)"
+			></span>
+		</div>
+
+		<header class="memory-gallery__header fade-up">
+			<span class="memory-gallery__badge" aria-hidden="true">Treasure Collection</span>
 			<h2 id="memories-title">專屬於我們的畫面</h2>
 			<p>
 				這些片刻都值得被珍藏。點開照片，就能看到我們一起寫下的故事，也歡迎連到完整相簿細細回味。
 			</p>
-		</div>
+		</header>
 
 		<div class="memory-gallery__grid" role="list">
 			<article
 				v-for="memory in memories"
 				:key="memory.id"
-				class="memory-card fade-up"
-				:style="{ animationDelay: `${memory.delay}s` }"
+				class="memory-card"
+				:style="{ '--card-delay': `${memory.delay}s` }"
 				role="listitem"
+				:ref="registerCard"
 			>
+				<div class="memory-card__halo" aria-hidden="true"></div>
+				<div class="memory-card__aura" aria-hidden="true"></div>
+
 				<button
 					type="button"
 					class="memory-card__image"
 					:aria-label="`放大檢視 ${memory.title} 的照片`"
 					@click="openLightbox(memory)"
 				>
-					<img :src="memory.image" :alt="memory.alt" :style="getImageStyle(memory)" loading="lazy" />
+					<span class="memory-card__media">
+						<img :src="memory.image" :alt="memory.alt" :style="getImageStyle(memory)" loading="lazy" />
+						<span class="memory-card__shine" aria-hidden="true"></span>
+					</span>
 					<span class="memory-card__hint">點擊放大</span>
 				</button>
 
@@ -50,9 +71,11 @@
 				aria-labelledby="lightbox-title"
 				@click.self="closeLightbox"
 			>
+				<div class="lightbox__glow" aria-hidden="true"></div>
 				<div class="lightbox__content">
 					<button type="button" class="lightbox__close" aria-label="關閉放大視窗" @click="closeLightbox">×</button>
 					<div class="lightbox__media">
+						<span class="lightbox__halo" aria-hidden="true"></span>
 						<img :src="activeMemory.image" :alt="activeMemory.alt" />
 					</div>
 					<div class="lightbox__text">
@@ -75,7 +98,31 @@
 </template>
 
 <script setup>
-import { nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+
+const sparkleColors = ['rgba(255, 216, 232, 0.85)', 'rgba(255, 240, 250, 0.78)', 'rgba(255, 202, 225, 0.82)'];
+
+const particles = Array.from({ length: 18 }, (_, index) => {
+	const color = sparkleColors[index % sparkleColors.length];
+	return {
+		id: index,
+		left: Math.random() * 100,
+		top: 8 + Math.random() * 80,
+		delay: Math.random() * 8,
+		duration: 10 + Math.random() * 8,
+		scale: 0.6 + Math.random() * 0.8,
+		color
+	};
+});
+
+const getParticleStyle = (particle) => ({
+	left: `${particle.left}%`,
+	top: `${particle.top}%`,
+	animationDelay: `${particle.delay}s`,
+	animationDuration: `${particle.duration}s`,
+	transform: `scale(${particle.scale})`,
+	background: particle.color
+});
 
 const baseMemories = [
 	{
@@ -228,6 +275,8 @@ const memories = baseMemories.map((memory, index) => ({
 }));
 
 const activeMemory = ref(null);
+const cardRefs = ref([]);
+const observer = ref(null);
 
 const getImageStyle = (memory) =>
 	memory.focus
@@ -235,6 +284,14 @@ const getImageStyle = (memory) =>
 				objectPosition: memory.focus
 			}
 		: {};
+
+const registerCard = (el) => {
+	if (!el || cardRefs.value.includes(el)) return;
+	cardRefs.value.push(el);
+	if (observer.value) {
+		observer.value.observe(el);
+	}
+};
 
 
 const handleKeydown = (event) => {
@@ -254,6 +311,22 @@ const closeLightbox = () => {
 	activeMemory.value = null;
 };
 
+onMounted(() => {
+	observer.value = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				entry.target.classList.toggle('memory-card--visible', entry.isIntersecting);
+			});
+		},
+		{
+			threshold: 0.3,
+			rootMargin: '-80px 0px'
+		}
+	);
+
+	cardRefs.value.forEach((card) => observer.value?.observe(card));
+});
+
 watch(activeMemory, (value) => {
 	if (value) {
 		window.addEventListener('keydown', handleKeydown);
@@ -264,97 +337,273 @@ watch(activeMemory, (value) => {
 
 onBeforeUnmount(() => {
 	window.removeEventListener('keydown', handleKeydown);
+	observer.value?.disconnect();
+	observer.value = null;
+	cardRefs.value = [];
 });
 </script>
 
 <style scoped>
 .memory-gallery {
-	background: rgba(255, 255, 255, 0.82);
-	border-radius: 28px;
-	padding: clamp(3rem, 6vw, 5rem);
-	box-shadow: 0 24px 70px rgba(244, 93, 144, 0.18);
+	position: relative;
+	overflow: hidden;
+	padding: clamp(3.2rem, 6vw, 5.6rem);
+	border-radius: 42px;
+	background: radial-gradient(120% 120% at 18% 10%, rgba(255, 239, 250, 0.96), rgba(255, 214, 233, 0.82) 54%, rgba(255, 255, 255, 0.9));
+	box-shadow: 0 42px 128px rgba(244, 93, 144, 0.22);
 	display: grid;
-	gap: clamp(2.5rem, 5vw, 3.5rem);
+	gap: clamp(2.6rem, 5vw, 4rem);
+	isolation: isolate;
+}
+
+.memory-gallery__background {
+	position: absolute;
+	inset: -14% -8% -18%;
+	pointer-events: none;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.memory-gallery__glow {
+	position: absolute;
+	width: clamp(280px, 32vw, 420px);
+	height: clamp(280px, 32vw, 420px);
+	border-radius: 50%;
+	filter: blur(50px);
+	opacity: 0.75;
+	animation: galleryGlowPulse 12s ease-in-out infinite;
+}
+
+.memory-gallery__glow--left {
+	top: -12%;
+	left: -6%;
+	background: radial-gradient(circle, rgba(255, 198, 223, 0.75), transparent 68%);
+}
+
+.memory-gallery__glow--right {
+	bottom: -18%;
+	right: -10%;
+	background: radial-gradient(circle, rgba(255, 232, 217, 0.7), transparent 72%);
+	animation-delay: 4s;
+}
+
+.memory-gallery__ring {
+	position: absolute;
+	border: 1px solid rgba(255, 255, 255, 0.48);
+	border-radius: 50%;
+	filter: blur(0.6px);
+	opacity: 0.35;
+	animation: galleryRingPulse 18s ease-in-out infinite;
+}
+
+.memory-gallery__ring--outer {
+	inset: 14% 16% 18% 12%;
+}
+
+.memory-gallery__ring--inner {
+	inset: 22% 26% 24% 20%;
+	animation-delay: 6s;
+	opacity: 0.25;
+}
+
+.memory-gallery__sparkle {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border-radius: 999px;
+	filter: blur(1px);
+	opacity: 0;
+	animation-name: gallerySparkle;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 }
 
 .memory-gallery__header {
+	position: relative;
+	z-index: 1;
 	text-align: center;
-	max-width: 620px;
+	max-width: 680px;
 	margin: 0 auto;
 	display: grid;
 	gap: 1rem;
 }
 
+.memory-gallery__badge {
+	justify-self: center;
+	padding: 0.45rem 1.4rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.6);
+	color: var(--primary-dark);
+	font-size: 0.78rem;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	font-weight: 600;
+	box-shadow: 0 16px 40px rgba(244, 93, 144, 0.24);
+	backdrop-filter: blur(12px);
+}
+
+.memory-gallery__header h2 {
+	font-size: clamp(2rem, 4vw, 2.6rem);
+	color: var(--primary-dark);
+	letter-spacing: 0.06em;
+}
+
 .memory-gallery__header p {
-	color: var(--text-muted);
-	line-height: 1.6;
+	color: rgba(51, 28, 46, 0.68);
+	line-height: 1.65;
+	font-size: 1.05rem;
 }
 
 .memory-gallery__grid {
+	position: relative;
+	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	gap: 1.8rem;
+	gap: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 .memory-card {
-	background: rgba(255, 255, 255, 0.95);
-	border-radius: 28px;
-	overflow: hidden;
-	box-shadow: 0 18px 40px rgba(51, 28, 46, 0.08);
+	position: relative;
 	display: grid;
-	gap: 0;
-	transition: transform 0.35s ease, box-shadow 0.35s ease;
+	gap: 1.4rem;
+	padding: clamp(1.6rem, 3vw, 2.2rem);
+	border-radius: 30px;
+	background: rgba(255, 255, 255, 0.88);
+	backdrop-filter: blur(18px);
+	border: 1px solid rgba(255, 255, 255, 0.55);
+	box-shadow: 0 26px 72px rgba(51, 28, 46, 0.16);
+	transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+	transform: translateY(40px) scale(0.96);
+	opacity: 0;
+	will-change: transform, opacity;
+	transition-delay: var(--card-delay, 0s);
 }
 
-.memory-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 26px 70px rgba(244, 93, 144, 0.28);
+.memory-card::after {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	border-radius: inherit;
+	background: linear-gradient(140deg, rgba(244, 93, 144, 0.24), rgba(255, 198, 223, 0.08));
+	opacity: 0;
+	transition: opacity 0.45s ease;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.memory-card--visible {
+	transform: translateY(0) scale(1);
+	opacity: 1;
+}
+
+.memory-card:hover,
+.memory-card:focus-within {
+	transform: translateY(-12px) scale(1.01);
+	box-shadow: 0 34px 90px rgba(244, 93, 144, 0.28);
+	border-color: rgba(244, 93, 144, 0.22);
+}
+
+.memory-card:hover::after,
+.memory-card:focus-within::after {
+	opacity: 1;
+}
+
+.memory-card__halo,
+.memory-card__aura {
+	position: absolute;
+	inset: 10% 14%;
+	border-radius: 24px;
+	background: radial-gradient(circle, rgba(255, 209, 231, 0.4), transparent 70%);
+	filter: blur(8px);
+	opacity: 0;
+	transition: opacity 0.45s ease;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.memory-card__aura {
+	inset: 16% 20%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+}
+
+.memory-card:hover .memory-card__halo,
+.memory-card:focus-within .memory-card__halo,
+.memory-card:hover .memory-card__aura,
+.memory-card:focus-within .memory-card__aura {
+	opacity: 1;
 }
 
 .memory-card__image {
 	position: relative;
 	display: block;
 	width: 100%;
-	aspect-ratio: 1 / 1;
 	border: none;
 	padding: 0;
+	background: none;
 	cursor: pointer;
-	overflow: hidden;
-	background: rgba(255, 255, 255, 0.7);
+	text-align: left;
+	z-index: 1;
 }
 
 .memory-card__image:focus-visible {
-	outline: 3px solid rgba(51, 28, 46, 0.35);
-	outline-offset: 4px;
+	outline: 3px solid rgba(244, 93, 144, 0.45);
+	outline-offset: 6px;
 }
 
+.memory-card__media {
+	position: relative;
+	display: block;
+	border-radius: 24px;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
 
-.memory-card__image img {
+.memory-card__media img {
+	display: block;
 	width: 100%;
-	height: 100%;
+	height: clamp(220px, 38vw, 260px);
 	object-fit: cover;
-	transition: transform 0.4s ease;
-	filter: brightness(0.97) contrast(1.05) saturate(1.05);
+	transition: transform 0.6s ease, filter 0.6s ease;
+	filter: brightness(0.98) contrast(1.07) saturate(1.05);
 }
 
-.memory-card:hover .memory-card__image img,
-.memory-card__image:focus-visible img {
-	transform: scale(1.04);
+.memory-card:hover .memory-card__media img,
+.memory-card:focus-within .memory-card__media img {
+	transform: scale(1.05);
+	filter: brightness(1.02) contrast(1.08) saturate(1.1);
+}
+
+.memory-card__shine {
+	position: absolute;
+	inset: -40%;
+	background: conic-gradient(from 120deg at 50% 50%, rgba(255, 255, 255, 0.18), rgba(255, 181, 215, 0.4), rgba(255, 255, 255, 0.18));
+	filter: blur(12px);
+	opacity: 0;
+	transform: rotate(0deg);
+	transition: transform 1s ease, opacity 0.6s ease;
+}
+
+.memory-card:hover .memory-card__shine,
+.memory-card:focus-within .memory-card__shine {
+	opacity: 0.6;
+	transform: rotate(28deg);
 }
 
 .memory-card__hint {
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
-	background: rgba(51, 28, 46, 0.65);
-	color: white;
-	padding: 0.35rem 0.85rem;
+	padding: 0.4rem 0.9rem;
 	border-radius: 999px;
-	font-size: 0.75rem;
-	letter-spacing: 0.06em;
+	background: rgba(51, 28, 46, 0.65);
+	color: #fff;
+	font-size: 0.78rem;
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
+	box-shadow: 0 12px 24px rgba(51, 28, 46, 0.2);
 	opacity: 0;
-	transition: opacity 0.3s ease;
+	transition: opacity 0.35s ease;
 }
 
 .memory-card:hover .memory-card__hint,
@@ -363,130 +612,256 @@ onBeforeUnmount(() => {
 }
 
 .memory-card__content {
+	position: relative;
 	display: grid;
-	gap: 0.75rem;
-	padding: 1.6rem;
+	gap: 0.9rem;
+	z-index: 1;
 }
 
 .memory-card__content h3 {
-	font-size: 1.2rem;
+	font-size: 1.25rem;
+	color: var(--primary-dark);
+	margin: 0;
 }
 
 .memory-card__content p {
-	color: var(--text-muted);
-	line-height: 1.5;
-	font-size: 0.95rem;
+	color: rgba(51, 28, 46, 0.68);
+	line-height: 1.6;
+	font-size: 0.98rem;
 }
 
 .memory-card__link {
-	justify-self: start;
-	font-weight: 600;
-	color: var(--primary);
-	text-decoration: none;
+	justify-self: flex-start;
 	display: inline-flex;
 	align-items: center;
-	gap: 0.35rem;
+	gap: 0.45rem;
+	padding: 0.48rem 1.05rem;
+	border-radius: 999px;
+	background: rgba(244, 93, 144, 0.14);
+	color: var(--primary-dark);
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 14px 26px rgba(244, 93, 144, 0.18);
+	transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .memory-card__link::after {
 	content: '↗';
-	font-size: 0.85rem;
+	font-size: 0.9rem;
 }
 
-.memory-card__link:hover {
-	text-decoration: underline;
+.memory-card__link:hover,
+.memory-card__link:focus-visible {
+	transform: translateY(-2px);
+	background: rgba(244, 93, 144, 0.24);
+	box-shadow: 0 18px 32px rgba(244, 93, 144, 0.24);
 }
 
 .lightbox {
 	position: fixed;
 	inset: 0;
-	background: rgba(27, 14, 24, 0.78);
 	display: grid;
 	place-items: center;
-	padding: clamp(1.5rem, 4vw, 3rem);
+	padding: clamp(1.8rem, 4vw, 3.2rem);
+	background: rgba(24, 12, 22, 0.78);
 	z-index: 20;
 	overflow-y: auto;
 }
 
+.lightbox__glow {
+	position: absolute;
+	inset: 12% 18%;
+	background: radial-gradient(circle, rgba(244, 93, 144, 0.35), transparent 75%);
+	filter: blur(40px);
+	z-index: 0;
+	opacity: 0.8;
+}
+
 .lightbox__content {
 	position: relative;
-	background: rgba(255, 255, 255, 0.96);
-	border-radius: 28px;
-	max-width: min(880px, 92vw);
+	background: rgba(255, 255, 255, 0.94);
+	border-radius: 32px;
+	max-width: min(920px, 94vw);
 	width: 100%;
 	display: grid;
-	gap: clamp(1.4rem, 4vw, 2.2rem);
+	gap: clamp(1.6rem, 4vw, 2.6rem);
 	grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
 	align-items: center;
-	padding: clamp(1.5rem, 4vw, 2.5rem);
-	box-shadow: 0 40px 120px rgba(244, 93, 144, 0.35);
+	padding: clamp(1.8rem, 4vw, 2.8rem);
+	box-shadow: 0 48px 140px rgba(244, 93, 144, 0.34);
+	z-index: 1;
+}
+
+.lightbox__close {
+	position: absolute;
+	top: 1.4rem;
+	right: 1.4rem;
+	border: none;
+	background: rgba(51, 28, 46, 0.2);
+	color: var(--text-dark);
+	width: 2.6rem;
+	height: 2.6rem;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.lightbox__close:hover,
+.lightbox__close:focus-visible {
+	background: rgba(51, 28, 46, 0.32);
+	transform: scale(1.05);
 }
 
 .lightbox__media {
+	position: relative;
 	display: grid;
 	place-items: center;
 	justify-self: center;
 }
 
-.lightbox__close {
+.lightbox__halo {
 	position: absolute;
-	top: 1.2rem;
-	right: 1.2rem;
-	border: none;
-	background: rgba(51, 28, 46, 0.16);
-	color: var(--text-dark);
-	width: 2.4rem;
-	height: 2.4rem;
-	border-radius: 50%;
-	font-size: 1.4rem;
-	cursor: pointer;
-	display: grid;
-	place-items: center;
-	transition: background 0.3s ease;
-}
-
-.lightbox__close:hover {
-	background: rgba(51, 28, 46, 0.28);
+	inset: -12%;
+	border-radius: 30px;
+	background: radial-gradient(circle, rgba(255, 209, 231, 0.32), transparent 70%);
+	filter: blur(18px);
+	z-index: 0;
 }
 
 .lightbox__media img {
-	width: min(360px, 45vw);
+	position: relative;
+	z-index: 1;
+	width: min(360px, 46vw);
+	height: min(360px, 46vw);
 	max-width: 100%;
-	max-height: min(360px, 45vw);
-	border-radius: 22px;
-	box-shadow: 0 18px 60px rgba(51, 28, 46, 0.25);
+	border-radius: 26px;
+	box-shadow: 0 28px 80px rgba(51, 28, 46, 0.3);
 	object-fit: cover;
 }
 
 .lightbox__text {
 	display: grid;
-	gap: 0.8rem;
-	max-width: 460px;
+	gap: 1rem;
+	max-width: 480px;
+}
+
+.lightbox__text h3 {
+	font-size: clamp(1.6rem, 3vw, 2rem);
+	color: var(--primary-dark);
 }
 
 .lightbox__text p {
-	color: var(--text-muted);
-	line-height: 1.6;
+	color: rgba(51, 28, 46, 0.72);
+	line-height: 1.7;
+	font-size: 1rem;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 880px) {
 	.memory-gallery__grid {
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1.2rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 	}
 
-	.memory-card__content {
-		padding: 1.2rem 1.4rem 1.5rem;
+	.memory-card__media img {
+		height: clamp(200px, 52vw, 240px);
 	}
 
 	.lightbox__content {
-		gap: 1.2rem;
 		grid-template-columns: 1fr;
 	}
 
 	.lightbox__media img {
-		width: min(70vw, 320px);
-		max-height: min(70vw, 320px);
+		width: min(70vw, 340px);
+		height: auto;
+	}
+}
+
+@media (max-width: 620px) {
+	.memory-gallery {
+		padding: clamp(2.4rem, 10vw, 3rem);
+	}
+
+	.memory-gallery__grid {
+		gap: 1.4rem;
+	}
+
+	.memory-card {
+		padding: 1.4rem 1.5rem 1.6rem;
+	}
+
+	.memory-card__media img {
+		height: clamp(200px, 70vw, 220px);
+	}
+
+	.memory-card__hint {
+		bottom: 0.8rem;
+		right: 0.8rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.memory-gallery__glow,
+	.memory-gallery__ring,
+	.memory-gallery__sparkle,
+	.memory-card,
+	.memory-card__media img,
+	.memory-card__shine,
+	.lightbox__close {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
+	}
+
+	.memory-card {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+@keyframes galleryGlowPulse {
+	0% {
+		transform: scale(0.96);
+		opacity: 0.6;
+	}
+	50% {
+		transform: scale(1.06);
+		opacity: 0.82;
+	}
+	100% {
+		transform: scale(0.96);
+		opacity: 0.6;
+	}
+}
+
+@keyframes galleryRingPulse {
+	0%,
+	100% {
+		transform: scale(0.96);
+		opacity: 0.3;
+	}
+	50% {
+		transform: scale(1.05);
+		opacity: 0.5;
+	}
+}
+
+@keyframes gallerySparkle {
+	0% {
+		transform: translate3d(-10px, 12px, 0) scale(0.6);
+		opacity: 0;
+	}
+	25% {
+		opacity: 0.45;
+	}
+	70% {
+		transform: translate3d(18px, -28px, 0) scale(1.05);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translate3d(28px, -54px, 0) scale(1.2);
+		opacity: 0;
 	}
 }
 </style>
