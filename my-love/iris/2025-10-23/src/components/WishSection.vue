@@ -196,7 +196,7 @@ onBeforeUnmount(() => {
   width: min(720px, 100%);
   padding: clamp(2.6rem, 6vw, 4rem);
   border-radius: 44px;
-  background: transparent;
+  background: var(--surface-gradient);
   box-shadow: 0 60px 160px rgba(244, 93, 144, 0.2);
   backdrop-filter: blur(28px) saturate(120%);
   overflow: hidden;

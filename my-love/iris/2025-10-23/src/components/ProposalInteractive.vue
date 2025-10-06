@@ -255,7 +255,7 @@ onUnmounted(() => {
   border-radius: 48px;
   padding: clamp(4rem, 9vw, 7.6rem);
   margin-block: clamp(3rem, 8vw, 6rem);
-  background: linear-gradient(145deg, rgba(255, 240, 248, 0.92), rgba(255, 213, 231, 0.82));
+  background: var(--surface-gradient);
   box-shadow: 0 38px 110px rgba(244, 93, 144, 0.24);
   color: var(--primary-dark);
   isolation: isolate;

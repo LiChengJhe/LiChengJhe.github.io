@@ -349,7 +349,7 @@ onBeforeUnmount(() => {
 	overflow: hidden;
 	padding: clamp(3.2rem, 6vw, 5.6rem);
 	border-radius: 42px;
-	background: radial-gradient(120% 120% at 18% 10%, rgba(255, 239, 250, 0.96), rgba(255, 214, 233, 0.82) 54%, rgba(255, 255, 255, 0.9));
+	background: var(--surface-gradient);
 	box-shadow: 0 42px 128px rgba(244, 93, 144, 0.22);
 	display: grid;
 	gap: clamp(2.6rem, 5vw, 4rem);
@@ -470,9 +470,8 @@ onBeforeUnmount(() => {
 	border-radius: 30px;
 	background: rgba(255, 255, 255, 0.88);
 	backdrop-filter: blur(18px);
-	border: 1px solid rgba(255, 255, 255, 0.55);
 	box-shadow: 0 26px 72px rgba(51, 28, 46, 0.16);
-	transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+	transition: transform 0.45s ease, box-shadow 0.45s ease;
 	transform: translateY(40px) scale(0.96);
 	opacity: 0;
 	will-change: transform, opacity;
@@ -500,7 +499,6 @@ onBeforeUnmount(() => {
 .memory-card:focus-within {
 	transform: translateY(-12px) scale(1.01);
 	box-shadow: 0 34px 90px rgba(244, 93, 144, 0.28);
-	border-color: rgba(244, 93, 144, 0.22);
 }
 
 .memory-card:hover::after,

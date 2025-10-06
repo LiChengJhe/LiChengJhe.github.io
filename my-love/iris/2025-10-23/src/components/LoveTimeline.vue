@@ -240,7 +240,7 @@ onBeforeUnmount(() => {
   position: relative;
   padding: clamp(3.2rem, 6vw, 6.2rem);
   border-radius: 38px;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 223, 237, 0.9), rgba(255, 255, 255, 0.92));
+  background: var(--surface-gradient);
   box-shadow: 0 30px 90px rgba(244, 93, 144, 0.22);
   overflow: hidden;
 }
@@ -316,7 +316,6 @@ onBeforeUnmount(() => {
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 26px 70px rgba(51, 28, 46, 0.1);
-  border: 1px solid rgba(244, 93, 144, 0.08);
   opacity: 0;
   transform: translateY(60px) scale(0.96);
   transition: opacity 0.6s ease, transform 0.6s ease;

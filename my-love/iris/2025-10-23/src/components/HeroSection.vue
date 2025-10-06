@@ -99,7 +99,7 @@ const getParticleStyle = (particle) => ({
   border-radius: 48px;
   padding: clamp(3.2rem, 7vw, 6.6rem);
   margin-block-start: clamp(2rem, 5vw, 4rem);
-  background: linear-gradient(140deg, rgba(255, 238, 247, 0.94), rgba(255, 212, 231, 0.78));
+  background: var(--surface-gradient);
   box-shadow: 0 40px 120px rgba(244, 93, 144, 0.22);
   color: var(--primary-dark);
   isolation: isolate;
