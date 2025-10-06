@@ -189,6 +189,10 @@ onBeforeUnmount(() => {
   justify-content: center;
   padding: clamp(4rem, 9vw, 8rem) clamp(1.5rem, 6vw, 4rem);
   overflow: hidden;
+  border-radius: 48px;
+  background: var(--surface-gradient);
+  box-shadow: 0 40px 120px rgba(244, 93, 144, 0.22);
+  isolation: isolate;
 }
 
 .wish-card {
