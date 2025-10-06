@@ -97,14 +97,16 @@
           <template v-else>
             <h3>Step 3｜我要和妳說</h3>
             <p>是妳，讓我開始相信永久的模樣。</p>
-            <div class="proposal__ring" role="img" aria-label="求婚戒指動畫">
-              <div class="proposal__ring-glow"></div>
-              <div class="proposal__ring-inner"></div>
-              <div class="proposal__ring-gem"></div>
-              <div class="proposal__ring-orbit proposal__ring-orbit--one"></div>
-              <div class="proposal__ring-orbit proposal__ring-orbit--two"></div>
-              <div class="proposal__ring-sparkle proposal__ring-sparkle--one"></div>
-              <div class="proposal__ring-sparkle proposal__ring-sparkle--two"></div>
+            <div class="proposal__ring" role="img" aria-label="求婚戒指與浪漫符號">
+              <span class="proposal__ring-emoji proposal__ring-emoji--ring" aria-hidden="true">💍</span>
+              <span class="proposal__ring-emoji proposal__ring-emoji--heart" aria-hidden="true">💖</span>
+              <span class="proposal__ring-emoji proposal__ring-emoji--sparkle" aria-hidden="true">✨</span>
+              <span
+                class="proposal__ring-emoji proposal__ring-emoji--sparkle proposal__ring-emoji--sparkle-alt"
+                aria-hidden="true"
+              >
+                ✨
+              </span>
             </div>
             <p class="proposal__question">Will you marry me?</p>
             <div class="proposal__answers">
@@ -615,77 +617,67 @@ onUnmounted(() => {
   border-radius: 50%;
   display: grid;
   place-items: center;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.92), rgba(255, 210, 230, 0.25));
+  box-shadow: 0 28px 80px rgba(244, 93, 144, 0.3);
   animation: floatSoft 6s ease-in-out infinite;
-  box-shadow: 0 28px 80px rgba(244, 93, 144, 0.28);
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.proposal__ring-glow {
+.proposal__ring::before {
+  content: '';
   position: absolute;
-  inset: -20%;
+  inset: 14%;
   border-radius: inherit;
-  background: radial-gradient(circle, rgba(255, 194, 214, 0.35), transparent 70%);
-  filter: blur(30px);
-  z-index: 0;
+  background: radial-gradient(circle, rgba(244, 93, 144, 0.22), transparent 70%);
+  filter: blur(14px);
+  opacity: 0.75;
 }
 
-.proposal__ring-inner {
+.proposal__ring::after {
+  content: '';
+  position: absolute;
+  inset: -12% -14% 36% -14%;
+  border-radius: 50%;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.5), transparent 60%);
+  opacity: 0.8;
+  filter: blur(18px);
+  animation: ringEmojiGlow 7s ease-in-out infinite;
+}
+
+.proposal__ring-emoji {
+  position: absolute;
+  display: inline-block;
+  line-height: 1;
+  text-shadow: 0 16px 40px rgba(244, 93, 144, 0.28);
+  filter: drop-shadow(0 8px 20px rgba(51, 28, 46, 0.18));
+}
+
+.proposal__ring-emoji--ring {
   position: relative;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  border: 8px dashed rgba(255, 194, 214, 0.55);
-  animation: rotate 9s linear infinite;
-  z-index: 1;
+  font-size: clamp(3.4rem, 8vw, 4.8rem);
+  animation: ringEmojiFloat 5.4s ease-in-out infinite;
 }
 
-.proposal__ring-gem {
-  position: absolute;
-  top: -18%;
-  width: clamp(64px, 12vw, 80px);
-  height: clamp(64px, 12vw, 80px);
-  border-radius: 22% 78% 32% 68% / 45% 55% 45% 55%;
-  background: linear-gradient(135deg, #fff8fc, #ffe0f3);
-  box-shadow: 0 18px 40px rgba(244, 93, 144, 0.28);
-  animation: shimmer 3.4s ease-in-out infinite;
-  z-index: 2;
+.proposal__ring-emoji--heart {
+  bottom: 18%;
+  right: clamp(14px, 6vw, 34px);
+  font-size: clamp(1.8rem, 4.8vw, 2.6rem);
+  animation: ringEmojiHeart 2.6s ease-in-out infinite;
 }
 
-.proposal__ring-orbit {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  opacity: 0.6;
-  animation: orbitSpin 8s linear infinite;
+.proposal__ring-emoji--sparkle {
+  top: clamp(18px, 5vw, 32px);
+  left: clamp(22px, 6vw, 40px);
+  font-size: clamp(1.2rem, 3.6vw, 2rem);
+  animation: ringEmojiSparkle 3s ease-in-out infinite;
 }
 
-.proposal__ring-orbit--one {
-  inset: 10% 14%;
-}
-
-.proposal__ring-orbit--two {
-  inset: 18% 20%;
-  animation-duration: 11s;
-  animation-direction: reverse;
-}
-
-.proposal__ring-sparkle {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), transparent 70%);
-  animation: twinkle 2.4s ease-in-out infinite;
-}
-
-.proposal__ring-sparkle--one {
-  top: 14%;
-  right: 18%;
-}
-
-.proposal__ring-sparkle--two {
-  bottom: 16%;
-  left: 20%;
-  animation-delay: 0.9s;
+.proposal__ring-emoji--sparkle-alt {
+  top: clamp(36px, 7vw, 48px);
+  right: clamp(26px, 6vw, 46px);
+  animation-delay: 1.4s;
+  opacity: 0.8;
 }
 
 .proposal__question {
@@ -857,25 +849,6 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes shimmer {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
-  }
-  50% {
-    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.85));
-  }
-}
-
 @keyframes pulseGlow {
   0%,
   100% {
@@ -910,24 +883,49 @@ onUnmounted(() => {
   }
 }
 
-@keyframes orbitSpin {
-  0% {
+@keyframes ringEmojiGlow {
+  0%,
+  100% {
+    opacity: 0.6;
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.85;
+    transform: rotate(12deg);
   }
 }
 
-@keyframes twinkle {
+@keyframes ringEmojiFloat {
   0%,
   100% {
-    opacity: 0.4;
-    transform: scale(0.85);
+    transform: translateY(-6px) scale(1);
   }
   50% {
+    transform: translateY(4px) scale(1.02);
+  }
+}
+
+@keyframes ringEmojiHeart {
+  0%,
+  100% {
+    transform: scale(0.92) rotate(-6deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08) rotate(-6deg);
     opacity: 1;
-    transform: scale(1.1);
+  }
+}
+
+@keyframes ringEmojiSparkle {
+  0%,
+  100% {
+    transform: scale(0.85) rotate(-10deg);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.15) rotate(8deg);
+    opacity: 1;
   }
 }
 
