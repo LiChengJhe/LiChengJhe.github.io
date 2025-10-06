@@ -6,7 +6,7 @@
         :key="sparkle.id"
         class="timeline__sparkle"
         :style="getSparkleStyle(sparkle)"
-      ></span>
+      >{{ sparkle.symbol }}</span>
     </div>
 
     <div class="timeline__header fade-up">
@@ -184,13 +184,17 @@ const events = [
   }
 ];
 
+const sparkleSymbols = [
+  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💞', '💓', '💟', '✦'
+];
 const sparkles = Array.from({ length: 14 }, (_, index) => ({
   id: index,
   left: Math.random() * 100,
   top: Math.random() * 100,
   delay: Math.random() * 6,
   duration: 6 + Math.random() * 6,
-  scale: 0.6 + Math.random() * 0.8
+  scale: 0.6 + Math.random() * 0.8,
+  symbol: sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)]
 }));
 
 const getSparkleStyle = (sparkle) => ({
@@ -255,12 +259,22 @@ onBeforeUnmount(() => {
 
 .timeline__sparkle {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  width: 2.2em;
+  height: 2.2em;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 194, 214, 0));
+  color: #f45990;
+  background: none;
   opacity: 0;
   animation: sparkleFloat linear infinite;
+  text-shadow:
+    0 0 12px #ffd0e8,
+    0 0 24px #fff,
+    0 2px 8px #f45990;
+  transition: font-size 0.3s, color 0.3s;
 }
 
 .timeline__header {

@@ -24,23 +24,9 @@
             '--petal-rotation': petal.rotation,
             '--petal-blur': petal.blur
           }"
-        ></span>
+        >{{ petal.symbol }}</span>
       </div>
 
-      <div class="wish-card__sparkles" aria-hidden="true">
-        <span
-          v-for="sparkle in sparkleSeeds"
-          :key="sparkle.id"
-          class="wish-card__sparkle"
-          :style="{
-            '--sparkle-left': sparkle.left,
-            '--sparkle-top': sparkle.top,
-            '--sparkle-delay': sparkle.delay,
-            '--sparkle-duration': sparkle.duration,
-            '--sparkle-scale': sparkle.scale
-          }"
-        ></span>
-      </div>
 
       <div class="wish-card__noise" aria-hidden="true"></div>
 
@@ -107,21 +93,16 @@ const shimmerActive = ref(false);
 const visibleParagraphs = computed(() => messageParagraphs.slice(0, revealedCount.value));
 const activeIcon = computed(() => (closingVisible.value ? '💞' : baseIcon));
 
-const sparkleSeeds = Object.freeze([
-  { id: 'sparkle-1', left: '18%', top: '18%', delay: '0s', duration: '7.5s', scale: '1' },
-  { id: 'sparkle-2', left: '82%', top: '28%', delay: '-2.6s', duration: '9.4s', scale: '0.86' },
-  { id: 'sparkle-3', left: '14%', top: '68%', delay: '-1.4s', duration: '8.6s', scale: '0.92' },
-  { id: 'sparkle-4', left: '72%', top: '78%', delay: '-3.2s', duration: '10.8s', scale: '1.04' },
-  { id: 'sparkle-5', left: '50%', top: '12%', delay: '-4.6s', duration: '11.6s', scale: '0.78' },
-  { id: 'sparkle-6', left: '92%', top: '54%', delay: '-6.2s', duration: '9.8s', scale: '0.7' }
-]);
 
+const petalSymbols = [
+  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💞', '💓', '💟', '✦'
+];
 const floatingPetals = Object.freeze([
-  { id: 'petal-1', left: '12%', top: '26%', delay: '-2.4s', duration: '12.4s', scale: '1.05', rotation: '18deg', blur: '0px' },
-  { id: 'petal-2', left: '28%', top: '84%', delay: '-6.8s', duration: '14.2s', scale: '0.88', rotation: '-16deg', blur: '1px' },
-  { id: 'petal-3', left: '78%', top: '18%', delay: '-4.2s', duration: '13.6s', scale: '0.96', rotation: '26deg', blur: '0px' },
-  { id: 'petal-4', left: '88%', top: '76%', delay: '-8.6s', duration: '15s', scale: '1.14', rotation: '-12deg', blur: '2px' },
-  { id: 'petal-5', left: '6%', top: '62%', delay: '-10s', duration: '16s', scale: '1.28', rotation: '34deg', blur: '1px' }
+  { id: 'petal-1', left: '12%', top: '26%', delay: '-2.4s', duration: '12.4s', scale: '1.05', rotation: '18deg', blur: '0px', symbol: petalSymbols[Math.floor(Math.random() * petalSymbols.length)] },
+  { id: 'petal-2', left: '28%', top: '84%', delay: '-6.8s', duration: '14.2s', scale: '0.88', rotation: '-16deg', blur: '1px', symbol: petalSymbols[Math.floor(Math.random() * petalSymbols.length)] },
+  { id: 'petal-3', left: '78%', top: '18%', delay: '-4.2s', duration: '13.6s', scale: '0.96', rotation: '26deg', blur: '0px', symbol: petalSymbols[Math.floor(Math.random() * petalSymbols.length)] },
+  { id: 'petal-4', left: '88%', top: '76%', delay: '-8.6s', duration: '15s', scale: '1.14', rotation: '-12deg', blur: '2px', symbol: petalSymbols[Math.floor(Math.random() * petalSymbols.length)] },
+  { id: 'petal-5', left: '6%', top: '62%', delay: '-10s', duration: '16s', scale: '1.28', rotation: '34deg', blur: '1px', symbol: petalSymbols[Math.floor(Math.random() * petalSymbols.length)] }
 ]);
 
 const timers = [];
@@ -253,15 +234,30 @@ onBeforeUnmount(() => {
   position: absolute;
   left: var(--petal-left);
   top: var(--petal-top);
-  width: clamp(24px, 4vw, 36px);
-  height: clamp(28px, 4.5vw, 44px);
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 173, 208, 0.85) 40%, rgba(244, 93, 144, 0.7) 100%);
-  border-radius: 60% 40% 60% 40%;
-  opacity: 0.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  width: clamp(32px, 5vw, 44px);
+  height: clamp(36px, 5vw, 52px);
+  color: #f45990;
+  background: linear-gradient(120deg, #f45d90 40%, #ffb4d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background: none;
+  border-radius: 50%;
+  opacity: 0.8;
   filter: blur(var(--petal-blur));
   transform: translate(-50%, -50%) scale(var(--petal-scale)) rotate(var(--petal-rotation));
-  animation: petalFloat var(--petal-duration) ease-in-out infinite;
+  animation: petalFloat calc(var(--petal-duration) * 0.6) cubic-bezier(0.6, -0.28, 0.74, 0.05) infinite;
   animation-delay: var(--petal-delay);
+  text-shadow:
+    0 0 14px #ffd0e8,
+    0 0 24px #fff,
+    0 2px 8px #f45990;
+  transition: font-size 0.3s, color 0.3s;
 }
 
 .wish-card__sparkle {
@@ -470,13 +466,15 @@ onBeforeUnmount(() => {
 
 @keyframes petalFloat {
   0% {
-    transform: translate(-50%, -50%) scale(var(--petal-scale)) rotate(var(--petal-rotation));
+    transform: translate3d(0, 0, 0) scale(var(--petal-scale));
+    opacity: 0;
   }
-  50% {
-    transform: translate(calc(-50% + 6px), calc(-50% - 14px)) scale(calc(var(--petal-scale) * 1.05)) rotate(calc(var(--petal-rotation) + 10deg));
+  10% {
+    opacity: 1;
   }
   100% {
-    transform: translate(calc(-50% - 6px), calc(-50% + 12px)) scale(var(--petal-scale)) rotate(calc(var(--petal-rotation) - 8deg));
+    transform: translate3d(var(--petal-drift, 0px), -110vh, 0) scale(var(--petal-scale));
+    opacity: 0;
   }
 }
 

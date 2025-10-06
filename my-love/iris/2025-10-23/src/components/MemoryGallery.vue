@@ -10,7 +10,7 @@
 				:key="particle.id"
 				class="memory-gallery__sparkle"
 				:style="getParticleStyle(particle)"
-			></span>
+			>{{ particle.symbol }}</span>
 		</div>
 
 		<header class="memory-gallery__header fade-up">
@@ -101,7 +101,9 @@
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const sparkleColors = ['rgba(255, 216, 232, 0.85)', 'rgba(255, 240, 250, 0.78)', 'rgba(255, 202, 225, 0.82)'];
-
+const sparkleSymbols = [
+  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💞', '💓', '💟', '✦'
+];
 const particles = Array.from({ length: 18 }, (_, index) => {
 	const color = sparkleColors[index % sparkleColors.length];
 	return {
@@ -111,7 +113,8 @@ const particles = Array.from({ length: 18 }, (_, index) => {
 		delay: Math.random() * 8,
 		duration: 10 + Math.random() * 8,
 		scale: 0.6 + Math.random() * 0.8,
-		color
+		color,
+		symbol: sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)]
 	};
 });
 
@@ -407,15 +410,25 @@ onBeforeUnmount(() => {
 }
 
 .memory-gallery__sparkle {
-	position: absolute;
-	width: 12px;
-	height: 12px;
-	border-radius: 999px;
-	filter: blur(1px);
-	opacity: 0;
-	animation-name: gallerySparkle;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: infinite;
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.3rem;
+		width: 2em;
+		height: 2em;
+		border-radius: 999px;
+		color: #f45990;
+		background: none;
+		opacity: 0;
+		animation-name: gallerySparkle;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: infinite;
+		text-shadow:
+			0 0 10px #ffd0e8,
+			0 0 18px #fff,
+			0 2px 6px #f45990;
+		transition: font-size 0.3s, color 0.3s;
 }
 
 .memory-gallery__header {

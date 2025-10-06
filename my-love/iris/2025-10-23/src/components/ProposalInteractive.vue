@@ -17,7 +17,7 @@
         class="proposal__petal"
         :style="getPetalStyle(petal)"
       >
-        {{ flowerSymbols[petal.id % flowerSymbols.length] }}
+        {{ petal.symbol }}
       </span>
     </div>
 
@@ -161,7 +161,8 @@ const petals = Array.from({ length: 18 }, (_, index) => ({
   duration: 12 + Math.random() * 10,
   drift: -25 + Math.random() * 50,
   scale: 0.6 + Math.random() * 0.8,
-  opacity: 0.35 + Math.random() * 0.4
+  opacity: 0.35 + Math.random() * 0.4,
+  symbol: flowerSymbols[Math.floor(Math.random() * flowerSymbols.length)]
 }));
 
 const getPetalStyle = (petal) => ({
@@ -341,12 +342,20 @@ onUnmounted(() => {
 .proposal__petal {
   position: absolute;
   bottom: -12%; /* 由下方浮上來 */
-  font-size: clamp(16px, 2vw, 24px);
-  color: rgba(255, 190, 210, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(20px, 2.6vw, 32px);
+  color: #f45990;
+  background: none;
   animation-name: floatPetalUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  text-shadow: 0 0 18px rgba(255, 200, 220, 0.55);
+  text-shadow:
+    0 0 14px #ffd0e8,
+    0 0 24px #fff,
+    0 2px 8px #f45990;
+  transition: font-size 0.3s, color 0.3s;
 }
 
 .proposal__content {

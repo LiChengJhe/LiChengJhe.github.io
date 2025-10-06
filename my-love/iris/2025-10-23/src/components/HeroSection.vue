@@ -88,7 +88,7 @@ const particles = Array.from({ length: 12 }, (_, index) => {
     duration,
     size: 16 + Math.random() * 18,
     opacity: 0.45 + Math.random() * 0.4,
-    symbol: symbols[index % symbols.length],
+    symbol: symbols[Math.floor(Math.random() * symbols.length)],
     hue: 330 + Math.random() * 20,
     drift: -24 + Math.random() * 48
   };
