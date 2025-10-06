@@ -185,7 +185,7 @@ const events = [
 ];
 
 const sparkleSymbols = [
-  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💞', '💓', '💟', '✦'
+  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '', '💟'
 ];
 const sparkles = Array.from({ length: 14 }, (_, index) => ({
   id: index,
@@ -258,6 +258,11 @@ onBeforeUnmount(() => {
 }
 
 .timeline__sparkle {
+  background: linear-gradient(120deg, #f45990 60%, #ffb7d5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 8px #f45990, 0 0 18px #ffb7d5;
   position: absolute;
   display: flex;
   align-items: center;
@@ -269,7 +274,7 @@ onBeforeUnmount(() => {
   color: #f45990;
   background: none;
   opacity: 0;
-  animation: sparkleFloat linear infinite;
+  animation: floatPetalUp linear infinite;
   text-shadow:
     0 0 12px #ffd0e8,
     0 0 24px #fff,
@@ -570,20 +575,17 @@ onBeforeUnmount(() => {
   }
 }
 
-@keyframes sparkleFloat {
+@keyframes floatPetalUp {
   0% {
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
-    transform: translate3d(-10px, 10px, 0) scale(0.6);
   }
-  30% {
-    opacity: 0.6;
-  }
-  70% {
-    opacity: 0.8;
+  10% {
+    opacity: 1;
   }
   100% {
+    transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
     opacity: 0;
-    transform: translate3d(16px, -32px, 0) scale(1.1);
   }
 }
 

@@ -74,10 +74,8 @@ const symbols = [
   '💗', // 膨脹愛心
   '💘', // 箭穿愛心
   '💝', // 禮物愛心
-  '💞', // 旋轉愛心
-  '💓', // 跳動愛心
-  '💟', // 裝飾愛心
-  '✦'  // 星星
+  '', // 跳動愛心
+  '💟'  // 裝飾愛心
 ];
 const particles = Array.from({ length: 12 }, (_, index) => {
   const [left, delay, duration] = [8 + Math.random() * 84, Math.random() * 8, 10 + Math.random() * 8];
@@ -186,10 +184,15 @@ const getParticleStyle = (particle) => ({
 }
 
 .hero__particle {
+  background: linear-gradient(120deg, #f45990 60%, #ffb7d5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 8px #f45990, 0 0 18px #ffb7d5;
   position: absolute;
   bottom: -12%;
   text-shadow: 0 0 18px rgba(255, 180, 210, 0.65);
-  animation-name: floatParticle;
+  animation-name: floatPetalUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   will-change: transform, opacity;
@@ -501,23 +504,16 @@ const getParticleStyle = (particle) => ({
   }
 }
 
-@keyframes floatParticle {
+@keyframes floatPetalUp {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
-
   10% {
-    opacity: 0.45;
+    opacity: 1;
   }
-
-  50% {
-    transform: translate3d(var(--drift), -50vh, 0) rotate(8deg);
-    opacity: 0.9;
-  }
-
   100% {
-    transform: translate3d(calc(var(--drift) * 1.4), -110vh, 0) rotate(18deg);
+    transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
     opacity: 0;
   }
 }

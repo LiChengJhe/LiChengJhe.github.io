@@ -102,7 +102,7 @@ import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const sparkleColors = ['rgba(255, 216, 232, 0.85)', 'rgba(255, 240, 250, 0.78)', 'rgba(255, 202, 225, 0.82)'];
 const sparkleSymbols = [
-  '♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💞', '💓', '💟', '✦'
+	'♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💓', '💟'
 ];
 const particles = Array.from({ length: 18 }, (_, index) => {
 	const color = sparkleColors[index % sparkleColors.length];
@@ -410,6 +410,11 @@ onBeforeUnmount(() => {
 }
 
 .memory-gallery__sparkle {
+	background: linear-gradient(120deg, #f45990 60%, #ffb7d5 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0 2px 8px #f45990, 0 0 18px #ffb7d5;
 		position: absolute;
 		display: flex;
 		align-items: center;
@@ -421,7 +426,7 @@ onBeforeUnmount(() => {
 		color: #f45990;
 		background: none;
 		opacity: 0;
-		animation-name: gallerySparkle;
+			animation-name: floatPetalUp;
 		animation-timing-function: ease-in-out;
 		animation-iteration-count: infinite;
 		text-shadow:
@@ -858,20 +863,16 @@ onBeforeUnmount(() => {
 	}
 }
 
-@keyframes gallerySparkle {
+@keyframes floatPetalUp {
 	0% {
-		transform: translate3d(-10px, 12px, 0) scale(0.6);
+		transform: translate3d(0, 0, 0) scale(1);
 		opacity: 0;
 	}
-	25% {
-		opacity: 0.45;
-	}
-	70% {
-		transform: translate3d(18px, -28px, 0) scale(1.05);
-		opacity: 0.8;
+	10% {
+		opacity: 1;
 	}
 	100% {
-		transform: translate3d(28px, -54px, 0) scale(1.2);
+		transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
 		opacity: 0;
 	}
 }
