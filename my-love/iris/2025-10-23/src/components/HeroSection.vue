@@ -65,7 +65,20 @@ const props = defineProps({
 
 const highlightPhoto = new URL('../assets/memories/10.png', import.meta.url).href;
 
-const symbols = ['♥', '✦', '❥'];
+const symbols = [
+  '♥', // 正常愛心
+  '❥', // 斜愛心
+  '♡', // 空心愛心
+  '❤', // 實心愛心
+  '💖', // 閃亮愛心
+  '💗', // 膨脹愛心
+  '💘', // 箭穿愛心
+  '💝', // 禮物愛心
+  '💞', // 旋轉愛心
+  '💓', // 跳動愛心
+  '💟', // 裝飾愛心
+  '✦'  // 星星
+];
 const particles = Array.from({ length: 12 }, (_, index) => {
   const [left, delay, duration] = [8 + Math.random() * 84, Math.random() * 8, 10 + Math.random() * 8];
   return {

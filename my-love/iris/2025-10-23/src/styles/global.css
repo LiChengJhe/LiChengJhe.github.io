@@ -8,7 +8,7 @@
   --text-muted: #6f4c68;
   --highlight: #ffe6f0;
   --shadow-color: rgba(244, 93, 144, 0.25);
-  --surface-gradient: linear-gradient(145deg, rgba(255, 240, 248, 0.94), rgba(255, 212, 231, 0.82));
+  --surface-gradient: linear-gradient(145deg, rgba(255, 240, 248, 0.72), rgba(255, 228, 237, 0.48)); /* 更淡的粉紅色漸層 */
   --surface-border: rgba(244, 93, 144, 0.08);
   font-size: 16px;
 }

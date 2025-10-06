@@ -1,3 +1,4 @@
+
 <template>
   <section class="proposal" aria-labelledby="proposal-title">
     <div class="proposal__background" aria-hidden="true">
@@ -16,7 +17,7 @@
         class="proposal__petal"
         :style="getPetalStyle(petal)"
       >
-        ❀
+        {{ flowerSymbols[petal.id % flowerSymbols.length] }}
       </span>
     </div>
 
@@ -146,7 +147,7 @@ const stepsMeta = Object.freeze([
   { id: 'courage', label: '收集勇氣' },
   { id: 'proposal', label: '與你共度' }
 ]);
-
+const flowerSymbols = ['♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💓', '💟'];
 const step = ref(1);
 const letterOpened = ref(false);
 const courage = ref(0);
@@ -339,10 +340,10 @@ onUnmounted(() => {
 
 .proposal__petal {
   position: absolute;
-  top: -12%;
+  bottom: -12%; /* 由下方浮上來 */
   font-size: clamp(16px, 2vw, 24px);
   color: rgba(255, 190, 210, 0.9);
-  animation-name: floatPetal;
+  animation-name: floatPetalUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   text-shadow: 0 0 18px rgba(255, 200, 220, 0.55);
@@ -929,7 +930,7 @@ onUnmounted(() => {
   }
 }
 
-@keyframes floatPetal {
+@keyframes floatPetalUp {
   0% {
     transform: translate3d(0, 0, 0) scale(var(--scale, 1));
     opacity: 0;
@@ -938,7 +939,7 @@ onUnmounted(() => {
     opacity: 1;
   }
   100% {
-    transform: translate3d(var(--drift), 110vh, 0) scale(var(--scale, 1));
+    transform: translate3d(var(--drift), -110vh, 0) scale(var(--scale, 1));
     opacity: 0;
   }
 }
