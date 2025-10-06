@@ -20,7 +20,7 @@
 body {
   font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
   color: var(--text-dark);
-  background: radial-gradient(circle at 20% 20%, var(--bg-gradient-start), var(--bg-gradient-end));
+  background: linear-gradient(180deg, var(--bg-gradient-start), var(--bg-gradient-end));
   min-height: 100vh;
   overflow-x: hidden;
 }

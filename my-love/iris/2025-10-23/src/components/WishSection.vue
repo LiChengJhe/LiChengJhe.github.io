@@ -6,16 +6,7 @@
       @mouseleave="resetTilt"
       :style="{ transform: cardTransform }"
     >
-      <div class="wish-card__glow" :style="{ backgroundImage: glowGradient }" aria-hidden="true"></div>
       <div class="wish-card__noise" aria-hidden="true"></div>
-      <div class="wish-card__sparkles" aria-hidden="true">
-        <span
-          v-for="sparkle in sparkles"
-          :key="sparkle.id"
-          class="wish-card__sparkle"
-          :style="getSparkleStyle(sparkle)"
-        ></span>
-      </div>
 
       <header class="wish-card__header">
         <span class="wish-card__badge">Birthday Blessing</span>
@@ -40,7 +31,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive } from 'vue';
 
 const messageIcon = '💌';
 
@@ -52,21 +43,7 @@ const messageParagraphs = [
 
 const closingLine = '愛妳的，存摺子';
 
-const generateSparkles = () =>
-  Array.from({ length: 18 }, (_, index) => ({
-    id: index,
-    top: 6 + Math.random() * 88,
-    left: 6 + Math.random() * 88,
-    size: 12 + Math.random() * 20,
-    delay: Math.random() * 6,
-    duration: 6 + Math.random() * 6,
-    brightness: 0.45 + Math.random() * 0.5
-  }));
-
-const sparkles = ref(generateSparkles());
-
 const tilt = reactive({ x: 0, y: 0 });
-const glow = ref(0.65);
 
 const handleCardMouseMove = (event) => {
   const card = event.currentTarget;
@@ -81,36 +58,16 @@ const handleCardMouseMove = (event) => {
 
   tilt.x = -(percentY * 6);
   tilt.y = percentX * 6;
-  glow.value = 0.6 + Math.max(Math.min(-percentY * 0.25, 0.18), -0.18);
 };
 
 const resetTilt = () => {
   tilt.x = 0;
   tilt.y = 0;
-  glow.value = 0.65;
 };
 
 const cardTransform = computed(
   () => `rotateX(${tilt.x.toFixed(2)}deg) rotateY(${tilt.y.toFixed(2)}deg) scale3d(1.01, 1.01, 1.01)`
 );
-
-const glowGradient = computed(() => {
-  const x = 50 + tilt.y * 3;
-  const y = 50 - tilt.x * 3;
-  const strength = Math.min(Math.max(glow.value, 0.4), 0.9);
-
-  return `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, ${strength}), transparent 70%)`;
-});
-
-const getSparkleStyle = (sparkle) => ({
-  top: `${sparkle.top}%`,
-  left: `${sparkle.left}%`,
-  width: `${sparkle.size}px`,
-  height: `${sparkle.size}px`,
-  animationDelay: `${sparkle.delay}s`,
-  animationDuration: `${sparkle.duration}s`,
-  '--spark-opacity': sparkle.brightness
-});
 </script>
 
 <style scoped>
@@ -139,15 +96,6 @@ const getSparkleStyle = (sparkle) => ({
   box-shadow: 0 60px 160px rgba(244, 93, 144, 0.32);
 }
 
-.wish-card__glow {
-  position: absolute;
-  inset: -35%;
-  filter: blur(100px);
-  opacity: 0.85;
-  transition: background-image 0.3s ease;
-  pointer-events: none;
-}
-
 .wish-card__noise {
   position: absolute;
   inset: 0;
@@ -155,24 +103,6 @@ const getSparkleStyle = (sparkle) => ({
   opacity: 0.22;
   mix-blend-mode: soft-light;
   pointer-events: none;
-}
-
-.wish-card__sparkles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.wish-card__sparkle {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), transparent 60%);
-  transform: translate3d(-50%, -50%, 0);
-  animation-name: sparkleFloat;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  opacity: var(--spark-opacity, 0.7);
 }
 
 .wish-card__header {
@@ -274,31 +204,6 @@ const getSparkleStyle = (sparkle) => ({
 @media (prefers-reduced-motion: reduce) {
   .wish-card {
     transition: none !important;
-  }
-
-  .wish-card__sparkle {
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-  }
-}
-
-@keyframes sparkleFloat {
-  0% {
-    transform: translate3d(-50%, -30%, 0) scale(0.6);
-    opacity: 0;
-  }
-
-  35% {
-    opacity: var(--spark-opacity, 0.8);
-  }
-
-  70% {
-    opacity: calc(var(--spark-opacity, 0.8) * 0.6);
-  }
-
-  100% {
-    transform: translate3d(-50%, -160%, 0) scale(1.4);
-    opacity: 0;
   }
 }
 </style>
