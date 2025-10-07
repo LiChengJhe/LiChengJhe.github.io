@@ -9,20 +9,23 @@
 
 
       <div ref="timelineWrapper">
-        <section>
+        <section :class="{ 'section--under-lightbox': isLightboxOpen }">
           <LoveTimeline />
         </section>
       </div>
 
       <section>
-        <MemoryGallery />
+        <MemoryGallery
+          @lightbox-open="handleLightboxOpen"
+          @lightbox-close="handleLightboxClose"
+        />
       </section>
 
-      <section>
+      <section :class="{ 'section--under-lightbox': isLightboxOpen }">
         <WishSection />
       </section>
 
-      <section>
+      <section :class="{ 'section--under-lightbox': isLightboxOpen }">
         <ProposalInteractive />
       </section>
 
@@ -32,7 +35,7 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, ref } from 'vue';
+import { onBeforeUnmount, ref, watch } from 'vue';
 import FloatingHearts from './components/FloatingHearts.vue';
 import HeroSection from './components/HeroSection.vue';
 import LoveTimeline from './components/LoveTimeline.vue';
@@ -42,12 +45,21 @@ import ProposalInteractive from './components/ProposalInteractive.vue';
 import melodySrc from './assets/audio/melody.mp3';
 
 const timelineWrapper = ref(null);
+const isLightboxOpen = ref(false);
 let audioContext;
 let audioElement;
 let audioSource;
 
 const scrollToTimeline = () => {
   timelineWrapper.value?.scrollIntoView({ behavior: 'smooth' });
+};
+
+const handleLightboxOpen = () => {
+  isLightboxOpen.value = true;
+};
+
+const handleLightboxClose = () => {
+  isLightboxOpen.value = false;
 };
 
 const playMelody = async () => {
@@ -74,6 +86,11 @@ const playMelody = async () => {
     console.warn('音樂播放失敗或 Web Audio 不被支援：', error);
   }
 };
+
+watch(isLightboxOpen, (value) => {
+  if (typeof document === 'undefined') return;
+  document.body.style.overflow = value ? 'hidden' : '';
+});
 
 onBeforeUnmount(() => {
   if (audioElement) {
@@ -107,5 +124,16 @@ onBeforeUnmount(() => {
 main {
   position: relative;
   z-index: 1;
+}
+
+section {
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  visibility: visible;
+}
+
+.section--under-lightbox {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 </style>

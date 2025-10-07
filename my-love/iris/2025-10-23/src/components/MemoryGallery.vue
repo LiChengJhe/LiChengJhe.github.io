@@ -100,6 +100,8 @@
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
+const emit = defineEmits(['lightbox-open', 'lightbox-close']);
+
 const sparkleColors = ['rgba(255, 216, 232, 0.85)', 'rgba(255, 240, 250, 0.78)', 'rgba(255, 202, 225, 0.82)'];
 const sparkleSymbols = [
 	'♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💓', '💟'
@@ -305,6 +307,7 @@ const handleKeydown = (event) => {
 
 const openLightbox = async (memory) => {
 	activeMemory.value = memory;
+	emit('lightbox-open');
 	await nextTick();
 	const closeButton = document.querySelector('.lightbox__close');
 	closeButton?.focus({ preventScroll: true });
@@ -312,6 +315,7 @@ const openLightbox = async (memory) => {
 
 const closeLightbox = () => {
 	activeMemory.value = null;
+	emit('lightbox-close');
 };
 
 onMounted(() => {
