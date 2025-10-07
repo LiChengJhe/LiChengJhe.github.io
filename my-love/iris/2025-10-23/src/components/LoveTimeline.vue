@@ -33,18 +33,30 @@
               <ul class="timeline-card__chips">
                 <li v-for="chip in event.keywords" :key="chip">{{ chip }}</li>
               </ul>
-              <div v-if="event.links?.length" class="timeline-card__links">
-                <a v-for="link in event.links" :key="link.url" class="timeline-card__link" :href="link.url"
+              <div v-if="event.links?.length > 1" class="timeline-card__links">
+                <a v-for="link in event.links.slice(1)" :key="link.url" class="timeline-card__link" :href="link.url"
                   target="_blank" rel="noopener noreferrer" :aria-label="`開啟 ${link.label}`">
                   <span>{{ link.label }}</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
-            <figure v-if="event.image" class="timeline-card__photo">
-              <img :src="event.image" :alt="`${event.title} 的回憶照片`" loading="lazy" />
-              <figcaption>{{ event.photoCaption }}</figcaption>
-            </figure>
+            <div v-if="event.links?.length" class="timeline-card__preview">
+              <a class="link-preview" :href="event.links[0].url" target="_blank" rel="noopener noreferrer"
+                :aria-label="`預覽 ${event.links[0].label}`">
+                <div class="link-preview__visual" :class="{ 'link-preview__visual--empty': !event.image }"
+                  :style="event.image ? { backgroundImage: `url(${event.image})` } : undefined">
+                  <span v-if="!event.image" class="link-preview__icon" aria-hidden="true">🔗</span>
+                </div>
+                <div class="link-preview__content">
+                  <span class="link-preview__tag">浪漫預覽</span>
+                  <h4 class="link-preview__title">{{ event.links[0].label }}</h4>
+                  <p v-if="event.photoCaption" class="link-preview__caption">{{ event.photoCaption }}</p>
+                  <span class="link-preview__domain">{{ formatLinkHost(event.links[0].url) }}</span>
+                </div>
+                <span class="link-preview__cta" aria-hidden="true">開啟連結 ↗</span>
+              </a>
+            </div>
           </div>
         </li>
       </ol>
@@ -190,6 +202,15 @@ const getSparkleStyle = (sparkle) => ({
   animationDuration: `${sparkle.duration}s`,
   transform: `scale(${sparkle.scale})`
 });
+
+const formatLinkHost = (url) => {
+  try {
+    const { hostname } = new URL(url);
+    return hostname.replace(/^www\./, '');
+  } catch (error) {
+    return url;
+  }
+};
 
 const cardRefs = ref([]);
 const observer = ref(null);
@@ -425,12 +446,14 @@ onBeforeUnmount(() => {
 .timeline-card__main {
   display: grid;
   gap: 1.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: minmax(260px, 1fr) minmax(280px, 1fr);
+  align-items: stretch;
 }
 
 .timeline-card__text {
   display: grid;
   gap: 1rem;
+  align-content: flex-start;
 }
 
 .timeline-card__text h3 {
@@ -457,7 +480,7 @@ onBeforeUnmount(() => {
   list-style: none;
   padding: 0;
   margin: 0;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .timeline-card__chips li {
@@ -479,6 +502,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+  justify-content: flex-start;
 }
 
 .timeline-card__link {
@@ -507,35 +531,110 @@ onBeforeUnmount(() => {
   box-shadow: 0 10px 20px rgba(244, 93, 144, 0.22);
 }
 
-.timeline-card__photo {
+.timeline-card__preview {
+  display: flex;
+}
+
+.link-preview {
   position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px rgba(51, 28, 46, 0.18);
-  isolation: isolate;
-}
-
-.timeline-card__photo img {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  padding: 1.4rem;
+  border-radius: 26px;
+  background: linear-gradient(140deg, rgba(244, 93, 144, 0.14), rgba(255, 216, 232, 0.28));
+  box-shadow: 0 22px 44px rgba(244, 93, 144, 0.18);
+  color: var(--primary-dark);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-.timeline-card__photo::after {
+.link-preview:hover,
+.link-preview:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 58px rgba(244, 93, 144, 0.24);
+  background: linear-gradient(140deg, rgba(244, 93, 144, 0.2), rgba(255, 216, 232, 0.34));
+}
+
+.link-preview__visual {
+  position: relative;
+  min-height: 180px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(244, 93, 144, 0.18);
+  overflow: hidden;
+}
+
+.link-preview__visual::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(51, 28, 46, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(51, 28, 46, 0.42) 100%);
+  opacity: 0.72;
 }
 
-.timeline-card__photo figcaption {
+.link-preview__visual--empty {
+  background: linear-gradient(145deg, rgba(255, 216, 232, 0.22), rgba(244, 93, 144, 0.18));
+}
+
+.link-preview__visual--empty::after {
+  opacity: 0.18;
+}
+
+.link-preview__icon {
   position: absolute;
-  inset: auto 0 0 0;
-  padding: 0.75rem 1.2rem;
-  color: #fff;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(2px);
+}
+
+.link-preview__content {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.link-preview__tag {
+  justify-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(244, 93, 144, 0.14);
+  color: #f45990;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.link-preview__title {
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1.3;
+}
+
+.link-preview__caption {
+  color: rgba(51, 28, 46, 0.7);
+  line-height: 1.55;
+}
+
+.link-preview__domain {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: rgba(51, 28, 46, 0.56);
+}
+
+.link-preview__cta {
+  align-self: flex-end;
+  font-weight: 600;
   font-size: 0.9rem;
-  letter-spacing: 0.04em;
+  color: #f45990;
 }
 
 .timeline-card--visible {
@@ -547,7 +646,7 @@ onBeforeUnmount(() => {
   opacity: 1;
 }
 
-.timeline-card--visible .timeline-card__photo img {
+.timeline-card--visible .link-preview__visual {
   animation: photoGlow 6s ease-in-out infinite;
 }
 
@@ -576,8 +675,16 @@ onBeforeUnmount(() => {
     grid-template-columns: 1fr;
   }
 
-  .timeline-card__photo {
+  .timeline-card__preview {
     order: -1;
+  }
+
+  .link-preview {
+    padding: 1.2rem;
+  }
+
+  .link-preview__visual {
+    min-height: 160px;
   }
 }
 
