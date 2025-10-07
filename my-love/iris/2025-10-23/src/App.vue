@@ -3,17 +3,29 @@
     <FloatingHearts />
 
     <main>
-      <HeroSection nickname="鮭魚子" signature="存摺子" @start-journey="scrollToTimeline" @play-melody="playMelody" />
+      <section>
+        <HeroSection nickname="鮭魚子" signature="存摺子" @start-journey="scrollToTimeline" @play-melody="playMelody" />
+      </section>
+
 
       <div ref="timelineWrapper">
-        <LoveTimeline />
+        <section>
+          <LoveTimeline />
+        </section>
       </div>
 
-      <MemoryGallery />
+      <section>
+        <MemoryGallery />
+      </section>
 
-      <WishSection />
+      <section>
+        <WishSection />
+      </section>
 
-      <ProposalInteractive />
+      <section>
+        <ProposalInteractive />
+      </section>
+
 
     </main>
   </div>

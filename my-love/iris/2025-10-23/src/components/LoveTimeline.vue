@@ -1,30 +1,21 @@
 <template>
+
   <section class="timeline" aria-labelledby="timeline-title">
     <div class="timeline__constellation" aria-hidden="true">
-      <span
-        v-for="sparkle in sparkles"
-        :key="sparkle.id"
-        class="timeline__sparkle"
-        :style="getSparkleStyle(sparkle)"
-      >{{ sparkle.symbol }}</span>
+      <span v-for="sparkle in sparkles" :key="sparkle.id" class="timeline__sparkle" :style="getSparkleStyle(sparkle)">{{
+        sparkle.symbol }}</span>
     </div>
 
     <div class="timeline__header fade-up">
-  <h2 id="timeline-title">我們的浪漫航線</h2>
+      <h2 id="timeline-title">我們的浪漫航線</h2>
       <p>從初遇的心動，到無數次緊握的手，這條光軌寫滿了鮭魚子與存摺子的約定。</p>
     </div>
 
     <div class="timeline__body">
       <div class="timeline__rail" aria-hidden="true"></div>
       <ol class="timeline__events">
-        <li
-          v-for="event in events"
-          :key="event.id"
-          class="timeline-card"
-          :class="`timeline-card--${event.align}`"
-          :style="{ '--accent': event.accent }"
-          :ref="registerCard"
-        >
+        <li v-for="event in events" :key="event.id" class="timeline-card" :class="`timeline-card--${event.align}`"
+          :style="{ '--accent': event.accent }" :ref="registerCard">
           <div class="timeline-card__pulse" aria-hidden="true"></div>
           <span class="timeline-card__icon" aria-hidden="true">{{ event.icon }}</span>
           <header class="timeline-card__header">
@@ -43,15 +34,8 @@
                 <li v-for="chip in event.keywords" :key="chip">{{ chip }}</li>
               </ul>
               <div v-if="event.links?.length" class="timeline-card__links">
-                <a
-                  v-for="link in event.links"
-                  :key="link.url"
-                  class="timeline-card__link"
-                  :href="link.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  :aria-label="`開啟 ${link.label}`"
-                >
+                <a v-for="link in event.links" :key="link.url" class="timeline-card__link" :href="link.url"
+                  target="_blank" rel="noopener noreferrer" :aria-label="`開啟 ${link.label}`">
                   <span>{{ link.label }}</span>
                   <span aria-hidden="true">↗</span>
                 </a>
@@ -66,6 +50,8 @@
       </ol>
     </div>
   </section>
+
+
 </template>
 
 <script setup>
@@ -471,15 +457,22 @@ onBeforeUnmount(() => {
   list-style: none;
   padding: 0;
   margin: 0;
+  justify-content: center;
 }
 
 .timeline-card__chips li {
-  padding: 0.35rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  min-height: 38px;
+  padding: 0.35rem 1rem;
   border-radius: 999px;
   background: rgba(244, 93, 144, 0.1);
   color: var(--primary-dark);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .timeline-card__links {
@@ -491,13 +484,17 @@ onBeforeUnmount(() => {
 .timeline-card__link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.35rem;
+  min-width: 140px;
+  min-height: 42px;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   background: rgba(244, 93, 144, 0.16);
   color: var(--primary-dark);
   font-size: 0.85rem;
   font-weight: 600;
+  white-space: nowrap;
   text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 8px 16px rgba(244, 93, 144, 0.16);
@@ -589,9 +586,11 @@ onBeforeUnmount(() => {
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
     opacity: 0;
@@ -602,9 +601,11 @@ onBeforeUnmount(() => {
   0% {
     filter: saturate(1) brightness(1);
   }
+
   50% {
     filter: saturate(1.12) brightness(1.05);
   }
+
   100% {
     filter: saturate(1) brightness(1);
   }
