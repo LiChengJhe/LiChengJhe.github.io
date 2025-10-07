@@ -663,16 +663,26 @@ onBeforeUnmount(() => {
 
 @media (max-width: 720px) {
   .timeline__rail {
-    left: 26px;
+    left: 18px;
   }
 
   .timeline-card {
-    padding: 1.8rem;
-    margin-left: 2.6rem;
+    padding: 1.6rem;
+    margin-left: 1.6rem;
+    margin-right: 0.6rem;
   }
 
   .timeline-card__main {
     grid-template-columns: 1fr;
+  }
+
+  .timeline-card__icon {
+    position: static;
+    justify-self: end;
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.2rem;
   }
 
   .timeline-card__preview {
@@ -680,11 +690,15 @@ onBeforeUnmount(() => {
   }
 
   .link-preview {
-    padding: 1.2rem;
+    padding: 1.1rem;
+  }
+
+  .link-preview__content {
+    gap: 0.35rem;
   }
 
   .link-preview__visual {
-    min-height: 160px;
+    min-height: 150px;
   }
 }
 
