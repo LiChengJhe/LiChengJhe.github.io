@@ -10,7 +10,7 @@
     </div>
 
     <div class="timeline__header fade-up">
-      <h2 id="timeline-title">我們的浪漫航線</h2>
+  <h2 id="timeline-title">我們的浪漫航線</h2>
       <p>從初遇的心動，到無數次緊握的手，這條光軌寫滿了鮭魚子與存摺子的約定。</p>
     </div>
 
@@ -282,6 +282,11 @@ onBeforeUnmount(() => {
   transition: font-size 0.3s, color 0.3s;
 }
 
+/* 粉紅色標題 */
+.timeline__header h2#timeline-title {
+  color: #f45990;
+}
+
 .timeline__header {
   position: relative;
   z-index: 1;
@@ -440,6 +445,10 @@ onBeforeUnmount(() => {
 .timeline-card__text {
   display: grid;
   gap: 1rem;
+}
+
+.timeline-card__text h3 {
+  color: #f45990;
 }
 
 .timeline-card__text p {

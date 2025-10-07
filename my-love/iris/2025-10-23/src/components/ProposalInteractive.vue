@@ -376,6 +376,7 @@ onUnmounted(() => {
 .proposal__header h2 {
   font-size: clamp(2rem, 4vw, 2.8rem);
   letter-spacing: 0.08em;
+  color: #f45990;
 }
 
 .proposal__header p {
