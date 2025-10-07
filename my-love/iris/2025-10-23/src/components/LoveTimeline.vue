@@ -17,7 +17,6 @@
         <li v-for="event in events" :key="event.id" class="timeline-card" :class="`timeline-card--${event.align}`"
           :style="{ '--accent': event.accent }" :ref="registerCard">
           <div class="timeline-card__pulse" aria-hidden="true"></div>
-          <span class="timeline-card__icon" aria-hidden="true">{{ event.icon }}</span>
           <header class="timeline-card__header">
             <span class="timeline-card__badge">{{ event.badge }}</span>
             <div class="timeline-card__time">
@@ -396,19 +395,6 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
-.timeline-card__icon {
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  background: rgba(255, 194, 214, 0.4);
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--primary-dark);
-}
 
 .timeline-card__header {
   display: grid;
@@ -663,26 +649,17 @@ onBeforeUnmount(() => {
 
 @media (max-width: 720px) {
   .timeline__rail {
-    left: 18px;
+    left: 12px;
   }
 
   .timeline-card {
     padding: 1.6rem;
-    margin-left: 1.6rem;
-    margin-right: 0.6rem;
+    margin: 0;
+    width: 100%;
   }
 
   .timeline-card__main {
     grid-template-columns: 1fr;
-  }
-
-  .timeline-card__icon {
-    position: static;
-    justify-self: end;
-    width: 2.6rem;
-    height: 2.6rem;
-    font-size: 1.6rem;
-    margin-bottom: 0.2rem;
   }
 
   .timeline-card__preview {
@@ -690,7 +667,7 @@ onBeforeUnmount(() => {
   }
 
   .link-preview {
-    padding: 1.1rem;
+    padding: 1rem;
   }
 
   .link-preview__content {
@@ -698,7 +675,7 @@ onBeforeUnmount(() => {
   }
 
   .link-preview__visual {
-    min-height: 150px;
+    min-height: 140px;
   }
 }
 
