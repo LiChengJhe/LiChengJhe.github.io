@@ -1,30 +1,21 @@
 <template>
   <section class="wishes" aria-labelledby="wishes-title">
 
-    <article
-      class="wish-card fade-up"
-      @mousemove="handleCardMouseMove"
-      @mouseleave="resetTilt"
-      :style="{ transform: cardTransform }"
-    >
+    <article class="wish-card fade-up" @mousemove="handleCardMouseMove" @mouseleave="resetTilt"
+      :style="{ transform: cardTransform }">
       <span class="wish-card__halo" aria-hidden="true"></span>
       <span class="wish-card__glint" :class="{ 'wish-card__glint--active': shimmerActive }" aria-hidden="true"></span>
 
       <div class="wish-card__petals" aria-hidden="true">
-        <span
-          v-for="petal in floatingPetals"
-          :key="petal.id"
-          class="wish-card__petal"
-          :style="{
-            '--petal-left': petal.left,
-            '--petal-top': petal.top,
-            '--petal-delay': petal.delay,
-            '--petal-duration': petal.duration,
-            '--petal-scale': petal.scale,
-            '--petal-rotation': petal.rotation,
-            '--petal-blur': petal.blur
-          }"
-        >{{ petal.symbol }}</span>
+        <span v-for="petal in floatingPetals" :key="petal.id" class="wish-card__petal" :style="{
+          '--petal-left': petal.left,
+          '--petal-top': petal.top,
+          '--petal-delay': petal.delay,
+          '--petal-duration': petal.duration,
+          '--petal-scale': petal.scale,
+          '--petal-rotation': petal.rotation,
+          '--petal-blur': petal.blur
+        }">{{ petal.symbol }}</span>
       </div>
 
 
@@ -34,13 +25,13 @@
         <span class="wish-card__badge">Birthday Blessing</span>
         <h2 id="wishes-title">
           <span class="wish-card__title-glow" aria-hidden="true"></span>
-          給妳的一封序曲
+          給妳的一本回憶本
         </h2>
-        <p class="wish-card__tagline">把今晚所有星光，寫成只屬於妳的情書</p>
+        <p class="wish-card__tagline">把偷偷放在心底的時刻，變成今晚最閃亮的祝福送給妳</p>
       </header>
 
       <p class="wish-card__intro">
-        妳曾笑著問我，如果把心聲寫成卡片會是什麼模樣。於是我把所有想說的話都放在這裡，讓它隨著指尖的光暈慢慢住進妳心裡。
+        每次我們一起翻相本，看著一張張照片，腦海裡就會浮現好多屬於我們的故事和感覺。這些有妳的溫柔時刻，我都偷偷放在心裡，今晚寫成這本只屬於妳的回憶本。
       </p>
 
       <div class="wish-card__content" aria-live="polite">
@@ -48,21 +39,14 @@
           {{ activeIcon }}
         </div>
 
-        <transition-group
-          name="wish-message"
-          tag="div"
-          class="wish-card__message-block"
-        >
-          <p
-            v-for="paragraph in visibleParagraphs"
-            :key="paragraph"
-            class="wish-card__message"
-          >
+        <transition-group name="wish-message" tag="div" class="wish-card__message-block">
+          <p v-for="paragraph in visibleParagraphs" :key="paragraph" class="wish-card__message">
             {{ paragraph }}
           </p>
         </transition-group>
 
-        <div class="wish-card__divider" :class="{ 'wish-card__divider--visible': closingVisible }" aria-hidden="true"></div>
+        <div class="wish-card__divider" :class="{ 'wish-card__divider--visible': closingVisible }" aria-hidden="true">
+        </div>
 
         <p class="wish-card__closing" :class="{ 'wish-card__closing--visible': closingVisible }">
           {{ closingLine }}
@@ -78,12 +62,12 @@ import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 const baseIcon = '💌';
 
 const messageParagraphs = [
-  '謝謝妳讓平凡的日子也帶著煙火，我總覺得和妳說晚安時，整個宇宙都會變得柔軟一些。',
-  '我喜歡妳躲在被窩裡偷笑的樣子，也喜歡妳為理想努力時專注的眼神。妳的每一個模樣，我都想用心收藏。',
-  '未來的路上，就由我把驚喜和安心輪流放進妳口袋，讓妳無論何時想起我，都會先想起被滿滿地愛著。'
+  '謝謝妳讓平凡的午後變得特別，每次翻開我們的相本，都會看到妳笑得像陽光一樣。',
+  '每次和妳一起出門玩、一起大笑，或是陪我聊天的時候，這些快樂的片段都像一格一格的底片，讓我一直記得被妳愛著的感覺。',
+  '未來的日子，換我把溫暖和快樂慢慢放進妳的生活，讓我們的故事一頁一頁繼續寫下去。'
 ];
 
-const closingLine = '愛妳的存摺子';
+const closingLine = '陪妳翻相本的存摺子';
 
 const tilt = reactive({ x: 0, y: 0 });
 const revealedCount = ref(0);
@@ -431,6 +415,7 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .wishes__aurora,
   .wish-card__glint,
   .wish-card__petal,
@@ -450,14 +435,17 @@ onBeforeUnmount(() => {
 }
 
 @keyframes glintSweep {
+
   0%,
   70% {
     opacity: 0;
     transform: translateX(-140%);
   }
+
   75% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     transform: translateX(140%);
@@ -469,9 +457,11 @@ onBeforeUnmount(() => {
     transform: translate3d(0, 0, 0) scale(var(--petal-scale));
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translate3d(var(--petal-drift, 0px), -110vh, 0) scale(var(--petal-scale));
     opacity: 0;
@@ -479,11 +469,13 @@ onBeforeUnmount(() => {
 }
 
 @keyframes sparkleTwinkle {
+
   0%,
   100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(calc(var(--sparkle-scale) * 0.8));
   }
+
   50% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(calc(var(--sparkle-scale) * 1.25));
@@ -491,13 +483,16 @@ onBeforeUnmount(() => {
 }
 
 @keyframes iconPulse {
+
   0%,
   100% {
     transform: scale(1);
   }
+
   40% {
     transform: scale(1.08);
   }
+
   60% {
     transform: scale(0.96);
   }
