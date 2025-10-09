@@ -169,7 +169,7 @@ const revealLetter = () => {
   letterOpened.value = true;
   setTimeout(() => {
     step.value = 2;
-  }, 1800);
+  }, 5000);
 };
 
 const handleCourage = () => {
@@ -177,7 +177,7 @@ const handleCourage = () => {
   if (courageValue >= 100) {
     setTimeout(() => {
       step.value = 3;
-    }, 600);
+    }, 1000);
   }
 };
 
