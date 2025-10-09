@@ -20,9 +20,10 @@
 
         <p class="hero__intro">親愛的{{ nickname }}</p>
         <h1 id="hero-title" class="hero__title text-shadow">
-          <span class="hero__title-line">有妳在，每一天都是紀念日</span>
+          <span class="hero__title-line">祝妳生日快樂</span>
         </h1>
         <p class="hero__subtitle">
+          有妳在每一天都是紀念日<br>
           謝謝妳，讓我的世界變得溫柔又浪漫，<br>
           妳的陪伴，讓平凡的時光都閃閃發亮。<br>
           願往後的日子，我都能牽著妳的手，把愛和幸福寫進我們的故事裡。

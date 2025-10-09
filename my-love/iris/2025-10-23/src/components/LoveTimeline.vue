@@ -72,7 +72,7 @@ const events = [
     id: '2023-qixi',
     year: '2023',
     month: '08 月',
-    title: '七夕情人節的鵲橋約定',
+    title: '第一次的七夕情人節',
     description: '在這個屬於戀人的夜晚，我們隔著銀河，卻用心意搭起專屬的鵲橋。每一則訊息、每一張照片，都是我想和妳共度的浪漫證明。',
     quote: '「無論多遠多忙，七夕這天，我都會奔向妳，把愛說給妳聽。」',
     location: '線上 · 七夕專屬頁',
@@ -91,19 +91,19 @@ const events = [
     align: 'left'
   },
   {
-  id: '2023-salmon-birthday',
-  year: '2023',
-  month: '10 月',
-  title: '2023 鮭魚子生日祝福',
-  description: '這一天，妳的笑容是最美的禮物。每一個驚喜、每一份心意，都只為妳的生日而準備。願妳的願望都能被溫柔收藏，未來的日子都閃閃發亮。',
-  quote: '「妳的生日，是我最想慶祝的節日。謝謝妳讓我的世界充滿幸福。」',
-  location: '線上 · 生日驚喜頁',
-  keywords: ['生日專屬', '溫柔祝福', '幸福陪伴'],
-  badge: 'Birthday Blessing',
-  icon: '🎁',
+    id: '2023-salmon-birthday',
+    year: '2023',
+    month: '10 月',
+    title: '第一次幫鮭魚子慶生',
+    description: '這一天，妳的笑容是最美的禮物。每一個驚喜、每一份心意，都只為妳的生日而準備。願妳的願望都能被溫柔收藏，未來的日子都閃閃發亮。',
+    quote: '「妳的生日，是我最想慶祝的節日。謝謝妳讓我的世界充滿幸福。」',
+    location: '生日驚喜頁',
+    keywords: ['生日專屬', '溫柔祝福', '幸福陪伴'],
+    badge: 'Birthday Blessing',
+    icon: '🎁',
     links: [
       {
-        label: '鮭魚子的生日頁',
+        label: '鮭魚子的2023生日專頁',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-10-23/index.html'
       }
     ],
@@ -119,13 +119,13 @@ const events = [
     title: '聖誕夜的暖光',
     description: '我們在冬夜裡鋪滿燈火，把祝福寫進每一句話，等妳拆開愛的禮物。',
     quote: '「只要妳在身旁，冬天就會長出暖色。」',
-    location: '線上 · 聖誕特製頁',
+    location: '聖誕特製專頁',
     keywords: ['聖誕祝福', '心願清單', '冬日甜蜜'],
     badge: 'Holiday Magic',
     icon: '🎄',
     links: [
       {
-        label: '聖誕節驚喜頁',
+        label: '聖誕節驚喜專頁',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-12-25/index.html'
       }
     ],
@@ -138,16 +138,16 @@ const events = [
     id: '2024-salmon-birthday',
     year: '2024',
     month: '10 月',
-    title: '2024 鮭魚子生日心願圖',
+    title: '鮭魚子生日快樂',
     description: '這一天，所有的祝福和回憶都為妳閃爍。我把每一張照片、每一句話都藏進生日的星空裡，只為陪妳一起許下最深的心願。',
     quote: '「妳的生日，是我最想守護的節日。願妳的願望，都有我陪妳一起完成。」',
     location: 'Google Photos · 精選影集',
     keywords: ['生日專屬', '心願陪伴', '浪漫回憶'],
-      badge: 'Birthday Wish',
-      icon: '🎂',
+    badge: 'Birthday Wish',
+    icon: '🎂',
     links: [
       {
-        label: '2024 鮭魚子生日影集',
+        label: '2024 鮭魚子生日電子卡片',
         url: 'https://photos.app.goo.gl/d8x6uiy9m7uXYpmm6'
       }
     ],
@@ -161,15 +161,15 @@ const events = [
     year: '2025',
     month: '04 月',
     title: '交往紀念日的心跳',
-    description: '把我們的旅程剪成一首歌，寫在新的一年紀念日裡，提醒自己要繼續同頻心動。',
-    quote: '「每一個交往的日子，都是我再選擇妳一次。」',
-    location: '線上 · 紀念日特輯',
-    keywords: ['紀念日', '心跳樂章', '未來藍圖'],
+    description: '把我們的旅程剪成相簿，提醒自己要繼續同頻心動。',
+    quote: '「每一個交往的日子，都是我用心時刻，願我們的故事永遠只屬於彼此。」',
+    location: '紀念日特輯',
+  keywords: ['專屬紀念', '心動軌跡', '永恆約定'],
     badge: 'Anniversary Pulse',
     icon: '💞',
     links: [
       {
-        label: '2025 交往紀念日頁',
+        label: '2025 交往紀念日網頁',
         url: 'https://lichengjhe.github.io/my-love/iris/2025-04-23/index.html'
       }
     ],
