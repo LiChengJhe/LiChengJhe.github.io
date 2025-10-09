@@ -260,7 +260,7 @@ onBeforeUnmount(() => {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0;
+  z-index: var(--layer-section-bg);
 }
 
 .timeline__sparkle {
@@ -295,7 +295,7 @@ onBeforeUnmount(() => {
 
 .timeline__header {
   position: relative;
-  z-index: 1;
+  z-index: var(--layer-section-content);
   text-align: center;
   max-width: 720px;
   margin: 0 auto clamp(2.5rem, 5vw, 3.6rem);
@@ -310,7 +310,7 @@ onBeforeUnmount(() => {
 
 .timeline__body {
   position: relative;
-  z-index: 1;
+  z-index: var(--layer-section-content);
 }
 
 .timeline__rail {
@@ -362,7 +362,7 @@ onBeforeUnmount(() => {
   border: 4px solid rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 0 4px rgba(244, 93, 144, 0.18);
   background: var(--accent, var(--primary));
-  z-index: 2;
+  z-index: var(--layer-section-decor);
 }
 
 .timeline-card--left {

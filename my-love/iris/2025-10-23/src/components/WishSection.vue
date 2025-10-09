@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
   gap: 0.75rem;
   text-align: center;
   margin-bottom: 2rem;
-  z-index: 1;
+  z-index: var(--layer-section-content);
 }
 
 .wish-card__badge {
@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
   font-size: 1rem;
   line-height: 1.9;
   position: relative;
-  z-index: 1;
+  z-index: var(--layer-section-content);
 }
 
 .wish-card__content {
@@ -342,7 +342,7 @@ onBeforeUnmount(() => {
   display: grid;
   gap: clamp(1rem, 3vw, 1.8rem);
   text-align: center;
-  z-index: 1;
+  z-index: var(--layer-section-content);
 }
 
 .wish-card__icon {

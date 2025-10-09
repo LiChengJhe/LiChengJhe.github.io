@@ -367,7 +367,7 @@ onBeforeUnmount(() => {
 	position: absolute;
 	inset: -14% -8% -18%;
 	pointer-events: none;
-	z-index: 0;
+	z-index: var(--layer-section-bg);
 	overflow: hidden;
 }
 
@@ -442,7 +442,7 @@ onBeforeUnmount(() => {
 
 .memory-gallery__header {
 	position: relative;
-	z-index: 1;
+	z-index: var(--layer-section-content);
 	text-align: center;
 	max-width: 680px;
 	margin: 0 auto;
@@ -478,7 +478,7 @@ onBeforeUnmount(() => {
 
 .memory-gallery__grid {
 	position: relative;
-	z-index: 1;
+	z-index: var(--layer-section-content);
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	gap: clamp(1.6rem, 3vw, 2.4rem);
@@ -508,7 +508,7 @@ onBeforeUnmount(() => {
 	background: linear-gradient(140deg, rgba(244, 93, 144, 0.24), rgba(255, 198, 223, 0.08));
 	opacity: 0;
 	transition: opacity 0.45s ease;
-	z-index: 0;
+	z-index: var(--layer-section-bg);
 	pointer-events: none;
 }
 
@@ -537,7 +537,7 @@ onBeforeUnmount(() => {
 	filter: blur(8px);
 	opacity: 0;
 	transition: opacity 0.45s ease;
-	z-index: 0;
+	z-index: var(--layer-section-bg);
 	pointer-events: none;
 }
 
@@ -562,7 +562,7 @@ onBeforeUnmount(() => {
 	background: none;
 	cursor: pointer;
 	text-align: left;
-	z-index: 1;
+	z-index: var(--layer-section-content);
 }
 
 .memory-card__image:focus-visible {
@@ -635,7 +635,7 @@ onBeforeUnmount(() => {
 	position: relative;
 	display: grid;
 	gap: 0.9rem;
-	z-index: 1;
+	z-index: var(--layer-section-content);
 }
 
 .memory-card__content h3 {
@@ -684,7 +684,7 @@ onBeforeUnmount(() => {
 	place-items: center;
 	padding: clamp(1.8rem, 4vw, 3.2rem);
 	background: rgba(24, 12, 22, 0.78);
-	z-index: 20;
+	z-index: var(--layer-modal);
 	overflow-y: auto;
 }
 
@@ -693,7 +693,7 @@ onBeforeUnmount(() => {
 	inset: 12% 18%;
 	background: radial-gradient(circle, rgba(244, 93, 144, 0.35), transparent 75%);
 	filter: blur(40px);
-	z-index: 0;
+	z-index: var(--layer-section-bg);
 	opacity: 0.8;
 }
 
@@ -709,7 +709,7 @@ onBeforeUnmount(() => {
 	align-items: center;
 	padding: clamp(1.8rem, 4vw, 2.8rem);
 	box-shadow: 0 48px 140px rgba(244, 93, 144, 0.34);
-	z-index: 1;
+	z-index: var(--layer-section-content);
 }
 
 .lightbox__close {
@@ -748,12 +748,12 @@ onBeforeUnmount(() => {
 	border-radius: 30px;
 	background: radial-gradient(circle, rgba(255, 209, 231, 0.32), transparent 70%);
 	filter: blur(18px);
-	z-index: 0;
+	z-index: var(--layer-section-bg);
 }
 
 .lightbox__media img {
 	position: relative;
-	z-index: 1;
+	z-index: var(--layer-section-content);
 	width: min(360px, 46vw);
 	height: min(360px, 46vw);
 	max-width: 100%;

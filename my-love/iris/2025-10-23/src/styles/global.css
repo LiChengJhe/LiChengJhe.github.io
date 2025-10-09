@@ -10,6 +10,23 @@
   --shadow-color: rgba(244, 93, 144, 0.25);
   --surface-gradient: linear-gradient(145deg, rgba(255, 240, 248, 0.72), rgba(255, 228, 237, 0.48)); /* 更淡的粉紅色漸層 */
   --surface-border: rgba(244, 93, 144, 0.08);
+  --layer-app-bg: -10;
+  --layer-section-bg: 0;
+  --layer-section-decor: 5;
+  --layer-section-content: 10;
+  --layer-floating-ui: 40;
+  --layer-overlay: 80;
+  --layer-modal: 120;
+  /*
+    Layer tokens map to shared stacking contexts:
+    - app-bg: global background animations (e.g. floating hearts)
+    - section-bg: decorative gradients/halos anchored to sections
+    - section-decor: particles or accents that sit above backgrounds but under content
+    - section-content: interactive and textual content blocks
+    - floating-ui: ephemeral effects like confetti that should overlay content
+    - overlay: reserved for intermediate overlays (currently unused)
+    - modal: blocking dialogs/lightboxes that must sit on top of everything else
+  */
   font-size: 16px;
 }
 

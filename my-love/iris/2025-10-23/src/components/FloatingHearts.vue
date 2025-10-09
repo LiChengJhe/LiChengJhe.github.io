@@ -43,7 +43,7 @@ const getStyle = (heart) => ({
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--layer-app-bg);
 }
 
 .heart {

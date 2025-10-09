@@ -121,7 +121,7 @@ const getParticleStyle = (particle) => ({
   inset: -18% -12% -20%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0;
+  z-index: var(--layer-section-bg);
 }
 
 .hero__gradient {
@@ -180,7 +180,7 @@ const getParticleStyle = (particle) => ({
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--layer-section-decor);
 }
 
 .hero__particle {
@@ -204,7 +204,7 @@ const getParticleStyle = (particle) => ({
   gap: clamp(2.6rem, 6vw, 4.2rem);
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   align-items: center;
-  z-index: 2;
+  z-index: var(--layer-section-content);
 }
 
 .hero__content {

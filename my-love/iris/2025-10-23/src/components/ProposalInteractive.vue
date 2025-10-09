@@ -267,7 +267,7 @@ onUnmounted(() => {
   position: absolute;
   inset: -25% -15% -30%;
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--layer-section-bg);
 }
 
 .proposal__glow {
@@ -336,7 +336,7 @@ onUnmounted(() => {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--layer-section-decor);
 }
 
 .proposal__petal {
@@ -360,7 +360,7 @@ onUnmounted(() => {
 
 .proposal__content {
   position: relative;
-  z-index: 2;
+  z-index: var(--layer-section-content);
   display: grid;
   gap: clamp(2.4rem, 6vw, 3.8rem);
 }
@@ -837,7 +837,7 @@ onUnmounted(() => {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 10;
+  z-index: var(--layer-floating-ui);
 }
 
 .proposal__confetti-piece {
