@@ -94,16 +94,16 @@ const events = [
     id: '2023-salmon-birthday',
     year: '2023',
     month: '10 月',
-    title: '第一次幫鮭魚子慶生',
+    title: '妳的生日，我的心願',
     description: '這一天，妳的笑容是最美的禮物。每一個驚喜、每一份心意，都只為妳的生日而準備。願妳的願望都能被溫柔收藏，未來的日子都閃閃發亮。',
     quote: '「妳的生日，是我最想慶祝的節日。謝謝妳讓我的世界充滿幸福。」',
-    location: '生日驚喜頁',
+    location: '線上．生日驚喜頁',
     keywords: ['生日專屬', '溫柔祝福', '幸福陪伴'],
     badge: 'Birthday Blessing',
     icon: '🎁',
     links: [
       {
-        label: '鮭魚子的2023生日專頁',
+        label: '只屬於妳的生日驚喜',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-10-23/index.html'
       }
     ],
@@ -116,10 +116,10 @@ const events = [
     id: '2023-christmas',
     year: '2023',
     month: '12 月',
-    title: '聖誕夜的暖光',
-    description: '我們在冬夜裡鋪滿燈火，把祝福寫進每一句話，等妳拆開愛的禮物。',
+    title: '我們的聖誕約會',
+    description: '我們一起吃飯、說笑，把祝福藏進每一個溫暖的瞬間，等妳拆開愛的禮物。',
     quote: '「只要妳在身旁，冬天就會長出暖色。」',
-    location: '聖誕特製專頁',
+    location: '線上．聖誕節專頁',
     keywords: ['聖誕祝福', '心願清單', '冬日甜蜜'],
     badge: 'Holiday Magic',
     icon: '🎄',
@@ -130,7 +130,7 @@ const events = [
       }
     ],
     image: new URL('../assets/timeline/2023_12_25.png', import.meta.url).href,
-    photoCaption: '聖誕樹下的我們，被祝福的光點包圍著。',
+    photoCaption: '聖誕節，有妳一起慶祝，就是最溫暖的奇蹟。',
     accent: '#ffe1f2',
     align: 'left'
   },
@@ -139,10 +139,10 @@ const events = [
     year: '2024',
     month: '10 月',
     title: '鮭魚子生日快樂',
-    description: '這一天，所有的祝福和回憶都為妳閃爍。我把每一張照片、每一句話都藏進生日的星空裡，只為陪妳一起許下最深的心願。',
+    description: '這一天，所有的祝福和回憶都化作溫柔的光，陪妳一起慶祝屬於妳的幸福時刻。',
     quote: '「妳的生日，是我最想守護的節日。願妳的願望，都有我陪妳一起完成。」',
-    location: 'Google Photos · 精選影集',
-    keywords: ['生日專屬', '心願陪伴', '浪漫回憶'],
+    location: '線上．卡片',
+    keywords: ['生日專屬', '心願陪伴', '快樂回憶'],
     badge: 'Birthday Wish',
     icon: '🎂',
     links: [
@@ -152,7 +152,7 @@ const events = [
       }
     ],
     image: new URL('../assets/timeline/2024_10_23.jpg', import.meta.url).href,
-    photoCaption: '生日的夜裡，讓我陪妳一起把願望掛在最亮的那顆星星上。',
+    photoCaption: '這一天，讓我陪妳把願望輕輕放進最溫柔的心裡。',
     accent: '#ffd0e8',
     align: 'right'
   },
@@ -162,9 +162,9 @@ const events = [
     month: '04 月',
     title: '交往紀念日的心跳',
     description: '把我們的旅程剪成相簿，提醒自己要繼續同頻心動。',
-    quote: '「每一個交往的日子，都是我用心時刻，願我們的故事永遠只屬於彼此。」',
-    location: '紀念日特輯',
-  keywords: ['專屬紀念', '心動軌跡', '永恆約定'],
+    quote: '「每一個交往的日子，都是我用心時刻。我把每一張照片、每一句話都藏進相簿裡，只為陪妳到永遠，願我們的故事永遠只屬於彼此。」',
+    location: '線上．紀念日特輯',
+    keywords: ['只屬於我們', '專屬紀念', '心動軌跡'],
     badge: 'Anniversary Pulse',
     icon: '💞',
     links: [
