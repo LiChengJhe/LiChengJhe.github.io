@@ -187,7 +187,7 @@ const triggerConfetti = () => {
 };
 
 const playfulDecline = () => {
-  playfulMessage.value = '我會一直等到妳點下「Yes」那刻，因為我知道答案早藏在妳的眼裡。';
+  playfulMessage.value = '沒關係~ 因為我相信，妳的心早就和我一起悄悄許下幸福的約定。';
 };
 
 const launchConfetti = () => {
