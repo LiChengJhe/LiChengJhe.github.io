@@ -17,12 +17,15 @@
     <div class="hero__grid">
       <div class="hero__content fade-up">
         <span class="hero__badge" aria-hidden="true">Happy Birthday · 2025.10.23</span>
+
         <p class="hero__intro">親愛的{{ nickname }}</p>
         <h1 id="hero-title" class="hero__title text-shadow">
-          <span class="hero__title-line">Happy Birthday My Forever Love</span>
+          <span class="hero__title-line">有妳在，每一天都是紀念日</span>
         </h1>
         <p class="hero__subtitle">
-          今天是妳的日子，我把我們的星光都綁成緞帶，陪妳穿越這場浪漫旅程，把最真摯的心意送到妳掌心。
+          謝謝妳，讓我的世界變得溫柔又浪漫，<br>
+          妳的陪伴，讓平凡的時光都閃閃發亮。<br>
+          願往後的日子，我都能牽著妳的手，把愛和幸福寫進我們的故事裡。
         </p>
 
         <p class="hero__signature">愛妳的{{ signature }}</p>
@@ -42,7 +45,7 @@
           <span class="hero__visual-spark hero__visual-spark--one"></span>
           <span class="hero__visual-spark hero__visual-spark--two"></span>
         </div>
-        <p class="hero__visual-caption">妳的笑容是今晚最璀璨的流星雨。</p>
+        <p class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</p>
       </div>
     </div>
   </section>
@@ -509,9 +512,11 @@ const getParticleStyle = (particle) => ({
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
     opacity: 0;
