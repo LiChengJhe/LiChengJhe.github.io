@@ -70,38 +70,38 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const events = [
   {
-    id: '2023-savings-birthday',
+    id: '2023-qixi',
     year: '2023',
     month: '08 月',
-    title: '存摺子的生日星河',
-    description: '為妳鋪好了專屬生日網站，每一段文字和照片都在說：你的願望我會一個個收藏。',
-    quote: '「妳的每一次吹蠟燭，我都會站在光裡守護。」',
-    location: '線上 · 生日驚喜站',
-    keywords: ['生日儀式感', '專屬故事', '甜蜜祝福'],
-    badge: 'Birthday Bloom',
-    icon: '🎂',
+    title: '七夕情人節的鵲橋約定',
+    description: '在這個屬於戀人的夜晚，我們隔著銀河，卻用心意搭起專屬的鵲橋。每一則訊息、每一張照片，都是我想和妳共度的浪漫證明。',
+    quote: '「無論多遠多忙，七夕這天，我都會奔向妳，把愛說給妳聽。」',
+    location: '線上 · 七夕專屬頁',
+    keywords: ['七夕浪漫', '鵲橋約定', '戀人專屬'],
+    badge: 'Qixi Promise',
+    icon: '💕',
     links: [
       {
-        label: '存摺子的生日頁',
+        label: '七夕情人節專頁',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-08-22/index.html'
       }
     ],
     image: new URL('../assets/memories/12.png', import.meta.url).href,
-    photoCaption: '在星河主題的生日驚喜裡，一起點亮妳的願望宇宙。',
+    photoCaption: '七夕的夜裡，讓我們一起在鵲橋上，把思念化成最溫柔的擁抱。',
     accent: '#ffc8e4',
     align: 'left'
   },
   {
-    id: '2023-salmon-birthday',
-    year: '2023',
-    month: '10 月',
-    title: '鮭魚子的生日海潮',
-    description: '我們把好多彩蛋藏在網站裡，妳的笑聲和期待串成一場亮晶晶的生日浪潮。',
-    quote: '「願妳的笑意像海浪，一圈圈拍進我的心。」',
-    location: '線上 · 驚喜舞台',
-    keywords: ['生日祝歌', '彩蛋影片', '浪漫打卡'],
-    badge: 'Birthday Wave',
-    icon: '🐟',
+  id: '2023-salmon-birthday',
+  year: '2023',
+  month: '10 月',
+  title: '2023 鮭魚子生日祝福',
+  description: '這一天，妳的笑容是最美的禮物。每一個驚喜、每一份心意，都只為妳的生日而準備。願妳的願望都能被溫柔收藏，未來的日子都閃閃發亮。',
+  quote: '「妳的生日，是我最想慶祝的節日。謝謝妳讓我的世界充滿幸福。」',
+  location: '線上 · 生日驚喜頁',
+  keywords: ['生日專屬', '溫柔祝福', '幸福陪伴'],
+  badge: 'Birthday Blessing',
+  icon: '🎁',
     links: [
       {
         label: '鮭魚子的生日頁',
@@ -139,13 +139,13 @@ const events = [
     id: '2024-salmon-birthday',
     year: '2024',
     month: '10 月',
-    title: '2024 鮭魚子生日星圖',
-    description: '這次換我把相片和心願放進雲端星空，陪妳再一次許下最重要的生日願望。',
-    quote: '「你的願望，是我最真心的航線。」',
+    title: '2024 鮭魚子生日心願圖',
+    description: '這一天，所有的祝福和回憶都為妳閃爍。我把每一張照片、每一句話都藏進生日的星空裡，只為陪妳一起許下最深的心願。',
+    quote: '「妳的生日，是我最想守護的節日。願妳的願望，都有我陪妳一起完成。」',
     location: 'Google Photos · 精選影集',
-    keywords: ['生日影集', '年度回顧', '星圖心願'],
-    badge: 'Celestial Wish',
-    icon: '🌌',
+    keywords: ['生日專屬', '心願陪伴', '浪漫回憶'],
+      badge: 'Birthday Wish',
+      icon: '🎂',
     links: [
       {
         label: '2024 鮭魚子生日影集',
@@ -153,7 +153,7 @@ const events = [
       }
     ],
     image: new URL('../assets/memories/16.png', import.meta.url).href,
-    photoCaption: '把我們的回憶剪成星圖，投映在妳生日的夜空。',
+    photoCaption: '生日的夜裡，讓我陪妳一起把願望掛在最亮的那顆星星上。',
     accent: '#ffd0e8',
     align: 'right'
   },
