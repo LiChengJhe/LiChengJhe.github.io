@@ -25,9 +25,9 @@
         <span class="wish-card__badge">Birthday Blessing</span>
         <h2 id="wishes-title">
           <span class="wish-card__title-glow" aria-hidden="true"></span>
-          給妳的一本回憶本
+          屬於我們的故事
         </h2>
-        <p class="wish-card__tagline">把偷偷放在心底的時刻，變成今晚最閃亮的祝福送給妳</p>
+        <p class="wish-card__tagline">把這些珍藏在心裡的故事，一頁頁寫給妳，成為最閃亮的祝福</p>
       </header>
 
       <p class="wish-card__intro">
@@ -62,7 +62,7 @@ import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 const baseIcon = '💌';
 
 const messageParagraphs = [
-  '謝謝妳讓平凡的午後變得特別，每次翻開我們的相本，都會看到妳笑得像陽光一樣。',
+  '有妳在身邊，連陽光都變得溫柔。每次翻開相本，妳的笑容都像灑進心裡的光，讓平凡的日子都閃閃發亮。',
   '每次和妳一起出門玩、一起大笑，或是陪我聊天的時候，這些快樂的片段都像一格一格的底片，讓我一直記得被妳愛著的感覺。',
   '未來的日子，換我把溫暖和快樂慢慢放進妳的生活，讓我們的故事一頁一頁繼續寫下去。'
 ];

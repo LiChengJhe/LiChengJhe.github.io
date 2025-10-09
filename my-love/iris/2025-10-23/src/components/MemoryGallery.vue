@@ -15,7 +15,7 @@
 
 		<header class="memory-gallery__header fade-up">
 			<span class="memory-gallery__badge" aria-hidden="true">Treasure Collection</span>
-			<h2 id="memories-title">專屬於我們的畫面</h2>
+			<h2 id="memories-title">專屬於我們的相簿</h2>
 			<p>
 				這些片刻都值得被珍藏。點開照片，就能看到我們一起寫下的故事，也歡迎連到完整相簿細細回味。
 			</p>
