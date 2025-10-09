@@ -86,7 +86,7 @@ const events = [
         url: 'https://lichengjhe.github.io/my-love/iris/2023-08-22/index.html'
       }
     ],
-    image: new URL('../assets/memories/12.png', import.meta.url).href,
+    image: new URL('../assets/timeline/2023_08_22.png', import.meta.url).href,
     photoCaption: '七夕的夜裡，讓我們一起在鵲橋上，把思念化成最溫柔的擁抱。',
     accent: '#ffc8e4',
     align: 'left'
@@ -108,7 +108,7 @@ const events = [
         url: 'https://lichengjhe.github.io/my-love/iris/2023-10-23/index.html'
       }
     ],
-    image: new URL('../assets/memories/13.png', import.meta.url).href,
+    image: new URL('../assets/timeline/2023_10_23.png', import.meta.url).href,
     photoCaption: '妳拆禮物時的笑眼，就像海浪一層層溫柔拍進心裡。',
     accent: '#ffb4d6',
     align: 'right'
@@ -130,7 +130,7 @@ const events = [
         url: 'https://lichengjhe.github.io/my-love/iris/2023-12-25/index.html'
       }
     ],
-    image: new URL('../assets/memories/15.png', import.meta.url).href,
+    image: new URL('../assets/timeline/2023_12_25.png', import.meta.url).href,
     photoCaption: '聖誕樹下的我們，被祝福的光點包圍著。',
     accent: '#ffe1f2',
     align: 'left'
@@ -152,7 +152,7 @@ const events = [
         url: 'https://photos.app.goo.gl/d8x6uiy9m7uXYpmm6'
       }
     ],
-    image: new URL('../assets/memories/16.png', import.meta.url).href,
+    image: new URL('../assets/timeline/2024_10_23.jpg', import.meta.url).href,
     photoCaption: '生日的夜裡，讓我陪妳一起把願望掛在最亮的那顆星星上。',
     accent: '#ffd0e8',
     align: 'right'
@@ -174,7 +174,7 @@ const events = [
         url: 'https://lichengjhe.github.io/my-love/iris/2025-04-23/index.html'
       }
     ],
-    image: new URL('../assets/memories/17.png', import.meta.url).href,
+    image: new URL('../assets/timeline/2025_04_23.png', import.meta.url).href,
     photoCaption: '紀念日的擁抱，把未來的冒險都打包進心跳裡。',
     accent: '#ffb9da',
     align: 'left'
