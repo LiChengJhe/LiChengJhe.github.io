@@ -712,6 +712,7 @@ onBeforeUnmount(() => {
 	z-index: var(--layer-section-content);
 }
 
+
 .lightbox__close {
 	position: absolute;
 	top: 1.4rem;
@@ -727,6 +728,18 @@ onBeforeUnmount(() => {
 	display: grid;
 	place-items: center;
 	transition: background 0.3s ease, transform 0.3s ease;
+	z-index: 10;
+}
+
+@media (max-width: 620px) {
+	.lightbox__close {
+		top: 0.6rem;
+		right: 0.6rem;
+		width: 2.2rem;
+		height: 2.2rem;
+		font-size: 1.2rem;
+		background: rgba(51, 28, 46, 0.28);
+	}
 }
 
 .lightbox__close:hover,
