@@ -177,7 +177,7 @@ const handleCourage = () => {
   if (courageValue >= 100) {
     setTimeout(() => {
       step.value = 3;
-    }, 1000);
+    }, 3000);
   }
 };
 
