@@ -51,7 +51,6 @@
                   <span class="link-preview__tag">浪漫預覽</span>
                   <h4 class="link-preview__title">{{ event.links[0].label }}</h4>
                   <p v-if="event.photoCaption" class="link-preview__caption">{{ event.photoCaption }}</p>
-                  <span class="link-preview__domain">{{ formatLinkHost(event.links[0].url) }}</span>
                 </div>
                 <span class="link-preview__cta" aria-hidden="true">開啟連結 ↗</span>
               </a>
