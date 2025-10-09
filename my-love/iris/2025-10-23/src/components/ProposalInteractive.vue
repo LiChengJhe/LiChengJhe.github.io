@@ -1,4 +1,3 @@
-
 <template>
   <section class="proposal" aria-labelledby="proposal-title">
     <div class="proposal__background" aria-hidden="true">
@@ -11,43 +10,27 @@
     </div>
 
     <div class="proposal__petals" aria-hidden="true">
-      <span
-        v-for="petal in petals"
-        :key="petal.id"
-        class="proposal__petal"
-        :style="getPetalStyle(petal)"
-      >
+      <span v-for="petal in petals" :key="petal.id" class="proposal__petal" :style="getPetalStyle(petal)">
         {{ petal.symbol }}
       </span>
     </div>
 
     <div class="proposal__content">
       <div class="proposal__header fade-up">
-        <h2 id="proposal-title">在這個特別的夜晚</h2>
+        <h2 id="proposal-title">在這個屬於我們的時刻</h2>
         <p>想邀請妳一起走向下一段旅程。跟著小小的互動，慢慢揭開我準備的驚喜吧。</p>
       </div>
 
       <div class="proposal__progress fade-up" role="group" aria-label="求婚驚喜進度">
-        <div
-          class="proposal__progress-track"
-          role="progressbar"
-          :aria-valuenow="step"
-          aria-valuemin="1"
-          aria-valuemax="3"
-        >
+        <div class="proposal__progress-track" role="progressbar" :aria-valuenow="step" aria-valuemin="1"
+          aria-valuemax="3">
           <span class="proposal__progress-bar" :style="{ width: `${stepProgress}%` }"></span>
         </div>
         <ul class="proposal__steps">
-          <li
-            v-for="(item, index) in stepsMeta"
-            :key="item.id"
-            class="proposal__step"
-            :class="{
-              'is-active': step >= index + 1,
-              'is-current': step === index + 1
-            }"
-            :aria-current="step === index + 1 ? 'step' : undefined"
-          >
+          <li v-for="(item, index) in stepsMeta" :key="item.id" class="proposal__step" :class="{
+            'is-active': step >= index + 1,
+            'is-current': step === index + 1
+          }" :aria-current="step === index + 1 ? 'step' : undefined">
             <span class="proposal__step-indicator">
               <span class="proposal__step-number">{{ index + 1 }}</span>
               <span class="proposal__step-glow"></span>
@@ -60,62 +43,49 @@
       <div class="proposal__card-container fade-up" :class="`proposal__card-container--step-${step}`">
         <div class="proposal__card" :class="`proposal__card--step-${step}`">
           <template v-if="step === 1">
-            <h3>Step 1｜開啟密語</h3>
-            <p>按下按鈕，讓我寫給妳的話語綻放。</p>
-            <button
-              class="btn-primary proposal__btn"
-              :class="{ 'is-pulsing': !letterOpened }"
-              @click="revealLetter"
-            >
-              開啟愛的信件
+            <h3>Step 1｜打開心裡話</h3>
+            <p>點一下，讓我想對妳說的心裡話慢慢展開。</p>
+            <button class="btn-primary proposal__btn" :class="{ 'is-pulsing': !letterOpened }" @click="revealLetter">
+              打開專屬妳的信
             </button>
             <transition name="letter">
               <blockquote v-if="letterOpened" class="proposal__letter">
-                親愛的寶貝，謝謝妳讓我感受到被愛與被需要，每一天都想把宇宙的溫柔和希望捧給妳。
+                親愛的妳，謝謝妳一直陪在我身邊，讓我每天都覺得很幸福。這些話一直放在心裡，今天想好好說給妳聽。
               </blockquote>
             </transition>
           </template>
 
           <template v-else-if="step === 2">
             <h3>Step 2｜收集勇氣</h3>
-            <p>拖曳愛心滑桿，當勇氣值滿格，就會看見最重要的驚喜。</p>
+            <p>把愛心滑桿往右推，等勇氣滿滿時，就能看到我藏在心裡的驚喜。</p>
             <div class="proposal__slider">
               <div class="proposal__slider-pulse"></div>
-              <input
-                v-model="courage"
-                type="range"
-                min="0"
-                max="100"
-                step="1"
-                @input="handleCourage"
-                :style="sliderStyle"
-              />
+              <input v-model="courage" type="range" min="0" max="100" step="1" @input="handleCourage"
+                :style="sliderStyle" />
               <span class="proposal__slider-value">{{ courage }}%</span>
             </div>
             <p class="proposal__hint">現在的勇氣值：{{ courageMessage }}</p>
           </template>
 
           <template v-else>
-            <h3>Step 3｜我要和妳說</h3>
-            <p>是妳，讓我開始相信永久的模樣。</p>
+            <h3>Step 3｜我要跟妳說</h3>
+            <p>從遇見妳開始，世界都變得溫柔。未來的每一天，我都想牽著妳的手，陪妳看盡人間美好。願意和我一起，寫下屬於我們的幸福故事嗎？</p>
             <div class="proposal__ring" role="img" aria-label="求婚戒指與浪漫符號">
               <span class="proposal__ring-emoji proposal__ring-emoji--ring" aria-hidden="true">💍</span>
               <span class="proposal__ring-emoji proposal__ring-emoji--heart" aria-hidden="true">💖</span>
               <span class="proposal__ring-emoji proposal__ring-emoji--sparkle" aria-hidden="true">✨</span>
-              <span
-                class="proposal__ring-emoji proposal__ring-emoji--sparkle proposal__ring-emoji--sparkle-alt"
-                aria-hidden="true"
-              >
+              <span class="proposal__ring-emoji proposal__ring-emoji--sparkle proposal__ring-emoji--sparkle-alt"
+                aria-hidden="true">
                 ✨
               </span>
             </div>
-            <p class="proposal__question">Will you marry me?</p>
+            <p class="proposal__question">妳願意嫁給我，陪我一起白頭偕老嗎？</p>
             <div class="proposal__answers">
               <button class="btn-primary proposal__btn proposal__btn--yes" @click="triggerConfetti">
-                YES！我願意
+                當然願意，牽你一輩子！
               </button>
               <button class="btn-secondary proposal__btn proposal__btn--gentle" @click="playfulDecline">
-                再想一下好嗎？
+                欸～再撐一下下，想多被你告白幾次！
               </button>
             </div>
             <transition name="fade">
@@ -128,12 +98,8 @@
 
     <transition name="fade">
       <div v-if="confettiPieces.length" class="proposal__confetti" aria-hidden="true">
-        <span
-          v-for="piece in confettiPieces"
-          :key="piece.id"
-          class="proposal__confetti-piece"
-          :style="piece.style"
-        ></span>
+        <span v-for="piece in confettiPieces" :key="piece.id" class="proposal__confetti-piece"
+          :style="piece.style"></span>
       </div>
     </transition>
   </section>
@@ -143,9 +109,9 @@
 import { computed, onUnmounted, ref } from 'vue';
 
 const stepsMeta = Object.freeze([
-  { id: 'letter', label: '開啟密語' },
+  { id: 'letter', label: '打開心裡話' },
   { id: 'courage', label: '收集勇氣' },
-  { id: 'proposal', label: '與你共度' }
+  { id: 'proposal', label: '我要跟妳說' }
 ]);
 const flowerSymbols = ['♥', '❥', '♡', '❤', '💖', '💗', '💘', '💝', '💓', '💟'];
 const step = ref(1);
@@ -188,10 +154,13 @@ const sliderStyle = computed(() => {
 });
 
 const courageMessage = computed(() => {
-  if (courage.value < 30) return '需要一點點勇氣；我會陪著妳。';
-  if (courage.value < 70) return '越來越接近，我的心也跳得更快。';
-  if (courage.value < 100) return '只差一步，讓我們一起跨越吧！';
-  return '勇氣滿格，我聽見妳的心了。';
+  const v = Number(courage.value) || 0;
+  if (v === 0) return '不管怎樣我都會在妳身邊，現在只差一點點勇氣。';
+  if (v > 0 && v <= 25) return '一點一點累積勇氣，像愛慢慢在心裡發芽。';
+  if (v > 25 && v <= 50) return '每次想到彼此，心裡的勇氣就會悄悄冒出來。';
+  if (v > 50 && v <= 75) return '再靠近一點，我們的心就能緊緊相依。';
+  if (v > 75 && v < 100) return '只差一步，讓我們一起牽手跨過這道心門。';
+  if (v >= 100) return '勇氣滿滿，妳的眼神早已給我答案。';
 });
 
 let confettiTimer = null;
@@ -213,7 +182,7 @@ const handleCourage = () => {
 };
 
 const triggerConfetti = () => {
-  playfulMessage.value = '歡迎來到我們的幸福旅程，牽著你的手直到天荒地老。';
+  playfulMessage.value = '從今以後，讓我們一起牽手到白頭，陪妳走過每一個春夏秋冬。';
   launchConfetti();
 };
 
@@ -230,8 +199,8 @@ const launchConfetti = () => {
       background: index % 3 === 0
         ? 'linear-gradient(135deg, #f45d90, #ff99c1)'
         : index % 3 === 1
-        ? 'linear-gradient(135deg, #ffc2d6, #ffe3ef)'
-        : 'linear-gradient(135deg, #fff6f9, #ffd6ea)',
+          ? 'linear-gradient(135deg, #ffc2d6, #ffe3ef)'
+          : 'linear-gradient(135deg, #fff6f9, #ffd6ea)',
       animationDelay: `${Math.random()}s`,
       animationDuration: `${4 + Math.random() * 2}s`,
       '--confetti-rotation': `${Math.random() * 360}deg`,
@@ -341,7 +310,8 @@ onUnmounted(() => {
 
 .proposal__petal {
   position: absolute;
-  bottom: -12%; /* 由下方浮上來 */
+  bottom: -12%;
+  /* 由下方浮上來 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -861,11 +831,13 @@ onUnmounted(() => {
 }
 
 @keyframes pulseGlow {
+
   0%,
   100% {
     transform: scale(0.96);
     opacity: 0.55;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 0.75;
@@ -873,11 +845,13 @@ onUnmounted(() => {
 }
 
 @keyframes pulseHalo {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 0.4;
   }
+
   50% {
     transform: scale(1.04);
     opacity: 0.7;
@@ -885,21 +859,25 @@ onUnmounted(() => {
 }
 
 @keyframes floatSoft {
+
   0%,
   100% {
     transform: translateY(-6px);
   }
+
   50% {
     transform: translateY(8px);
   }
 }
 
 @keyframes ringEmojiGlow {
+
   0%,
   100% {
     opacity: 0.6;
     transform: rotate(0deg);
   }
+
   50% {
     opacity: 0.85;
     transform: rotate(12deg);
@@ -907,21 +885,25 @@ onUnmounted(() => {
 }
 
 @keyframes ringEmojiFloat {
+
   0%,
   100% {
     transform: translateY(-6px) scale(1);
   }
+
   50% {
     transform: translateY(4px) scale(1.02);
   }
 }
 
 @keyframes ringEmojiHeart {
+
   0%,
   100% {
     transform: scale(0.92) rotate(-6deg);
     opacity: 0.75;
   }
+
   50% {
     transform: scale(1.08) rotate(-6deg);
     opacity: 1;
@@ -929,11 +911,13 @@ onUnmounted(() => {
 }
 
 @keyframes ringEmojiSparkle {
+
   0%,
   100% {
     transform: scale(0.85) rotate(-10deg);
     opacity: 0.45;
   }
+
   50% {
     transform: scale(1.15) rotate(8deg);
     opacity: 1;
@@ -945,9 +929,11 @@ onUnmounted(() => {
     transform: translate3d(0, 0, 0) scale(var(--scale, 1));
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translate3d(var(--drift), -110vh, 0) scale(var(--scale, 1));
     opacity: 0;
@@ -955,11 +941,13 @@ onUnmounted(() => {
 }
 
 @keyframes proposalButtonPulse {
+
   0%,
   100% {
     transform: translateY(0);
     box-shadow: 0 20px 58px rgba(244, 93, 144, 0.34);
   }
+
   50% {
     transform: translateY(-6px) scale(1.02);
     box-shadow: 0 28px 70px rgba(244, 93, 144, 0.42);
@@ -971,9 +959,11 @@ onUnmounted(() => {
     transform: translate3d(0, 0, 0) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translate3d(var(--confetti-drift, -20px), 110vh, 0) rotate(var(--confetti-rotation, 360deg));
     opacity: 0;
@@ -984,9 +974,11 @@ onUnmounted(() => {
   0% {
     transform: translateY(-10%);
   }
+
   50% {
     transform: translateY(10%);
   }
+
   100% {
     transform: translateY(-10%);
   }
