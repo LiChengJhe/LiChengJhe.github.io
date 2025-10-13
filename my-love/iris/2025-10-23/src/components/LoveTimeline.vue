@@ -8,7 +8,7 @@
 
     <div class="timeline__header fade-up">
       <h2 id="timeline-title">我們的浪漫航線</h2>
-      <p>從第一次心動，到每一次緊握，這條光軌串起了我們的專屬回憶與承諾。</p>
+      <p>從第一次心動，到每一次緊握，這條光軌串起了我們的回憶。</p>
     </div>
 
     <div class="timeline__body">
@@ -72,7 +72,7 @@ const events = [
     id: '2023-qixi',
     year: '2023',
     month: '08 月',
-    title: '第一次的七夕情人節',
+    title: '有妳的七夕，才叫浪漫',
     description: '屬於我們的七夕，訊息和照片都在偷偷記錄愛的溫度。再遠的距離，也擋不住想念的心。',
     quote: '「七夕有妳，平凡的日子也變得特別動人。」',
     location: '線上 · 七夕專屬頁',
@@ -81,7 +81,7 @@ const events = [
     icon: '💕',
     links: [
       {
-        label: '七夕情人節專頁',
+        label: '因為有妳，七夕才有溫度',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-08-22/index.html'
       }
     ],
@@ -96,19 +96,19 @@ const events = [
     month: '10 月',
     title: '妳的生日，我的心願',
     description: '這一天，妳的笑容是最美的禮物。每一個驚喜、每一份心意，都只為妳的生日而準備。願妳的願望都能被溫柔收藏，未來的日子都閃閃發亮。',
-    quote: '「妳的生日，是我最想慶祝的節日。謝謝妳讓我的世界充滿幸福。」',
+    quote: '「妳的生日，有我陪妳一起期待。」',
     location: '線上．生日驚喜頁',
     keywords: ['生日專屬', '溫柔祝福', '幸福陪伴'],
     badge: 'Birthday Blessing',
     icon: '🎁',
     links: [
       {
-        label: '只屬於妳的生日驚喜',
+        label: '妳的生日，有我陪妳慶祝',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-10-23/index.html'
       }
     ],
     image: new URL('../assets/timeline/2023_10_23.png', import.meta.url).href,
-    photoCaption: '妳拆禮物時的笑眼，就像海浪一層層溫柔拍進心裡。',
+    photoCaption: '妳的生日，是我最想珍藏的禮物。',
     accent: '#ffb4d6',
     align: 'right'
   },
@@ -117,15 +117,15 @@ const events = [
     year: '2023',
     month: '12 月',
     title: '我們的聖誕約會',
-    description: '我們一起吃飯、說笑，把祝福藏進每一個溫暖的瞬間，等妳拆開愛的禮物。',
-    quote: '「只要妳在身旁，冬天就會長出暖色。」',
+    description: '今年的聖誕節，有妳陪我一起吃飯、說笑，幸福就在每個我們相視的瞬間。',
+    quote: '「兩個人的聖誕，才是最溫暖的奇蹟。」',
     location: '線上．聖誕節專頁',
-    keywords: ['聖誕祝福', '心願清單', '冬日甜蜜'],
+    keywords: ['聖誕一起', '幸福時光', '戀人限定'],
     badge: 'Holiday Magic',
     icon: '🎄',
     links: [
       {
-        label: '聖誕節驚喜專頁',
+        label: '和妳一起過聖誕，幸福加倍',
         url: 'https://lichengjhe.github.io/my-love/iris/2023-12-25/index.html'
       }
     ],
@@ -138,21 +138,21 @@ const events = [
     id: '2024-salmon-birthday',
     year: '2024',
     month: '10 月',
-    title: '鮭魚子生日快樂',
-    description: '這一天，所有的祝福和回憶都化作溫柔的光，陪妳一起慶祝屬於妳的幸福時刻。',
-    quote: '「妳的生日，是我最想守護的節日。願妳的願望，都有我陪妳一起完成。」',
+    title: '妳的生日，是我心裡的花季',
+    description: '每年這天，妳的笑容像花開一樣，讓我的世界都變得柔軟又明亮。願我的陪伴，成為妳最溫柔的陽光，讓每個心願都能悄悄綻放。',
+    quote: '「妳的生日，是我最想守護的花期。」',
     location: '線上．生日賀卡',
     keywords: ['生日專屬', '心願陪伴', '快樂回憶'],
     badge: 'Birthday Wish',
     icon: '🎂',
     links: [
       {
-        label: '生日卡片',
+        label: '妳的生日，讓我陪妳綻放',
         url: 'https://photos.app.goo.gl/d8x6uiy9m7uXYpmm6'
       }
     ],
     image: new URL('../assets/timeline/2024_10_23.jpg', import.meta.url).href,
-    photoCaption: '這一天，讓我陪妳把願望輕輕放進最溫柔的心裡。',
+    photoCaption: '這天，妳的笑容像花一樣溫柔盛開。',
     accent: '#ffd0e8',
     align: 'right'
   },
@@ -169,7 +169,7 @@ const events = [
     icon: '💞',
     links: [
       {
-        label: '2025 交往紀念日網頁',
+        label: '我們的故事，專屬於妳',
         url: 'https://lichengjhe.github.io/my-love/iris/2025-04-23/index.html'
       }
     ],
