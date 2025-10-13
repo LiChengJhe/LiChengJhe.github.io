@@ -8,7 +8,7 @@
 
     <div class="timeline__header fade-up">
       <h2 id="timeline-title">我們的浪漫航線</h2>
-      <p>從初遇的心動，到無數次緊握的手，這條光軌寫滿了鮭魚子與存摺子的約定。</p>
+      <p>從第一次心動，到每一次緊握，這條光軌串起了我們的專屬回憶與承諾。</p>
     </div>
 
     <div class="timeline__body">
