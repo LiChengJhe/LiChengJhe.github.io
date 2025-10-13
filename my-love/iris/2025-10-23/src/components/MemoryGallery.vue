@@ -5,12 +5,8 @@
 			<span class="memory-gallery__glow memory-gallery__glow--right"></span>
 			<span class="memory-gallery__ring memory-gallery__ring--outer"></span>
 			<span class="memory-gallery__ring memory-gallery__ring--inner"></span>
-			<span
-				v-for="particle in particles"
-				:key="particle.id"
-				class="memory-gallery__sparkle"
-				:style="getParticleStyle(particle)"
-			>{{ particle.symbol }}</span>
+			<span v-for="particle in particles" :key="particle.id" class="memory-gallery__sparkle"
+				:style="getParticleStyle(particle)">{{ particle.symbol }}</span>
 		</div>
 
 		<header class="memory-gallery__header fade-up">
@@ -22,23 +18,13 @@
 		</header>
 
 		<div class="memory-gallery__grid" role="list">
-			<article
-				v-for="memory in memories"
-				:key="memory.id"
-				class="memory-card"
-				:style="{ '--card-delay': `${memory.delay}s` }"
-				role="listitem"
-				:ref="registerCard"
-			>
+			<article v-for="memory in memories" :key="memory.id" class="memory-card"
+				:style="{ '--card-delay': `${memory.delay}s` }" role="listitem" :ref="registerCard">
 				<div class="memory-card__halo" aria-hidden="true"></div>
 				<div class="memory-card__aura" aria-hidden="true"></div>
 
-				<button
-					type="button"
-					class="memory-card__image"
-					:aria-label="`放大檢視 ${memory.title} 的照片`"
-					@click="openLightbox(memory)"
-				>
+				<button type="button" class="memory-card__image" :aria-label="`放大檢視 ${memory.title} 的照片`"
+					@click="openLightbox(memory)">
 					<span class="memory-card__media">
 						<img :src="memory.image" :alt="memory.alt" :style="getImageStyle(memory)" loading="lazy" />
 						<span class="memory-card__shine" aria-hidden="true"></span>
@@ -49,13 +35,8 @@
 				<div class="memory-card__content">
 					<h3>{{ memory.title }}</h3>
 					<p>{{ memory.caption }}</p>
-					<a
-						v-if="memory.link"
-						:href="memory.link"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="memory-card__link"
-					>
+					<a v-if="memory.link" :href="memory.link" target="_blank" rel="noopener noreferrer"
+						class="memory-card__link">
 						檢視完整相簿
 					</a>
 				</div>
@@ -63,14 +44,8 @@
 		</div>
 
 		<transition name="fade">
-			<div
-				v-if="activeMemory"
-				class="lightbox"
-				role="dialog"
-				aria-modal="true"
-				aria-labelledby="lightbox-title"
-				@click.self="closeLightbox"
-			>
+			<div v-if="activeMemory" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title"
+				@click.self="closeLightbox">
 				<div class="lightbox__glow" aria-hidden="true"></div>
 				<div class="lightbox__content">
 					<button type="button" class="lightbox__close" aria-label="關閉放大視窗" @click="closeLightbox">×</button>
@@ -81,13 +56,8 @@
 					<div class="lightbox__text">
 						<h3 id="lightbox-title">{{ activeMemory.title }}</h3>
 						<p>{{ activeMemory.caption }}</p>
-						<a
-							v-if="activeMemory.link"
-							:href="activeMemory.link"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="memory-card__link"
-						>
+						<a v-if="activeMemory.link" :href="activeMemory.link" target="_blank" rel="noopener noreferrer"
+							class="memory-card__link">
 							前往更多照片
 						</a>
 					</div>
@@ -271,6 +241,30 @@ const baseMemories = [
 		alt: '攀岩牆上的突破',
 		image: new URL('../assets/memories/13.png', import.meta.url).href,
 		link: 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39'
+	},
+	{
+		id: 'greenworld',
+		title: '綠意裡的約會',
+		caption: '陽光灑落在北埔綠世界的林間小徑，妳的笑容比花還溫柔。',
+		alt: '北埔綠世界的合影',
+		image: new URL('../assets/memories/1.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
+	},
+	{
+		id: 'inari-song',
+		title: '華山文創 & 稻荷之歌密室奇緣',
+		caption: '先在華山文創感受藝文氣息，再一起挑戰稻荷之歌密室，從藝術漫遊到狐狸娶親的奇幻冒險，妳讓每一刻都溫柔難忘。',
+		alt: '華山文創與稻荷之歌密室合影',
+		image: new URL('../assets/memories/2.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/1wgLYSvp7Jkktsm16'
+	},
+	{
+		id: 'dadaocheng-bear',
+		title: '大稻埕&自嘲熊一日遊',
+		caption: '老街的時光、河畔的風，還有自嘲熊的可愛陪伴，這一天有妳在身邊，連台北的午後都變得特別溫柔。',
+		alt: '大稻埕與自嘲熊快閃店合影',
+		image: new URL('../assets/memories/3.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/DCww3eu6ioVjdkru6'
 	}
 ];
 
@@ -286,8 +280,8 @@ const observer = ref(null);
 const getImageStyle = (memory) =>
 	memory.focus
 		? {
-				objectPosition: memory.focus
-			}
+			objectPosition: memory.focus
+		}
 		: {};
 
 const registerCard = (el) => {
@@ -419,25 +413,25 @@ onBeforeUnmount(() => {
 	background-clip: text;
 	color: transparent;
 	text-shadow: 0 2px 8px #f45990, 0 0 18px #ffb7d5;
-		position: absolute;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.3rem;
-		width: 2em;
-		height: 2em;
-		border-radius: 999px;
-		color: #f45990;
-		background: none;
-		opacity: 0;
-			animation-name: floatPetalUp;
-		animation-timing-function: ease-in-out;
-		animation-iteration-count: infinite;
-		text-shadow:
-			0 0 10px #ffd0e8,
-			0 0 18px #fff,
-			0 2px 6px #f45990;
-		transition: font-size 0.3s, color 0.3s;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3rem;
+	width: 2em;
+	height: 2em;
+	border-radius: 999px;
+	color: #f45990;
+	background: none;
+	opacity: 0;
+	animation-name: floatPetalUp;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	text-shadow:
+		0 0 10px #ffd0e8,
+		0 0 18px #fff,
+		0 2px 6px #f45990;
+	transition: font-size 0.3s, color 0.3s;
 }
 
 .memory-gallery__header {
@@ -835,6 +829,7 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 	.memory-gallery__glow,
 	.memory-gallery__ring,
 	.memory-gallery__sparkle,
@@ -858,10 +853,12 @@ onBeforeUnmount(() => {
 		transform: scale(0.96);
 		opacity: 0.6;
 	}
+
 	50% {
 		transform: scale(1.06);
 		opacity: 0.82;
 	}
+
 	100% {
 		transform: scale(0.96);
 		opacity: 0.6;
@@ -869,11 +866,13 @@ onBeforeUnmount(() => {
 }
 
 @keyframes galleryRingPulse {
+
 	0%,
 	100% {
 		transform: scale(0.96);
 		opacity: 0.3;
 	}
+
 	50% {
 		transform: scale(1.05);
 		opacity: 0.5;
@@ -885,11 +884,12 @@ onBeforeUnmount(() => {
 		transform: translate3d(0, 0, 0) scale(1);
 		opacity: 0;
 	}
+
 	10% {
 		opacity: 1;
 	}
-	100% {
-		transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
+
+	100% {		transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
 		opacity: 0;
 	}
 }
