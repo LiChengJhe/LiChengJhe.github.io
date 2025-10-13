@@ -243,14 +243,6 @@ const baseMemories = [
 		link: 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39'
 	},
 	{
-		id: 'greenworld',
-		title: '綠意裡的約會',
-		caption: '陽光灑落在北埔綠世界的林間小徑，妳的笑容比花還溫柔。',
-		alt: '北埔綠世界的合影',
-		image: new URL('../assets/memories/1.jpg', import.meta.url).href,
-		link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
-	},
-	{
 		id: 'inari-song',
 		title: '華山文創 & 稻荷之歌密室奇緣',
 		caption: '先在華山文創感受藝文氣息，再一起挑戰稻荷之歌密室，從藝術漫遊到狐狸娶親的奇幻冒險，妳讓每一刻都溫柔難忘。',
@@ -259,12 +251,28 @@ const baseMemories = [
 		link: 'https://photos.app.goo.gl/1wgLYSvp7Jkktsm16'
 	},
 	{
+		id: 'greenworld',
+		title: '綠意裡的約會',
+		caption: '陽光灑落在北埔綠世界的林間小徑，妳的笑容比花還溫柔。',
+		alt: '北埔綠世界的合影',
+		image: new URL('../assets/memories/1.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
+	},
+	{
 		id: 'dadaocheng-bear',
 		title: '大稻埕&自嘲熊一日遊',
 		caption: '老街的時光、河畔的風，還有自嘲熊的可愛陪伴，這一天有妳在身邊，連台北的午後都變得特別溫柔。',
 		alt: '大稻埕與自嘲熊快閃店合影',
 		image: new URL('../assets/memories/3.jpg', import.meta.url).href,
 		link: 'https://photos.app.goo.gl/DCww3eu6ioVjdkru6'
+	},
+	{
+		id: 'hopscotch',
+		title: '閃動格子的童趣時光',
+		caption: '跳過一格又一格，笑聲在格子間閃爍。和妳一起玩跳格子，彷彿回到最純真的童年午後。',
+		alt: '我們在跳格子遊戲中的快樂瞬間',
+		image: new URL('../assets/memories/4.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/nmFQshtq9XqDfTpx7'
 	}
 ];
 
@@ -889,7 +897,8 @@ onBeforeUnmount(() => {
 		opacity: 1;
 	}
 
-	100% {		transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
+	100% {
+		transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
 		opacity: 0;
 	}
 }
