@@ -73,10 +73,10 @@ const events = [
     year: '2023',
     month: '08 月',
     title: '第一次的七夕情人節',
-    description: '在這個屬於戀人的夜晚，我們隔著銀河，卻用心意搭起專屬的鵲橋。每一則訊息、每一張照片，都是我想和妳共度的浪漫證明。',
-    quote: '「無論多遠多忙，七夕這天，我都會奔向妳，把愛說給妳聽。」',
+    description: '屬於我們的七夕，訊息和照片都在偷偷記錄愛的溫度。再遠的距離，也擋不住想念的心。',
+    quote: '「七夕有妳，平凡的日子也變得特別動人。」',
     location: '線上 · 七夕專屬頁',
-    keywords: ['七夕浪漫', '鵲橋約定', '戀人專屬'],
+    keywords: ['七夕浪漫', '戀人專屬', '心心相印'],
     badge: 'Qixi Promise',
     icon: '💕',
     links: [
@@ -86,7 +86,7 @@ const events = [
       }
     ],
     image: new URL('../assets/timeline/2023_08_22.png', import.meta.url).href,
-    photoCaption: '七夕的夜裡，讓我們一起在鵲橋上，把思念化成最溫柔的擁抱。',
+    photoCaption: '七夕的夜裡，有妳的陪伴，思念都變得溫柔又甜蜜。',
     accent: '#ffc8e4',
     align: 'left'
   },
@@ -141,13 +141,13 @@ const events = [
     title: '鮭魚子生日快樂',
     description: '這一天，所有的祝福和回憶都化作溫柔的光，陪妳一起慶祝屬於妳的幸福時刻。',
     quote: '「妳的生日，是我最想守護的節日。願妳的願望，都有我陪妳一起完成。」',
-    location: '線上．卡片',
+    location: '線上．生日賀卡',
     keywords: ['生日專屬', '心願陪伴', '快樂回憶'],
     badge: 'Birthday Wish',
     icon: '🎂',
     links: [
       {
-        label: '2024 鮭魚子生日電子卡片',
+        label: '生日卡片',
         url: 'https://photos.app.goo.gl/d8x6uiy9m7uXYpmm6'
       }
     ],

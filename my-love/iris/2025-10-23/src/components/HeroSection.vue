@@ -67,7 +67,7 @@ const props = defineProps({
   }
 });
 
-const highlightPhoto = new URL('../assets/memories/10.png', import.meta.url).href;
+const highlightPhoto = new URL('../assets/hero/1.jpg', import.meta.url).href;
 
 const symbols = [
   '♥', // 正常愛心
