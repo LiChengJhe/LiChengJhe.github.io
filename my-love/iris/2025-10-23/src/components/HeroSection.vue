@@ -19,15 +19,25 @@
         <span class="hero__badge" aria-hidden="true">Happy Birthday · 2025.10.23</span>
 
         <p class="hero__intro">親愛的{{ nickname }}</p>
-        <h1 id="hero-title" class="hero__title text-shadow">
-          <span class="hero__title-line">祝妳生日快樂</span>
-        </h1>
+        <div id="hero-title" class="hero__title text-shadow" role="heading" aria-level="2">
+          <span class="hero__title-line">Happy Birthday to You</span>
+        </div>
+        <p class="hero__days hero__days-know">
+          我們已經認識
+          <span class="hero__metric-value">{{ knownYearDay }}</span>
+        </p>
+        <p class="hero__days hero__days-together">
+          成為戀人的時間長達
+          <span class="hero__metric-value">{{ togetherYearDay }}</span>
+        </p>
         <p class="hero__subtitle">
           有妳在每一天都是紀念日<br>
           謝謝妳，讓我的世界變得溫柔又浪漫，<br>
           妳的陪伴，讓平凡的時光都閃閃發亮。<br>
           願往後的日子，我都能牽著妳的手，把愛和幸福寫進我們的故事裡。
         </p>
+
+
 
         <p class="hero__signature">愛妳的{{ signature }}</p>
         <div class="hero__cta">
@@ -47,6 +57,7 @@
           <span class="hero__visual-spark hero__visual-spark--two"></span>
         </div>
         <p class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</p>
+
       </div>
     </div>
   </section>
@@ -105,6 +116,26 @@ const getParticleStyle = (particle) => ({
   color: `hsla(${particle.hue}, 95%, 88%, 1)`,
   '--drift': `${particle.drift}px`
 });
+
+// 計算認識天數與交往天數
+import { ref, computed } from 'vue';
+const knowDate = new Date('2023-02-18T00:00:00');
+const togetherDate = new Date('2023-04-23T00:00:00');
+const now = ref(new Date());
+function getYearDayString(fromDate, nowDate) {
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const totalDays = Math.floor((nowDate - fromDate) / msPerDay);
+  const years = Math.floor(totalDays / 365);
+  const days = totalDays % 365;
+  return years > 0 ? `${years}年${days}天` : `${days}天`;
+}
+
+const knownYearDay = computed(() => getYearDayString(knowDate, now.value));
+const togetherYearDay = computed(() => getYearDayString(togetherDate, now.value));
+// 每分鐘更新一次，確保天數即時
+setInterval(() => {
+  now.value = new Date();
+}, 60000);
 </script>
 
 <style scoped>
@@ -217,6 +248,10 @@ const getParticleStyle = (particle) => ({
   max-width: 34rem;
 }
 
+.hero__content > * {
+  margin: 0;
+}
+
 .hero__badge {
   justify-self: flex-start;
   padding: 0.45rem 1.4rem;
@@ -234,15 +269,21 @@ const getParticleStyle = (particle) => ({
 .hero__intro {
   font-size: 1rem;
   color: rgba(51, 28, 46, 0.72);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
 }
+
 
 .hero__title {
   position: relative;
   display: inline-grid;
-  font-size: 1.1rem;
+}
 
+.hero__title-line,
+.hero__subtitle,
+.hero__days-know,
+.hero__days-together {
+  font-size: 1rem;
 }
 
 .hero__title-line {
@@ -255,12 +296,36 @@ const getParticleStyle = (particle) => ({
   text-shadow: 0 12px 30px rgba(51, 28, 46, 0.16);
   letter-spacing: 0.02em;
   animation: titleShimmer 8s ease-in-out infinite;
+  font-weight: 800;
 }
 
-.hero__subtitle {
-  font-size: 1.1rem;
-  line-height: 1.7;
+
+.hero__subtitle,
+.hero__days-know,
+.hero__days-together {
+  font-size: 1rem;
   color: rgba(51, 28, 46, 0.75);
+  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
+}
+
+.hero__days-know,
+.hero__days-together {
+  margin: 0;
+}
+
+.hero__days {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.hero__metric-value {
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.08em;
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+  text-shadow: 0 10px 22px rgba(244, 93, 144, 0.25);
 }
 
 .hero__cta {
@@ -276,6 +341,7 @@ const getParticleStyle = (particle) => ({
   padding: 0.85rem 1.9rem;
   border: none;
   font-weight: 600;
+  font-size: 1rem;
   letter-spacing: 0.06em;
   cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
@@ -314,10 +380,10 @@ const getParticleStyle = (particle) => ({
 }
 
 .hero__signature {
-  margin-top: 0.8rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--primary-dark);
   letter-spacing: 0.08em;
+  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
 }
 
 .hero__visual {
@@ -406,7 +472,7 @@ const getParticleStyle = (particle) => ({
 
 .hero__visual-caption {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: rgba(51, 28, 46, 0.65);
   letter-spacing: 0.06em;
   text-transform: uppercase;
