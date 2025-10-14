@@ -259,6 +259,14 @@ const baseMemories = [
 		link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
 	},
 	{
+		   id: 'sheraton-birthday',
+		   title: '喜來登生日盛宴',
+		   caption: '妳用一頓豐盛的Buffet為我慶生，燭光與美食間，最珍貴的是妳的陪伴與祝福。',
+		   alt: '在喜來登Buffet慶生的合影',
+		   image: new URL('../assets/memories/5.jpg', import.meta.url).href,
+		   link: 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9'
+	   },
+	{
 		id: 'dadaocheng-bear',
 		title: '大稻埕&自嘲熊一日遊',
 		caption: '老街的時光、河畔的風，還有自嘲熊的可愛陪伴，這一天有妳在身邊，連台北的午後都變得特別溫柔。',
