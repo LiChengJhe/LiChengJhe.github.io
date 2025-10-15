@@ -243,6 +243,22 @@ const baseMemories = [
 		link: 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39'
 	},
 	{
+		id: 'tree-choco-day',
+		title: '植甜行動：植樹 x 巧克力共和國',
+		caption: '上午一起把小樹苗種進土裡，午後走進巧克力共和國，甘甜香氣與泥土氣息交織成我們專屬的綠色約會。',
+		alt: '植樹行動後在巧克力共和國的合影',
+		image: new URL('../assets/memories/7.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/gWYbFpK2RoGbMtfs6'
+	},
+	{
+		id: 'daxi-misty-gift',
+		title: '手信霧隱城 & 大溪老街漫遊',
+		caption: '在手信霧隱城感受和風氛圍，再漫步大溪老街，甜點與古樸時光都因妳而美好。',
+		alt: '手信霧隱城與大溪老街的甜蜜合影',
+		image: new URL('../assets/memories/6.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/QgyhZKSLjwCwVrie9'
+	},
+	{
 		id: 'inari-song',
 		title: '華山文創 & 稻荷之歌密室奇緣',
 		caption: '先在華山文創感受藝文氣息，再一起挑戰稻荷之歌密室，從藝術漫遊到狐狸娶親的奇幻冒險，妳讓每一刻都溫柔難忘。',
@@ -259,13 +275,13 @@ const baseMemories = [
 		link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
 	},
 	{
-		   id: 'sheraton-birthday',
-		   title: '喜來登生日盛宴',
-		   caption: '妳用一頓豐盛的Buffet為我慶生，燭光與美食間，最珍貴的是妳的陪伴與祝福。',
-		   alt: '在喜來登Buffet慶生的合影',
-		   image: new URL('../assets/memories/5.jpg', import.meta.url).href,
-		   link: 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9'
-	   },
+		id: 'sheraton-birthday',
+		title: '喜來登生日盛宴',
+		caption: '妳用一頓豐盛的Buffet為我慶生，燭光與美食間，最珍貴的是妳的陪伴與祝福。',
+		alt: '在喜來登Buffet慶生的合影',
+		image: new URL('../assets/memories/5.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9'
+	},
 	{
 		id: 'dadaocheng-bear',
 		title: '大稻埕&自嘲熊一日遊',
