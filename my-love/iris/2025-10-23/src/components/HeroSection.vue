@@ -50,7 +50,13 @@
         <div class="hero__visual-frame">
           <div class="hero__visual-halo hero__visual-halo--outer"></div>
           <div class="hero__visual-halo hero__visual-halo--inner"></div>
-          <img class="hero__visual-photo" :src="highlightPhoto" alt="屬於我們的生日回憶剪影" loading="lazy" />
+          <img 
+            class="hero__visual-photo" 
+            :class="{ 'hero__visual-photo--transitioning': isTransitioning }"
+            :src="highlightPhoto" 
+            alt="屬於我們的生日回憶剪影" 
+            loading="lazy" 
+          />
           <span class="hero__visual-orb hero__visual-orb--one"></span>
           <span class="hero__visual-orb hero__visual-orb--two"></span>
           <span class="hero__visual-spark hero__visual-spark--one"></span>
@@ -78,7 +84,41 @@ const props = defineProps({
   }
 });
 
-const highlightPhoto = new URL('../assets/hero/1.png', import.meta.url).href;
+// 图片切换逻辑
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+
+const photos = [
+  new URL('../assets/hero/1.png', import.meta.url).href,
+  new URL('../assets/hero/1.jpg', import.meta.url).href
+];
+
+const currentPhotoIndex = ref(0);
+const isTransitioning = ref(false);
+let photoInterval = null;
+
+const highlightPhoto = computed(() => photos[currentPhotoIndex.value]);
+
+// 切换图片
+const switchPhoto = () => {
+  isTransitioning.value = true;
+  setTimeout(() => {
+    currentPhotoIndex.value = (currentPhotoIndex.value + 1) % photos.length;
+    setTimeout(() => {
+      isTransitioning.value = false;
+    }, 50);
+  }, 600); // 与 CSS transition 时间匹配
+};
+
+onMounted(() => {
+  // 每5秒切换一次图片
+  photoInterval = setInterval(switchPhoto, 5000);
+});
+
+onUnmounted(() => {
+  if (photoInterval) {
+    clearInterval(photoInterval);
+  }
+});
 
 const symbols = [
   '♥', // 正常愛心
@@ -118,7 +158,6 @@ const getParticleStyle = (particle) => ({
 });
 
 // 計算認識天數與交往天數
-import { ref, computed } from 'vue';
 const knowDate = new Date('2023-02-18T00:00:00');
 const togetherDate = new Date('2023-04-23T00:00:00');
 const now = ref(new Date());
@@ -412,6 +451,13 @@ setInterval(() => {
   border-radius: 28px;
   box-shadow: 0 24px 50px rgba(51, 28, 46, 0.22);
   animation: photoGlow 12s ease-in-out infinite;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+}
+
+.hero__visual-photo--transitioning {
+  opacity: 0;
+  transform: scale(0.95);
+  filter: blur(8px);
 }
 
 .hero__visual-halo {
