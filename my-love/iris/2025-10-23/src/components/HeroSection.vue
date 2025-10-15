@@ -31,14 +31,12 @@
           <span class="hero__metric-value">{{ togetherYearDay }}</span>
         </p>
         <p class="hero__subtitle">
-          有妳在每一天都是紀念日<br>
+          有妳在，每一天都是紀念日。<br>
+          我們就像狸貓和河童，彼此陪伴、感情深厚。<br>
           謝謝妳，讓我的世界變得溫柔又浪漫，<br>
           妳的陪伴，讓平凡的時光都閃閃發亮。<br>
-          願往後的日子，我都能牽著妳的手，把愛和幸福寫進我們的故事裡。
+          願往後的日子，我都能牽著妳的手，把愛與幸福寫進我們的故事裡。
         </p>
-
-
-
         <p class="hero__signature">愛妳的{{ signature }}</p>
         <div class="hero__cta">
           <button class="btn-primary" @click="$emit('start-journey')">展開生日旅程</button>
