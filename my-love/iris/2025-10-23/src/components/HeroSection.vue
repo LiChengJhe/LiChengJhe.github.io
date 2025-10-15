@@ -79,20 +79,21 @@ const props = defineProps({
   }
 });
 
-// 图片切换逻辑
+
+// 照片切換邏輯
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-// 载入 hero 文件夹中的原始照片
+// 載入 hero 資料夾中的原本照片
 const heroPhotos = [
   new URL('../assets/hero/1.png', import.meta.url).href,
   new URL('../assets/hero/1.jpg', import.meta.url).href
 ];
 
-// 载入 memories 文件夹中的所有照片
+// 載入 memories 資料夾中的全部照片
 const memoryPhotoFiles = [
   '3.png', '1.jpg', '1.png', '2.jpg', '2.png', '3.jpg',
-  '4.jpg', '4.png', '5.jpg', '5.png', '6.jpg', '6.png',
-  '7.jpg', '7.png', '8.png', '9.png', '10.png', '11.png',
+  '4.jpg', '4.png', '5.jpg', '5.png', '6.png',
+  '7.jpg', '7.png', '8.png', '9.png', '11.png',
   '12.png', '13.png', '14.png', '15.png', '16.png', '17.png'
 ];
 
@@ -100,7 +101,7 @@ const memoryPhotos = memoryPhotoFiles.map(file =>
   new URL(`../assets/memories/${file}`, import.meta.url).href
 );
 
-// 合并所有照片：先显示 hero 照片，再显示 memories 照片
+// 合併所有照片：先顯示 hero 照片，再顯示 memories 照片
 const photos = [...heroPhotos, ...memoryPhotos];
 
 const currentPhotoIndex = ref(0);
@@ -109,7 +110,7 @@ let photoInterval = null;
 
 const highlightPhoto = computed(() => photos[currentPhotoIndex.value]);
 
-// 切换图片
+// 切換照片
 const switchPhoto = () => {
   isTransitioning.value = true;
   setTimeout(() => {
@@ -117,7 +118,7 @@ const switchPhoto = () => {
     setTimeout(() => {
       isTransitioning.value = false;
     }, 50);
-  }, 600); // 与 CSS transition 时间匹配
+  }, 600); // 與 CSS transition 時間匹配
 };
 
 onMounted(() => {
