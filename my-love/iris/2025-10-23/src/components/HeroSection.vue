@@ -50,13 +50,8 @@
         <div class="hero__visual-frame">
           <div class="hero__visual-halo hero__visual-halo--outer"></div>
           <div class="hero__visual-halo hero__visual-halo--inner"></div>
-          <img 
-            class="hero__visual-photo" 
-            :class="{ 'hero__visual-photo--transitioning': isTransitioning }"
-            :src="highlightPhoto" 
-            alt="屬於我們的生日回憶剪影" 
-            loading="lazy" 
-          />
+          <img class="hero__visual-photo" :class="{ 'hero__visual-photo--transitioning': isTransitioning }"
+            :src="highlightPhoto" alt="屬於我們的生日回憶剪影" loading="lazy" />
           <span class="hero__visual-orb hero__visual-orb--one"></span>
           <span class="hero__visual-orb hero__visual-orb--two"></span>
           <span class="hero__visual-spark hero__visual-spark--one"></span>
@@ -87,10 +82,26 @@ const props = defineProps({
 // 图片切换逻辑
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-const photos = [
+// 载入 hero 文件夹中的原始照片
+const heroPhotos = [
   new URL('../assets/hero/1.png', import.meta.url).href,
   new URL('../assets/hero/1.jpg', import.meta.url).href
 ];
+
+// 载入 memories 文件夹中的所有照片
+const memoryPhotoFiles = [
+  '3.png', '1.jpg', '1.png', '2.jpg', '2.png', '3.jpg',
+  '4.jpg', '4.png', '5.jpg', '5.png', '6.jpg', '6.png',
+  '7.jpg', '7.png', '8.png', '9.png', '10.png', '11.png',
+  '12.png', '13.png', '14.png', '15.png', '16.png', '17.png'
+];
+
+const memoryPhotos = memoryPhotoFiles.map(file =>
+  new URL(`../assets/memories/${file}`, import.meta.url).href
+);
+
+// 合并所有照片：先显示 hero 照片，再显示 memories 照片
+const photos = [...heroPhotos, ...memoryPhotos];
 
 const currentPhotoIndex = ref(0);
 const isTransitioning = ref(false);
@@ -287,7 +298,7 @@ setInterval(() => {
   max-width: 34rem;
 }
 
-.hero__content > * {
+.hero__content>* {
   margin: 0;
 }
 
