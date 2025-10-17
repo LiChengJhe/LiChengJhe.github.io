@@ -48,8 +48,9 @@
         <div class="hero__visual-frame">
           <div class="hero__visual-halo hero__visual-halo--outer"></div>
           <div class="hero__visual-halo hero__visual-halo--inner"></div>
-          <img class="hero__visual-photo" :class="{ 'hero__visual-photo--transitioning': isTransitioning }"
-            :src="highlightPhoto" alt="屬於我們的生日回憶剪影" loading="lazy" />
+          <img ref="photoElement" class="hero__visual-photo"
+            :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
+            alt="屬於我們的生日回憶剪影" loading="lazy" />
           <span class="hero__visual-orb hero__visual-orb--one"></span>
           <span class="hero__visual-orb hero__visual-orb--two"></span>
           <span class="hero__visual-spark hero__visual-spark--one"></span>
@@ -81,6 +82,10 @@ const props = defineProps({
 // 照片切換邏輯
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
+const photoElement = ref(null);
+const PHOTO_INTERVAL_MS = 5000;
+const TRANSITION_FALLBACK_MS = 650;
+
 // 載入 hero 資料夾中的原本照片
 const heroPhotos = [
   new URL('../assets/hero/1.png', import.meta.url).href,
@@ -105,28 +110,81 @@ const photos = [...heroPhotos, ...memoryPhotos];
 const currentPhotoIndex = ref(0);
 const isTransitioning = ref(false);
 let photoInterval = null;
+let transitionFallbackId = 0;
+let pendingSwap = false;
 
 const highlightPhoto = computed(() => photos[currentPhotoIndex.value]);
 
+const finalizeTransition = () => {
+  if (!pendingSwap) {
+    return;
+  }
+
+  currentPhotoIndex.value = (currentPhotoIndex.value + 1) % photos.length;
+  pendingSwap = false;
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      isTransitioning.value = false;
+    });
+  });
+};
+
+const handleTransitionEnd = (event) => {
+  if (!pendingSwap || event.propertyName !== 'opacity') {
+    return;
+  }
+
+  if (transitionFallbackId) {
+    clearTimeout(transitionFallbackId);
+    transitionFallbackId = 0;
+  }
+
+  finalizeTransition();
+};
+
 // 切換照片
 const switchPhoto = () => {
+  if (pendingSwap) {
+    return;
+  }
+
+  pendingSwap = true;
   isTransitioning.value = true;
-  setTimeout(() => {
-    currentPhotoIndex.value = (currentPhotoIndex.value + 1) % photos.length;
-    setTimeout(() => {
-      isTransitioning.value = false;
-    }, 50);
-  }, 600); // 與 CSS transition 時間匹配
+
+  if (!photoElement.value) {
+    finalizeTransition();
+    return;
+  }
+
+  transitionFallbackId = window.setTimeout(() => {
+    transitionFallbackId = 0;
+    finalizeTransition();
+  }, TRANSITION_FALLBACK_MS);
 };
 
 onMounted(() => {
-  // 每5秒切换一次图片
-  photoInterval = setInterval(switchPhoto, 5000);
+  if (photoElement.value) {
+    photoElement.value.addEventListener('transitionend', handleTransitionEnd);
+  }
+
+  // 每 5 秒預先觸發一次切換，讓淡出與淡入保持同步
+  photoInterval = window.setInterval(() => {
+    switchPhoto();
+  }, PHOTO_INTERVAL_MS);
 });
 
 onUnmounted(() => {
   if (photoInterval) {
     clearInterval(photoInterval);
+  }
+
+  if (transitionFallbackId) {
+    clearTimeout(transitionFallbackId);
+  }
+
+  if (photoElement.value) {
+    photoElement.value.removeEventListener('transitionend', handleTransitionEnd);
   }
 });
 
