@@ -244,7 +244,7 @@ const baseMemories = [
 	},
 	{
 		id: 'tree-choco-day',
-		title: '植甜行動：植樹 x 巧克力共和國',
+		title: '植甜行動：植樹 & 巧克力共和國',
 		caption: '上午一起把小樹苗種進土裡，午後走進巧克力共和國，甘甜香氣與泥土氣息交織成我們專屬的綠色約會。',
 		alt: '植樹行動後在巧克力共和國的合影',
 		image: new URL('../assets/memories/7.jpg', import.meta.url).href,
