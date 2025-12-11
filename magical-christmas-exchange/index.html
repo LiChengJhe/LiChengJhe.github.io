@@ -14,75 +14,61 @@
         color: #e2e8f0;
         overflow-x: hidden;
       }
-      
+
       .font-christmas {
         font-family: 'Mountains of Christmas', cursive;
       }
-      
+
       /* Custom Scrollbar */
-      
       ::-webkit-scrollbar {
         width: 8px;
       }
-      
       ::-webkit-scrollbar-track {
         background: #1e293b;
       }
-      
       ::-webkit-scrollbar-thumb {
         background: #475569;
         border-radius: 4px;
       }
-      
+
       /* Snow Animation */
-      
       .snowflake {
         position: absolute;
         top: -10px;
         color: white;
         animation: fall linear forwards;
       }
-      
       @keyframes fall {
         to {
           transform: translateY(105vh);
         }
       }
-      
+
       /* Flip Card Animation */
-      
       .perspective-1000 {
         perspective: 1000px;
       }
-      
       .transform-style-3d {
         transform-style: preserve-3d;
       }
-      
       .backface-hidden {
         backface-visibility: hidden;
       }
-      
       .rotate-y-180 {
         transform: rotateY(180deg);
       }
       
       /* Glow Effects */
-      
       .glow-text {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
       }
-      
       .glow-angel {
         box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
       }
-      
       .glow-devil {
         box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
       }
     </style>
-
-<link rel="stylesheet" href="/magical-christmas-exchange/index.css">
   <script type="importmap">
 {
   "imports": {
@@ -93,9 +79,10 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/magical-christmas-exchange/assets/index-fvkSWY_D.js"></script>
+<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
