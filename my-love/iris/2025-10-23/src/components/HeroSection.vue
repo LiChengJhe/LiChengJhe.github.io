@@ -97,7 +97,7 @@ const memoryPhotoFiles = [
   '3.png', '1.jpg', '1.png', '2.jpg', '2.png', '3.jpg',
   '4.jpg', '4.png', '5.jpg', '5.png', '6.png',
   '7.jpg', '7.png', '8.png', '9.png', '11.png',
-  '12.png', '13.png', '14.png', '15.png', '16.png', '17.png'
+  '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png'
 ];
 
 const memoryPhotos = memoryPhotoFiles.map(file =>
