@@ -518,7 +518,7 @@ onBeforeUnmount(() => {
 	position: relative;
 	z-index: var(--layer-section-content);
 	text-align: center;
-	max-width: 680px;
+	max-width: min(680px, 100%);
 	margin: 0 auto;
 	display: grid;
 	gap: 1rem;
@@ -581,11 +581,13 @@ onBeforeUnmount(() => {
 .memory-gallery__header-film {
 	justify-self: center;
 	margin-top: 0.6rem;
+	width: min(100%, 520px);
 }
 
 .header-film__frame {
 	position: relative;
 	display: inline-block;
+	max-width: 100%;
 	border-radius: 22px;
 	overflow: hidden;
 	box-shadow: 0 24px 60px rgba(51, 28, 46, 0.2);
@@ -594,7 +596,7 @@ onBeforeUnmount(() => {
 
 .header-film__frame video {
 	display: block;
-	width: min(520px, 78vw);
+	width: 100%;
 	height: auto;
 	aspect-ratio: 16 / 9;
 	object-fit: cover;
@@ -997,7 +999,7 @@ onBeforeUnmount(() => {
 	}
 
 	.header-film__frame video {
-		width: min(94vw, 420px);
+		width: 100%;
 	}
 }
 
