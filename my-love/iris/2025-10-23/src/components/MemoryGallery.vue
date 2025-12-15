@@ -12,9 +12,23 @@
 		<header class="memory-gallery__header fade-up">
 			<span class="memory-gallery__badge" aria-hidden="true">Treasure Collection</span>
 			<h2 id="memories-title">專屬於我們的相簿</h2>
+			<div class="memory-gallery__header-divider" aria-hidden="true">
+				<span class="divider-line"></span>
+				<span class="divider-gem">✦</span>
+				<span class="divider-line"></span>
+			</div>
 			<p>
 				這些片刻都值得被珍藏。點開照片，就能看到我們一起寫下的故事，也歡迎連到完整相簿細細回味。
 			</p>
+			<div class="memory-gallery__header-film" aria-label="我們一起翻看相簿的短片">
+				<span class="header-film__frame">
+					<span class="header-film__gradient" aria-hidden="true"></span>
+					<span class="header-film__halo" aria-hidden="true"></span>
+					<video :src="headerFilm.src" autoplay muted loop playsinline
+						preload="metadata"></video>
+					<span class="header-film__hint">一起翻閱相簿</span>
+				</span>
+			</div>
 		</header>
 
 		<div class="memory-gallery__grid" role="list">
@@ -89,6 +103,10 @@ const particles = Array.from({ length: 18 }, (_, index) => {
 		symbol: sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)]
 	};
 });
+
+const headerFilm = {
+	src: new URL('../assets/memories/1.mp4', import.meta.url).href
+};
 
 const getParticleStyle = (particle) => ({
 	left: `${particle.left}%`,
@@ -515,11 +533,92 @@ onBeforeUnmount(() => {
 	letter-spacing: 0.06em;
 }
 
+.memory-gallery__header-divider {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	justify-content: center;
+	color: rgba(51, 28, 46, 0.6);
+	font-size: 0.95rem;
+	letter-spacing: 0.18em;
+}
+
+.divider-line {
+	display: block;
+	width: clamp(48px, 8vw, 90px);
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(51, 28, 46, 0.38), transparent);
+}
+
+.divider-gem {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(244, 93, 144, 0.16), rgba(255, 198, 223, 0.32));
+	box-shadow: 0 12px 28px rgba(244, 93, 144, 0.22);
+}
+
 .memory-gallery__header p {
 	color: rgba(51, 28, 46, 0.68);
 	line-height: 1.65;
 	font-size: 1.05rem;
 }
+
+.memory-gallery__header-film {
+	justify-self: center;
+	margin-top: 0.6rem;
+}
+
+.header-film__frame {
+	position: relative;
+	display: inline-block;
+	border-radius: 22px;
+	overflow: hidden;
+	box-shadow: 0 24px 60px rgba(51, 28, 46, 0.2);
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.header-film__frame video {
+	display: block;
+	width: min(520px, 78vw);
+	height: auto;
+	object-fit: cover;
+	border-radius: 22px;
+}
+
+.header-film__gradient {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(51, 28, 46, 0.25) 0%, transparent 42%);
+	z-index: var(--layer-section-content);
+	pointer-events: none;
+}
+
+.header-film__halo {
+	position: absolute;
+	inset: -12%;
+	background: radial-gradient(circle, rgba(255, 209, 231, 0.34), transparent 70%);
+	filter: blur(14px);
+	z-index: var(--layer-section-bg);
+}
+
+.header-film__hint {
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+	padding: 0.38rem 0.9rem;
+	border-radius: 999px;
+	background: rgba(51, 28, 46, 0.7);
+	color: #fff;
+	font-size: 0.82rem;
+	letter-spacing: 0.04em;
+	box-shadow: 0 10px 26px rgba(51, 28, 46, 0.25);
+	z-index: var(--layer-section-content);
+}
+
 
 .memory-gallery__grid {
 	position: relative;
@@ -624,7 +723,8 @@ onBeforeUnmount(() => {
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
-.memory-card__media img {
+.memory-card__media img,
+.memory-card__media video {
 	display: block;
 	width: 100%;
 	height: clamp(220px, 38vw, 260px);
@@ -634,7 +734,9 @@ onBeforeUnmount(() => {
 }
 
 .memory-card:hover .memory-card__media img,
-.memory-card:focus-within .memory-card__media img {
+.memory-card:focus-within .memory-card__media img,
+.memory-card:hover .memory-card__media video,
+.memory-card:focus-within .memory-card__media video {
 	transform: scale(1.05);
 	filter: brightness(1.02) contrast(1.08) saturate(1.1);
 }
@@ -809,7 +911,8 @@ onBeforeUnmount(() => {
 	z-index: var(--layer-section-bg);
 }
 
-.lightbox__media img {
+.lightbox__media img,
+.lightbox__media video {
 	position: relative;
 	z-index: var(--layer-section-content);
 	width: min(360px, 46vw);
@@ -842,7 +945,8 @@ onBeforeUnmount(() => {
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 	}
 
-	.memory-card__media img {
+	.memory-card__media img,
+	.memory-card__media video {
 		height: clamp(200px, 52vw, 240px);
 	}
 
@@ -850,7 +954,8 @@ onBeforeUnmount(() => {
 		grid-template-columns: 1fr;
 	}
 
-	.lightbox__media img {
+	.lightbox__media img,
+	.lightbox__media video {
 		width: min(70vw, 340px);
 		height: auto;
 	}
@@ -869,13 +974,18 @@ onBeforeUnmount(() => {
 		padding: 1.4rem 1.5rem 1.6rem;
 	}
 
-	.memory-card__media img {
+	.memory-card__media img,
+	.memory-card__media video {
 		height: clamp(200px, 70vw, 220px);
 	}
 
 	.memory-card__hint {
 		bottom: 0.8rem;
 		right: 0.8rem;
+	}
+
+	.header-film__frame video {
+		width: min(94vw, 420px);
 	}
 }
 
