@@ -1,6 +1,6 @@
 import { Participant } from './types';
 
-export const PARTICIPANTS_LIST: string[] = [
+export const DEFAULT_PARTICIPANTS: string[] = [
   "Alma Chen",
   "Anny Chang",
   "Bruce Chen",
@@ -21,7 +21,7 @@ export const PARTICIPANTS_LIST: string[] = [
 ];
 
 export const getInitialParticipants = (): Participant[] => {
-  return PARTICIPANTS_LIST.map((name, index) => ({
+  return DEFAULT_PARTICIPANTS.map((name, index) => ({
     id: `p-${index}`,
     name
   }));

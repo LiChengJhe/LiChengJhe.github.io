@@ -16,8 +16,9 @@ export type GamePhase = 'SETUP' | 'PLAYING' | 'SUMMARY';
 
 // The internal state of the draw sequence
 export interface DrawSequenceState {
-  sequence: string[]; // The ordered list of names (shuffled). 
-  // Logic: sequence[i] draws sequence[i+1]. Last draws First.
-  currentIndex: number;
-  isRevealed: boolean;
+  firstDrawer: string; // The person who started the chain (must be the last receiver to close loop)
+  currentDrawer: string; // The person currently drawing
+  remainingCandidates: string[]; // Pool of participants who haven't received a gift yet (excluding firstDrawer)
+  isRevealed: boolean; // Has the current drawer revealed their target?
+  currentReceiver?: string; // The target, determined only when revealed
 }
