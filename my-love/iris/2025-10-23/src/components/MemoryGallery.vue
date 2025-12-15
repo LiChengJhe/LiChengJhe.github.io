@@ -297,7 +297,26 @@ const baseMemories = [
 		alt: '我們在跳格子遊戲中的快樂瞬間',
 		image: new URL('../assets/memories/4.jpg', import.meta.url).href,
 		link: 'https://photos.app.goo.gl/nmFQshtq9XqDfTpx7'
+	},
+	{
+		id: 'wang-steak-smile',
+		title: '王品牛排的燭光笑顏',
+		caption:
+			'服務生端上寫著生日祝福的小甜點時，妳笑得像小朋友一樣開心。那一刻，我覺得王品牛排最美的風景不是擺盤，而是坐在我面前、為了生日而發光的妳。',
+		alt: '妳在王品牛排收到生日甜點時的笑容',
+		image: new URL('../assets/memories/18.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/2HU8UipwvAVe2Yyf7'
+	},
+	{
+		id: 'snoopy-run',
+		title: '史努比路跑的青春腳步',
+		caption:
+			'穿上號碼布、戴著史努比的可愛元素，一起在跑道上大步向前。不是為了成績，而是為了和妳並肩奔跑，記住這段笑著流汗的青春回憶。',
+		alt: '我們參加史努比路跑時的合影',
+		image: new URL('../assets/memories/19.jpg', import.meta.url).href,
+		link: 'https://photos.app.goo.gl/A8cpWCi23ZWMakUi9'
 	}
+
 ];
 
 const memories = baseMemories.map((memory, index) => ({
