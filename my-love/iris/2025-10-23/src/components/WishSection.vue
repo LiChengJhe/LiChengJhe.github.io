@@ -35,8 +35,11 @@
       </p>
 
       <div class="wish-card__content" aria-live="polite">
-        <div class="wish-card__icon" :class="{ 'wish-card__icon--glow': revealedCount > 0 }" aria-hidden="true">
-          {{ activeIcon }}
+        <div class="wish-card__video" aria-hidden="true">
+          <div class="wish-card__video-frame">
+            <video :src="wishVideoSrc" autoplay muted loop playsinline></video>
+            <span class="wish-card__video-hint">我們的故事</span>
+          </div>
         </div>
 
         <transition-group name="wish-message" tag="div" class="wish-card__message-block">
@@ -59,8 +62,6 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
-const baseIcon = '💌';
-
 const messageParagraphs = [
   '有妳在身邊，連陽光都變得溫柔。每次翻開相本，妳的笑容都像灑進心裡的光，讓平凡的日子都閃閃發亮。',
   '每次和妳一起出門玩、一起大笑，或是陪我聊天的時候，這些快樂的片段都像一格一格的底片，讓我一直記得被妳愛著的感覺。',
@@ -73,9 +74,9 @@ const tilt = reactive({ x: 0, y: 0 });
 const revealedCount = ref(0);
 const closingVisible = ref(false);
 const shimmerActive = ref(false);
+const wishVideoSrc = new URL('../assets/memories/2.mp4', import.meta.url).href;
 
 const visibleParagraphs = computed(() => messageParagraphs.slice(0, revealedCount.value));
-const activeIcon = computed(() => (closingVisible.value ? '💞' : baseIcon));
 
 
 const petalSymbols = [
@@ -329,22 +330,42 @@ onBeforeUnmount(() => {
   z-index: var(--layer-section-content);
 }
 
-.wish-card__icon {
-  justify-self: center;
-  width: clamp(74px, 12vw, 88px);
-  height: clamp(74px, 12vw, 88px);
-  border-radius: 28px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.6), rgba(255, 214, 232, 0.52));
-  display: grid;
-  place-items: center;
-  font-size: clamp(2.1rem, 4vw, 2.6rem);
-  box-shadow: 0 24px 58px rgba(244, 93, 144, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.45);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+.wish-card__video {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
-.wish-card__icon--glow {
-  animation: iconPulse 3.2s ease-in-out infinite;
-  box-shadow: 0 28px 66px rgba(244, 93, 144, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+.wish-card__video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 26px 72px rgba(51, 28, 46, 0.18);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.wish-card__video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wish-card__video-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(51, 28, 46, 0.6);
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 10px 24px rgba(51, 28, 46, 0.22);
 }
 
 .wish-card__message-block {
@@ -419,8 +440,7 @@ onBeforeUnmount(() => {
   .wishes__aurora,
   .wish-card__glint,
   .wish-card__petal,
-  .wish-card__sparkle,
-  .wish-card__icon--glow {
+  .wish-card__sparkle {
     animation: none !important;
   }
 
