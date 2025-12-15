@@ -25,7 +25,7 @@
 					<span class="header-film__gradient" aria-hidden="true"></span>
 					<span class="header-film__halo" aria-hidden="true"></span>
 					<video :src="headerFilm.src" autoplay muted loop playsinline
-						preload="metadata"></video>
+						:controls="isMobile" preload="metadata"></video>
 					<span class="header-film__hint">一起翻閱相簿</span>
 				</span>
 			</div>
@@ -106,6 +106,12 @@ const particles = Array.from({ length: 18 }, (_, index) => {
 
 const headerFilm = {
 	src: new URL('../assets/memories/1.mp4', import.meta.url).href
+};
+
+const isMobile = ref(false);
+const mobileQuery = ref(null);
+const updateMobile = () => {
+	isMobile.value = mobileQuery.value?.matches ?? false;
 };
 
 const getParticleStyle = (particle) => ({
@@ -382,6 +388,10 @@ const closeLightbox = () => {
 };
 
 onMounted(() => {
+	mobileQuery.value = window.matchMedia('(max-width: 720px)');
+	updateMobile();
+	mobileQuery.value.addEventListener('change', updateMobile);
+
 	observer.value = new IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
@@ -407,6 +417,7 @@ watch(activeMemory, (value) => {
 
 onBeforeUnmount(() => {
 	window.removeEventListener('keydown', handleKeydown);
+	mobileQuery.value?.removeEventListener('change', updateMobile);
 	observer.value?.disconnect();
 	observer.value = null;
 	cardRefs.value = [];
@@ -585,6 +596,7 @@ onBeforeUnmount(() => {
 	display: block;
 	width: min(520px, 78vw);
 	height: auto;
+	aspect-ratio: 16 / 9;
 	object-fit: cover;
 	border-radius: 22px;
 }
