@@ -40,7 +40,6 @@
         <p class="hero__signature">愛妳的{{ signature }}</p>
         <div class="hero__cta">
           <button class="btn-primary" @click="$emit('start-journey')">展開生日旅程</button>
-          <button class="btn-secondary" @click="$emit('play-melody')">播放我們的旋律</button>
         </div>
       </div>
 

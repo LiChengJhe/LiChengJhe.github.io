@@ -3,24 +3,16 @@
   backdrop-filter: blur(3px);
 }
 
-.choice-btn,
-.node__next,
-.node__restart,
-.journey-header__audio,
-.journey-header__reset {
+.choice-btn {
   min-height: 48px;
 }
 
-.choice-btn,
-.node__next,
-.journey-header__audio {
+.choice-btn {
   position: relative;
   overflow: hidden;
 }
 
-.choice-btn::after,
-.node__next::after,
-.journey-header__audio::after {
+.choice-btn::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -29,8 +21,6 @@
   transition: transform 0.4s ease;
 }
 
-.choice-btn:hover::after,
-.node__next:hover::after,
-.journey-header__audio:hover::after {
+.choice-btn:hover::after {
   transform: translateX(100%);
 }

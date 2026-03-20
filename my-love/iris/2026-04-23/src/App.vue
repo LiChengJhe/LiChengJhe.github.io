@@ -9,15 +9,6 @@
       <p class="journey-header__meta">
         已解鎖節點 {{ visitedCount }} / {{ totalNodes }}
       </p>
-      <div class="journey-header__actions">
-        <button class="journey-header__audio" type="button" @click="playMelody">
-          {{ audioButtonLabel }}
-        </button>
-        <button class="journey-header__reset" type="button" @click="restartJourney">
-          重置旅程
-        </button>
-      </div>
-      <p v-if="audioStatusMessage" class="journey-header__status">{{ audioStatusMessage }}</p>
       <div class="journey-progress" role="progressbar" :aria-valuemin="0" :aria-valuemax="100" :aria-valuenow="progressPercent">
         <div class="journey-progress__fill" :style="{ width: `${progressPercent}%` }"></div>
       </div>
@@ -33,14 +24,11 @@
       <HeroSection
         v-if="currentNode.type === 'hero'"
         @start-journey="advanceWithTransition"
-        @play-melody="playMelody"
       />
       <NarrativeNode
         v-else
         :node="currentNode"
         @choose="chooseWithTransition"
-        @advance="advanceWithTransition"
-        @restart="restartJourney"
       />
     </main>
 
@@ -57,7 +45,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, ref } from 'vue';
+import { computed, ref } from 'vue';
 import ChapterNavigator from './components/ChapterNavigator.vue';
 import FloatingPetalsFX from './components/FloatingPetalsFX.vue';
 import HeroSection from './components/HeroSection.vue';
@@ -65,7 +53,6 @@ import NarrativeNode from './components/NarrativeNode.vue';
 import SegueTransition from './components/SegueTransition.vue';
 import { useNarrativeGraph } from './composables/useNarrativeGraph';
 import { storyGraph } from './data/storyGraph';
-import melodySrc from './assets/audio/melody.mp3';
 
 const {
   currentNode,
@@ -74,7 +61,6 @@ const {
   advance,
   goBack,
   goHome,
-  restart,
   perfMode,
   goToNodeWithTransition,
   canGoBack
@@ -84,16 +70,6 @@ const progressPercent = computed(() => Math.round((visitedCount.value / totalNod
 
 const isTransitioning = ref(false);
 const transitionTitle = ref('櫻花飄落中...');
-
-let audioContext;
-let audioElement;
-let audioSource;
-const isAudioPlaying = ref(false);
-const audioStatusMessage = ref('');
-
-const audioButtonLabel = computed(() => {
-  return isAudioPlaying.value ? '暫停氛圍旋律' : '播放宮崎駿感氛圍旋律';
-});
 
 const canGoPrevious = computed(() => canGoBack.value);
 const canGoNext = computed(() => {
@@ -147,70 +123,6 @@ const goHomeWithTransition = async () => {
     goHome();
   });
 };
-
-const restartJourney = () => {
-  restart();
-  audioStatusMessage.value = '已重置旅程進度。';
-};
-
-const playMelody = async () => {
-  try {
-    if (!audioContext) {
-      audioContext = new AudioContext();
-    }
-
-    if (!audioElement) {
-      audioElement = new Audio(melodySrc);
-      audioElement.preload = 'auto';
-      audioElement.addEventListener('ended', handleAudioEnded);
-      audioSource = audioContext.createMediaElementSource(audioElement);
-      audioSource.connect(audioContext.destination);
-    }
-
-    if (audioContext.state === 'suspended') {
-      await audioContext.resume();
-    }
-
-    if (isAudioPlaying.value) {
-      audioElement.pause();
-      isAudioPlaying.value = false;
-      audioStatusMessage.value = '已暫停背景旋律。';
-      return;
-    }
-
-    await audioElement.play();
-    isAudioPlaying.value = true;
-    audioStatusMessage.value = '正在播放原創日系氛圍旋律。';
-  } catch (error) {
-    audioStatusMessage.value = '音樂播放失敗，請再點一次按鈕。';
-    console.warn('音樂播放失敗：', error);
-  }
-};
-
-const handleAudioEnded = () => {
-  isAudioPlaying.value = false;
-  audioStatusMessage.value = '旋律播放完畢。';
-};
-
-onBeforeUnmount(() => {
-  if (audioElement) {
-    audioElement.removeEventListener('ended', handleAudioEnded);
-    audioElement.pause();
-    audioElement.removeAttribute('src');
-    audioElement.load();
-    audioElement = null;
-  }
-
-  if (audioSource) {
-    audioSource.disconnect();
-    audioSource = null;
-  }
-
-  if (audioContext) {
-    audioContext.close();
-    audioContext = null;
-  }
-});
 </script>
 
 <style scoped>
@@ -243,37 +155,6 @@ onBeforeUnmount(() => {
 .journey-header__meta {
   margin-top: 0.4rem;
   color: #7d5660;
-}
-
-.journey-header__audio {
-  border: none;
-  border-radius: 999px;
-  padding: 0.72rem 1rem;
-  cursor: pointer;
-  color: #fff;
-  background: linear-gradient(120deg, #eb7397, #d84d78);
-}
-
-.journey-header__actions {
-  margin-top: 0.85rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.journey-header__reset {
-  border: 1px solid rgba(195, 102, 131, 0.35);
-  border-radius: 999px;
-  padding: 0.72rem 1rem;
-  cursor: pointer;
-  color: #8f4159;
-  background: #fff8fb;
-}
-
-.journey-header__status {
-  margin-top: 0.55rem;
-  color: #8a4f61;
 }
 
 .journey-header__hint {
@@ -310,9 +191,12 @@ main {
 }
 
 @media (max-width: 700px) {
-  .journey-header__audio,
-  .journey-header__reset {
-    width: 100%;
+  .page {
+    padding: 0.9rem 0.9rem calc(7.2rem + env(safe-area-inset-bottom));
+  }
+
+  .journey-header {
+    margin-bottom: 1rem;
   }
 }
 </style>

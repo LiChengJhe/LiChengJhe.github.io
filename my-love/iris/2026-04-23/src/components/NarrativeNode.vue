@@ -11,24 +11,6 @@
     <MemoryMomentCard :memory="node.memory" />
 
     <BranchingChoices v-if="node.options?.length" :choices="node.options" @choose="$emit('choose', $event)" />
-
-    <button
-      v-else-if="node.next"
-      class="node__next"
-      type="button"
-      @click="$emit('advance')"
-    >
-      繼續前往下一幕
-    </button>
-
-    <button
-      v-if="node.type === 'credits'"
-      class="node__restart"
-      type="button"
-      @click="$emit('restart')"
-    >
-      重新開始旅程
-    </button>
   </article>
 </template>
 
@@ -44,7 +26,7 @@ const props = defineProps({
   }
 });
 
-defineEmits(['choose', 'advance', 'restart']);
+defineEmits(['choose']);
 
 const lines = computed(() => {
   return (props.node.body || '').split('\n').filter(Boolean);
@@ -116,30 +98,4 @@ onBeforeUnmount(() => {
   color: #4c3640;
 }
 
-.node__next,
-.node__restart {
-  margin-top: 1.3rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-  padding: 0.82rem 1.15rem;
-  font-weight: 600;
-}
-
-.node__next {
-  background: linear-gradient(120deg, #ee7da1, #d7507f);
-  color: #fff;
-}
-
-.node__restart {
-  margin-left: 0.75rem;
-  background: #f8e7e9;
-  color: #7a4450;
-}
-
-@media (max-width: 640px) {
-  .node__restart {
-    margin-left: 0;
-  }
-}
 </style>

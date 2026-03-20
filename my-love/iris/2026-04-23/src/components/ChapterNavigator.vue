@@ -87,6 +87,20 @@ defineEmits(['previous', 'next', 'home']);
 @media (max-width: 700px) {
   .chapter-nav {
     grid-template-columns: 1fr;
+    position: sticky;
+    bottom: calc(0.7rem + env(safe-area-inset-bottom));
+    z-index: var(--layer-floating-ui);
+    padding: 0.6rem;
+    border-radius: 20px;
+    background: rgba(255, 248, 251, 0.86);
+    border: 1px solid rgba(195, 102, 131, 0.2);
+    box-shadow: 0 20px 44px rgba(137, 72, 94, 0.22);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .chapter-nav__btn {
+    min-height: 52px;
   }
 }
 </style>

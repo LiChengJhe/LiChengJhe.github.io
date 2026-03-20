@@ -125,8 +125,7 @@ export function useNarrativeGraph() {
         ...node,
         memory: {
           ...(node.memory || {}),
-          image: introPhotoImage,
-          caption: '旅程起點會依本輪隨機順序展開，第一幕就在眼前。'
+          image: introPhotoImage
         }
       };
     }
@@ -140,8 +139,7 @@ export function useNarrativeGraph() {
     const sceneNumber = photoOrderIndex + 1;
     const memory = node.memory
       ? {
-          ...node.memory,
-          caption: `本輪第 ${sceneNumber} 幕，這段回憶再次被溫柔點亮。`
+          ...node.memory
         }
       : node.memory;
 
