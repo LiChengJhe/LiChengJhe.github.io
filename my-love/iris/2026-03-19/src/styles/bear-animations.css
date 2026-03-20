@@ -1,0 +1,24 @@
+.bear {
+  animation: bearFloat 4s ease-in-out infinite;
+}
+
+.bear__image {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.bear:hover .bear__image {
+  transform: scale(1.03) rotate(-1deg);
+  filter: drop-shadow(0 10px 16px rgba(206, 122, 148, 0.35));
+}
+
+@keyframes bearFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

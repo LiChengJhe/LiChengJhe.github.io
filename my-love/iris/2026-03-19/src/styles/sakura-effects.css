@@ -1,0 +1,30 @@
+.page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--layer-app-bg);
+  background:
+    radial-gradient(circle at 12% 30%, rgba(255, 209, 223, 0.28), transparent 28%),
+    radial-gradient(circle at 82% 16%, rgba(255, 225, 234, 0.24), transparent 26%),
+    radial-gradient(circle at 56% 84%, rgba(255, 201, 219, 0.2), transparent 24%);
+}
+
+.page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--layer-app-bg);
+  background-image: linear-gradient(120deg, transparent 0%, rgba(255, 245, 249, 0.14) 50%, transparent 100%);
+  animation: sakuraShimmer 8s linear infinite;
+}
+
+@keyframes sakuraShimmer {
+  0% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(15%);
+  }
+}

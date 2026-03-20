@@ -1,0 +1,36 @@
+.node {
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.choice-btn,
+.node__next,
+.node__restart,
+.journey-header__audio,
+.journey-header__reset {
+  min-height: 48px;
+}
+
+.choice-btn,
+.node__next,
+.journey-header__audio {
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-btn::after,
+.node__next::after,
+.journey-header__audio::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.25) 50%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.choice-btn:hover::after,
+.node__next:hover::after,
+.journey-header__audio:hover::after {
+  transform: translateX(100%);
+}

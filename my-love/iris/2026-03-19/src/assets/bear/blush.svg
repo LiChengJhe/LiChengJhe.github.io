@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="japanese doodle bear blush">
+  <rect width="320" height="320" fill="#ffffff"/>
+  <g stroke="#171717" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <circle cx="118" cy="72" r="12"/>
+    <circle cx="202" cy="72" r="12"/>
+    <path d="M88 200 C86 122 108 96 160 96 C212 96 234 122 232 200 C231 232 210 252 160 252 C110 252 89 232 88 200 Z"/>
+    <path d="M116 205 C102 212 92 220 84 230"/>
+    <path d="M204 205 C218 212 228 220 236 230"/>
+  </g>
+  <g fill="#171717">
+    <circle cx="140" cy="148" r="5"/>
+    <circle cx="180" cy="148" r="5"/>
+    <ellipse cx="160" cy="166" rx="6" ry="4"/>
+  </g>
+  <path d="M148 184 Q160 190 172 184" stroke="#171717" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="118" cy="176" rx="14" ry="9" fill="#ffbdc3" opacity="0.9"/>
+  <ellipse cx="202" cy="176" rx="14" ry="9" fill="#ffbdc3" opacity="0.9"/>
+  <text x="262" y="108" font-size="28" font-family="'Yu Mincho', 'Noto Serif JP', serif" fill="#171717" transform="rotate(90 262 108)">照れた</text>
+</svg>
