@@ -123,9 +123,12 @@ export function useNarrativeGraph() {
 
       return {
         ...node,
+        subtitle: introPhotoNode?.subtitle || node.subtitle,
+        body: introPhotoNode?.body || node.body,
         memory: {
           ...(node.memory || {}),
-          image: introPhotoImage
+          image: introPhotoImage,
+          caption: introPhotoNode?.memory?.caption || node.memory?.caption
         }
       };
     }
