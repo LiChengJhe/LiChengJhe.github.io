@@ -742,9 +742,17 @@ onBeforeUnmount(() => {
 	display: block;
 	width: 100%;
 	height: clamp(220px, 38vw, 260px);
-	object-fit: cover;
 	transition: transform 0.6s ease, filter 0.6s ease;
 	filter: brightness(0.98) contrast(1.07) saturate(1.05);
+}
+
+.memory-card__media img {
+	object-fit: contain;
+	background: linear-gradient(160deg, rgba(255, 248, 243, 0.96), rgba(255, 236, 244, 0.92));
+}
+
+.memory-card__media video {
+	object-fit: cover;
 }
 
 .memory-card:hover .memory-card__media img,
@@ -753,6 +761,11 @@ onBeforeUnmount(() => {
 .memory-card:focus-within .memory-card__media video {
 	transform: scale(1.05);
 	filter: brightness(1.02) contrast(1.08) saturate(1.1);
+}
+
+.memory-card:hover .memory-card__media img,
+.memory-card:focus-within .memory-card__media img {
+	transform: none;
 }
 
 .memory-card__shine {
@@ -937,6 +950,14 @@ onBeforeUnmount(() => {
 	object-fit: cover;
 }
 
+.lightbox__media img {
+	width: min(560px, 82vw);
+	height: auto;
+	max-height: min(78vh, 560px);
+	object-fit: contain;
+	background: linear-gradient(160deg, rgba(255, 248, 243, 0.96), rgba(255, 236, 244, 0.92));
+}
+
 .lightbox__text {
 	display: grid;
 	gap: 1rem;
@@ -972,6 +993,10 @@ onBeforeUnmount(() => {
 	.lightbox__media video {
 		width: min(70vw, 340px);
 		height: auto;
+	}
+
+	.lightbox__media img {
+		max-height: min(72vh, 500px);
 	}
 }
 

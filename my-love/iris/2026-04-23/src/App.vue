@@ -25,7 +25,7 @@
         旅程進度 {{ progressPercent }}%
       </p>
       <p class="journey-header__hint">
-        一張接一張，把所有照片串成同一段旅程。
+        每次都會隨機展開，並在同一輪旅程中不重複。
       </p>
     </header>
 

@@ -23,15 +23,15 @@ const photoJourneyNodes = Object.fromEntries(
       {
         id,
         type: 'scene',
-        title: `照片旅程｜第 ${index + 1} 幕`,
+        title: '照片旅程｜回憶片段',
         subtitle: frameSubtitles[index % frameSubtitles.length],
         body:
           index === 0
             ? '從這張照片開始，我們把故事一幕一幕走完。\n慢慢往下走，會看到每個時刻如何連成一條溫柔的時間線。'
-            : `這一幕收著我們當時的笑與心跳。\n第 ${index + 1} 張照片，提醒我幸福其實一直都在身邊。`,
+            : '這一幕收著我們當時的笑與心跳。\n每張照片都在提醒我，幸福其實一直都在身邊。',
         memory: {
           image,
-          caption: `第 ${index + 1} 幕，把當天的光與心情都留了下來。`
+          caption: '這一幕，把當天的光與心情都留了下來。'
         },
         next
       }
@@ -45,15 +45,15 @@ export const storyGraph = {
     type: 'hero',
     title: '櫻花開場章',
     subtitle: '春天把思念吹成花雨，故事從這裡正式開始。',
-    body: '這次不分岔，我們就沿著照片一路走下去。\n每一幕都是我們真實走過的日子。',
+    body: '這次不分岔，但每次旅程的照片順序都會重新編排。\n每一幕都是我們真實走過的日子。',
     next: 'intro'
   },
   intro: {
     id: 'intro',
     type: 'intro',
     title: '照片旅程起點',
-    subtitle: '把所有照片串成同一條愛的路線。',
-    body: '從第一張到最後一張，這趟旅程只做一件事：\n好好看見我們的每個瞬間，並把它們串成完整故事。',
+    subtitle: '把所有照片隨機串成同一條愛的路線。',
+    body: '每次進入這段旅程，照片都會以不同順序展開，且同一輪不重複。\n好好看見我們的每個瞬間，並把它們串成完整故事。',
     memory: {
       image: memoryPhotoFiles[0],
       caption: '旅程從第一張照片開始。'

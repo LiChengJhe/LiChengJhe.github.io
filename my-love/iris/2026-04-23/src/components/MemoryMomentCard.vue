@@ -39,7 +39,8 @@ const imageUrl = computed(() => {
 .memory-card__image {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
+  background: linear-gradient(160deg, #fff8f3, #ffeef4);
   display: block;
 }
 
