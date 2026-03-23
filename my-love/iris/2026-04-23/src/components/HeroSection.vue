@@ -50,12 +50,10 @@
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
         <div class="hero__visual-card">
           <p class="hero__visual-kicker">Memory Highlight</p>
-          <div class="hero__visual-frame">
           <img ref="photoElement" class="hero__visual-photo"
             :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
             alt="屬於我們的生日回憶剪影" loading="lazy" />
-            <span class="hero__visual-seal">LOVE</span>
-          </div>
+          <span class="hero__visual-seal">LOVE</span>
           <div class="hero__visual-meta" aria-label="目前照片進度">
             <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
             <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
@@ -387,7 +385,7 @@ onMounted(() => {
 .hero__badge {
   padding: 0.46rem 1.2rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
+  background: linear-gradient(135deg, rgba(235, 121, 162, 0.24), rgba(232, 150, 114, 0.2));
   color: var(--primary-dark);
   font-size: 0.76rem;
   letter-spacing: 0.16em;
@@ -448,7 +446,7 @@ onMounted(() => {
   gap: 0.35rem;
   padding: 0.88rem 0.95rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.62);
+  background: linear-gradient(155deg, rgba(242, 159, 192, 0.22), rgba(248, 184, 150, 0.18));
   border: 1px solid rgba(226, 140, 169, 0.24);
   box-shadow: 0 8px 20px rgba(176, 75, 111, 0.14);
 }
@@ -527,10 +525,11 @@ onMounted(() => {
 }
 
 .hero__visual-card {
+  position: relative;
   width: min(420px, 100%);
   padding: clamp(1rem, 2vw, 1.2rem);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.62);
+  background: linear-gradient(160deg, rgba(242, 148, 186, 0.22), rgba(245, 189, 156, 0.18));
   border: 1px solid rgba(223, 141, 171, 0.24);
   box-shadow: 0 18px 46px rgba(180, 77, 113, 0.22);
   display: grid;
@@ -546,25 +545,14 @@ onMounted(() => {
   color: rgba(81, 39, 57, 0.65);
 }
 
-.hero__visual-frame {
-  position: relative;
-  border-radius: 20px;
-  padding: 0.64rem;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid rgba(224, 148, 178, 0.1);
-  box-shadow: 0 20px 44px rgba(166, 67, 104, 0.2);
-  overflow: hidden;
-  animation: floatSoft 7s ease-in-out infinite;
-}
-
 .hero__visual-photo {
   display: block;
   width: 100%;
   height: clamp(320px, 42vw, 430px);
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 18px;
   box-shadow: 0 18px 36px rgba(51, 28, 46, 0.18);
-  animation: photoGlow 12s ease-in-out infinite;
+  animation: photoGlow 12s ease-in-out infinite, floatSoft 7s ease-in-out infinite;
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
 
@@ -664,7 +652,6 @@ onMounted(() => {
   .hero__blob,
   .hero__particle,
   .hero__title-line--accent,
-  .hero__visual-frame,
   .hero__visual-photo,
   .btn-primary {
     animation-duration: 0.001ms !important;
