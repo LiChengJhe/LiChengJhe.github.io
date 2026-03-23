@@ -1,11 +1,9 @@
 <template>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__background" aria-hidden="true">
-      <div class="hero__gradient"></div>
-      <div class="hero__glow hero__glow--rose"></div>
-      <div class="hero__glow hero__glow--sunrise"></div>
-      <div class="hero__halo hero__halo--outer"></div>
-      <div class="hero__halo hero__halo--inner"></div>
+      <div class="hero__wash"></div>
+      <div class="hero__blob hero__blob--a"></div>
+      <div class="hero__blob hero__blob--b"></div>
     </div>
 
     <div class="hero__particles" aria-hidden="true">
@@ -16,47 +14,53 @@
 
     <div class="hero__grid">
       <div class="hero__content fade-up">
-        <span class="hero__badge" aria-hidden="true">Anniversary · 2026/04/23</span>
-
-        <p class="hero__intro">親愛的{{ nickname }}</p>
-        <div id="hero-title" class="hero__title text-shadow" role="heading" aria-level="2">
-          <span class="hero__title-line">Happy Birthday to You</span>
+        <div class="hero__meta-row">
+          <span class="hero__badge" aria-hidden="true">Birthday Letter · 2026/04/23</span>
+          <span class="hero__chip" aria-hidden="true">For {{ nickname }}</span>
         </div>
-        <p class="hero__days hero__days-know">
-          我們已經認識
-          <span class="hero__metric-value">{{ knownYearDay }}</span>
-        </p>
-        <p class="hero__days hero__days-together">
-          成為戀人的時間長達
-          <span class="hero__metric-value">{{ togetherYearDay }}</span>
-        </p>
+
+        <p class="hero__intro">To {{ nickname }}</p>
+        <div id="hero-title" class="hero__title text-shadow" role="heading" aria-level="2">
+          <span class="hero__title-line">妳的生日</span>
+          <span class="hero__title-line hero__title-line--accent">值得全世界閃閃發亮</span>
+        </div>
+
+        <div class="hero__metrics" role="list" aria-label="重要紀念時間">
+          <p class="hero__metric" role="listitem">
+            <span class="hero__metric-label">我們已經認識</span>
+            <span class="hero__metric-value">{{ knownYearDay }}</span>
+          </p>
+          <p class="hero__metric" role="listitem">
+            <span class="hero__metric-label">成為戀人</span>
+            <span class="hero__metric-value">{{ togetherYearDay }}</span>
+          </p>
+        </div>
+
         <p class="hero__subtitle">
-          有妳在，每一天都是紀念日。<br>
-          我們就像狸貓和河童，彼此陪伴、感情深厚。<br>
-          謝謝妳，讓我的世界變得溫柔又浪漫，<br>
-          妳的陪伴，讓平凡的時光都閃閃發亮。<br>
-          願往後的日子，我都能牽著妳的手，把愛與幸福寫進我們的故事裡。
+          謝謝妳，把我的普通日常變成會發光的風景。<br>
+          妳笑起來的樣子，總能讓我重新喜歡這個世界。<br>
+          未來每一年，我都想陪妳一起慶祝、一起冒險、一起慢慢變老。
         </p>
-        <p class="hero__signature">愛妳的{{ signature }}</p>
+        <p class="hero__signature">永遠站在妳這邊的 {{ signature }}</p>
         <div class="hero__cta">
-          <button class="btn-primary" @click="$emit('start-journey')">展開生日旅程</button>
+          <button class="btn-primary" @click="$emit('start-journey')">開啟專屬生日旅程</button>
         </div>
       </div>
 
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
-        <div class="hero__visual-frame">
-          <div class="hero__visual-halo hero__visual-halo--outer"></div>
-          <div class="hero__visual-halo hero__visual-halo--inner"></div>
+        <div class="hero__visual-card">
+          <p class="hero__visual-kicker">Memory Highlight</p>
+          <div class="hero__visual-frame">
           <img ref="photoElement" class="hero__visual-photo"
             :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
             alt="屬於我們的生日回憶剪影" loading="lazy" />
-          <span class="hero__visual-orb hero__visual-orb--one"></span>
-          <span class="hero__visual-orb hero__visual-orb--two"></span>
-          <span class="hero__visual-spark hero__visual-spark--one"></span>
-          <span class="hero__visual-spark hero__visual-spark--two"></span>
+            <span class="hero__visual-seal">LOVE</span>
+          </div>
+          <div class="hero__visual-meta" aria-label="目前照片進度">
+            <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
+            <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
+          </div>
         </div>
-        <p class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</p>
-
       </div>
     </div>
   </section>
@@ -244,6 +248,12 @@ const getParticleStyle = (particle) => ({
   '--drift': `${particle.drift}px`
 });
 
+const photoTotal = computed(() => photos.length || 1);
+const currentPhotoNumber = computed(() => {
+  if (!photos.length) return 0;
+  return currentPhotoIndex.value + 1;
+});
+
 // 計算認識天數與交往天數
 const knowDate = new Date('2023-02-18T00:00:00');
 const togetherDate = new Date('2023-04-23T00:00:00');
@@ -258,13 +268,18 @@ function getYearDayString(fromDate, nowDate) {
 
 const knownYearDay = computed(() => getYearDayString(knowDate, now.value));
 const togetherYearDay = computed(() => getYearDayString(togetherDate, now.value));
-// 每分鐘更新一次，確保天數即時
-const clockTimer = window.setInterval(() => {
-  now.value = new Date();
-}, 60000);
+let clockTimer = null;
 
 onUnmounted(() => {
-  window.clearInterval(clockTimer);
+  if (clockTimer) {
+    window.clearInterval(clockTimer);
+  }
+});
+
+onMounted(() => {
+  clockTimer = window.setInterval(() => {
+    now.value = new Date();
+  }, 60000);
 });
 </script>
 
@@ -272,73 +287,57 @@ onUnmounted(() => {
 .hero {
   position: relative;
   overflow: hidden;
-  border-radius: 48px;
-  padding: clamp(3.2rem, 7vw, 6.6rem);
+  border-radius: 52px;
+  padding: clamp(2.6rem, 6vw, 5.4rem);
   margin-block-start: clamp(2rem, 5vw, 4rem);
-  background: var(--surface-gradient);
-  box-shadow: 0 40px 120px rgba(244, 93, 144, 0.22);
+  background:
+    linear-gradient(145deg, rgba(255, 250, 245, 0.9), rgba(255, 238, 246, 0.92)),
+    radial-gradient(circle at 14% 18%, rgba(255, 196, 215, 0.2), transparent 42%),
+    radial-gradient(circle at 84% 78%, rgba(255, 218, 190, 0.2), transparent 48%);
+  border: 1px solid rgba(212, 130, 155, 0.22);
+  box-shadow:
+    0 24px 80px rgba(188, 81, 120, 0.18);
   color: var(--primary-dark);
   isolation: isolate;
 }
 
 .hero__background {
   position: absolute;
-  inset: -18% -12% -20%;
+  inset: -14% -8% -16%;
   pointer-events: none;
   overflow: hidden;
   z-index: var(--layer-section-bg);
 }
 
-.hero__gradient {
+.hero__wash {
   position: absolute;
-  inset: -40% -30% 0;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.7), transparent 60%),
-    radial-gradient(circle at 70% 80%, rgba(255, 194, 214, 0.45), transparent 65%);
-  filter: blur(60px);
-  animation: rotateGradient 30s linear infinite;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.65), transparent 45%),
+    radial-gradient(circle at 82% 72%, rgba(255, 199, 224, 0.35), transparent 52%);
 }
 
-.hero__glow {
+.hero__blob {
   position: absolute;
-  width: clamp(280px, 36vw, 420px);
-  height: clamp(280px, 36vw, 420px);
-  border-radius: 50%;
-  filter: blur(45px);
-  opacity: 0.7;
-  animation: pulseGlow 14s ease-in-out infinite;
+  width: clamp(220px, 28vw, 360px);
+  height: clamp(220px, 28vw, 360px);
+  border-radius: 44% 56% 50% 50% / 48% 40% 60% 52%;
+  filter: blur(30px);
+  opacity: 0.65;
+  animation: blobPulse 14s ease-in-out infinite;
 }
 
-.hero__glow--rose {
-  top: -12%;
-  left: -6%;
-  background: radial-gradient(circle, rgba(255, 183, 216, 0.75), transparent 70%);
+.hero__blob--a {
+  top: -4%;
+  left: 0;
+  background: radial-gradient(circle, rgba(255, 187, 220, 0.8), transparent 72%);
 }
 
-.hero__glow--sunrise {
-  bottom: -18%;
-  right: -10%;
-  background: radial-gradient(circle, rgba(255, 236, 200, 0.65), transparent 70%);
+.hero__blob--b {
+  right: 4%;
+  bottom: -4%;
+  background: radial-gradient(circle, rgba(255, 223, 185, 0.75), transparent 72%);
   animation-delay: 4s;
-}
-
-.hero__halo {
-  position: absolute;
-  inset: 15% 22%;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  filter: blur(0.6px);
-  opacity: 0.4;
-  animation: pulseHalo 9s ease-in-out infinite;
-}
-
-.hero__halo--outer {
-  inset: 18% 26%;
-}
-
-.hero__halo--inner {
-  inset: 25% 34%;
-  opacity: 0.25;
-  animation-delay: 3s;
 }
 
 .hero__particles {
@@ -349,14 +348,10 @@ onUnmounted(() => {
 }
 
 .hero__particle {
-  background: linear-gradient(120deg, #f45990 60%, #ffb7d5 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 8px #f45990, 0 0 18px #ffb7d5;
   position: absolute;
-  bottom: -12%;
-  text-shadow: 0 0 18px rgba(255, 180, 210, 0.65);
+  bottom: -8%;
+  color: rgba(236, 92, 145, 0.7);
+  text-shadow: 0 0 20px rgba(255, 179, 214, 0.8);
   animation-name: floatPetalUp;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -374,173 +369,201 @@ onUnmounted(() => {
 
 .hero__content {
   display: grid;
-  gap: 0.5rem;
-  max-width: 34rem;
+  gap: 1.15rem;
+  max-width: 39rem;
 }
 
 .hero__content>* {
   margin: 0;
 }
 
+.hero__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
 .hero__badge {
-  justify-self: flex-start;
-  padding: 0.45rem 1.4rem;
+  padding: 0.46rem 1.2rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.74);
   color: var(--primary-dark);
-  font-size: 0.8rem;
-  letter-spacing: 0.24em;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 600;
-  box-shadow: 0 14px 34px rgba(244, 93, 144, 0.25);
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(244, 93, 144, 0.22);
   backdrop-filter: blur(12px);
 }
 
-.hero__intro {
-  font-size: 1rem;
-  color: rgba(51, 28, 46, 0.72);
-  letter-spacing: 0.08em;
-  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
+.hero__chip {
+  padding: 0.34rem 0.92rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  background: rgba(244, 93, 144, 0.1);
+  color: rgba(80, 33, 54, 0.8);
+  border: 1px solid rgba(244, 93, 144, 0.2);
 }
 
+.hero__intro {
+  font-size: 0.96rem;
+  color: rgba(64, 31, 46, 0.74);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
 
 .hero__title {
-  position: relative;
-  display: inline-grid;
-}
-
-.hero__title-line,
-.hero__subtitle,
-.hero__days-know,
-.hero__days-together {
-  font-size: 1rem;
+  display: grid;
+  gap: 0.2rem;
 }
 
 .hero__title-line {
-  display: inline-block;
-  background: linear-gradient(120deg, rgba(51, 28, 46, 0.88), rgba(244, 93, 144, 0.8));
-  background-size: 220% 220%;
+  font-family: 'Noto Serif TC', 'Songti TC', serif;
+  font-size: clamp(2.1rem, 5.1vw, 3.35rem);
+  line-height: 1.05;
+  color: rgba(62, 26, 44, 0.92);
+  letter-spacing: 0.02em;
+}
+
+.hero__title-line--accent {
+  background: linear-gradient(120deg, rgba(62, 26, 44, 0.85), rgba(229, 84, 136, 0.9));
+  background-size: 180% 180%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 12px 30px rgba(51, 28, 46, 0.16);
-  letter-spacing: 0.02em;
-  animation: titleShimmer 8s ease-in-out infinite;
-  font-weight: 800;
+  animation: titleShimmer 7s ease-in-out infinite;
 }
 
-
-.hero__subtitle,
-.hero__days-know,
-.hero__days-together {
-  font-size: 1rem;
-  color: rgba(51, 28, 46, 0.75);
-  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
+.hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
 }
 
-.hero__days-know,
-.hero__days-together {
-  margin: 0;
+.hero__metric {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.88rem 0.95rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(226, 140, 169, 0.24);
+  box-shadow: 0 8px 20px rgba(176, 75, 111, 0.14);
 }
 
-.hero__days {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-  align-items: baseline;
+.hero__metric-label {
+  font-size: 0.8rem;
+  color: rgba(66, 33, 48, 0.72);
+  letter-spacing: 0.06em;
 }
 
 .hero__metric-value {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.08rem;
   color: var(--primary);
-  letter-spacing: 0.08em;
-  font-family: 'Playfair Display', 'Noto Serif TC', serif;
-  text-shadow: 0 10px 22px rgba(244, 93, 144, 0.25);
+  letter-spacing: 0.03em;
+  font-family: 'Playfair Display', 'Noto Serif TC', 'Times New Roman', serif;
+  text-shadow: 0 8px 18px rgba(244, 93, 144, 0.18);
+}
+
+.hero__subtitle {
+  font-size: 1.03rem;
+  line-height: 1.78;
+  color: rgba(55, 30, 42, 0.8);
+  max-width: 34rem;
+  font-family: 'Noto Serif TC', 'Songti TC', serif;
 }
 
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.4rem;
-}
-
-.btn-primary,
-.btn-secondary {
-  border-radius: 999px;
-  padding: 0.85rem 1.9rem;
-  border: none;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  gap: 0.8rem;
+  margin-top: 0.2rem;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 999px;
+  padding: 0.9rem 1.75rem;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d84f7e, #be3b64 52%, #8d2a4a);
   color: #fff;
-  box-shadow: 0 18px 42px rgba(244, 93, 144, 0.36);
+  box-shadow: 0 14px 30px rgba(200, 76, 122, 0.36);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(244, 93, 144, 0.45);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 20px 42px rgba(200, 76, 122, 0.42);
+  filter: saturate(1.08);
 }
 
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--primary-dark);
-  box-shadow: 0 16px 36px rgba(255, 194, 214, 0.4);
-  backdrop-filter: blur(8px);
-}
-
-.btn-secondary:hover,
-.btn-secondary:focus-visible {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 18px 44px rgba(255, 194, 214, 0.48);
-}
-
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 3px;
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.74);
+  outline-offset: 2px;
 }
 
 .hero__signature {
   font-size: 1rem;
-  color: var(--primary-dark);
-  letter-spacing: 0.08em;
-  font-family: 'Noto Serif TC', 'Noto Sans TC', 'PingFang TC', serif;
+  color: rgba(66, 33, 49, 0.82);
+  letter-spacing: 0.06em;
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
 }
 
 .hero__visual {
   position: relative;
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
   justify-items: center;
+}
+
+.hero__visual-card {
+  width: min(420px, 100%);
+  padding: clamp(1rem, 2vw, 1.2rem);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(223, 141, 171, 0.24);
+  box-shadow: 0 18px 46px rgba(180, 77, 113, 0.22);
+  display: grid;
+  gap: 0.85rem;
+  backdrop-filter: blur(12px);
+}
+
+.hero__visual-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(81, 39, 57, 0.65);
 }
 
 .hero__visual-frame {
   position: relative;
-  padding: clamp(1.4rem, 3vw, 2rem);
-  border-radius: 36px;
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 26px 70px rgba(244, 93, 144, 0.28);
-  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 0.64rem;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(224, 148, 178, 0.1);
+  box-shadow: 0 20px 44px rgba(166, 67, 104, 0.2);
   overflow: hidden;
-  animation: floatSoft 6s ease-in-out infinite;
+  animation: floatSoft 7s ease-in-out infinite;
 }
 
 .hero__visual-photo {
   display: block;
-  width: clamp(220px, 28vw, 320px);
-  height: clamp(260px, 34vw, 380px);
+  width: 100%;
+  height: clamp(320px, 42vw, 430px);
   object-fit: cover;
-  border-radius: 28px;
-  box-shadow: 0 24px 50px rgba(51, 28, 46, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 18px 36px rgba(51, 28, 46, 0.18);
   animation: photoGlow 12s ease-in-out infinite;
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
@@ -551,77 +574,52 @@ onUnmounted(() => {
   filter: blur(8px);
 }
 
-.hero__visual-halo {
+.hero__visual-seal {
   position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 32px;
-  inset: clamp(0.6rem, 1.4vw, 1.4rem);
-  opacity: 0.45;
-  animation: pulseHalo 8s ease-in-out infinite;
-}
-
-.hero__visual-halo--inner {
-  inset: clamp(1.4rem, 2vw, 1.9rem);
-  opacity: 0.25;
-  animation-delay: 2.2s;
-}
-
-.hero__visual-orb {
-  position: absolute;
-  width: 68px;
-  height: 68px;
+  right: 1rem;
+  bottom: 1rem;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 209, 231, 0.6), transparent 70%);
-  filter: blur(6px);
-  animation: orbDrift 7s ease-in-out infinite;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 30%, #ffe8f1, #ea6e9b 70%);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(185, 64, 105, 0.4);
+  transform: rotate(-11deg);
 }
 
-.hero__visual-orb--one {
-  top: 8%;
-  right: 6%;
+.hero__visual-meta {
+  display: grid;
+  gap: 0.3rem;
 }
 
-.hero__visual-orb--two {
-  bottom: 10%;
-  left: 8%;
-  animation-delay: 3s;
-}
-
-.hero__visual-spark {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
-  animation: sparkFlash 2.4s ease-in-out infinite;
-}
-
-.hero__visual-spark--one {
-  top: 18%;
-  left: 20%;
-}
-
-.hero__visual-spark--two {
-  bottom: 16%;
-  right: 24%;
-  animation-delay: 1.1s;
+.hero__visual-count {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: rgba(82, 39, 58, 0.66);
+  text-transform: uppercase;
 }
 
 .hero__visual-caption {
   margin: 0;
-  font-size: 1rem;
-  color: rgba(51, 28, 46, 0.65);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(59, 30, 43, 0.78);
 }
 
 @media (max-width: 960px) {
   .hero {
-    padding: clamp(2.8rem, 10vw, 4.6rem);
+    border-radius: 34px;
+    padding: clamp(2.4rem, 8vw, 3.8rem);
   }
 
-  .hero__badge {
-    justify-self: center;
+  .hero__meta-row {
+    justify-content: center;
   }
 
   .hero__content {
@@ -633,81 +631,59 @@ onUnmounted(() => {
     max-width: 36rem;
   }
 
-  .hero__signature {
-    justify-self: center;
+  .hero__visual-card {
+    width: min(460px, 100%);
   }
 }
 
 @media (max-width: 640px) {
+  .hero {
+    border-radius: 28px;
+    padding: 2rem 1.2rem;
+  }
+
+  .hero__title-line {
+    font-size: clamp(1.85rem, 9vw, 2.6rem);
+  }
+
+  .hero__metrics {
+    grid-template-columns: 1fr;
+  }
+
   .hero__cta {
     justify-content: center;
   }
 
   .hero__visual-photo {
-    width: clamp(200px, 70vw, 260px);
-    height: clamp(240px, 82vw, 320px);
+    height: clamp(260px, 70vw, 340px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-  .hero__gradient,
-  .hero__glow,
-  .hero__halo,
+  .hero__blob,
   .hero__particle,
-  .hero__title-line,
-  .hero__title-orb,
+  .hero__title-line--accent,
   .hero__visual-frame,
   .hero__visual-photo,
-  .hero__visual-orb,
-  .hero__visual-spark,
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }
 
-@keyframes rotateGradient {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-
-  50% {
-    transform: rotate(180deg) scale(1.04);
-  }
-
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@keyframes pulseGlow {
+@keyframes blobPulse {
 
   0%,
   100% {
-    transform: scale(0.96);
+    transform: scale(0.94) rotate(0deg);
     opacity: 0.65;
   }
 
   50% {
-    transform: scale(1.08);
+    transform: scale(1.05) rotate(8deg);
     opacity: 0.82;
-  }
-}
-
-@keyframes pulseHalo {
-
-  0%,
-  100% {
-    opacity: 0.24;
-    transform: scale(0.96);
-  }
-
-  50% {
-    opacity: 0.45;
-    transform: scale(1.05);
   }
 }
 
@@ -731,7 +707,7 @@ onUnmounted(() => {
 
   0%,
   100% {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
   }
 
   50% {
@@ -739,46 +715,20 @@ onUnmounted(() => {
   }
 }
 
-@keyframes orbDrift {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(0.9);
-  }
-
-  50% {
-    transform: translate3d(10px, -14px, 0) scale(1.05);
-  }
-}
-
 @keyframes titleShimmer {
   0% {
-    filter: drop-shadow(0 0 0 rgba(244, 93, 144, 0.2));
+    filter: drop-shadow(0 0 0 rgba(233, 90, 139, 0.2));
     background-position: 0% 50%;
   }
 
   50% {
-    filter: drop-shadow(0 10px 24px rgba(244, 93, 144, 0.25));
+    filter: drop-shadow(0 8px 20px rgba(233, 90, 139, 0.25));
     background-position: 100% 50%;
   }
 
   100% {
-    filter: drop-shadow(0 0 0 rgba(244, 93, 144, 0.2));
+    filter: drop-shadow(0 0 0 rgba(233, 90, 139, 0.2));
     background-position: 0% 50%;
-  }
-}
-
-@keyframes sparkFlash {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
   }
 }
 
