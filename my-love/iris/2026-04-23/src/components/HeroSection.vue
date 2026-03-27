@@ -15,14 +15,14 @@
     <div class="hero__grid">
       <div class="hero__content fade-up">
         <div class="hero__meta-row">
-          <span class="hero__badge" aria-hidden="true">Birthday Letter · 2026/04/23</span>
+          <span class="hero__badge" aria-hidden="true">Anniversary Letter · 2026/04/23</span>
           <span class="hero__chip" aria-hidden="true">For {{ nickname }}</span>
         </div>
 
         <p class="hero__intro">To {{ nickname }}</p>
         <div id="hero-title" class="hero__title text-shadow" role="heading" aria-level="2">
-          <span class="hero__title-line">妳的生日</span>
-          <span class="hero__title-line hero__title-line--accent">值得全世界閃閃發亮</span>
+          <span class="hero__title-line">我們的紀念日</span>
+          <span class="hero__title-line hero__title-line--accent">值得把未來裝進驚喜裡</span>
         </div>
 
         <div class="hero__metrics" role="list" aria-label="重要紀念時間">
@@ -39,11 +39,12 @@
         <p class="hero__subtitle">
           謝謝妳，把我的普通日常變成會發光的風景。<br>
           妳笑起來的樣子，總能讓我重新喜歡這個世界。<br>
-          未來每一年，我都想陪妳一起慶祝、一起冒險、一起慢慢變老。
+          今天我會送妳一個戒指盒，裡面先放進機票和旅遊行程，
+          讓我們把下一段冒險，從這個紀念日一起出發。
         </p>
         <p class="hero__signature">永遠站在妳這邊的 {{ signature }}</p>
         <div class="hero__cta">
-          <button class="btn-primary" @click="$emit('start-journey')">開啟專屬生日旅程</button>
+          <button class="btn-primary" @click="$emit('start-journey')">開啟專屬紀念日旅程</button>
         </div>
       </div>
 
