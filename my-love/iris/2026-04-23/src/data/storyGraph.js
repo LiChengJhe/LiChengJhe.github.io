@@ -147,6 +147,35 @@ const photoNarrativeByFile = {
   }
 };
 
+const photoAlbumLinkByFile = {
+  '1.png': 'https://photos.app.goo.gl/8p5U6FeFHDNoLFqJA',
+  '2.png': 'https://photos.app.goo.gl/5oBvJCjm41Su2yJNA',
+  '3.png': 'https://photos.app.goo.gl/SB9D8StRpEHNUU2y9',
+  '4.png': 'https://photos.app.goo.gl/UhCPtCqtFXiffEJTA',
+  '5.png': 'https://photos.app.goo.gl/fVpC4N6TMu7XGBZN9',
+  '6.png': 'https://photos.app.goo.gl/U1JPusCXg5y7ap63A',
+  '7.png': 'https://photos.app.goo.gl/RaaxUVPZ682Jo5BC6',
+  '8.png': 'https://photos.app.goo.gl/TR1Yvin5TrsZDjHF7',
+  '9.png': 'https://photos.app.goo.gl/YS88JpdHZofXfzQn7',
+  '10.png': 'https://photos.app.goo.gl/qxfK7HBQJdenoB5S8',
+  '11.png': 'https://photos.app.goo.gl/Fk1eDj66jYYw4uWp6',
+  '12.png': 'https://photos.app.goo.gl/8rcaomivS85jsys46',
+  '13.png': 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39',
+  '14.png': 'https://photos.app.goo.gl/ykdDiHNNSTfp9b5m7',
+  '15.png': 'https://photos.app.goo.gl/WgyScc4DPgvFAiCu5',
+  '16.png': 'https://photos.app.goo.gl/tdf1dApuzzG7g1p79',
+  '17.png': 'https://photos.app.goo.gl/b5x9385ehokV814J9',
+  '18.png': 'https://photos.app.goo.gl/2HU8UipwvAVe2Yyf7',
+  '19.png': 'https://photos.app.goo.gl/A8cpWCi23ZWMakUi9',
+  '1.jpg': 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8',
+  '2.jpg': 'https://photos.app.goo.gl/1wgLYSvp7Jkktsm16',
+  '3.jpg': 'https://photos.app.goo.gl/DCww3eu6ioVjdkru6',
+  '4.jpg': 'https://photos.app.goo.gl/nmFQshtq9XqDfTpx7',
+  '5.jpg': 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9',
+  '6.jpg': 'https://photos.app.goo.gl/QgyhZKSLjwCwVrie9',
+  '7.jpg': 'https://photos.app.goo.gl/gWYbFpK2RoGbMtfs6'
+};
+
 const createPhotoNodeId = (index) => `photo-${String(index + 1).padStart(2, '0')}`;
 
 const photoJourneyNodes = Object.fromEntries(
@@ -169,7 +198,8 @@ const photoJourneyNodes = Object.fromEntries(
         body: narrative.body,
         memory: {
           image,
-          caption: narrative.caption
+          caption: narrative.caption,
+          link: photoAlbumLinkByFile[image]
         },
         next
       }
@@ -194,7 +224,8 @@ export const storyGraph = {
     body: '每次進入這段旅程，照片都會以不同順序展開，且同一輪不重複。\n好好看見我們的每個瞬間，並把它們串成完整故事。',
     memory: {
       image: memoryPhotoFiles[0],
-      caption: '從第一張照片開始，我們把故事一幕一幕走完。'
+      caption: '從第一張照片開始，我們把故事一幕一幕走完。',
+      link: photoAlbumLinkByFile[memoryPhotoFiles[0]]
     },
     next: createPhotoNodeId(0)
   },
@@ -207,7 +238,8 @@ export const storyGraph = {
     body: '我一直記得上次我們一起去做戒指，妳低頭認真打磨的樣子，到現在想起來還是會心動。\n這次想補上的，是屬於我們的戒指盒，裡面放著兩張機票和悄悄準備的旅遊行程：10/08 從台北飛往大阪，10/13 再一起回來。\n我想把「我愛妳」寫成一段真正能一起走過的路，從今天開始，去看更大的世界，也把彼此放進更長的未來。',
     memory: {
       image: memoryPhotoFiles[memoryPhotoFiles.length - 1],
-      caption: '從一起做戒指的那天，到台北與大阪的這趟旅程，我想陪妳把未來一段段走完。'
+      caption: '從一起做戒指的那天，到台北與大阪的這趟旅程，我想陪妳把未來一段段走完。',
+      link: photoAlbumLinkByFile[memoryPhotoFiles[memoryPhotoFiles.length - 1]]
     },
     next: 'credits'
   },
@@ -218,7 +250,8 @@ export const storyGraph = {
     body: '謝謝妳，一路走到這裡。\n妳讓我的每一天都有了想奔赴的方向，\n這次我先把承諾放進機票與行程裡，\n等我們從大阪回來，再用更多照片，把我們的故事繼續寫下去。',
     memory: {
       image: '8.png',
-      caption: '留一張花影作為下次旅程的約定。'
+      caption: '留一張花影作為下次旅程的約定。',
+      link: photoAlbumLinkByFile['8.png']
     }
   }
 };

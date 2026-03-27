@@ -108,8 +108,7 @@ const resolveMemoryImage = (fileName) => {
 
 // 載入 hero 資料夾中的原本照片
 const heroPhotos = [
-  resolveHeroImage('1.png'),
-  resolveHeroImage('1.jpg')
+  resolveHeroImage('1.png')
 ].filter(Boolean);
 
 // 載入 memories 資料夾中的全部照片

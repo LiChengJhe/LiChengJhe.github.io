@@ -1,7 +1,19 @@
 <template>
   <figure v-if="memory" class="memory-card">
-    <img class="memory-card__image" :src="imageUrl" :alt="memory.caption" loading="lazy" />
-    <figcaption class="memory-card__caption">{{ memory.caption }}</figcaption>
+    <a
+      v-if="memory.link"
+      class="memory-card__image-link"
+      :href="memory.link"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="開啟相簿"
+    >
+      <img class="memory-card__image memory-card__image--clickable" :src="imageUrl" :alt="memory.caption" loading="lazy" />
+    </a>
+    <img v-else class="memory-card__image" :src="imageUrl" :alt="memory.caption" loading="lazy" />
+    <figcaption class="memory-card__caption">
+      <p>{{ memory.caption }}</p>
+    </figcaption>
   </figure>
 </template>
 
@@ -44,9 +56,21 @@ const imageUrl = computed(() => {
   display: block;
 }
 
+.memory-card__image-link {
+  display: block;
+}
+
+.memory-card__image--clickable {
+  cursor: pointer;
+}
+
 .memory-card__caption {
   padding: 0.85rem 1rem 1rem;
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+.memory-card__caption p {
+  margin: 0;
 }
 </style>
