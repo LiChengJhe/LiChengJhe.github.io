@@ -171,8 +171,17 @@ export const photoNarrativeByFile = {
 };
 
 const memoryPhotoFiles = Object.keys(photoNarrativeByFile);
-const introPreviewImage = memoryPhotoFiles[0] || '';
-const scenePhotoFiles = memoryPhotoFiles.slice(1);
+const preferredIntroImage = '3.png';
+const introPreviewImage = photoNarrativeByFile[preferredIntroImage]
+  ? preferredIntroImage
+  : (memoryPhotoFiles[0] || '');
+const introNarrative = photoNarrativeByFile[introPreviewImage] || {
+  subtitle: '把所有照片依序串成同一條愛的路線。',
+  body: '好好看見我們的每個瞬間，並把它們串成完整故事。',
+  caption: '先用這張作為旅程起點，下一幕會從第二張回憶展開，避免重複。',
+  link: ''
+};
+const scenePhotoFiles = memoryPhotoFiles.filter((file) => file !== introPreviewImage);
 
 const createPhotoNodeId = (index) => `photo-${String(index + 1).padStart(2, '0')}`;
 
@@ -219,12 +228,12 @@ export const storyGraph = {
     id: 'intro',
     type: 'intro',
     title: '照片旅程起點',
-    subtitle: '把所有照片依序串成同一條愛的路線。',
-    body: '好好看見我們的每個瞬間，並把它們串成完整故事。',
+    subtitle: introNarrative.subtitle,
+    body: introNarrative.body,
     memory: {
       image: introPreviewImage,
-      caption: '先用這張作為旅程起點，下一幕會從第二張回憶展開，避免重複。',
-      link: photoNarrativeByFile[introPreviewImage]?.link || ''
+      caption: introNarrative.caption,
+      link: introNarrative.link
     },
     next: scenePhotoFiles.length ? createPhotoNodeId(0) : 'finale'
   },
@@ -234,11 +243,11 @@ export const storyGraph = {
     type: 'finale',
     title: '我們的未來，現在開始',
     subtitle: '所有照片，最後都回到同一個心願。',
-    body: '我一直記得上次我們一起去做戒指，妳低頭認真打磨的樣子，到現在想起來還是會心動。\n這次想補上屬於我們的專屬戒指盒，裡面放著兩張機票和悄悄準備的旅遊行程：10/08 從台北飛往大阪，10/13 再一起回來。\n我想把「我愛妳」寫成一段真正能一起走過的路，從今天開始，去看更大的世界，也把彼此放進更長的未來。',
+    body: '我一直記得上次我們一起去做戒指，妳低頭認真打磨的樣子，到現在想起來還是會心動。\n以前我總是寫寫卡片、送送禮物、做做網頁，想把愛意好好說給妳聽；這一次，我想把心意再往前走一步，準備了屬於我們的專屬戒指盒，裡面放著兩張機票和悄悄規劃的旅遊行程：10/08 從台北飛往大阪，10/13 再一起回來。\n我想把「我愛妳」寫成一段能和妳一起走過的路，從今天開始，去看更大的世界，也把彼此放進更長的未來。',
     memory: {
-      image: memoryPhotoFiles[memoryPhotoFiles.length - 1],
+      image: '20.png',
       caption: '從一起做戒指的那天，到台北與大阪的這趟旅程，我想陪妳把未來一段段走完。',
-      link: photoNarrativeByFile[memoryPhotoFiles[memoryPhotoFiles.length - 1]]?.link || ''
+      link: photoNarrativeByFile['20.png']?.link || ''
     },
     next: 'credits'
   },
@@ -248,9 +257,9 @@ export const storyGraph = {
     title: '照片仍在延伸',
     body: '謝謝妳，一路走到這裡。\n妳讓我的每一天都有了想奔赴的方向，\n這次我先把承諾放進機票與行程裡，\n等我們從大阪回來，再用更多照片，把我們的故事繼續寫下去。',
     memory: {
-      image: '8.png',
-      caption: '留一張花影作為下次旅程的約定。',
-      link: photoNarrativeByFile['8.png']?.link || ''
+      image: '3.png',
+      caption: '把第一次在日本的合影，留作我們故事延伸的起點。',
+      link: photoNarrativeByFile['3.png']?.link || ''
     }
   }
 };
