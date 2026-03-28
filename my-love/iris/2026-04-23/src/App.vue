@@ -32,6 +32,7 @@
     </main>
 
     <ChapterNavigator
+      v-if="currentNode.type !== 'hero'"
       :disable-previous="!canGoPrevious"
       :disable-next="!canGoNext"
       :disable-home="!canGoHome"
