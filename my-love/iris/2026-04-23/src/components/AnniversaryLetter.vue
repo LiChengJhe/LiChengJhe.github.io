@@ -896,7 +896,8 @@ onMounted(() => {
 
 @media (max-width: 520px) {
   .hero__metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .hero__visual-meta {
