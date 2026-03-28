@@ -4,18 +4,15 @@
 
     <header class="journey-header">
       <div class="journey-header__card">
+        <span class="journey-header__orb journey-header__orb--left" aria-hidden="true"></span>
+        <span class="journey-header__orb journey-header__orb--right" aria-hidden="true"></span>
         <p class="journey-header__eyebrow">Anniversary · 2026/04/23</p>
         <h1 class="journey-header__title">櫻花結緣物語</h1>
         <p class="journey-header__meta">
-          已解鎖篇章 {{ visitedCount }} / {{ totalNodes }}
+          已解鎖篇章 <strong>{{ visitedCount }}</strong> / <strong>{{ totalNodes }}</strong>
         </p>
 
-        <div class="journey-header__stats" aria-hidden="true">
-          <span class="journey-header__pill">已解鎖 <strong>{{ visitedCount }}</strong></span>
-          <span class="journey-header__pill">總篇章 <strong>{{ totalNodes }}</strong></span>
-        </div>
-
-        <div class="journey-progress-wrap" aria-hidden="true">
+        <div class="journey-progress-wrap">
           <div class="journey-progress__pair" :style="{ left: `${runnerPercent}%` }">
             <svg class="journey-progress__pair-svg" viewBox="0 0 64 28" role="presentation" focusable="false">
               <circle cx="18" cy="7" r="3" />
@@ -191,16 +188,19 @@ onBeforeUnmount(() => {
 
 .journey-header__card {
   position: relative;
+  overflow: hidden;
   text-align: center;
-  padding: clamp(1rem, 3vw, 1.6rem) clamp(0.95rem, 4vw, 2rem) 1.1rem;
+  padding: clamp(1rem, 3vw, 1.75rem) clamp(0.95rem, 4vw, 2rem) 1.2rem;
   border-radius: 28px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.5), rgba(255, 237, 244, 0.36)),
-    radial-gradient(circle at 12% 0%, rgba(255, 206, 225, 0.26), transparent 42%);
-  border: 1px solid rgba(218, 137, 170, 0.3);
+    linear-gradient(155deg, rgba(255, 255, 255, 0.62), rgba(255, 237, 244, 0.42) 52%, rgba(253, 230, 208, 0.4)),
+    radial-gradient(circle at 12% 0%, rgba(255, 206, 225, 0.28), transparent 42%),
+    radial-gradient(circle at 92% 100%, rgba(255, 210, 189, 0.24), transparent 44%);
+  border: 1px solid rgba(218, 137, 170, 0.34);
   box-shadow:
-    0 18px 42px rgba(168, 75, 113, 0.16),
+    0 18px 42px rgba(168, 75, 113, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
 }
 
 .journey-header__card::before {
@@ -212,55 +212,81 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
+.journey-header__card::after {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto -20%;
+  width: 55%;
+  height: 170%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0));
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+.journey-header__orb {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.journey-header__orb--left {
+  top: -64px;
+  left: -48px;
+  background: radial-gradient(circle, rgba(255, 176, 206, 0.36), rgba(255, 176, 206, 0));
+}
+
+.journey-header__orb--right {
+  right: -52px;
+  bottom: -74px;
+  background: radial-gradient(circle, rgba(255, 206, 170, 0.28), rgba(255, 206, 170, 0));
+}
+
 .journey-header__eyebrow {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.26rem 0.74rem;
+  padding: 0.3rem 0.78rem;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #8a4f5d;
-  background: rgba(255, 242, 247, 0.84);
+  background: rgba(255, 242, 247, 0.9);
   border: 1px solid rgba(222, 153, 181, 0.35);
 }
 
 .journey-header__title {
+  position: relative;
+  z-index: 1;
   margin-top: 0.35rem;
   font-size: clamp(1.4rem, 3.8vw, 2.2rem);
   line-height: 1.1;
+  color: #8b344f;
+  letter-spacing: 0.01em;
   text-shadow: 0 14px 24px rgba(184, 82, 122, 0.16);
 }
 
 .journey-header__meta {
-  margin-top: 0.4rem;
-  color: #7d5660;
-}
-
-.journey-header__stats {
-  margin-top: 0.7rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  justify-content: center;
-}
-
-.journey-header__pill {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.3rem;
-  padding: 0.28rem 0.72rem;
+  position: relative;
+  z-index: 1;
+  margin: 0.56rem auto 0;
+  width: fit-content;
+  padding: 0.24rem 0.72rem;
   border-radius: 999px;
-  background: linear-gradient(120deg, rgba(247, 186, 208, 0.32), rgba(249, 211, 186, 0.3));
-  border: 1px solid rgba(217, 128, 165, 0.3);
-  color: #83505f;
-  font-size: 0.8rem;
+  color: #74424f;
+  font-size: 0.9rem;
+  background: rgba(255, 245, 249, 0.75);
+  border: 1px solid rgba(219, 157, 182, 0.34);
 }
 
-.journey-header__pill strong {
-  font-size: 0.88rem;
-  color: #c84574;
+.journey-header__meta strong {
+  color: #c44573;
 }
 
 .journey-header__hint {
@@ -270,9 +296,11 @@ onBeforeUnmount(() => {
 }
 
 .journey-progress-wrap {
-  margin: 0.75rem auto 0;
-  width: min(640px, 100%);
   position: relative;
+  z-index: 1;
+  margin: 0.9rem auto 0;
+  padding-top: 0.25rem;
+  width: min(640px, 100%);
 }
 
 .journey-progress {
@@ -305,7 +333,7 @@ onBeforeUnmount(() => {
 .journey-progress__pair {
   position: absolute;
   top: 0;
-  transform: translate(-50%, -82%);
+  transform: translate(-50%, -52%);
   transition: left 0.38s ease;
   pointer-events: none;
   filter: drop-shadow(0 0.5px 1px rgba(124, 52, 78, 0.2));
@@ -339,12 +367,17 @@ onBeforeUnmount(() => {
 }
 
 .journey-progress__label {
-  margin-top: 0.4rem;
-  font-size: 0.88rem;
-  color: #7d5761;
+  margin-top: 0.48rem;
+  width: fit-content;
+  padding: 0.2rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  color: #7a4e5a;
   display: inline-flex;
   align-items: baseline;
   gap: 0.4rem;
+  background: rgba(255, 242, 247, 0.72);
+  border: 1px solid rgba(219, 157, 182, 0.3);
 }
 
 .journey-progress__label strong {
@@ -380,6 +413,10 @@ main {
 
   .journey-header__title {
     font-size: clamp(1.2rem, 6vw, 1.7rem);
+  }
+
+  .journey-header__meta {
+    font-size: 0.82rem;
   }
 
   .journey-progress {
