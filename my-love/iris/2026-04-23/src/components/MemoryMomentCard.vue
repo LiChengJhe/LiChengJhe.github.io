@@ -27,6 +27,7 @@
       />
     </div>
     <figcaption class="memory-card__caption">
+      <p class="memory-card__date">{{ memoryDate }}</p>
       <p>{{ memory.caption }}</p>
     </figcaption>
   </figure>
@@ -50,6 +51,10 @@ const memoryImages = import.meta.glob('../assets/memories/*', {
 const imageUrl = computed(() => {
   if (!props.memory?.image) return '';
   return memoryImages[`../assets/memories/${props.memory.image}`] || '';
+});
+
+const memoryDate = computed(() => {
+  return props.memory?.date || '拍攝日期待補';
 });
 
 const orientation = ref(null);
@@ -118,5 +123,12 @@ const orientationClass = computed(() => {
 
 .memory-card__caption p {
   margin: 0;
+}
+
+.memory-card__date {
+  margin: 0 0 0.2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: rgba(127, 72, 90, 0.78);
 }
 </style>
