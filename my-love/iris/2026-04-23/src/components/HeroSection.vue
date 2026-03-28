@@ -352,8 +352,8 @@ onMounted(() => {
 
 .hero__title-line {
   font-family: 'Noto Serif TC', 'Songti TC', serif;
-  font-size: clamp(2.1rem, 5.1vw, 3.35rem);
-  line-height: 1.05;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.15;
   color: rgba(62, 26, 44, 0.92);
   letter-spacing: 0.02em;
 }
@@ -529,7 +529,7 @@ onMounted(() => {
   }
 
   .hero__title-line {
-    font-size: clamp(1.85rem, 9vw, 2.6rem);
+    font-size: clamp(1.05rem, 5vw, 1.4rem);
   }
 
   .hero__metrics {
