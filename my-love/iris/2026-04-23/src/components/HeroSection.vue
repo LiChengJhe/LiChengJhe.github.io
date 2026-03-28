@@ -467,8 +467,8 @@ onMounted(() => {
 .hero__visual-photo {
   display: block;
   width: 100%;
-  height: clamp(320px, 42vw, 430px);
-  object-fit: cover;
+  height: auto;
+  object-fit: fill;
   border-radius: 18px;
   box-shadow: 0 18px 36px rgba(51, 28, 46, 0.18);
   animation: photoGlow 12s ease-in-out infinite, floatSoft 7s ease-in-out infinite;
@@ -541,7 +541,7 @@ onMounted(() => {
   }
 
   .hero__visual-photo {
-    height: clamp(260px, 70vw, 340px);
+    width: 100%;
   }
 }
 

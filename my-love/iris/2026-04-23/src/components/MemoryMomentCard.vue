@@ -88,18 +88,16 @@ const orientationClass = computed(() => {
   display: block;
 }
 
-/* 橫式照片：填滿寬度，固定高度裁切 */
+/* 橫式照片：完整顯示不裁切 */
 .memory-card__image--landscape {
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
-/* 直式照片：完整顯示不裁切，置中 */
+/* 直式照片：完整顯示不裁切 */
 .memory-card__image--portrait {
-  object-fit: contain;
-  width: auto;
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  height: auto;
 }
 
 .memory-card__image-link {
