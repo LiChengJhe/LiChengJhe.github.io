@@ -15,8 +15,29 @@
           <span class="journey-header__pill">總篇章 <strong>{{ totalNodes }}</strong></span>
         </div>
 
-        <div class="journey-progress" role="progressbar" :aria-valuemin="0" :aria-valuemax="100" :aria-valuenow="progressPercent">
-          <div class="journey-progress__fill" :style="{ width: `${progressPercent}%` }"></div>
+        <div class="journey-progress-wrap" aria-hidden="true">
+          <div class="journey-progress__pair" :style="{ left: `${runnerPercent}%` }">
+            <svg class="journey-progress__pair-svg" viewBox="0 0 64 28" role="presentation" focusable="false">
+              <circle cx="18" cy="7" r="3" />
+              <line x1="18" y1="10" x2="18" y2="17" />
+              <line x1="18" y1="12" x2="25" y2="14" />
+              <line x1="18" y1="12" x2="12" y2="14" />
+              <line class="journey-progress__leg-a" x1="18" y1="17" x2="14" y2="24" />
+              <line class="journey-progress__leg-b" x1="18" y1="17" x2="23" y2="24" />
+
+              <circle cx="36" cy="7" r="3" />
+              <line x1="36" y1="10" x2="36" y2="17" />
+              <line x1="36" y1="12" x2="29" y2="14" />
+              <line x1="36" y1="12" x2="42" y2="14" />
+              <line class="journey-progress__leg-b" x1="36" y1="17" x2="32" y2="24" />
+              <line class="journey-progress__leg-a" x1="36" y1="17" x2="41" y2="24" />
+
+              <line class="journey-progress__hand-link" x1="25" y1="14" x2="29" y2="14" />
+            </svg>
+          </div>
+          <div class="journey-progress" role="progressbar" :aria-valuemin="0" :aria-valuemax="100" :aria-valuenow="progressPercent">
+            <div class="journey-progress__fill" :style="{ width: `${progressPercent}%` }"></div>
+          </div>
         </div>
         <p class="journey-progress__label">
           <span>旅程進度</span>
@@ -73,6 +94,7 @@ const {
 const totalNodes = computed(() => Math.max(1, Object.keys(storyGraph).length - 1));
 const visitedCount = computed(() => Math.max(0, visitedNodeCount.value - 1));
 const progressPercent = computed(() => Math.round((visitedCount.value / totalNodes.value) * 100));
+const runnerPercent = computed(() => Math.min(96, Math.max(4, progressPercent.value)));
 
 const canGoPrevious = computed(() => canGoBack.value);
 const canGoNext = computed(() => Boolean(currentNode.value.next));
@@ -247,9 +269,14 @@ onBeforeUnmount(() => {
   font-size: 0.92rem;
 }
 
-.journey-progress {
+.journey-progress-wrap {
   margin: 0.75rem auto 0;
   width: min(640px, 100%);
+  position: relative;
+}
+
+.journey-progress {
+  width: 100%;
   height: 11px;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 218, 230, 0.74), rgba(255, 224, 205, 0.7));
@@ -273,6 +300,42 @@ onBeforeUnmount(() => {
   inset: 0;
   background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.36) 45%, transparent 78%);
   animation: progressSweep 2.4s linear infinite;
+}
+
+.journey-progress__pair {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -82%);
+  transition: left 0.38s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 0.5px 1px rgba(124, 52, 78, 0.2));
+}
+
+.journey-progress__pair-svg {
+  width: 44px;
+  height: 20px;
+  overflow: visible;
+  fill: none;
+  stroke: #9f4f69;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: pairJog 0.65s ease-in-out infinite;
+}
+
+.journey-progress__hand-link {
+  stroke: #c94f79;
+  stroke-width: 2.2;
+}
+
+.journey-progress__leg-a {
+  animation: pairLegA 0.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.journey-progress__leg-b {
+  animation: pairLegB 0.5s ease-in-out infinite;
+  transform-origin: center;
 }
 
 .journey-progress__label {
@@ -331,6 +394,39 @@ main {
 
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes pairJog {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes pairLegA {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes pairLegB {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
   }
 }
 </style>
