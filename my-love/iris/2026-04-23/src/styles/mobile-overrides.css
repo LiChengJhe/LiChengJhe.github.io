@@ -26,11 +26,6 @@
     line-height: 1.72;
   }
 
-  .choices {
-    gap: 0.6rem;
-  }
-
-  .choice-btn,
   .chapter-nav__btn {
     min-height: 52px;
     font-size: 1rem;
@@ -41,14 +36,6 @@
     line-height: 1.55;
   }
 
-  .lightbox {
-    padding: 1rem 0.8rem calc(1.2rem + env(safe-area-inset-bottom));
-  }
-
-  .lightbox__content {
-    border-radius: 24px;
-    padding: 1.2rem 1rem;
-  }
 }
 
 @media (max-width: 420px) {

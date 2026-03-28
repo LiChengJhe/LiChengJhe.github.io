@@ -201,25 +201,13 @@ export const photoNarrativeByFile = {
 };
 
 const memoryPhotoFiles = Object.keys(photoNarrativeByFile);
-const preferredIntroImage = '3.png';
-const introPreviewImage = photoNarrativeByFile[preferredIntroImage]
-  ? preferredIntroImage
-  : (memoryPhotoFiles[0] || '');
-const introNarrative = photoNarrativeByFile[introPreviewImage] || {
-  subtitle: '把所有照片依序串成同一條愛的路線。',
-  body: '好好看見我們的每個瞬間，並把它們串成完整故事。',
-  caption: '先用這張作為旅程起點，下一幕會從第二張回憶展開，避免重複。',
-  date: defaultPhotoDate,
-  link: ''
-};
-const scenePhotoFiles = memoryPhotoFiles.filter((file) => file !== introPreviewImage);
 
 const createPhotoNodeId = (index) => `photo-${String(index + 1).padStart(2, '0')}`;
 
 const photoJourneyNodes = Object.fromEntries(
-  scenePhotoFiles.map((image, index) => {
+  memoryPhotoFiles.map((image, index) => {
     const id = createPhotoNodeId(index);
-    const next = index === scenePhotoFiles.length - 1 ? 'finale' : createPhotoNodeId(index + 1);
+    const next = index === memoryPhotoFiles.length - 1 ? 'finale' : createPhotoNodeId(index + 1);
     const narrative = photoNarrativeByFile[image] || {
       subtitle: '這一幕，也收藏著我們的心動。',
       body: '照片會老去，但當下的心情還是很新。\n只要回頭看見妳，故事就會繼續發光。',
@@ -255,21 +243,7 @@ export const storyGraph = {
     title: '櫻花開場章',
     subtitle: '春天把思念吹成花雨，故事從這裡正式開始。',
     body: '每一幕都是我們真實走過的日子。',
-    next: 'intro'
-  },
-  intro: {
-    id: 'intro',
-    type: 'intro',
-    title: '照片旅程起點',
-    subtitle: introNarrative.subtitle,
-    body: introNarrative.body,
-    memory: {
-      image: introPreviewImage,
-      caption: introNarrative.caption,
-      date: introNarrative.date || defaultPhotoDate,
-      link: introNarrative.link
-    },
-    next: scenePhotoFiles.length ? createPhotoNodeId(0) : 'finale'
+    next: memoryPhotoFiles.length ? createPhotoNodeId(0) : 'finale'
   },
   ...photoJourneyNodes,
   finale: {

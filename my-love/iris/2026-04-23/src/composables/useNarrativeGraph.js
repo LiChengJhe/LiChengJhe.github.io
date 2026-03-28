@@ -30,10 +30,6 @@ const resolvePhotoJourneyState = () => {
 const getJourneyNextNodeId = (currentNodeId, photoJourneyOrder) => {
   if (!photoJourneyOrder.length) return 'finale';
 
-  if (currentNodeId === 'intro') {
-    return photoJourneyOrder[0] || 'finale';
-  }
-
   if (!PHOTO_NODE_SET.has(currentNodeId)) {
     return null;
   }
@@ -181,10 +177,6 @@ export function useNarrativeGraph() {
     return null;
   };
 
-  const goToNodeWithTransition = (nodeId) => {
-    goToNode(nodeId);
-  };
-
   const restart = () => {
     state.value = {
       currentNodeId: START_NODE_ID,
@@ -208,11 +200,9 @@ export function useNarrativeGraph() {
   );
 
   return {
-    state,
     perfMode,
     currentNode,
     visitedCount,
-    previousNodeId,
     canGoBack,
     advance,
     goBack,

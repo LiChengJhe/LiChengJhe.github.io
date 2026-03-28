@@ -68,7 +68,7 @@ const canGoPrevious = computed(() => canGoBack.value);
 const canGoNext = computed(() => Boolean(currentNode.value.next));
 const canGoHome = computed(() => currentNode.value.id !== 'hero-opening');
 
-const AUTO_PLAYABLE_TYPES = new Set(['intro', 'scene', 'finale']);
+const AUTO_PLAYABLE_TYPES = new Set(['scene', 'finale']);
 let autoAdvanceTimer = null;
 const isPaused = ref(false);
 
@@ -131,7 +131,7 @@ watch(
     if (isPaused.value) return;
 
     if (!AUTO_PLAYABLE_TYPES.has(node.type)) return;
-    if (node.options?.length || !node.next) return;
+    if (!node.next) return;
 
     scheduleAutoAdvance(node);
   },
