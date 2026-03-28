@@ -49,7 +49,7 @@
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import ChapterNavigator from './components/ChapterNavigator.vue';
 import FloatingPetalsFX from './components/FloatingPetalsFX.vue';
-import HeroSection from './components/HeroSection.vue';
+import HeroSection from './components/AnniversaryLetter.vue';
 import NarrativeNode from './components/NarrativeNode.vue';
 import { useNarrativeGraph } from './composables/useNarrativeGraph';
 import { storyGraph } from './data/storyGraph';

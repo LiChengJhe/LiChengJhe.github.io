@@ -44,9 +44,11 @@
 
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
         <p class="hero__visual-kicker">Memory Highlight</p>
-        <img ref="photoElement" class="hero__visual-photo"
-          :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
-          alt="屬於我們的生日回憶剪影" loading="lazy" />
+        <div class="hero__visual-frame">
+          <img ref="photoElement" class="hero__visual-photo"
+            :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
+            alt="屬於我們的生日回憶剪影" loading="lazy" />
+        </div>
         <div class="hero__visual-meta" aria-label="目前照片進度">
           <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
           <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
@@ -291,8 +293,8 @@ onMounted(() => {
 .hero__grid {
   position: relative;
   display: grid;
-  gap: clamp(2.6rem, 6vw, 4.2rem);
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.9fr);
   align-items: center;
   z-index: var(--layer-section-content);
 }
@@ -352,8 +354,8 @@ onMounted(() => {
 
 .hero__title-line {
   font-family: 'Noto Serif TC', 'Songti TC', serif;
-  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
-  line-height: 1.15;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.2;
   color: rgba(62, 26, 44, 0.92);
   letter-spacing: 0.02em;
 }
@@ -369,7 +371,7 @@ onMounted(() => {
 
 .hero__metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.8rem;
 }
 
@@ -452,7 +454,7 @@ onMounted(() => {
 .hero__visual {
   position: relative;
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
   justify-items: center;
 }
 
@@ -464,14 +466,36 @@ onMounted(() => {
   color: rgba(81, 39, 57, 0.65);
 }
 
+.hero__visual-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 48px rgba(51, 28, 46, 0.22),
+    0 4px 14px rgba(188, 81, 120, 0.16);
+  animation: floatSoft 7s ease-in-out infinite;
+}
+
+.hero__visual-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+    inset 0 1px 0 rgba(255, 228, 238, 0.55);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero__visual-photo {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: fill;
-  border-radius: 18px;
-  box-shadow: 0 18px 36px rgba(51, 28, 46, 0.18);
-  animation: photoGlow 12s ease-in-out infinite, floatSoft 7s ease-in-out infinite;
+  border-radius: 0;
+  box-shadow: none;
+  animation: photoGlow 12s ease-in-out infinite;
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
 
@@ -482,8 +506,12 @@ onMounted(() => {
 }
 
 .hero__visual-meta {
-  display: grid;
-  gap: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.15rem 0.25rem 0;
 }
 
 .hero__visual-count {
@@ -499,6 +527,19 @@ onMounted(() => {
   font-size: 0.92rem;
   line-height: 1.6;
   color: rgba(59, 30, 43, 0.78);
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    order: -1;
+    max-width: 480px;
+    width: 100%;
+    margin-inline: auto;
+  }
 }
 
 @media (max-width: 960px) {
@@ -519,7 +560,6 @@ onMounted(() => {
   .hero__subtitle {
     max-width: 36rem;
   }
-
 }
 
 @media (max-width: 640px) {
@@ -529,7 +569,7 @@ onMounted(() => {
   }
 
   .hero__title-line {
-    font-size: clamp(1.05rem, 5vw, 1.4rem);
+    font-size: clamp(1.2rem, 5.5vw, 1.6rem);
   }
 
   .hero__metrics {
@@ -549,6 +589,7 @@ onMounted(() => {
 
   .hero__blob,
   .hero__title-line--accent,
+  .hero__visual-frame,
   .hero__visual-photo,
   .btn-primary {
     animation-duration: 0.001ms !important;
