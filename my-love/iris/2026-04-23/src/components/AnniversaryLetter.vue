@@ -55,6 +55,7 @@
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
         <p class="hero__visual-kicker">Memory Highlight</p>
         <div class="hero__visual-shell">
+          <span class="hero__visual-glow" aria-hidden="true"></span>
           <span class="hero__visual-tag" aria-hidden="true">Our Favorite Frame</span>
         <div class="hero__visual-frame">
           <img
@@ -426,7 +427,7 @@ onMounted(() => {
 
 .hero__title-line {
   font-family: 'Noto Serif TC', 'Songti TC', serif;
-  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-size: clamp(1.2rem, 2.4vw, 1.78rem);
   line-height: 1.2;
   color: rgba(62, 26, 44, 0.92);
   letter-spacing: 0.02em;
@@ -599,7 +600,7 @@ onMounted(() => {
 .hero__visual {
   position: relative;
   display: grid;
-  gap: 0.62rem;
+  gap: 0.72rem;
   justify-items: center;
   align-self: start;
   height: fit-content;
@@ -607,41 +608,63 @@ onMounted(() => {
 
 .hero__visual-kicker {
   margin: 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(81, 39, 57, 0.58);
+  color: rgba(81, 39, 57, 0.62);
+  padding: 0.18rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 141, 170, 0.3);
+  background: rgba(255, 246, 251, 0.62);
 }
 
 .hero__visual-shell {
   position: relative;
   width: 100%;
-  padding: 0.72rem 0.72rem 0.3rem;
+  overflow: visible;
+  padding: 0.72rem 0.72rem 0.42rem;
   border-radius: 24px;
-  background: linear-gradient(160deg, rgba(255, 251, 250, 0.58), rgba(253, 236, 244, 0.4));
-  border: 1px solid rgba(218, 131, 166, 0.22);
-  box-shadow: 0 18px 40px rgba(159, 70, 104, 0.14);
+  background:
+    linear-gradient(162deg, rgba(255, 252, 251, 0.74), rgba(254, 238, 245, 0.5)),
+    radial-gradient(circle at 85% 100%, rgba(255, 214, 188, 0.24), transparent 48%);
+  border: 1px solid rgba(218, 131, 166, 0.26);
+  box-shadow:
+    0 20px 44px rgba(159, 70, 104, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
 }
 
 .hero__visual-shell::before,
 .hero__visual-shell::after {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(247, 175, 201, 0.92));
-  box-shadow: 0 6px 14px rgba(182, 87, 124, 0.25);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.98), rgba(248, 176, 202, 0.92));
+  border: 1px solid rgba(220, 139, 172, 0.42);
+  box-shadow: 0 8px 16px rgba(182, 87, 124, 0.3);
+  z-index: 5;
 }
 
 .hero__visual-shell::before {
-  top: -10px;
+  top: -11px;
   left: 14px;
 }
 
 .hero__visual-shell::after {
-  top: -10px;
+  top: -11px;
   right: 14px;
+}
+
+.hero__visual-glow {
+  position: absolute;
+  right: -34px;
+  bottom: -34px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(250, 178, 202, 0.25), rgba(250, 178, 202, 0));
 }
 
 .hero__visual-tag {
@@ -651,24 +674,27 @@ onMounted(() => {
   transform: translateX(-50%);
   padding: 0.26rem 0.78rem;
   border-radius: 999px;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(91, 38, 61, 0.76);
   background: rgba(255, 246, 251, 0.88);
   border: 1px solid rgba(218, 139, 171, 0.34);
   backdrop-filter: blur(2px);
-  z-index: 3;
+  z-index: 6;
 }
 
 .hero__visual-frame {
   position: relative;
   width: 100%;
+  padding: 0.36rem;
   border-radius: 18px;
+  background: linear-gradient(170deg, rgba(255, 249, 252, 0.88), rgba(255, 238, 245, 0.72));
   overflow: hidden;
+  border: 1px solid rgba(230, 162, 190, 0.36);
   box-shadow:
-    0 20px 48px rgba(51, 28, 46, 0.22),
-    0 4px 14px rgba(188, 81, 120, 0.16);
+    0 22px 50px rgba(51, 28, 46, 0.22),
+    0 6px 16px rgba(188, 81, 120, 0.16);
   animation: floatSoft 7s ease-in-out infinite;
 }
 
@@ -702,7 +728,7 @@ onMounted(() => {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0;
+  border-radius: 14px;
   box-shadow: none;
   animation: photoGlow 12s ease-in-out infinite;
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
@@ -731,7 +757,7 @@ onMounted(() => {
   gap: 0.8rem;
   margin-top: 0;
   width: 100%;
-  padding: 0.12rem 0.2rem 0;
+  padding: 0.16rem 0.24rem 0;
 }
 
 .hero__visual-count {
@@ -739,28 +765,28 @@ onMounted(() => {
   display: inline-flex;
   align-items: baseline;
   gap: 0.2rem;
-  padding: 0.32rem 0.62rem;
+  padding: 0.3rem 0.62rem;
   border-radius: 999px;
-  background: rgba(245, 170, 199, 0.18);
-  border: 1px solid rgba(207, 102, 145, 0.26);
-  color: rgba(82, 39, 58, 0.74);
+  background: linear-gradient(130deg, rgba(245, 170, 199, 0.22), rgba(247, 196, 168, 0.18));
+  border: 1px solid rgba(207, 102, 145, 0.28);
+  color: rgba(82, 39, 58, 0.8);
 }
 
 .hero__visual-count strong {
-  font-size: 0.86rem;
+  font-size: 0.94rem;
   letter-spacing: 0.04em;
 }
 
 .hero__visual-count span {
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   letter-spacing: 0.08em;
 }
 
 .hero__visual-caption {
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.58;
-  color: rgba(59, 30, 43, 0.76);
+  font-size: 0.94rem;
+  line-height: 1.56;
+  color: rgba(59, 30, 43, 0.8);
   max-width: 17.5rem;
 }
 
@@ -880,11 +906,11 @@ onMounted(() => {
   }
 
   .hero__visual-shell {
-    padding: 0.62rem 0.62rem 0.26rem;
+    padding: 0.62rem 0.62rem 0.34rem;
   }
 
   .hero__visual-tag {
-    font-size: 0.58rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
   }
 }
