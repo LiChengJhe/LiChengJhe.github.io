@@ -9,16 +9,16 @@ export const photoNarrativeByFile = {
     link: 'https://photos.app.goo.gl/8p5U6FeFHDNoLFqJA'
   },
   '2.png': {
-    subtitle: '油桐花開，像初見的妳。',
-    body: '白色花瓣落下來的時候，妳站在花下回頭看我。\n那個瞬間像春天親手寫下的第一句情書。',
-    caption: '初見時的妳，如同油桐花初綻，純白又明亮。',
+    subtitle: '九芎湖雲夢山丘，油桐花開，像初見的妳。',
+    body: '在九芎湖雲夢山丘，白色花瓣落下來的時候，妳站在花下回頭看我。\n那個瞬間像春天親手寫下的第一句情書。',
+    caption: '九芎湖雲夢山丘初見時的妳，如同油桐花初綻，純白又明亮。',
     date: '2023-04-23',
     link: 'https://photos.app.goo.gl/5oBvJCjm41Su2yJNA'
   },
   '3.png': {
-    subtitle: '和服漫步，街景也變得溫柔。',
-    body: '異鄉街道有點陌生，但妳牽著我就很安心。\n每一步都像在替這段旅程蓋上專屬印章。',
-    caption: '和服下的笑顏，是旅途中最美的風景。',
+    subtitle: '淺草寺和服漫步，街景也變得溫柔。',
+    body: '在淺草寺穿著和服漫步，異鄉街道有點陌生，但妳牽著我就很安心。\n每一步都像在替這段旅程蓋上專屬印章。',
+    caption: '淺草寺和服下的笑顏，是旅途中最美的風景。',
     date: '2023-10-05',
     link: 'https://photos.app.goo.gl/SB9D8StRpEHNUU2y9'
   },
