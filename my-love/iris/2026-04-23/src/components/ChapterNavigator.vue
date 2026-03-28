@@ -24,6 +24,15 @@
     >
       回到旅程起點
     </button>
+    <button
+      v-if="isAutoPlayable"
+      class="chapter-nav__btn chapter-nav__btn--pause"
+      type="button"
+      @click="$emit('toggle-pause')"
+      :aria-label="isPaused ? '繼續自動播放' : '暫停自動播放'"
+    >
+      {{ isPaused ? '▶ 繼續播放' : '⏸ 暫停播放' }}
+    </button>
   </nav>
 </template>
 
@@ -40,10 +49,18 @@ defineProps({
   disableHome: {
     type: Boolean,
     default: false
+  },
+  isAutoPlayable: {
+    type: Boolean,
+    default: false
+  },
+  isPaused: {
+    type: Boolean,
+    default: false
   }
 });
 
-defineEmits(['previous', 'next', 'home']);
+defineEmits(['previous', 'next', 'home', 'toggle-pause']);
 </script>
 
 <style scoped>
@@ -53,6 +70,11 @@ defineEmits(['previous', 'next', 'home']);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
+}
+
+/* 有暫停按鈕時改為 2x2 */
+.chapter-nav:has(.chapter-nav__btn--pause) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .chapter-nav__btn {
@@ -75,6 +97,11 @@ defineEmits(['previous', 'next', 'home']);
   border: none;
   background: linear-gradient(120deg, #eb7397, #d84d78);
   color: #fff;
+}
+
+.chapter-nav__btn--pause {
+  border-color: rgba(150, 102, 195, 0.32);
+  color: #6a3d8f;
 }
 
 .chapter-nav__btn:disabled {

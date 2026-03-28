@@ -6,12 +6,6 @@
       <div class="hero__blob hero__blob--b"></div>
     </div>
 
-    <div class="hero__particles" aria-hidden="true">
-      <span v-for="particle in particles" :key="particle.id" class="hero__particle" :style="getParticleStyle(particle)">
-        {{ particle.symbol }}
-      </span>
-    </div>
-
     <div class="hero__grid">
       <div class="hero__content fade-up">
         <div class="hero__meta-row">
@@ -49,16 +43,13 @@
       </div>
 
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
-        <div class="hero__visual-card">
-          <p class="hero__visual-kicker">Memory Highlight</p>
-          <img ref="photoElement" class="hero__visual-photo"
-            :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
-            alt="屬於我們的生日回憶剪影" loading="lazy" />
-          <span class="hero__visual-seal">LOVE</span>
-          <div class="hero__visual-meta" aria-label="目前照片進度">
-            <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
-            <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
-          </div>
+        <p class="hero__visual-kicker">Memory Highlight</p>
+        <img ref="photoElement" class="hero__visual-photo"
+          :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
+          alt="屬於我們的生日回憶剪影" loading="lazy" />
+        <div class="hero__visual-meta" aria-label="目前照片進度">
+          <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
+          <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
         </div>
       </div>
     </div>
@@ -205,43 +196,6 @@ onUnmounted(() => {
   }
 });
 
-const symbols = [
-  '♥', // 正常愛心
-  '❥', // 斜愛心
-  '♡', // 空心愛心
-  '❤', // 實心愛心
-  '💖', // 閃亮愛心
-  '💗', // 膨脹愛心
-  '💘', // 箭穿愛心
-  '💝', // 禮物愛心
-  '', // 跳動愛心
-  '💟'  // 裝飾愛心
-];
-const particles = Array.from({ length: 12 }, (_, index) => {
-  const [left, delay, duration] = [8 + Math.random() * 84, Math.random() * 8, 10 + Math.random() * 8];
-  return {
-    id: index,
-    left,
-    delay,
-    duration,
-    size: 16 + Math.random() * 18,
-    opacity: 0.45 + Math.random() * 0.4,
-    symbol: symbols[Math.floor(Math.random() * symbols.length)],
-    hue: 330 + Math.random() * 20,
-    drift: -24 + Math.random() * 48
-  };
-});
-
-const getParticleStyle = (particle) => ({
-  left: `${particle.left}%`,
-  animationDelay: `${particle.delay}s`,
-  animationDuration: `${particle.duration}s`,
-  fontSize: `${particle.size}px`,
-  opacity: particle.opacity,
-  color: `hsla(${particle.hue}, 95%, 88%, 1)`,
-  '--drift': `${particle.drift}px`
-});
-
 const photoTotal = computed(() => photos.length || 1);
 const currentPhotoNumber = computed(() => {
   if (!photos.length) return 0;
@@ -332,24 +286,6 @@ onMounted(() => {
   bottom: -4%;
   background: radial-gradient(circle, rgba(255, 223, 185, 0.75), transparent 72%);
   animation-delay: 4s;
-}
-
-.hero__particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: var(--layer-section-decor);
-}
-
-.hero__particle {
-  position: absolute;
-  bottom: -8%;
-  color: rgba(236, 92, 145, 0.7);
-  text-shadow: 0 0 20px rgba(255, 179, 214, 0.8);
-  animation-name: floatPetalUp;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  will-change: transform, opacity;
 }
 
 .hero__grid {
@@ -520,19 +456,6 @@ onMounted(() => {
   justify-items: center;
 }
 
-.hero__visual-card {
-  position: relative;
-  width: min(420px, 100%);
-  padding: clamp(1rem, 2vw, 1.2rem);
-  border-radius: 24px;
-  background: linear-gradient(160deg, rgba(242, 148, 186, 0.22), rgba(245, 189, 156, 0.18));
-  border: 1px solid rgba(223, 141, 171, 0.24);
-  box-shadow: 0 18px 46px rgba(180, 77, 113, 0.22);
-  display: grid;
-  gap: 0.85rem;
-  backdrop-filter: blur(12px);
-}
-
 .hero__visual-kicker {
   margin: 0;
   font-size: 0.72rem;
@@ -556,24 +479,6 @@ onMounted(() => {
   opacity: 0;
   transform: scale(0.95);
   filter: blur(8px);
-}
-
-.hero__visual-seal {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 30% 30%, #ffe8f1, #ea6e9b 70%);
-  color: #fff;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  box-shadow: 0 8px 18px rgba(185, 64, 105, 0.4);
-  transform: rotate(-11deg);
 }
 
 .hero__visual-meta {
@@ -615,9 +520,6 @@ onMounted(() => {
     max-width: 36rem;
   }
 
-  .hero__visual-card {
-    width: min(460px, 100%);
-  }
 }
 
 @media (max-width: 640px) {
@@ -646,7 +548,6 @@ onMounted(() => {
 @media (prefers-reduced-motion: reduce) {
 
   .hero__blob,
-  .hero__particle,
   .hero__title-line--accent,
   .hero__visual-photo,
   .btn-primary {
@@ -667,22 +568,6 @@ onMounted(() => {
   50% {
     transform: scale(1.05) rotate(8deg);
     opacity: 0.82;
-  }
-}
-
-@keyframes floatPetalUp {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(var(--drift, 10px), -110vh, 0) scale(1);
-    opacity: 0;
   }
 }
 

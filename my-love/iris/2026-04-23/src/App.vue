@@ -14,15 +14,13 @@
       <p class="journey-progress__label">
         旅程進度 {{ progressPercent }}%
       </p>
-      <p class="journey-header__hint">
-        劇情依固定順序展開，每一幕都不重複。
-      </p>
+
     </header>
 
     <main>
       <HeroSection
         v-if="currentNode.type === 'hero'"
-        @start-journey="advance"
+        @start-journey="startJourney"
       />
       <NarrativeNode
         v-else
@@ -36,16 +34,19 @@
       :disable-previous="!canGoPrevious"
       :disable-next="!canGoNext"
       :disable-home="!canGoHome"
-      @previous="goBack"
-      @next="advance"
+      :is-auto-playable="isAutoPlayable"
+      :is-paused="isPaused"
+      @previous="manualGoBack"
+      @next="manualAdvance"
       @home="goHome"
+      @toggle-pause="togglePause"
     />
 
   </div>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, watch } from 'vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import ChapterNavigator from './components/ChapterNavigator.vue';
 import FloatingPetalsFX from './components/FloatingPetalsFX.vue';
 import HeroSection from './components/HeroSection.vue';
@@ -78,6 +79,38 @@ const canGoHome = computed(() => currentNode.value.id !== 'hero-opening');
 
 const AUTO_PLAYABLE_TYPES = new Set(['intro', 'scene', 'finale']);
 let autoAdvanceTimer = null;
+const isPaused = ref(false);
+
+const isAutoPlayable = computed(() => {
+  const node = currentNode.value;
+  return AUTO_PLAYABLE_TYPES.has(node.type) && !node.options?.length && Boolean(node.next);
+});
+
+const togglePause = () => {
+  isPaused.value = !isPaused.value;
+  if (!isPaused.value && isAutoPlayable.value) {
+    scheduleAutoAdvance(currentNode.value);
+  } else {
+    clearAutoAdvanceTimer();
+  }
+};
+
+const manualAdvance = () => {
+  isPaused.value = true;
+  clearAutoAdvanceTimer();
+  advance();
+};
+
+const manualGoBack = () => {
+  isPaused.value = true;
+  clearAutoAdvanceTimer();
+  goBack();
+};
+
+const startJourney = () => {
+  isPaused.value = false;
+  advance();
+};
 
 const clearAutoAdvanceTimer = () => {
   if (autoAdvanceTimer !== null) {
@@ -92,23 +125,24 @@ const getAutoAdvanceDelayMs = (node) => {
   return Math.min(9000, Math.max(3200, scaledDelay));
 };
 
+const scheduleAutoAdvance = (node) => {
+  clearAutoAdvanceTimer();
+  autoAdvanceTimer = window.setTimeout(() => {
+    autoAdvanceTimer = null;
+    advance();
+  }, getAutoAdvanceDelayMs(node));
+};
+
 watch(
   () => currentNode.value,
   (node) => {
     clearAutoAdvanceTimer();
+    if (isPaused.value) return;
 
-    if (!AUTO_PLAYABLE_TYPES.has(node.type)) {
-      return;
-    }
+    if (!AUTO_PLAYABLE_TYPES.has(node.type)) return;
+    if (node.options?.length || !node.next) return;
 
-    if (node.options?.length || !node.next) {
-      return;
-    }
-
-    autoAdvanceTimer = window.setTimeout(() => {
-      autoAdvanceTimer = null;
-      advance();
-    }, getAutoAdvanceDelayMs(node));
+    scheduleAutoAdvance(node);
   },
   { immediate: true }
 );
