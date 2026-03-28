@@ -57,9 +57,14 @@
         <div class="hero__visual-shell">
           <span class="hero__visual-tag" aria-hidden="true">Our Favorite Frame</span>
         <div class="hero__visual-frame">
-          <img ref="photoElement" class="hero__visual-photo"
-            :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
-            alt="屬於我們的生日回憶剪影" loading="lazy" />
+          <img
+            ref="photoElement"
+            :class="['hero__visual-photo', orientationClass, { 'hero__visual-photo--transitioning': isTransitioning }]"
+            :src="highlightPhoto"
+            alt="屬於我們的生日回憶剪影"
+            loading="lazy"
+            @load="detectOrientation"
+          />
         </div>
         </div>
         <div class="hero__visual-meta" aria-label="目前照片進度">
@@ -94,7 +99,7 @@ const props = defineProps({
 
 
 // 照片切換邏輯
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { photoNarrativeByFile } from '../data/storyGraph';
 
 const photoElement = ref(null);
@@ -134,11 +139,26 @@ const photos = [...heroPhotos, ...memoryPhotos];
 
 const currentPhotoIndex = ref(0);
 const isTransitioning = ref(false);
+const orientation = ref(null);
 let photoInterval = null;
 let transitionFallbackId = 0;
 let pendingSwap = false;
 
 const highlightPhoto = computed(() => photos[currentPhotoIndex.value] || '');
+
+watch(() => highlightPhoto.value, () => {
+  orientation.value = null;
+});
+
+function detectOrientation(event) {
+  const img = event.target;
+  orientation.value = img.naturalWidth >= img.naturalHeight ? 'landscape' : 'portrait';
+}
+
+const orientationClass = computed(() => {
+  if (!orientation.value) return '';
+  return `hero__visual-photo--${orientation.value}`;
+});
 
 const finalizeTransition = () => {
   if (!pendingSwap) {
@@ -579,9 +599,10 @@ onMounted(() => {
 .hero__visual {
   position: relative;
   display: grid;
-  gap: 0.85rem;
+  gap: 0.62rem;
   justify-items: center;
-  align-self: stretch;
+  align-self: start;
+  height: fit-content;
 }
 
 .hero__visual-kicker {
@@ -595,7 +616,7 @@ onMounted(() => {
 .hero__visual-shell {
   position: relative;
   width: 100%;
-  padding: 0.9rem 0.9rem 0.4rem;
+  padding: 0.72rem 0.72rem 0.3rem;
   border-radius: 24px;
   background: linear-gradient(160deg, rgba(255, 251, 250, 0.58), rgba(253, 236, 244, 0.4));
   border: 1px solid rgba(218, 131, 166, 0.22);
@@ -625,7 +646,7 @@ onMounted(() => {
 
 .hero__visual-tag {
   position: absolute;
-  top: 0.15rem;
+  top: 0.1rem;
   left: 50%;
   transform: translateX(-50%);
   padding: 0.26rem 0.78rem;
@@ -687,6 +708,16 @@ onMounted(() => {
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out, filter 0.6s ease-in-out;
 }
 
+.hero__visual-photo--landscape {
+  width: 100%;
+  height: auto;
+}
+
+.hero__visual-photo--portrait {
+  width: 100%;
+  height: auto;
+}
+
 .hero__visual-photo--transitioning {
   opacity: 0;
   transform: scale(0.95);
@@ -698,8 +729,9 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   gap: 0.8rem;
+  margin-top: 0;
   width: 100%;
-  padding: 0.25rem 0.2rem 0;
+  padding: 0.12rem 0.2rem 0;
 }
 
 .hero__visual-count {
@@ -733,6 +765,7 @@ onMounted(() => {
 }
 
 .hero__visual-progress {
+  margin-top: 0.08rem;
   width: 100%;
   height: 7px;
   border-radius: 999px;
@@ -847,7 +880,7 @@ onMounted(() => {
   }
 
   .hero__visual-shell {
-    padding: 0.72rem 0.72rem 0.34rem;
+    padding: 0.62rem 0.62rem 0.26rem;
   }
 
   .hero__visual-tag {
@@ -887,11 +920,11 @@ onMounted(() => {
 
   0%,
   100% {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
 
   50% {
-    transform: translateY(6px);
+    transform: translateY(2px);
   }
 }
 
