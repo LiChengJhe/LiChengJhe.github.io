@@ -83,6 +83,7 @@ const props = defineProps({
 
 // 照片切換邏輯
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { photoNarrativeByFile } from '../data/storyGraph';
 
 const photoElement = ref(null);
 const PHOTO_INTERVAL_MS = 5000;
@@ -111,13 +112,8 @@ const heroPhotos = [
   resolveHeroImage('1.png')
 ].filter(Boolean);
 
-// 載入 memories 資料夾中的全部照片
-const memoryPhotoFiles = [
-  '3.png', '1.jpg', '1.png', '2.jpg', '2.png', '3.jpg',
-  '4.jpg', '4.png', '5.jpg', '5.png', '6.png',
-  '7.jpg', '7.png', '8.png', '9.png', '11.png',
-  '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png'
-];
+// 載入 memories，順序與 photoNarrativeByFile 保持一致
+const memoryPhotoFiles = Object.keys(photoNarrativeByFile);
 
 const memoryPhotos = memoryPhotoFiles.map((file) => resolveMemoryImage(file)).filter(Boolean);
 

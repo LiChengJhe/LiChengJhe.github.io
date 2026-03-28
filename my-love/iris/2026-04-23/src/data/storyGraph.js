@@ -1,4 +1,4 @@
-const photoNarrativeByFile = {
+export const photoNarrativeByFile = {
   '1.png': {
     subtitle: 'XPark 水族館的藍色光影。',
     body: '玻璃水幕前，魚群安靜穿梭，妳的笑也跟著水波發亮。\n那一刻很安靜，卻把心動寫得很清楚。',
