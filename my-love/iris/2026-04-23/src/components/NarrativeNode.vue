@@ -1,5 +1,5 @@
 <template>
-  <article class="node" :class="`node--${node.type}`">
+  <article ref="nodeRoot" class="node" :class="`node--${node.type}`" tabindex="-1">
     <div class="node__layout" :class="{ 'node__layout--with-media': node.memory }">
       <div class="node__main">
         <header class="node__header">
@@ -22,13 +22,17 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import MemoryMomentCard from './MemoryMomentCard.vue';
 
 const props = defineProps({
   node: {
     type: Object,
     required: true
+  },
+  keepFocusDuringPlayback: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -36,16 +40,38 @@ const lines = computed(() => {
   return (props.node.body || '').split('\n').filter(Boolean);
 });
 
+const nodeRoot = ref(null);
 const revealedCount = ref(0);
 let revealTimer;
 
 const visibleLines = computed(() => lines.value.slice(0, revealedCount.value));
 
+const keepNarrativeNodeInView = () => {
+  if (!props.keepFocusDuringPlayback) {
+    return;
+  }
+
+  const el = nodeRoot.value;
+  if (!el) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  el.focus({ preventScroll: true });
+  el.scrollIntoView({
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    block: 'start',
+    inline: 'nearest'
+  });
+};
+
 watch(
   () => props.node.id,
-  () => {
+  async () => {
     window.clearInterval(revealTimer);
     revealedCount.value = 0;
+    await nextTick();
+    keepNarrativeNodeInView();
 
     if (!lines.value.length) {
       return;
@@ -76,6 +102,10 @@ onBeforeUnmount(() => {
   border: 1px solid rgba(186, 102, 102, 0.25);
   background: linear-gradient(150deg, rgba(255, 251, 248, 0.8), rgba(255, 237, 241, 0.72));
   box-shadow: 0 20px 45px rgba(137, 94, 86, 0.18);
+}
+
+.node:focus {
+  outline: none;
 }
 
 .node::before {
@@ -127,7 +157,7 @@ onBeforeUnmount(() => {
   }
 
   .node__body-wrap {
-    min-height: clamp(78px, 13vh, 110px);
+    min-height: clamp(70px, 12vh, 98px);
   }
 }
 
@@ -172,7 +202,7 @@ onBeforeUnmount(() => {
 .node__body-wrap {
   display: grid;
   gap: 0.68rem;
-  min-height: clamp(70px, 10vh, 96px);
+  min-height: clamp(62px, 9vh, 86px);
   align-content: start;
   grid-auto-rows: max-content;
 }

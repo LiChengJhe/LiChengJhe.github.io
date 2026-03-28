@@ -63,6 +63,7 @@
         />
         <NarrativeNode
           :node="currentNode"
+          :keep-focus-during-playback="!isPaused"
         />
       </template>
     </main>
