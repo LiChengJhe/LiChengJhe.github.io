@@ -30,9 +30,9 @@ export const photoNarrativeByFile = {
     link: 'https://photos.app.goo.gl/UhCPtCqtFXiffEJTA'
   },
   '5.png': {
-    subtitle: '同舟共渡，是最踏實的浪漫。',
-    body: '槳劃開水面，船慢慢前進，時間也慢了下來。\n有妳坐在身旁，未來就不再讓人害怕。',
-    caption: '同舟共渡的時光，有妳在身旁，未來都值得期待。',
+    subtitle: '埔心牧場同舟共渡，是最踏實的浪漫。',
+    body: '在埔心牧場，槳劃開水面，船慢慢前進，時間也慢了下來。\n有妳坐在身旁，未來就不再讓人害怕。',
+    caption: '埔心牧場同舟共渡的時光，有妳在身旁，未來都值得期待。',
     date: '2023-11-19',
     link: 'https://photos.app.goo.gl/fVpC4N6TMu7XGBZN9'
   },
