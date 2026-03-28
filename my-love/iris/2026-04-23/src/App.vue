@@ -1,7 +1,6 @@
 <template>
   <div class="page" :data-node="currentNode.id" :data-perf="perfMode">
     <FloatingPetalsFX />
-    <SegueTransition :show="isTransitioning" :title="transitionTitle" />
 
     <header class="journey-header">
       <p class="journey-header__eyebrow">Anniversary · 2026/04/23</p>
@@ -16,19 +15,19 @@
         旅程進度 {{ progressPercent }}%
       </p>
       <p class="journey-header__hint">
-        每次都會隨機展開，並在同一輪旅程中不重複。
+        劇情依固定順序展開，每一幕都不重複。
       </p>
     </header>
 
     <main>
       <HeroSection
         v-if="currentNode.type === 'hero'"
-        @start-journey="advanceWithTransition"
+        @start-journey="advance"
       />
       <NarrativeNode
         v-else
         :node="currentNode"
-        @choose="chooseWithTransition"
+        @choose="choose"
       />
     </main>
 
@@ -36,21 +35,20 @@
       :disable-previous="!canGoPrevious"
       :disable-next="!canGoNext"
       :disable-home="!canGoHome"
-      @previous="goPreviousWithTransition"
-      @next="advanceWithTransition"
-      @home="goHomeWithTransition"
+      @previous="goBack"
+      @next="advance"
+      @home="goHome"
     />
 
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onBeforeUnmount, watch } from 'vue';
 import ChapterNavigator from './components/ChapterNavigator.vue';
 import FloatingPetalsFX from './components/FloatingPetalsFX.vue';
 import HeroSection from './components/HeroSection.vue';
 import NarrativeNode from './components/NarrativeNode.vue';
-import SegueTransition from './components/SegueTransition.vue';
 import { useNarrativeGraph } from './composables/useNarrativeGraph';
 import { storyGraph } from './data/storyGraph';
 
@@ -68,9 +66,6 @@ const {
 const totalNodes = computed(() => Object.keys(storyGraph).length);
 const progressPercent = computed(() => Math.round((visitedCount.value / totalNodes.value) * 100));
 
-const isTransitioning = ref(false);
-const transitionTitle = ref('櫻花飄落中...');
-
 const canGoPrevious = computed(() => canGoBack.value);
 const canGoNext = computed(() => {
   if (currentNode.value.type === 'hero') {
@@ -80,49 +75,46 @@ const canGoNext = computed(() => {
 });
 const canGoHome = computed(() => currentNode.value.id !== 'hero-opening');
 
-const withTransition = async (targetNodeId, commitNavigation) => {
-  isTransitioning.value = true;
-  transitionTitle.value = `前往 ${storyGraph[targetNodeId]?.title || '下一幕'}...`;
+const AUTO_PLAYABLE_TYPES = new Set(['intro', 'scene', 'finale']);
+let autoAdvanceTimer = null;
 
-  await new Promise((resolve) => {
-    window.setTimeout(resolve, 680);
-  });
-
-  if (typeof commitNavigation === 'function') {
-    commitNavigation();
-  } else {
-    goToNodeWithTransition(targetNodeId);
+const clearAutoAdvanceTimer = () => {
+  if (autoAdvanceTimer !== null) {
+    window.clearTimeout(autoAdvanceTimer);
+    autoAdvanceTimer = null;
   }
-  isTransitioning.value = false;
 };
 
-const chooseWithTransition = async (choiceId) => {
-  const targetId = choose(choiceId, { dryRun: true, recordChoice: true });
-  if (!targetId) return;
-  await withTransition(targetId);
+const getAutoAdvanceDelayMs = (node) => {
+  const textLength = (node.body || '').replace(/\s/g, '').length;
+  const scaledDelay = 2600 + textLength * 34;
+  return Math.min(9000, Math.max(3200, scaledDelay));
 };
 
-const advanceWithTransition = async () => {
-  const targetId = advance({ dryRun: true });
-  if (!targetId) return;
-  await withTransition(targetId);
-};
+watch(
+  () => currentNode.value,
+  (node) => {
+    clearAutoAdvanceTimer();
 
-const goPreviousWithTransition = async () => {
-  const targetId = goBack({ dryRun: true });
-  if (!targetId) return;
-  await withTransition(targetId, () => {
-    goBack();
-  });
-};
+    if (!AUTO_PLAYABLE_TYPES.has(node.type)) {
+      return;
+    }
 
-const goHomeWithTransition = async () => {
-  const targetId = goHome({ dryRun: true });
-  if (!targetId) return;
-  await withTransition(targetId, () => {
-    goHome();
-  });
-};
+    if (node.options?.length || !node.next) {
+      return;
+    }
+
+    autoAdvanceTimer = window.setTimeout(() => {
+      autoAdvanceTimer = null;
+      advance();
+    }, getAutoAdvanceDelayMs(node));
+  },
+  { immediate: true }
+);
+
+onBeforeUnmount(() => {
+  clearAutoAdvanceTimer();
+});
 </script>
 
 <style scoped>

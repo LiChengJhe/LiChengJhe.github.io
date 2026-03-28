@@ -4,57 +4,26 @@ import { loadProgress, saveProgress } from './useProgressSave';
 
 const START_NODE_ID = 'hero-opening';
 const PHOTO_NODE_PREFIX = 'photo-';
-const PHOTO_NODE_IDS = Object.keys(storyGraph).filter((nodeId) => nodeId.startsWith(PHOTO_NODE_PREFIX));
+const PHOTO_NODE_IDS = Object.keys(storyGraph)
+  .filter((nodeId) => nodeId.startsWith(PHOTO_NODE_PREFIX))
+  .sort((a, b) => {
+    const getIndex = (nodeId) => Number.parseInt(nodeId.replace(PHOTO_NODE_PREFIX, ''), 10) || 0;
+    return getIndex(a) - getIndex(b);
+  });
 const PHOTO_NODE_SET = new Set(PHOTO_NODE_IDS);
 
-const shuffleNodeIds = (nodeIds) => {
-  const next = [...nodeIds];
-  for (let index = next.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [next[index], next[swapIndex]] = [next[swapIndex], next[index]];
-  }
-  return next;
-};
+const FIXED_PHOTO_JOURNEY_ORDER = [...PHOTO_NODE_IDS];
 
-const isValidPhotoOrder = (order, expectedNodeIds) => {
-  if (!Array.isArray(order)) return false;
-  if (order.length !== expectedNodeIds.length) return false;
-  const unique = new Set(order);
-  if (unique.size !== expectedNodeIds.length) return false;
-  const expectedSet = new Set(expectedNodeIds);
-  return order.every((nodeId) => expectedSet.has(nodeId));
-};
-
-const resolvePhotoJourneyState = (savedOrder, savedIntroPhotoNodeId) => {
+const resolvePhotoJourneyState = () => {
   if (PHOTO_NODE_IDS.length === 0) {
     return {
-      introPhotoNodeId: null,
       photoJourneyOrder: []
     };
   }
 
-  // Backward-compatible restore: old saves may only contain full photoJourneyOrder.
-  if (savedIntroPhotoNodeId && PHOTO_NODE_SET.has(savedIntroPhotoNodeId)) {
-    const expectedOrder = PHOTO_NODE_IDS.filter((nodeId) => nodeId !== savedIntroPhotoNodeId);
-    if (isValidPhotoOrder(savedOrder, expectedOrder)) {
-      return {
-        introPhotoNodeId: savedIntroPhotoNodeId,
-        photoJourneyOrder: [...savedOrder]
-      };
-    }
-  }
-
-  if (isValidPhotoOrder(savedOrder, PHOTO_NODE_IDS)) {
-    return {
-      introPhotoNodeId: savedOrder[0],
-      photoJourneyOrder: savedOrder.slice(1)
-    };
-  }
-
-  const shuffled = shuffleNodeIds(PHOTO_NODE_IDS);
+  // Always use deterministic order (no randomness) and ignore legacy shuffled saves.
   return {
-    introPhotoNodeId: shuffled[0],
-    photoJourneyOrder: shuffled.slice(1)
+    photoJourneyOrder: [...FIXED_PHOTO_JOURNEY_ORDER]
   };
 };
 
@@ -79,7 +48,7 @@ const getJourneyNextNodeId = (currentNodeId, photoJourneyOrder) => {
 
 export function useNarrativeGraph() {
   const saved = loadProgress();
-  const initialPhotoJourney = resolvePhotoJourneyState(saved?.photoJourneyOrder, saved?.introPhotoNodeId);
+  const initialPhotoJourney = resolvePhotoJourneyState();
   const initialCurrentNodeId =
     saved?.currentNodeId && storyGraph[saved.currentNodeId]
       ? saved.currentNodeId
@@ -110,29 +79,11 @@ export function useNarrativeGraph() {
     visitedNodeIds: new Set(initialVisitedIds),
     choicesByNode: saved?.choicesByNode || {},
     navigationHistory: initialNavigationHistory,
-    introPhotoNodeId: initialPhotoJourney.introPhotoNodeId,
     photoJourneyOrder: initialPhotoJourney.photoJourneyOrder
   });
 
   const currentNode = computed(() => {
     const node = storyGraph[state.value.currentNodeId] || storyGraph[START_NODE_ID];
-    if (node.id === 'intro') {
-      const introPhotoId = state.value.introPhotoNodeId;
-      const introPhotoNode = introPhotoId ? storyGraph[introPhotoId] : null;
-      const introPhotoImage = introPhotoNode?.memory?.image || node.memory?.image;
-
-      return {
-        ...node,
-        subtitle: introPhotoNode?.subtitle || node.subtitle,
-        body: introPhotoNode?.body || node.body,
-        memory: {
-          ...(node.memory || {}),
-          image: introPhotoImage,
-          caption: introPhotoNode?.memory?.caption || node.memory?.caption
-        }
-      };
-    }
-
     const photoOrderIndex = state.value.photoJourneyOrder.indexOf(node.id);
 
     if (photoOrderIndex === -1) {
@@ -255,14 +206,12 @@ export function useNarrativeGraph() {
   };
 
   const restart = () => {
-    const shuffled = shuffleNodeIds(PHOTO_NODE_IDS);
     state.value = {
       currentNodeId: START_NODE_ID,
       visitedNodeIds: new Set([START_NODE_ID]),
       choicesByNode: {},
       navigationHistory: [START_NODE_ID],
-      introPhotoNodeId: shuffled[0] || null,
-      photoJourneyOrder: shuffled.slice(1)
+      photoJourneyOrder: [...FIXED_PHOTO_JOURNEY_ORDER]
     };
   };
 
@@ -274,7 +223,6 @@ export function useNarrativeGraph() {
         visitedNodeIds: Array.from(state.value.visitedNodeIds),
         choicesByNode: state.value.choicesByNode,
         navigationHistory: state.value.navigationHistory,
-        introPhotoNodeId: state.value.introPhotoNodeId,
         photoJourneyOrder: state.value.photoJourneyOrder
       });
     },
