@@ -535,7 +535,6 @@ onMounted(() => {
   }
 
   .hero__visual {
-    order: -1;
     max-width: 480px;
     width: 100%;
     margin-inline: auto;
@@ -573,7 +572,8 @@ onMounted(() => {
   }
 
   .hero__metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
   }
 
   .hero__cta {
