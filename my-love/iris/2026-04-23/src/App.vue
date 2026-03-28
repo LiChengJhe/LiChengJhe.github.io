@@ -22,25 +22,23 @@
         v-if="currentNode.type === 'hero'"
         @start-journey="startJourney"
       />
-      <NarrativeNode
-        v-else
-        :node="currentNode"
-        @choose="choose"
-      />
+      <template v-else>
+        <ChapterNavigator
+          :disable-previous="!canGoPrevious"
+          :disable-next="!canGoNext"
+          :disable-home="!canGoHome"
+          :is-auto-playable="isAutoPlayable"
+          :is-paused="isPaused"
+          @previous="manualGoBack"
+          @next="manualAdvance"
+          @home="goHome"
+          @toggle-pause="togglePause"
+        />
+        <NarrativeNode
+          :node="currentNode"
+        />
+      </template>
     </main>
-
-    <ChapterNavigator
-      v-if="currentNode.type !== 'hero'"
-      :disable-previous="!canGoPrevious"
-      :disable-next="!canGoNext"
-      :disable-home="!canGoHome"
-      :is-auto-playable="isAutoPlayable"
-      :is-paused="isPaused"
-      @previous="manualGoBack"
-      @next="manualAdvance"
-      @home="goHome"
-      @toggle-pause="togglePause"
-    />
 
   </div>
 </template>
@@ -57,24 +55,17 @@ import { storyGraph } from './data/storyGraph';
 const {
   currentNode,
   visitedCount,
-  choose,
   advance,
   goBack,
   goHome,
   perfMode,
-  goToNodeWithTransition,
   canGoBack
 } = useNarrativeGraph();
 const totalNodes = computed(() => Object.keys(storyGraph).length);
 const progressPercent = computed(() => Math.round((visitedCount.value / totalNodes.value) * 100));
 
 const canGoPrevious = computed(() => canGoBack.value);
-const canGoNext = computed(() => {
-  if (currentNode.value.type === 'hero') {
-    return Boolean(currentNode.value.next);
-  }
-  return Boolean(currentNode.value.next && !currentNode.value.options?.length);
-});
+const canGoNext = computed(() => Boolean(currentNode.value.next));
 const canGoHome = computed(() => currentNode.value.id !== 'hero-opening');
 
 const AUTO_PLAYABLE_TYPES = new Set(['intro', 'scene', 'finale']);
@@ -83,7 +74,7 @@ const isPaused = ref(false);
 
 const isAutoPlayable = computed(() => {
   const node = currentNode.value;
-  return AUTO_PLAYABLE_TYPES.has(node.type) && !node.options?.length && Boolean(node.next);
+  return AUTO_PLAYABLE_TYPES.has(node.type) && Boolean(node.next);
 });
 
 const togglePause = () => {
@@ -215,6 +206,9 @@ onBeforeUnmount(() => {
 main {
   position: relative;
   z-index: var(--layer-section-content);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 1.8rem);
 }
 
 @media (max-width: 700px) {

@@ -9,8 +9,6 @@
         </header>
 
         <p class="node__body" v-for="line in visibleLines" :key="line">{{ line }}</p>
-
-        <BranchingChoices v-if="node.options?.length" :choices="node.options" @choose="$emit('choose', $event)" />
       </div>
 
       <MemoryMomentCard v-if="node.memory" :memory="node.memory" />
@@ -20,7 +18,6 @@
 
 <script setup>
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
-import BranchingChoices from './BranchingChoices.vue';
 import MemoryMomentCard from './MemoryMomentCard.vue';
 
 const props = defineProps({
@@ -29,8 +26,6 @@ const props = defineProps({
     required: true
   }
 });
-
-defineEmits(['choose']);
 
 const lines = computed(() => {
   return (props.node.body || '').split('\n').filter(Boolean);
@@ -113,7 +108,7 @@ onBeforeUnmount(() => {
 .node__title {
   margin-top: 0.45rem;
   font-family: 'Noto Serif TC', serif;
-  font-size: clamp(1.65rem, 3.6vw, 2.6rem);
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
 }
 
 .node__subtitle {

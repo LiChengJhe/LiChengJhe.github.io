@@ -77,7 +77,6 @@ export function useNarrativeGraph() {
   const state = ref({
     currentNodeId: initialCurrentNodeId,
     visitedNodeIds: new Set(initialVisitedIds),
-    choicesByNode: saved?.choicesByNode || {},
     navigationHistory: initialNavigationHistory,
     photoJourneyOrder: initialPhotoJourney.photoJourneyOrder
   });
@@ -158,25 +157,6 @@ export function useNarrativeGraph() {
     return homeNodeId;
   };
 
-  const choose = (choiceId, options = {}) => {
-    const { dryRun = false, recordChoice = false } = options;
-    const node = currentNode.value;
-    const selected = node.options?.find((option) => option.id === choiceId);
-    if (!selected) return null;
-
-    if (recordChoice) {
-      state.value.choicesByNode[node.id] = choiceId;
-    }
-
-    if (dryRun) {
-      return selected.next;
-    }
-
-    state.value.choicesByNode[node.id] = choiceId;
-    goToNode(selected.next);
-    return selected.next;
-  };
-
   const advance = (options = {}) => {
     const { dryRun = false } = options;
 
@@ -209,7 +189,6 @@ export function useNarrativeGraph() {
     state.value = {
       currentNodeId: START_NODE_ID,
       visitedNodeIds: new Set([START_NODE_ID]),
-      choicesByNode: {},
       navigationHistory: [START_NODE_ID],
       photoJourneyOrder: [...FIXED_PHOTO_JOURNEY_ORDER]
     };
@@ -221,7 +200,6 @@ export function useNarrativeGraph() {
       saveProgress({
         currentNodeId: state.value.currentNodeId,
         visitedNodeIds: Array.from(state.value.visitedNodeIds),
-        choicesByNode: state.value.choicesByNode,
         navigationHistory: state.value.navigationHistory,
         photoJourneyOrder: state.value.photoJourneyOrder
       });
@@ -236,11 +214,9 @@ export function useNarrativeGraph() {
     visitedCount,
     previousNodeId,
     canGoBack,
-    choose,
     advance,
     goBack,
     goHome,
-    goToNodeWithTransition,
     restart
   };
 }
