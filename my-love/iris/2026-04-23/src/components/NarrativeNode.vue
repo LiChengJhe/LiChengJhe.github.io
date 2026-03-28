@@ -125,6 +125,10 @@ onBeforeUnmount(() => {
   .node__layout--with-media {
     grid-template-columns: 1fr;
   }
+
+  .node__body-wrap {
+    min-height: clamp(78px, 13vh, 110px);
+  }
 }
 
 .node__eyebrow {
@@ -168,6 +172,9 @@ onBeforeUnmount(() => {
 .node__body-wrap {
   display: grid;
   gap: 0.68rem;
+  min-height: clamp(70px, 10vh, 96px);
+  align-content: start;
+  grid-auto-rows: max-content;
 }
 
 .node__body {
@@ -181,6 +188,7 @@ onBeforeUnmount(() => {
   box-shadow: 0 8px 18px rgba(154, 87, 109, 0.08);
   animation: lineReveal 0.42s ease both;
   transform-origin: left center;
+  align-self: start;
 }
 
 @keyframes lineReveal {
