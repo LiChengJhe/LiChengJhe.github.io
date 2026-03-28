@@ -149,7 +149,8 @@ export function useNarrativeGraph() {
       return homeNodeId;
     }
 
-    goToNode(homeNodeId);
+    // Returning to the journey start should begin a fresh run.
+    restart();
     return homeNodeId;
   };
 

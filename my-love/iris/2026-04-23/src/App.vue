@@ -3,17 +3,26 @@
     <FloatingPetalsFX />
 
     <header class="journey-header">
-      <p class="journey-header__eyebrow">Anniversary · 2026/04/23</p>
-      <h1 class="journey-header__title">櫻花結緣物語</h1>
-      <p class="journey-header__meta">
-        已解鎖節點 {{ visitedCount }} / {{ totalNodes }}
-      </p>
-      <div class="journey-progress" role="progressbar" :aria-valuemin="0" :aria-valuemax="100" :aria-valuenow="progressPercent">
-        <div class="journey-progress__fill" :style="{ width: `${progressPercent}%` }"></div>
+      <div class="journey-header__card">
+        <p class="journey-header__eyebrow">Anniversary · 2026/04/23</p>
+        <h1 class="journey-header__title">櫻花結緣物語</h1>
+        <p class="journey-header__meta">
+          已解鎖篇章 {{ visitedCount }} / {{ totalNodes }}
+        </p>
+
+        <div class="journey-header__stats" aria-hidden="true">
+          <span class="journey-header__pill">已解鎖 <strong>{{ visitedCount }}</strong></span>
+          <span class="journey-header__pill">總篇章 <strong>{{ totalNodes }}</strong></span>
+        </div>
+
+        <div class="journey-progress" role="progressbar" :aria-valuemin="0" :aria-valuemax="100" :aria-valuenow="progressPercent">
+          <div class="journey-progress__fill" :style="{ width: `${progressPercent}%` }"></div>
+        </div>
+        <p class="journey-progress__label">
+          <span>旅程進度</span>
+          <strong>{{ progressPercent }}%</strong>
+        </p>
       </div>
-      <p class="journey-progress__label">
-        旅程進度 {{ progressPercent }}%
-      </p>
 
     </header>
 
@@ -54,14 +63,15 @@ import { storyGraph } from './data/storyGraph';
 
 const {
   currentNode,
-  visitedCount,
+  visitedCount: visitedNodeCount,
   advance,
   goBack,
   goHome,
   perfMode,
   canGoBack
 } = useNarrativeGraph();
-const totalNodes = computed(() => Object.keys(storyGraph).length);
+const totalNodes = computed(() => Math.max(1, Object.keys(storyGraph).length - 1));
+const visitedCount = computed(() => Math.max(0, visitedNodeCount.value - 1));
 const progressPercent = computed(() => Math.round((visitedCount.value / totalNodes.value) * 100));
 
 const canGoPrevious = computed(() => canGoBack.value);
@@ -153,26 +163,82 @@ onBeforeUnmount(() => {
 .journey-header {
   position: relative;
   z-index: var(--layer-section-content);
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto clamp(1.2rem, 3vw, 2rem);
+}
+
+.journey-header__card {
+  position: relative;
   text-align: center;
+  padding: clamp(1rem, 3vw, 1.6rem) clamp(0.95rem, 4vw, 2rem) 1.1rem;
+  border-radius: 28px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.66), rgba(255, 237, 244, 0.5)),
+    radial-gradient(circle at 12% 0%, rgba(255, 206, 225, 0.34), transparent 42%);
+  border: 1px solid rgba(218, 137, 170, 0.3);
+  box-shadow:
+    0 18px 42px rgba(168, 75, 113, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.journey-header__card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(28px - 8px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
 }
 
 .journey-header__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.26rem 0.74rem;
+  border-radius: 999px;
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9f5f6c;
+  color: #8a4f5d;
+  background: rgba(255, 242, 247, 0.84);
+  border: 1px solid rgba(222, 153, 181, 0.35);
 }
 
 .journey-header__title {
   margin-top: 0.35rem;
   font-size: clamp(2rem, 5.2vw, 3.2rem);
+  line-height: 1.1;
+  text-shadow: 0 14px 24px rgba(184, 82, 122, 0.16);
 }
 
 .journey-header__meta {
   margin-top: 0.4rem;
   color: #7d5660;
+}
+
+.journey-header__stats {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.journey-header__pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.28rem 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(247, 186, 208, 0.32), rgba(249, 211, 186, 0.3));
+  border: 1px solid rgba(217, 128, 165, 0.3);
+  color: #83505f;
+  font-size: 0.8rem;
+}
+
+.journey-header__pill strong {
+  font-size: 0.88rem;
+  color: #c84574;
 }
 
 .journey-header__hint {
@@ -184,10 +250,12 @@ onBeforeUnmount(() => {
 .journey-progress {
   margin: 0.75rem auto 0;
   width: min(640px, 100%);
-  height: 10px;
+  height: 11px;
   border-radius: 999px;
-  background: rgba(255, 216, 228, 0.75);
+  background: linear-gradient(90deg, rgba(255, 218, 230, 0.74), rgba(255, 224, 205, 0.7));
+  border: 1px solid rgba(229, 158, 186, 0.4);
   overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(167, 95, 122, 0.12);
 }
 
 .journey-progress__fill {
@@ -195,12 +263,30 @@ onBeforeUnmount(() => {
   border-radius: inherit;
   background: linear-gradient(120deg, #f595b5, #de5f89);
   transition: width 0.38s ease;
+  box-shadow: 0 6px 14px rgba(212, 88, 136, 0.28);
+  position: relative;
+}
+
+.journey-progress__fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.36) 45%, transparent 78%);
+  animation: progressSweep 2.4s linear infinite;
 }
 
 .journey-progress__label {
   margin-top: 0.4rem;
   font-size: 0.88rem;
   color: #7d5761;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.journey-progress__label strong {
+  font-size: 0.98rem;
+  color: #cb4b78;
 }
 
 main {
@@ -218,6 +304,33 @@ main {
 
   .journey-header {
     margin-bottom: 1rem;
+  }
+
+  .journey-header__card {
+    border-radius: 22px;
+    padding: 0.92rem 0.85rem 0.9rem;
+  }
+
+  .journey-header__card::before {
+    border-radius: calc(22px - 8px);
+  }
+
+  .journey-header__title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .journey-progress {
+    height: 10px;
+  }
+}
+
+@keyframes progressSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
 </style>

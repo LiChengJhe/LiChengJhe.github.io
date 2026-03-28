@@ -11,10 +11,12 @@
         <div class="hero__meta-row">
           <span class="hero__badge" aria-hidden="true">Anniversary Letter · 2026/04/23</span>
           <span class="hero__chip" aria-hidden="true">For {{ nickname }}</span>
+          <span class="hero__spark" aria-hidden="true">✦</span>
         </div>
 
         <p class="hero__intro">To {{ nickname }}</p>
         <div id="hero-title" class="hero__title text-shadow" role="heading" aria-level="2">
+          <span class="hero__title-overline">Chapter: Us</span>
           <span class="hero__title-line">我們的紀念日</span>
           <span class="hero__title-line hero__title-line--accent">值得把未來裝進驚喜裡</span>
         </div>
@@ -30,28 +32,45 @@
           </p>
         </div>
 
-        <p class="hero__subtitle">
-          謝謝妳，把我的普通日常變成會發光的風景。<br>
-          妳笑起來的樣子，總能讓我重新喜歡這個世界。<br>
-          我偷偷準備了一個小彩蛋，現在先不劇透，<br>
-          等妳按下今天的開始鍵，我們就一起揭曉。
-        </p>
+        <div class="hero__letter-block">
+          <p class="hero__subtitle">
+            謝謝妳，把我的普通日常變成會發光的風景。<br>
+            妳笑起來的樣子，總能讓我重新喜歡這個世界。<br>
+            我偷偷準備了一個小彩蛋，現在先不劇透，<br>
+            等妳按下今天的開始鍵，我們就一起揭曉。
+          </p>
+        </div>
         <p class="hero__signature">永遠站在妳這邊的 {{ signature }}</p>
+        <div class="hero__divider" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="hero__cta">
           <button class="btn-primary" @click="$emit('start-journey')">開啟專屬紀念日旅程</button>
+          <p class="hero__cta-note">點下按鈕後，今天的每一幕都只為妳展開。</p>
         </div>
       </div>
 
       <div class="hero__visual fade-up" style="animation-delay: 0.18s">
         <p class="hero__visual-kicker">Memory Highlight</p>
+        <div class="hero__visual-shell">
+          <span class="hero__visual-tag" aria-hidden="true">Our Favorite Frame</span>
         <div class="hero__visual-frame">
           <img ref="photoElement" class="hero__visual-photo"
             :class="{ 'hero__visual-photo--transitioning': isTransitioning }" :src="highlightPhoto"
             alt="屬於我們的生日回憶剪影" loading="lazy" />
         </div>
+        </div>
         <div class="hero__visual-meta" aria-label="目前照片進度">
-          <span class="hero__visual-count">{{ currentPhotoNumber }} / {{ photoTotal }}</span>
+          <span class="hero__visual-count">
+            <strong>{{ currentPhotoNumber }}</strong>
+            <span>/ {{ photoTotal }}</span>
+          </span>
           <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
+        </div>
+        <div class="hero__visual-progress" aria-hidden="true">
+          <span class="hero__visual-progress-fill" :style="{ width: `${photoProgress}%` }"></span>
         </div>
       </div>
     </div>
@@ -203,6 +222,10 @@ const currentPhotoNumber = computed(() => {
   if (!photos.length) return 0;
   return currentPhotoIndex.value + 1;
 });
+const photoProgress = computed(() => {
+  if (!photos.length) return 0;
+  return Math.round(((currentPhotoIndex.value + 1) / photos.length) * 100);
+});
 
 // 計算認識天數與交往天數
 const knowDate = new Date('2023-02-18T00:00:00');
@@ -249,6 +272,16 @@ onMounted(() => {
     0 24px 80px rgba(188, 81, 120, 0.18);
   color: var(--primary-dark);
   isolation: isolate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(52px - 8px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  z-index: var(--layer-section-decor);
 }
 
 .hero__background {
@@ -303,6 +336,12 @@ onMounted(() => {
   display: grid;
   gap: 1.15rem;
   max-width: 39rem;
+  padding: clamp(1.1rem, 2vw, 1.45rem);
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.48), rgba(255, 245, 249, 0.26));
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 14px 38px rgba(169, 73, 108, 0.11);
 }
 
 .hero__content>* {
@@ -314,6 +353,12 @@ onMounted(() => {
   flex-wrap: wrap;
   gap: 0.65rem;
   align-items: center;
+}
+
+.hero__spark {
+  font-size: 0.92rem;
+  color: rgba(201, 76, 120, 0.7);
+  text-shadow: 0 0 14px rgba(234, 115, 160, 0.4);
 }
 
 .hero__badge {
@@ -352,6 +397,13 @@ onMounted(() => {
   gap: 0.2rem;
 }
 
+.hero__title-overline {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(83, 38, 57, 0.62);
+}
+
 .hero__title-line {
   font-family: 'Noto Serif TC', 'Songti TC', serif;
   font-size: clamp(1.35rem, 2.8vw, 2rem);
@@ -383,6 +435,12 @@ onMounted(() => {
   background: linear-gradient(155deg, rgba(242, 159, 192, 0.22), rgba(248, 184, 150, 0.18));
   border: 1px solid rgba(226, 140, 169, 0.24);
   box-shadow: 0 8px 20px rgba(176, 75, 111, 0.14);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.hero__metric:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 24px rgba(176, 75, 111, 0.2);
 }
 
 .hero__metric-label {
@@ -408,11 +466,41 @@ onMounted(() => {
   font-family: 'Noto Serif TC', 'Songti TC', serif;
 }
 
+.hero__letter-block {
+  position: relative;
+  padding: 1rem 1rem 0.95rem 1.1rem;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 245, 248, 0.4)),
+    repeating-linear-gradient(180deg, transparent 0 1.5rem, rgba(225, 151, 180, 0.18) 1.5rem 1.56rem);
+  border: 1px solid rgba(220, 143, 172, 0.3);
+  box-shadow: 0 10px 22px rgba(181, 85, 119, 0.13);
+}
+
+.hero__letter-block::before {
+  content: '"';
+  position: absolute;
+  top: -0.42rem;
+  left: 0.45rem;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: rgba(221, 115, 157, 0.42);
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+}
+
 .hero__cta {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.55rem;
   margin-top: 0.2rem;
+}
+
+.hero__cta-note {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: rgba(90, 43, 63, 0.72);
 }
 
 .btn-primary {
@@ -424,6 +512,8 @@ onMounted(() => {
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
@@ -432,11 +522,25 @@ onMounted(() => {
   box-shadow: 0 14px 30px rgba(200, 76, 122, 0.36);
 }
 
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.3) 50%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+}
+
 .btn-primary:hover,
 .btn-primary:focus-visible {
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 20px 42px rgba(200, 76, 122, 0.42);
   filter: saturate(1.08);
+}
+
+.btn-primary:hover::after,
+.btn-primary:focus-visible::after {
+  transform: translateX(130%);
 }
 
 .btn-primary:focus-visible {
@@ -451,30 +555,114 @@ onMounted(() => {
   font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
 }
 
+.hero__divider {
+  display: flex;
+  align-items: center;
+  gap: 0.52rem;
+  opacity: 0.8;
+}
+
+.hero__divider span {
+  display: block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: linear-gradient(160deg, rgba(237, 96, 146, 0.84), rgba(245, 163, 127, 0.74));
+  box-shadow: 0 6px 14px rgba(211, 92, 137, 0.27);
+}
+
+.hero__divider span:nth-child(2) {
+  width: 1.9rem;
+  border-radius: 999px;
+}
+
 .hero__visual {
   position: relative;
   display: grid;
   gap: 0.85rem;
   justify-items: center;
+  align-self: stretch;
 }
 
 .hero__visual-kicker {
   margin: 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(81, 39, 57, 0.65);
+  color: rgba(81, 39, 57, 0.58);
+}
+
+.hero__visual-shell {
+  position: relative;
+  width: 100%;
+  padding: 0.9rem 0.9rem 0.4rem;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(255, 251, 250, 0.72), rgba(253, 236, 244, 0.5));
+  border: 1px solid rgba(218, 131, 166, 0.22);
+  box-shadow: 0 18px 40px rgba(159, 70, 104, 0.14);
+}
+
+.hero__visual-shell::before,
+.hero__visual-shell::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(247, 175, 201, 0.92));
+  box-shadow: 0 6px 14px rgba(182, 87, 124, 0.25);
+}
+
+.hero__visual-shell::before {
+  top: -10px;
+  left: 14px;
+}
+
+.hero__visual-shell::after {
+  top: -10px;
+  right: 14px;
+}
+
+.hero__visual-tag {
+  position: absolute;
+  top: 0.15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.26rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(91, 38, 61, 0.76);
+  background: rgba(255, 246, 251, 0.88);
+  border: 1px solid rgba(218, 139, 171, 0.34);
+  backdrop-filter: blur(2px);
+  z-index: 3;
 }
 
 .hero__visual-frame {
   position: relative;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow:
     0 20px 48px rgba(51, 28, 46, 0.22),
     0 4px 14px rgba(188, 81, 120, 0.16);
   animation: floatSoft 7s ease-in-out infinite;
+}
+
+.hero__visual-frame::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 62px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(255, 248, 246, 0.74);
+  transform: rotate(-8deg);
+  backdrop-filter: blur(2px);
+  z-index: 2;
 }
 
 .hero__visual-frame::after {
@@ -511,22 +699,64 @@ onMounted(() => {
   align-items: center;
   gap: 0.8rem;
   width: 100%;
-  padding: 0.15rem 0.25rem 0;
+  padding: 0.25rem 0.2rem 0;
 }
 
 .hero__visual-count {
   margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  color: rgba(82, 39, 58, 0.66);
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  padding: 0.32rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(245, 170, 199, 0.18);
+  border: 1px solid rgba(207, 102, 145, 0.26);
+  color: rgba(82, 39, 58, 0.74);
+}
+
+.hero__visual-count strong {
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+}
+
+.hero__visual-count span {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
 }
 
 .hero__visual-caption {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: rgba(59, 30, 43, 0.78);
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: rgba(59, 30, 43, 0.76);
+  max-width: 17.5rem;
+}
+
+.hero__visual-progress {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(222, 148, 178, 0.32), rgba(235, 183, 154, 0.3));
+}
+
+.hero__visual-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(210, 74, 124, 0.95), rgba(233, 144, 97, 0.92));
+  box-shadow: 0 6px 12px rgba(204, 96, 127, 0.34);
+  transition: width 0.45s ease;
+  position: relative;
+}
+
+.hero__visual-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.32) 40%, transparent 80%);
+  animation: progressSheen 2.8s linear infinite;
 }
 
 @media (max-width: 900px) {
@@ -547,6 +777,10 @@ onMounted(() => {
     padding: clamp(2.4rem, 8vw, 3.8rem);
   }
 
+  .hero::before {
+    border-radius: calc(34px - 8px);
+  }
+
   .hero__meta-row {
     justify-content: center;
   }
@@ -559,12 +793,20 @@ onMounted(() => {
   .hero__subtitle {
     max-width: 36rem;
   }
+
+  .hero__cta {
+    align-items: center;
+  }
 }
 
 @media (max-width: 640px) {
   .hero {
     border-radius: 28px;
     padding: 2rem 1.2rem;
+  }
+
+  .hero::before {
+    border-radius: calc(28px - 8px);
   }
 
   .hero__title-line {
@@ -580,8 +822,37 @@ onMounted(() => {
     justify-content: center;
   }
 
+  .hero__cta-note {
+    text-align: center;
+  }
+
   .hero__visual-photo {
     width: 100%;
+  }
+
+  .hero__divider {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .hero__visual-shell {
+    padding: 0.72rem 0.72rem 0.34rem;
+  }
+
+  .hero__visual-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
   }
 }
 
@@ -650,6 +921,16 @@ onMounted(() => {
 
   50% {
     filter: saturate(1.14) brightness(1.06);
+  }
+}
+
+@keyframes progressSheen {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
 </style>
