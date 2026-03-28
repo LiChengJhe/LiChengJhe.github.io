@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
   padding: clamp(1.4rem, 4vw, 2.4rem);
   border-radius: 30px;
   border: 1px solid rgba(186, 102, 102, 0.25);
-  background: linear-gradient(150deg, rgba(255, 251, 248, 0.95), rgba(255, 237, 241, 0.9));
+  background: linear-gradient(150deg, rgba(255, 251, 248, 0.8), rgba(255, 237, 241, 0.72));
   box-shadow: 0 20px 45px rgba(137, 94, 86, 0.18);
 }
 

@@ -264,9 +264,9 @@ onMounted(() => {
   padding: clamp(2.6rem, 6vw, 5.4rem);
   margin-block-start: clamp(2rem, 5vw, 4rem);
   background:
-    linear-gradient(145deg, rgba(255, 250, 245, 0.9), rgba(255, 238, 246, 0.92)),
-    radial-gradient(circle at 14% 18%, rgba(255, 196, 215, 0.2), transparent 42%),
-    radial-gradient(circle at 84% 78%, rgba(255, 218, 190, 0.2), transparent 48%);
+    linear-gradient(145deg, rgba(255, 250, 245, 0.75), rgba(255, 238, 246, 0.78)),
+    radial-gradient(circle at 14% 18%, rgba(255, 196, 215, 0.16), transparent 42%),
+    radial-gradient(circle at 84% 78%, rgba(255, 218, 190, 0.16), transparent 48%);
   border: 1px solid rgba(212, 130, 155, 0.22);
   box-shadow:
     0 24px 80px rgba(188, 81, 120, 0.18);
@@ -338,7 +338,7 @@ onMounted(() => {
   max-width: 39rem;
   padding: clamp(1.1rem, 2vw, 1.45rem);
   border-radius: 24px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.48), rgba(255, 245, 249, 0.26));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.34), rgba(255, 245, 249, 0.2));
   backdrop-filter: blur(3px);
   border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 0 14px 38px rgba(169, 73, 108, 0.11);
@@ -597,7 +597,7 @@ onMounted(() => {
   width: 100%;
   padding: 0.9rem 0.9rem 0.4rem;
   border-radius: 24px;
-  background: linear-gradient(160deg, rgba(255, 251, 250, 0.72), rgba(253, 236, 244, 0.5));
+  background: linear-gradient(160deg, rgba(255, 251, 250, 0.58), rgba(253, 236, 244, 0.4));
   border: 1px solid rgba(218, 131, 166, 0.22);
   box-shadow: 0 18px 40px rgba(159, 70, 104, 0.14);
 }

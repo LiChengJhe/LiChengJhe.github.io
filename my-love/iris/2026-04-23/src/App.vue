@@ -173,8 +173,8 @@ onBeforeUnmount(() => {
   padding: clamp(1rem, 3vw, 1.6rem) clamp(0.95rem, 4vw, 2rem) 1.1rem;
   border-radius: 28px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.66), rgba(255, 237, 244, 0.5)),
-    radial-gradient(circle at 12% 0%, rgba(255, 206, 225, 0.34), transparent 42%);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.5), rgba(255, 237, 244, 0.36)),
+    radial-gradient(circle at 12% 0%, rgba(255, 206, 225, 0.26), transparent 42%);
   border: 1px solid rgba(218, 137, 170, 0.3);
   box-shadow:
     0 18px 42px rgba(168, 75, 113, 0.16),

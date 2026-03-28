@@ -94,8 +94,8 @@ const orientationClass = computed(() => {
   overflow: visible;
   border: 1px solid rgba(197, 118, 118, 0.28);
   background:
-    linear-gradient(160deg, rgba(255, 250, 246, 0.92), rgba(255, 237, 243, 0.9)),
-    radial-gradient(circle at 10% 4%, rgba(255, 212, 228, 0.33), transparent 45%);
+    linear-gradient(160deg, rgba(255, 250, 246, 0.78), rgba(255, 237, 243, 0.72)),
+    radial-gradient(circle at 10% 4%, rgba(255, 212, 228, 0.24), transparent 45%);
   box-shadow: 0 14px 34px rgba(156, 83, 105, 0.18);
 }
 
