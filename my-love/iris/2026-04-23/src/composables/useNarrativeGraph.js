@@ -94,7 +94,7 @@ export function useNarrativeGraph() {
 
     return {
       ...node,
-      title: `照片旅程｜第 ${sceneNumber} 幕`,
+      title: `旅程｜第 ${sceneNumber} 章`,
       memory
     };
   });

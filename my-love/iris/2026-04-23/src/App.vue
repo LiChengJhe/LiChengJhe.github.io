@@ -206,7 +206,7 @@ onBeforeUnmount(() => {
 
 .journey-header__title {
   margin-top: 0.35rem;
-  font-size: clamp(2rem, 5.2vw, 3.2rem);
+  font-size: clamp(1.4rem, 3.8vw, 2.2rem);
   line-height: 1.1;
   text-shadow: 0 14px 24px rgba(184, 82, 122, 0.16);
 }
@@ -316,7 +316,7 @@ main {
   }
 
   .journey-header__title {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    font-size: clamp(1.2rem, 6vw, 1.7rem);
   }
 
   .journey-progress {

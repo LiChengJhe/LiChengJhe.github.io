@@ -116,7 +116,7 @@ export const photoNarrativeByFile = {
   },
   '13.png': {
     subtitle: '攀岩牆前，把勇敢練成日常。',
-    body: '每抓住一個點，心裡就多一點篤定。\n妳在旁邊加油的聲音，讓我一直想再往上。',
+    body: '每抓住一個點，心裡就多一點篤定。\n我在旁邊為妳加油的聲音，讓我一直想再往上。',
     caption: '每一次攀登，都是勇氣與成長的證明。',
     date: '2025-03-15',
     link: 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39'
@@ -124,7 +124,7 @@ export const photoNarrativeByFile = {
   '7.jpg': {
     subtitle: '植樹與巧克力，把今天種進回憶。',
     body: '上午把樹苗放進土裡，下午把甜味收進心裡。\n這種一起實踐又一起享受的日子，最值得珍藏。',
-    caption: '泥土與可可香交織成我們專屬的綠色約會。',
+    caption: '泥土與可可香交織成我們的專屬約會。',
     date: '2025-05-17',
     link: 'https://photos.app.goo.gl/gWYbFpK2RoGbMtfs6'
   },
