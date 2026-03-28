@@ -4,25 +4,28 @@
       class="chapter-nav__btn"
       type="button"
       :disabled="disablePrevious"
+      aria-label="上一步"
       @click="$emit('previous')"
     >
-      上一步
+      <span class="mdi mdi-arrow-left"></span>
     </button>
     <button
       class="chapter-nav__btn chapter-nav__btn--primary"
       type="button"
       :disabled="disableNext"
+      aria-label="下一步"
       @click="$emit('next')"
     >
-      下一步
+      <span class="mdi mdi-arrow-right"></span>
     </button>
     <button
       class="chapter-nav__btn"
       type="button"
       :disabled="disableHome"
+      aria-label="回到旅程起點"
       @click="$emit('home')"
     >
-      回到旅程起點
+      <span class="mdi mdi-home-heart"></span>
     </button>
     <button
       v-if="isAutoPlayable"
@@ -31,7 +34,7 @@
       @click="$emit('toggle-pause')"
       :aria-label="isPaused ? '繼續自動播放' : '暫停自動播放'"
     >
-      {{ isPaused ? '▶ 繼續播放' : '⏸ 暫停播放' }}
+      <span :class="['mdi', isPaused ? 'mdi-play' : 'mdi-pause']"></span>
     </button>
   </nav>
 </template>
@@ -67,25 +70,37 @@ defineEmits(['previous', 'next', 'home', 'toggle-pause']);
 .chapter-nav {
   margin: 1rem auto 0;
   max-width: 860px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.7rem;
 }
 
-/* 有暫停按鈕時改為 2x2 */
-.chapter-nav:has(.chapter-nav__btn--pause) {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .chapter-nav__btn {
-  min-height: 48px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
   border: 1px solid rgba(195, 102, 131, 0.32);
-  border-radius: 999px;
+  border-radius: 50%;
   background: rgba(255, 250, 252, 0.95);
   color: #8f4159;
+  font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
+  padding: 0;
+}
+
+.chapter-nav__btn .mdi {
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chapter-nav__btn:hover:enabled {
@@ -113,7 +128,6 @@ defineEmits(['previous', 'next', 'home', 'toggle-pause']);
 
 @media (max-width: 700px) {
   .chapter-nav {
-    grid-template-columns: 1fr;
     position: sticky;
     bottom: calc(0.7rem + env(safe-area-inset-bottom));
     z-index: var(--layer-floating-ui);
@@ -124,10 +138,6 @@ defineEmits(['previous', 'next', 'home', 'toggle-pause']);
     box-shadow: 0 20px 44px rgba(137, 72, 94, 0.22);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-  }
-
-  .chapter-nav__btn {
-    min-height: 52px;
   }
 }
 </style>
