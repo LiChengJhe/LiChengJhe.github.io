@@ -48,10 +48,35 @@ const photoNarrativeByFile = {
     link: 'https://photos.app.goo.gl/TR1Yvin5TrsZDjHF7'
   },
   '9.png': {
-    subtitle: '旋轉木馬，把笑容轉成回憶。',
+    subtitle: '六福村的旋轉木馬，把笑容轉成回憶。',
     body: '木馬轉了一圈又一圈，我們的笑也沒停過。\n原來最純真的快樂，就是妳看著我笑。',
     caption: '旋轉木馬上的歡笑，是青春最純真的記號。',
     link: 'https://photos.app.goo.gl/YS88JpdHZofXfzQn7'
+  },
+  '16.png': {
+    subtitle: '蘆竹湳古厝，紅磚巷弄的慢時光。',
+    body: '老屋與巷道安靜得剛好，像在替故事保留空白。\n那天我們一起動手做湯圓，揉麵糰、搓圓圓，笑聲和糯米香都留在回憶裡。\n我們並肩走過去，笑聲就成了最好的題字。',
+    caption: '漫步古厝巷弄、一起做湯圓，彼此相伴的笑顏成了記憶底片。',
+    link: 'https://photos.app.goo.gl/tdf1dApuzzG7g1p79'
+  },
+  '15.png': {
+    subtitle: 'TeamLab 裡，光影也懂我們。',
+    body: '鏡面反射出好多個我們，像把回憶複製成星河。\n每一次回頭，都能看見彼此眼裡的亮光。',
+    caption: '光影交織的空間裡，我們把繽紛與溫暖收進心底。',
+    link: 'https://photos.app.goo.gl/WgyScc4DPgvFAiCu5'
+  },
+
+  '17.png': {
+    subtitle: '撞球桌旁，練習默契的午後。',
+    body: '妳握桿時有點靦腆，我在旁邊偷偷幫妳打氣。\n一顆球滾過去，青春也跟著被輕輕點亮。',
+    caption: '新手握桿的靦腆與陪伴的溫柔，定格成甜甜回憶。',
+    link: 'https://photos.app.goo.gl/b5x9385ehokV814J9'
+  },
+  '14.png': {
+    subtitle: '保齡球道上，傻氣也很可愛。',
+    body: '球有點重、姿勢有點笨，但我們笑得很誠實。\n那種不完美的可愛，才是最真的默契。',
+    caption: '保齡球新手的笨拙與笑顏，溫馨得剛剛好。',
+    link: 'https://photos.app.goo.gl/ykdDiHNNSTfp9b5m7'
   },
   '10.png': {
     subtitle: '自嘲熊展覽，童心直接滿格。',
@@ -77,41 +102,23 @@ const photoNarrativeByFile = {
     caption: '每一次攀登，都是勇氣與成長的證明。',
     link: 'https://photos.app.goo.gl/QyYnhKCwDfFsNwz39'
   },
-  '14.png': {
-    subtitle: '保齡球道上，傻氣也很可愛。',
-    body: '球有點重、姿勢有點笨，但我們笑得很誠實。\n那種不完美的可愛，才是最真的默契。',
-    caption: '保齡球新手的笨拙與笑顏，溫馨得剛剛好。',
-    link: 'https://photos.app.goo.gl/ykdDiHNNSTfp9b5m7'
+  '7.jpg': {
+    subtitle: '植樹與巧克力，把今天種進回憶。',
+    body: '上午把樹苗放進土裡，下午把甜味收進心裡。\n這種一起實踐又一起享受的日子，最值得珍藏。',
+    caption: '泥土與可可香交織成我們專屬的綠色約會。',
+    link: 'https://photos.app.goo.gl/gWYbFpK2RoGbMtfs6'
   },
-  '15.png': {
-    subtitle: 'TeamLab 裡，光影也懂我們。',
-    body: '鏡面反射出好多個我們，像把回憶複製成星河。\n每一次回頭，都能看見彼此眼裡的亮光。',
-    caption: '光影交織的空間裡，我們把繽紛與溫暖收進心底。',
-    link: 'https://photos.app.goo.gl/WgyScc4DPgvFAiCu5'
+  '6.jpg': {
+    subtitle: '霧隱城與大溪老街的雙線約會。',
+    body: '和風場景像電影，大溪街道像舊時明信片。\n一整天從甜點到散步，都剛好甜進心裡。',
+    caption: '和風氛圍與老街時光，因妳而格外美好。',
+    link: 'https://photos.app.goo.gl/QgyhZKSLjwCwVrie9'
   },
-  '16.png': {
-    subtitle: '蘆竹湳古厝，紅磚巷弄的慢時光。',
-    body: '老屋與巷道安靜得剛好，像在替故事保留空白。\n那天我們一起動手做湯圓，揉麵糰、搓圓圓，笑聲和糯米香都留在回憶裡。\n我們並肩走過去，笑聲就成了最好的題字。',
-    caption: '漫步古厝巷弄、一起做湯圓，彼此相伴的笑顏成了記憶底片。',
-    link: 'https://photos.app.goo.gl/tdf1dApuzzG7g1p79'
-  },
-  '17.png': {
-    subtitle: '撞球桌旁，練習默契的午後。',
-    body: '妳握桿時有點靦腆，我在旁邊偷偷幫妳打氣。\n一顆球滾過去，青春也跟著被輕輕點亮。',
-    caption: '新手握桿的靦腆與陪伴的溫柔，定格成甜甜回憶。',
-    link: 'https://photos.app.goo.gl/b5x9385ehokV814J9'
-  },
-  '18.png': {
-    subtitle: '王品牛排的生日驚喜時刻。',
-    body: '甜點端上來那秒，妳笑得像收到全世界祝福。\n我記住的不是餐點，而是妳眼裡發光的樣子。',
-    caption: '妳在生日甜點前的笑容，是那晚最美的燭光。',
-    link: 'https://photos.app.goo.gl/2HU8UipwvAVe2Yyf7'
-  },
-  '19.png': {
-    subtitle: '史努比路跑，並肩奔跑的節奏。',
-    body: '我們不是為了名次，只是想把今天一起跑完。\n流汗和笑聲混在一起，青春就有了具體形狀。',
-    caption: '和妳並肩奔跑，記住這段笑著流汗的青春。',
-    link: 'https://photos.app.goo.gl/A8cpWCi23ZWMakUi9'
+  '2.jpg': {
+    subtitle: '華山到密室，從藝文走進奇幻。',
+    body: '先看展、再解謎，約會像連續兩章冒險小說。\n有妳一起闖關，連緊張都變得好玩。',
+    caption: '從華山文創到稻荷之歌，每一刻都溫柔難忘。',
+    link: 'https://photos.app.goo.gl/1wgLYSvp7Jkktsm16'
   },
   '1.jpg': {
     subtitle: '北埔綠世界，陽光穿過樹影。',
@@ -119,11 +126,11 @@ const photoNarrativeByFile = {
     caption: '在綠意裡散步，妳的笑容比花還溫柔。',
     link: 'https://photos.app.goo.gl/gCSiy6HMrtrrwjqr8'
   },
-  '2.jpg': {
-    subtitle: '華山到密室，從藝文走進奇幻。',
-    body: '先看展、再解謎，約會像連續兩章冒險小說。\n有妳一起闖關，連緊張都變得好玩。',
-    caption: '從華山文創到稻荷之歌，每一刻都溫柔難忘。',
-    link: 'https://photos.app.goo.gl/1wgLYSvp7Jkktsm16'
+  '5.jpg': {
+    subtitle: '喜來登生日宴，祝福都在眼神裡。',
+    body: '桌上很豐盛，心裡更滿的是被妳照顧的感覺。\n每一句生日快樂，都因妳而更有重量。',
+    caption: '燭光與美食之間，最珍貴的是妳的陪伴。',
+    link: 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9'
   },
   '3.jpg': {
     subtitle: '大稻埕午後，老街與河風作伴。',
@@ -137,35 +144,29 @@ const photoNarrativeByFile = {
     caption: '和妳玩跳格子的午後，像回到最純真的童年。',
     link: 'https://photos.app.goo.gl/nmFQshtq9XqDfTpx7'
   },
-  '5.jpg': {
-    subtitle: '喜來登生日宴，祝福都在眼神裡。',
-    body: '桌上很豐盛，心裡更滿的是被妳照顧的感覺。\n每一句生日快樂，都因妳而更有重量。',
-    caption: '燭光與美食之間，最珍貴的是妳的陪伴。',
-    link: 'https://photos.app.goo.gl/p1NZ7fkHLjUbbo7V9'
+  '18.png': {
+    subtitle: '王品牛排的生日驚喜時刻。',
+    body: '甜點端上來那秒，妳笑得像收到全世界祝福。\n我記住的不是餐點，而是妳眼裡發光的樣子。',
+    caption: '妳在生日甜點前的笑容，是那晚最美的燭光。',
+    link: 'https://photos.app.goo.gl/2HU8UipwvAVe2Yyf7'
   },
-  '6.jpg': {
-    subtitle: '霧隱城與大溪老街的雙線約會。',
-    body: '和風場景像電影，大溪街道像舊時明信片。\n一整天從甜點到散步，都剛好甜進心裡。',
-    caption: '和風氛圍與老街時光，因妳而格外美好。',
-    link: 'https://photos.app.goo.gl/QgyhZKSLjwCwVrie9'
-  },
-  '7.jpg': {
-    subtitle: '植樹與巧克力，把今天種進回憶。',
-    body: '上午把樹苗放進土裡，下午把甜味收進心裡。\n這種一起實踐又一起享受的日子，最值得珍藏。',
-    caption: '泥土與可可香交織成我們專屬的綠色約會。',
-    link: 'https://photos.app.goo.gl/gWYbFpK2RoGbMtfs6'
+  '19.png': {
+    subtitle: '史努比路跑，並肩奔跑的節奏。',
+    body: '我們不是為了名次，只是想把今天一起跑完。\n流汗和笑聲混在一起，青春就有了具體形狀。',
+    caption: '和妳並肩奔跑，記住這段笑著流汗的青春。',
+    link: 'https://photos.app.goo.gl/A8cpWCi23ZWMakUi9'
   },
   '20.png': {
     subtitle: '金日工飾手作工作室，把承諾做成每天都能戴上的戒指。',
     body: '那天我們在金日工飾手作工作室，一起把婚戒慢慢打磨成形。\n妳專注的眼神，讓我更確定，往後的每一天都想和妳並肩走下去。',
     caption: '這枚日常配戴的婚戒，是我們親手做給彼此的承諾。',
-    link: ''
+    link: 'https://photos.app.goo.gl/6X34Hy4KCx4EcBd98'
   },
   '21.png': {
     subtitle: '苗栗火車頭園區，把參觀也走成了甜甜的約會。',
     body: '那天我們在苗栗火車頭園區邊走邊看，每一站都留下我們的笑聲。\n有妳在身邊，再普通的參觀行程，也會變成我想一直收藏的回憶。',
     caption: '在苗栗火車頭園區遊玩參觀的這天，我們又把幸福多存了一張。',
-    link: ''
+    link: 'https://photos.app.goo.gl/1LYKfF4pBc15648W9'
   }
 };
 
