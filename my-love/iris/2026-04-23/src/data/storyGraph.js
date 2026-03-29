@@ -57,6 +57,48 @@ export const photoNarrativeByFile = {
     date: '2024-02-25',
     link: 'https://photos.app.goo.gl/TR1Yvin5TrsZDjHF7'
   },
+  '8.jpg': {
+    subtitle: '手信霧隱城一日遊',
+    body: '走進手信霧隱城，體驗日式場景、品嚐和菓子，妳的笑容比甜點更讓人難忘。這段回憶像霧一樣溫柔地包圍著我們。',
+    caption: '手信霧隱城一日遊，妳的笑容和日式風情一樣令人著迷。',
+    date: '2023-05-20',
+    link: 'https://photos.app.goo.gl/fkDsZssBojbAjgQL7'
+  },
+  '9.jpg': {
+    subtitle: '間諜家家酒快閃餐廳',
+    body: '一起走進間諜家家酒快閃餐廳，沉浸在動畫場景裡，享受限定美食。妳的笑容和驚喜，讓這次體驗變得特別又難忘。',
+    caption: '間諜家家酒快閃餐廳裡，妳的笑容比任何角色都可愛。',
+    date: '2023-08-12',
+    link: 'https://photos.app.goo.gl/XAnNDKEGZjdgRFNW8'
+  },
+  '10.jpg': {
+    subtitle: '北埔半日遊',
+    body: '北埔的午後，我們一起散步、喝擂茶、吃客家菜。陽光和妳的笑容一樣溫暖，這段悠閒的時光，成了回憶裡最柔軟的片段。',
+    caption: '北埔半日遊，陽光、擂茶和妳的笑容都很溫柔。',
+    date: '2023-11-17',
+    link: 'https://photos.app.goo.gl/xuDVpVomGndyR2qS6'
+  },
+  '11.jpg': {
+    subtitle: '樹林頭夜市',
+    body: '夜市燈火亮起時，我們在人群裡穿梭，邊走邊分享小吃。熱鬧的氣氛裡，妳的笑容和夜色一樣溫柔，這些平凡的快樂，總讓人想一再回味。',
+    caption: '樹林頭夜市的熱鬧與妳的笑容，是夜晚最溫暖的風景。',
+    date: '2023-11-10',
+    link: 'https://photos.app.goo.gl/dr37DbCUCN24GqtV9'
+  },
+  '12.jpg': {
+    subtitle: '聖誕節快樂',
+    body: '聖誕節的燈飾閃爍，我們一起交換禮物、分享笑聲。節日的溫暖和妳的陪伴，讓快樂變得特別有意義。',
+    caption: '聖誕節的快樂，是和妳一起度過的每一刻。',
+    date: '2023-12-23',
+    link: 'https://photos.app.goo.gl/3tf7JzaQXp75GaYi6'
+  },
+  '13.jpg': {
+    subtitle: '眷村博物館',
+    body: '在眷村博物館裡散步，老房子的故事和我們的笑聲交織在一起。每個轉角都藏著驚喜，和妳一起探索的時光，讓回憶變得特別溫柔。',
+    caption: '眷村博物館的老時光，因妳的陪伴而更有溫度。',
+    date: '2023-05-19',
+    link: 'https://photos.app.goo.gl/GcDksFSiJkXUKPVD6'
+  },
   '9.png': {
     subtitle: '六福村的旋轉木馬，把笑容轉成回憶。',
     body: '木馬轉了一圈又一圈，我們的笑也沒停過。\n原來最純真的快樂，就是妳看著我笑。',
