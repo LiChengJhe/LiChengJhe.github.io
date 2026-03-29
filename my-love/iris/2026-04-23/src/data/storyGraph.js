@@ -71,6 +71,55 @@ export const photoNarrativeByFile = {
     date: '2023-08-12',
     link: 'https://photos.app.goo.gl/XAnNDKEGZjdgRFNW8'
   },
+  '19.jpg': {
+    subtitle: '小日子烘焙坊・做蛋糕',
+    body: '第一次一起到小日子烘焙坊，動手做蛋糕。從攪拌麵糊到裝飾蛋糕，每個步驟都有妳的笑聲和專注。和妳一起完成的蛋糕，特別有幸福的味道。',
+    caption: '小日子烘焙坊的第一次，妳和蛋糕一樣甜。',
+    date: '2023-04-01',
+    link: 'https://photos.app.goo.gl/QBrVmw5kgBGbkHJZ9'
+  },
+  '20.jpg': {
+    subtitle: '新竹動物園',
+    body: '一起在新竹動物園散步，看動物、聊心事。園區裡的每個角落，都留下我們的笑聲和合影。和妳一起探索的時光，總是特別快樂。',
+    caption: '新竹動物園裡，妳的笑容比動物還可愛。',
+    date: '2023-06-03',
+    link: 'https://photos.app.goo.gl/iA4ULEWbb7TUBpN5A'
+  },
+  '21.jpg': {
+    subtitle: '交大落羽松',
+    body: '一起到交大散步，欣賞落羽松的金黃與倒影。樹下的風景和妳的笑容一樣溫柔，這段靜靜走過的時光，讓冬日也變得很溫暖。',
+    caption: '交大落羽松下，妳的笑容最美。',
+    date: '2024-01-06',
+    link: 'https://photos.app.goo.gl/2cF9GpwHEizkE8Hz5'
+  },
+  '22.jpg': {
+    subtitle: '巨城逛街・好想兔',
+    body: '一起在巨城逛街，沒想到巧遇好想兔的快閃活動。妳和可愛的好想兔合影，笑容比玩偶還要療癒。這種小驚喜，讓平凡的日子變得特別開心。',
+    caption: '巨城巧遇好想兔，妳的笑容最可愛。',
+    date: '2025-02-02',
+    link: 'https://photos.app.goo.gl/EcGEA9NyuBwpYZTi7'
+  },
+  '23.jpg': {
+    subtitle: '兒童新樂園・科教館・北投',
+    body: '這天我們跑了好多地方，先在兒童新樂園玩得像小孩，再到士林科教館探索新知，最後一起去北投散步。每一站都有妳的笑聲，讓整天都充滿快樂和驚喜。',
+    caption: '兒童新樂園、科教館、北投，和妳一起走過的每一站都很美好。',
+    date: '2023-04-29',
+    link: 'https://photos.app.goo.gl/MwASYdZKxbizzuGw7'
+  },
+  '24.jpg': {
+    subtitle: '假日花市與單車時光',
+    body: '我們騎著腳踏車去假日花市午餐，沿途吹著微風、聊著天。花市裡的美食和妳的笑容，讓這個假日變得特別輕快又幸福。',
+    caption: '假日花市與單車時光，有妳陪伴的日子最美好。',
+    date: '2024-09-22',
+    link: 'https://photos.app.goo.gl/u8cyvrB6FjTmm9ro8'
+  },
+  '25.jpg': {
+    subtitle: '松菸・PP mini 快閃店',
+    body: '一起在台北松菸散步，逛PP mini快閃店，收藏了好多可愛的瞬間。妳的笑容和快閃店的驚喜一樣，讓這一天變得特別開心。',
+    caption: '松菸與PP mini快閃店，妳的笑容最可愛。',
+    date: '2024-07-27',
+    link: 'https://photos.app.goo.gl/eRyzoJXVctNSxRZ28'
+  },
   '10.jpg': {
     subtitle: '北埔半日遊',
     body: '北埔的午後，我們一起散步、喝擂茶、吃客家菜。陽光和妳的笑容一樣溫暖，這段悠閒的時光，成了回憶裡最柔軟的片段。',
@@ -98,6 +147,41 @@ export const photoNarrativeByFile = {
     caption: '眷村博物館的老時光，因妳的陪伴而更有溫度。',
     date: '2023-05-19',
     link: 'https://photos.app.goo.gl/GcDksFSiJkXUKPVD6'
+  },
+  '14.jpg': {
+    subtitle: '中壢一日遊',
+    body: '在中壢的日式建築間穿梭，走進中平路故事館、壢景町，感受老屋的靜謐與時光的溫度。和妳一起探索的每一步，都讓這座城市變得特別溫柔。',
+    caption: '中壢一日遊，日式建築與妳的笑容都很迷人。',
+    date: '2024-02-03',
+    link: 'https://photos.app.goo.gl/G4fzQKPGXxhXkwYC6'
+  },
+  '15.jpg': {
+    subtitle: '奇藝日式餐廳慶生',
+    body: '那天我們先去新竹縣美術館欣賞展覽，再到奇藝日式餐廳為妳慶生。美術館的靜謐和餐廳的溫馨，還有妳的笑容，都讓這個生日成為最幸福的回憶。能陪妳一起慶祝，是我最開心的事。',
+    caption: '奇藝日式餐廳裡，妳的生日笑容最動人。',
+    date: '2023-10-22',
+    link: 'https://photos.app.goo.gl/LzSVXsVqLDDz1Ep2A'
+  },
+  '16.jpg': {
+    subtitle: '第一次七夕情人節',
+    body: '第一次一起過七夕，妳特地穿上我最喜歡的洋裝。那天的浪漫和妳的笑容，都讓這個情人節成為我心裡最珍貴的回憶。',
+    caption: '七夕情人節，妳的洋裝和笑容都讓我心動。',
+    date: '2023-08-19',
+    link: 'https://photos.app.goo.gl/b4RHiD5crPt7AS1C8'
+  },
+  '17.jpg': {
+    subtitle: '小日子烘焙坊・做餅乾',
+    body: '第二次一起來小日子烘焙坊，這回換我們動手做餅乾。揉麵糰、壓模、烘烤，過程裡有笑聲也有甜甜的期待。和妳一起完成的餅乾，特別有幸福的味道。',
+    caption: '小日子烘焙坊裡，妳和餅乾一樣可愛。',
+    date: '2023-07-30',
+    link: 'https://photos.app.goo.gl/16EKRLyuZwVh1cmv7'
+  },
+  '18.jpg': {
+    subtitle: '一周年紀念日',
+    body: '交往一周年，我們一起在中壢散步、逛IKEA，平凡的日子因為有妳而變得特別。這一天的陪伴和笑聲，是我最珍惜的紀念。',
+    caption: '一周年紀念日，有妳在身邊，哪裡都很幸福。',
+    date: '2024-04-20',
+    link: 'https://photos.app.goo.gl/TwFsp4mxHEcbtsRz8'
   },
   '9.png': {
     subtitle: '六福村的旋轉木馬，把笑容轉成回憶。',
