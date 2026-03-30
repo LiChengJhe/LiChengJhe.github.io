@@ -12,7 +12,15 @@
         </header>
 
         <div class="node__body-wrap">
-          <p class="node__body" v-for="line in visibleLines" :key="line">{{ line }}</p>
+          <p
+            v-for="(line, index) in lines"
+            :key="`${node.id}-line-${index}`"
+            class="node__body"
+            :class="{ 'node__body--hidden': index >= revealedCount }"
+            :aria-hidden="index >= revealedCount"
+          >
+            {{ line }}
+          </p>
         </div>
       </div>
 
@@ -43,8 +51,6 @@ const lines = computed(() => {
 const nodeRoot = ref(null);
 const revealedCount = ref(0);
 let revealTimer;
-
-const visibleLines = computed(() => lines.value.slice(0, revealedCount.value));
 
 const keepNarrativeNodeInView = () => {
   if (!props.keepFocusDuringPlayback) {
@@ -134,6 +140,9 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 .node__header {
@@ -149,6 +158,11 @@ onBeforeUnmount(() => {
   width: min(280px, 56%);
   height: 1px;
   background: linear-gradient(90deg, rgba(194, 92, 125, 0.5), rgba(194, 92, 125, 0));
+}
+
+.node__layout--with-media .node__main {
+  max-width: 100%;
+  margin: 0;
 }
 
 @media (max-width: 680px) {
@@ -210,26 +224,33 @@ onBeforeUnmount(() => {
 .node__body {
   margin-top: 0;
   line-height: 1.9;
+  width: 100%;
   color: #4c3640;
   padding: 0.68rem 0.82rem;
   border-radius: 12px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.56), rgba(255, 244, 248, 0.4));
   border: 1px solid rgba(208, 129, 159, 0.2);
   box-shadow: 0 8px 18px rgba(154, 87, 109, 0.08);
-  animation: lineReveal 0.42s ease both;
+  transform: translateY(0) scale(1);
   transform-origin: left center;
-  align-self: start;
+  opacity: 1;
+  transition: opacity 0.34s ease, transform 0.34s ease, filter 0.34s ease;
 }
 
-@keyframes lineReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.99);
+.node__body--hidden {
+  opacity: 0;
+  transform: translateY(8px) scale(0.99);
+  filter: blur(0.8px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node__body {
+    transition: none;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  .node__body--hidden {
+    filter: none;
   }
 }
 

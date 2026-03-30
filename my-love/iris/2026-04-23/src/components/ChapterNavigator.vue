@@ -30,11 +30,14 @@
       <span class="mdi mdi-home-heart"></span>
     </button>
     <button
-      v-if="isAutoPlayable"
       class="chapter-nav__btn chapter-nav__btn--pause"
+      :class="{ 'chapter-nav__btn--hidden': !isAutoPlayable }"
       type="button"
+      :disabled="!isAutoPlayable"
       @click="$emit('toggle-pause')"
       :aria-label="isPaused ? '繼續自動播放' : '暫停自動播放'"
+      :aria-hidden="!isAutoPlayable"
+      :tabindex="isAutoPlayable ? 0 : -1"
     >
       <span :class="['mdi', isPaused ? 'mdi-play' : 'mdi-pause']"></span>
     </button>
@@ -221,6 +224,11 @@ defineEmits(['previous', 'next', 'home', 'toggle-pause']);
   border-color: rgba(150, 102, 195, 0.24);
   background: radial-gradient(circle at 30% 24%, rgba(255, 253, 255, 0.92), rgba(246, 237, 255, 0.86));
   color: #6a3d8f;
+}
+
+.chapter-nav__btn--hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .chapter-nav__btn:focus-visible {
