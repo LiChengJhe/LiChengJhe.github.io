@@ -476,7 +476,7 @@ export const storyGraph = {
     body: '謝謝妳，一路走到這裡。\n妳讓我的每一天都有了想奔赴的方向，\n這次我先把承諾放進機票與行程裡，\n等我們從大阪回來，再用更多照片，把我們的故事繼續寫下去。',
     memory: {
       image: '3.png',
-      caption: '把第一次在日本的合影，留作我們故事延伸的起點。',
+      caption: '第一次在日本的合影，是我們故事未完待續的序章。',
       date: photoNarrativeByFile['3.png']?.date || defaultPhotoDate,
       link: photoNarrativeByFile['3.png']?.link || ''
     }
