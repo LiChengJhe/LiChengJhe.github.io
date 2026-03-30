@@ -80,7 +80,7 @@ export const photoNarrativeByFile = {
   },
   '34.jpg': {
     subtitle: '迪士尼100週年特展',
-    body: '一起到台北中正紀念堂看迪士尼100週年特展，經典角色和童年回憶都在眼前重現。\n妳的笑容和展覽裡的魔法一樣，讓這一天變得特別夢幻又快樂。',
+    body: '一起到台北看迪士尼100週年特展，經典角色和童年回憶都在眼前重現。\n妳的笑容和展覽裡的魔法一樣，讓這一天變得特別夢幻又快樂。',
     caption: '迪士尼100週年特展，和妳一起回味童年最幸福。',
     date: '2023-07-01',
     link: 'https://photos.app.goo.gl/qRjkTs4qnnNXTfhY6'
