@@ -34,10 +34,10 @@
 
         <div class="hero__letter-block">
           <p class="hero__subtitle">
-            謝謝妳，把我的普通日常變成會發光的風景。<br>
-            妳笑起來的樣子，總能讓我重新喜歡這個世界。<br>
-            我偷偷準備了一個小彩蛋，現在先不劇透，<br>
-            等妳按下今天的開始鍵，我們就一起揭曉。
+            謝謝妳，陪我把普通的日子過成一頁一頁值得收藏的故事。<br>
+            從剛認識的心動，到後來每一次並肩前進，我都越來越確定妳有多重要。<br>
+            今天我把這些回憶重新整理成一段旅程，想陪妳從頭再走一次，<br>
+            然後在故事的最後，把我真正想說的未來也一起交給妳。
           </p>
         </div>
         <p class="hero__signature">永遠站在妳這邊的 {{ signature }}</p>
@@ -48,7 +48,7 @@
         </div>
         <div class="hero__cta">
           <button class="btn-primary" @click="$emit('start-journey')">開啟專屬紀念日旅程</button>
-          <p class="hero__cta-note">點下按鈕後，今天的每一幕都只為妳展開。</p>
+          <p class="hero__cta-note">點下按鈕後，我們就從故事的起點，一路走到我為妳準備的驚喜。</p>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
             <strong>{{ currentPhotoNumber }}</strong>
             <span>/ {{ photoTotal }}</span>
           </span>
-          <span class="hero__visual-caption">妳的笑容，是我心裡最溫柔的風景。</span>
+          <span class="hero__visual-caption">把一路走來的回憶翻開，答案始終都是妳。</span>
         </div>
         <div class="hero__visual-progress" aria-hidden="true">
           <span class="hero__visual-progress-fill" :style="{ width: `${photoProgress}%` }"></span>
