@@ -90,11 +90,11 @@
 const props = defineProps({
   nickname: {
     type: String,
-    default: '鮭魚子'
+    default: '彥伃'
   },
   signature: {
     type: String,
-    default: '存摺子'
+    default: '承哲'
   }
 });
 
