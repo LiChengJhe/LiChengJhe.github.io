@@ -99,6 +99,11 @@ const canGoNext = computed(() => Boolean(currentNode.value.next));
 const canGoHome = computed(() => currentNode.value.id !== 'hero-opening');
 
 const AUTO_PLAYABLE_TYPES = new Set(['scene', 'finale']);
+const TEXT_REVEAL_INTERVAL_MS = 360;
+const CJK_CHARS_PER_SECOND = 10;
+const ENGLISH_WORDS_PER_SECOND = 3.6;
+const NUMBER_TOKENS_PER_SECOND = 4.2;
+const SYMBOLS_PER_SECOND = 11;
 let autoAdvanceTimer = null;
 const isPaused = ref(false);
 
@@ -140,10 +145,31 @@ const clearAutoAdvanceTimer = () => {
   }
 };
 
+const getEstimatedReadingDurationMs = (node) => {
+  const text = [node.title, node.subtitle, node.body].filter(Boolean).join('\n');
+  const cjkCount = (text.match(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu) || []).length;
+  const englishWordCount = (text.match(/[A-Za-z]+(?:'[A-Za-z]+)*/g) || []).length;
+  const numberTokenCount = (text.match(/\d+(?:[.,:/-]\d+)*/g) || []).length;
+  const nonSpaceCharCount = text.replace(/\s/g, '').length;
+  const latinCharCount = (text.match(/[A-Za-z]/g) || []).length;
+  const numberCharCount = (text.match(/\d/g) || []).length;
+  const symbolCount = Math.max(0, nonSpaceCharCount - cjkCount - latinCharCount - numberCharCount);
+
+  const readingSeconds =
+    cjkCount / CJK_CHARS_PER_SECOND +
+    englishWordCount / ENGLISH_WORDS_PER_SECOND +
+    numberTokenCount / NUMBER_TOKENS_PER_SECOND +
+    symbolCount / SYMBOLS_PER_SECOND;
+
+  return Math.ceil(readingSeconds * 1000);
+};
+
 const getAutoAdvanceDelayMs = (node) => {
-  const textLength = (node.body || '').replace(/\s/g, '').length;
-  const scaledDelay = 2600 + textLength * 34;
-  return Math.min(9000, Math.max(3200, scaledDelay));
+  const bodyLineCount = (node.body || '').split('\n').filter(Boolean).length;
+  const revealDuration = bodyLineCount * TEXT_REVEAL_INTERVAL_MS;
+  const readingDuration = getEstimatedReadingDurationMs(node);
+  const scaledDelay = revealDuration + readingDuration + 500;
+  return Math.min(12000, Math.max(2600, scaledDelay));
 };
 
 const scheduleAutoAdvance = (node) => {
