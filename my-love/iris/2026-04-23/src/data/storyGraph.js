@@ -164,7 +164,7 @@ export const photoNarrativeByFile = {
   },
   '10.jpg': {
     subtitle: '北埔半日遊',
-    body: '北埔的午後，我們一起散步、喝擂茶、吃客家菜。\n陽光和妳的笑容一樣溫暖，這段悠閒的時光，成了回憶裡最柔軟的片段。',
+    body: '北埔的午後，我們一起散步、喝擂茶。\n陽光和妳的笑容一樣溫暖，這段悠閒的時光，成了回憶裡最柔軟的片段。',
     caption: '北埔半日遊，陽光、擂茶和妳的笑容都很溫柔。',
     date: '2023-11-17',
     link: 'https://photos.app.goo.gl/xuDVpVomGndyR2qS6'
@@ -283,7 +283,7 @@ export const photoNarrativeByFile = {
   },
   '36.jpg': {
     subtitle: '旭集生日大餐',
-    body: '2024年女友生日，我們特地去旭集享用高級日式吃到飽。\n每一道料理都很精緻，妳吃得開心，我也覺得很幸福。能在這樣特別的日子陪妳大快朵頤，是我最想給妳的溫柔與儀式感。',
+    body: '2024年妳的生日，我們特地去旭集享用高級日式吃到飽。\n每一道料理都很精緻，妳吃得開心，我也覺得很幸福。能在這樣特別的日子陪妳大快朵頤，是我最想給妳的溫柔與儀式感。',
     caption: '旭集生日大餐，妳的笑容比美食更讓人難忘。',
     date: '2024-10-19',
     link: 'https://photos.app.goo.gl/rroSuETACxeXVex4A'
