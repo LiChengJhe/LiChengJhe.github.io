@@ -111,28 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
-defineEmits<{
-  (e: 'openSurprise'): void
-}>()
-
-const tripStartDate = new Date('2026-10-08T06:40:00')
-const birthdayDate = new Date('2026-10-23T00:00:00')
-
-const tripDaysRemaining = computed(() => {
-  const now = new Date()
-  const diff = tripStartDate.getTime() - now.getTime()
-  const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
-  return days > 0 ? days : 0
-})
-
-const bdayDaysRemaining = computed(() => {
-  const now = new Date()
-  const diff = birthdayDate.getTime() - now.getTime()
-  const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
-  return days > 0 ? days : 0
-})
+// HeroBanner static presentation
 </script>
 
 <style scoped>

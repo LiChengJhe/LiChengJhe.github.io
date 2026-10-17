@@ -232,15 +232,6 @@ function getDayShortTitle(day: any): string {
   }
 }
 
-function getTipIcon(iconName: string): string {
-  switch (iconName) {
-    case 'Coffee': return '☕'
-    case 'Utensils': return '🍱'
-    case 'Bus': return '🚌'
-    case 'HeartHandshake': return '💖'
-    default: return '📍'
-  }
-}
 
 function getItemIcon(item: any): string {
   if (!item) return '📍'
