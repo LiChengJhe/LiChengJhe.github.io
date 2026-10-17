@@ -146,6 +146,15 @@
               </div>
 
               <p v-if="item.description" class="card-desc">{{ item.description }}</p>
+
+              <!-- 浪漫留言便箋 -->
+              <div v-if="item.romanticNote" class="romantic-note-box font-serif">
+                <div class="romantic-note-header">
+                  <span class="romantic-heart-pulse">💖</span>
+                  <span class="romantic-note-tag">承哲的心動便箋</span>
+                </div>
+                <p class="romantic-note-text">「{{ item.romanticNote }}」</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1080,5 +1089,61 @@ function getItemIcon(item: any): string {
     justify-content: center;
     padding: 0.7rem 1.2rem;
   }
+}
+
+/* 浪漫心動便箋樣式 */
+.romantic-note-box {
+  margin-top: 1rem;
+  padding: 0.85rem 1.15rem;
+  background: linear-gradient(135deg, rgba(255, 245, 247, 0.95) 0%, rgba(254, 240, 243, 0.9) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.22);
+  border-left: 3.5px solid #f43f5e;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.08);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.romantic-note-box:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(244, 63, 94, 0.14);
+}
+
+.romantic-note-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.romantic-heart-pulse {
+  display: inline-block;
+  font-size: 0.95rem;
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.22);
+  }
+}
+
+.romantic-note-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e11d48;
+  letter-spacing: 0.04em;
+}
+
+.romantic-note-text {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #881337;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0;
 }
 </style>

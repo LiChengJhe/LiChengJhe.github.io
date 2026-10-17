@@ -57,7 +57,8 @@ export const itineraryData: DailyPlan[] = [
         description: '朝聖心齋橋 PARCO 官方 Nagano Market，採買滿滿的自嘲熊（ナガノのくま / Joke Bear）限定玩偶、吊飾與周邊！',
         category: 'shopping',
         icon: 'ShoppingBag',
-        mustTry: '自嘲熊限定玩偶、壓克力吊飾與特色周邊'
+        mustTry: '自嘲熊限定玩偶、壓克力吊飾與特色周邊',
+        romanticNote: '看見妳在自嘲熊專區拿著吊飾笑得那麼燦爛，那一刻妳的笑容比大阪所有的燈火都要閃亮！'
       },
       {
         id: 'd1-6',
@@ -133,7 +134,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'food',
         icon: 'Coffee',
         cost: '約 ¥650 / 人',
-        mustTry: '現刷宇治抹茶拿鐵、抹茶冰淇淋'
+        mustTry: '現刷宇治抹茶拿鐵、抹茶冰淇淋',
+        romanticNote: '飄著焙茶香氣的宇治街頭，牽著妳的手一起喝抹茶拿鐵，時間彷彿都為我們放慢了腳步。'
       },
       {
         id: 'd2-4',
@@ -173,6 +175,7 @@ export const itineraryData: DailyPlan[] = [
         category: 'activity',
         icon: 'Gamepad2',
         mustTry: '雙人巨大控制器挑戰、專屬特製硬幣互動卡、官方限定紀念周邊',
+        romanticNote: '兩個人一起手忙腳亂拍打巨大紅白機手把，看妳笑到眼淚都流出來，那是我好久沒有過的單純快樂。',
         elderTips: '館內全無障礙設計，動線平坦寬敞，可輕鬆悠閒參觀拍照。'
       },
       {
@@ -243,6 +246,7 @@ export const itineraryData: DailyPlan[] = [
         category: 'activity',
         icon: 'Ship',
         mustTry: '船上餵海鷗甜蜜合影、欣賞舟屋傳統木造建築群',
+        romanticNote: '在微涼的海風中，妳拿著蝦味先餵海鷗笑得像個小女孩，依偎在我身邊的妳，就是海天一色裡最美的風景。',
         elderTips: '遊覽船行駛平穩，坐在船艙內也能透過全景大窗欣賞美景。'
       },
       {
@@ -304,7 +308,7 @@ export const itineraryData: DailyPlan[] = [
     dateStr: '2026/10/11',
     weekday: '週日 (Sun)',
     title: '滋賀絕景・琵琶湖與童話草屋',
-    subtitle: '湖中鳥居 ➔ 琵琶湖山谷 ➔ 滿月寺浮禦堂 ➔ 在童話草屋吃年輪蛋糕',
+    subtitle: '湖中鳥居 ➔ 琵琶湖山谷 ➔ 滿月寺浮禦堂 ➔ 童話草屋美照與挑選明日早餐',
     weatherSummary: '🏞️ 滋賀湖畔 15°C ~ 22°C，山頂展望台風大微涼，建議攜帶保暖防風外套',
     transportPass: '專車一日遊',
     tags: ['白鬚神社', '琵琶湖山谷', 'BiwakoTerrace', '浮禦堂', 'LaCollina', '滋賀'],
@@ -336,7 +340,8 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘日本最速全景高空纜車直達海拔 1,100 公尺的 Biwako Terrace，俯瞰宛如大海般無邊際的蔚藍湖景並享用午餐。',
         category: 'attraction',
         icon: 'Mountain',
-        mustTry: '無邊際水池露台俯瞰琵琶湖全景、藍色琵琶湖特調蘇打'
+        mustTry: '無邊際水池露台俯瞰琵琶湖全景、藍色琵琶湖特調蘇打',
+        romanticNote: '站在 1,100 公尺的山頂露台俯瞰整片蔚藍的琵琶湖，想把全世界的遼闊與溫柔，通通擁抱給身旁的妳。'
       },
       {
         id: 'd4-4',
@@ -350,11 +355,12 @@ export const itineraryData: DailyPlan[] = [
       {
         id: 'd4-5',
         time: '16:44 - 17:45',
-        title: '🏡 在童話草屋吃年輪蛋糕 (La Collina 近江八幡)',
-        description: '走進建築大師藤森照信打造的童話草屋（La Collina 近江八幡），宛如置身吉卜力奇幻童話國度！在童話草屋裡品嚐 CLUB HARIE 剛出爐、香氣撲鼻的神級現烤年輪蛋糕。',
+        title: '🏡 童話草屋美照散策 & 挑選明日早餐 (La Collina 近江八幡)',
+        description: '走進建築大師藤森照信打造的童話草屋（La Collina 近江八幡），宛如置身吉卜力奇幻童話國度！在綠意盎然的草屋迴廊拍下仙氣滿滿的美照，並為明日一早的環球影城大冒險挑選美味早餐與人氣點心。',
         category: 'attraction',
         icon: 'Sparkles',
-        mustTry: '在童話草屋吃年輪蛋糕、童話草屋綠意迴廊合照留念'
+        mustTry: '童話草屋綠意迴廊合照留念、挑選明日早餐與人氣點心',
+        romanticNote: '走在綠意盎然的童話草屋前幫妳拍美照、一起挑選明天去環球影城的美味早餐，只要身邊是妳，處處都是最動人的風景。'
       },
       {
         id: 'd4-6',
@@ -410,7 +416,8 @@ export const itineraryData: DailyPlan[] = [
         description: '開園直奔活米村！拿著專屬互動魔杖在各個魔法景點與櫥窗施法遊玩，並於 08:52 順利體驗經典設施「哈利波特禁忌之旅」，騎乘飛天掃帚穿梭於霍格華茲城堡上空。',
         category: 'activity',
         icon: 'Wand2',
-        mustTry: '揮舞互動魔杖施法遊玩、霍格華茲城堡合影、禁忌之旅沉浸飛行'
+        mustTry: '揮舞互動魔杖施法遊玩、霍格華茲城堡合影、禁忌之旅沉浸飛行',
+        romanticNote: '看著妳認真揮舞魔杖施法的可愛模樣，我心裡悄悄許願：未來的每一個魔法瞬間，我都想陪在妳身邊。'
       },
       {
         id: 'd5-3',
@@ -436,7 +443,8 @@ export const itineraryData: DailyPlan[] = [
         description: '體驗惡靈古堡萬聖節限定實境恐怖射擊體驗，近距離看最帥氣的里昂（Leon）對決喪屍！雖然現場非常可怕，但有承哲在身邊牽著手保護妳，安心沉浸破關！',
         category: 'activity',
         icon: 'Skull',
-        mustTry: '與帥氣里昂並肩作戰、沉浸式惡靈古堡逃脫'
+        mustTry: '與帥氣里昂並肩作戰、沉浸式惡靈古堡逃脫',
+        romanticNote: '雖然現場真的很可怕，但感受到妳緊緊抓著我手臂的那一刻，我就知道——這輩子不管遇到什麼，我都會永遠保護妳！'
       },
       {
         id: 'd5-6',
@@ -515,7 +523,8 @@ export const itineraryData: DailyPlan[] = [
         description: '走進活米村最經典著名的「三根掃帚餐廳 (Three Broomsticks)」，在魔法古老客棧的溫暖氛圍中，享用期間限定的萬聖節特別套餐！',
         category: 'food',
         icon: 'UtensilsCrossed',
-        mustTry: '萬聖節限定套餐'
+        mustTry: '萬聖節限定套餐',
+        romanticNote: '走了一整天，在溫暖的客棧裡一起大口吃萬聖節大餐，看著妳吃飽滿足的笑臉，就是最踏實的幸福。'
       },
       {
         id: 'd5-15',
@@ -652,7 +661,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'transport',
         icon: 'Train',
         cost: '¥1,490 / 人',
-        transitInfo: '車程 40 分鐘，大件行李專屬放置區'
+        transitInfo: '車程 40 分鐘，大件行李專屬放置區',
+        romanticNote: '望著窗外飛逝的大阪街景，這趟旅程雖然到了尾聲，但我們專屬的冒險才剛開始。下一次，我一定還要和妳兩個人單獨去更多美麗的地方！'
       },
       {
         id: 'd6-10',

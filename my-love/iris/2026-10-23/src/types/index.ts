@@ -27,10 +27,10 @@ export interface ItineraryItem {
   icon: string
   cost?: string
   location?: string
-  tags?: string[]
   elderTips?: string // 長輩/家族貼心提醒
   mustTry?: string // 必吃必買特色
   transitInfo?: string // 交通乘車與轉乘指引
+  romanticNote?: string // 承哲的專屬浪漫留言與心動便箋
 }
 
 export interface DailyPlan {

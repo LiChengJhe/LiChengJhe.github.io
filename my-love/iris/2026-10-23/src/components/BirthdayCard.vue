@@ -91,7 +91,7 @@
                 <li class="memory-item-clickable" @click="jumpToItineraryDay(4)" title="點擊查看 Day 04 行程">
                   <span class="mem-icon">🏡</span>
                   <div class="mem-text">
-                    <strong>滋賀琵琶湖與近江八幡：</strong>站在 1,100 公尺的山頂露台看著湛藍如海的湖面，在童話草屋裡一邊吃著年輪蛋糕一邊聊天，只要有妳，每分每秒都像童話一樣甜。
+                    <strong>滋賀琵琶湖與近江八幡：</strong>站在 1,100 公尺的山頂露台看著湛藍如海的湖面，在童話草屋前幫妳捕捉一張張仙氣滿滿的美照、一起挑選明日的早餐，只要身邊是妳，處處都是最美的風景。
                   </div>
                   <span class="mem-jump-chip">Day 04 ➔</span>
                 </li>
