@@ -81,7 +81,7 @@ export const itineraryData: DailyPlan[] = [
         id: 'd1-8',
         time: '19:30 - 21:00',
         title: '🛍️ 心齋橋筋商店街漫步採買（後半）',
-        description: '繼續漫步採買未逛完的特色店家，選購人氣伴手禮、休足時間與晚間甜點。',
+        description: '繼續漫步採買未逛完的店家，選購人氣伴手禮、藥妝與服飾。',
         category: 'shopping',
         icon: 'ShoppingCart',
         elderTips: '採買休足時間，今晚洗完澡幫大家貼上舒緩雙腿！'
@@ -511,12 +511,11 @@ export const itineraryData: DailyPlan[] = [
       {
         id: 'd5-14',
         time: '17:40 - 18:40',
-        title: '🍗 活米村 豬頭酒吧用餐',
-        description: '在充滿英倫魔法鄉村風情的「豬頭酒吧 (Hog\'s Head)」享用道地烤雞排餐與經典香甜奶油啤酒。',
+        title: '🎃 活米村 三根掃帚餐廳享用萬聖節套餐',
+        description: '走進活米村最經典著名的「三根掃帚餐廳 (Three Broomsticks)」，在魔法古老客棧的溫暖氛圍中，享用期間限定的萬聖節特別套餐！',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥2,200 / 人',
-        mustTry: '無酒精溫熱奶油啤酒、英式香烤半雞餐'
+        mustTry: '萬聖節限定套餐'
       },
       {
         id: 'd5-15',

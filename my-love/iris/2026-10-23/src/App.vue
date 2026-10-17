@@ -8,14 +8,14 @@
       <!-- Hero Banner & Birthday Countdown -->
       <HeroBanner />
 
-      <!-- 10/23 Birthday Card Section -->
-      <BirthdayCard />
-
       <!-- Birthday Flight Ticket Gift Showcase -->
       <BoardingPass />
 
       <!-- 6 Days Daily Itinerary Timeline (Integrated with Google Photos & Travel Notes) -->
       <DailyItinerary />
+
+      <!-- 10/23 Birthday Card Section (Grand Finale) -->
+      <BirthdayCard />
     </main>
 
   <!-- Footer Section -->

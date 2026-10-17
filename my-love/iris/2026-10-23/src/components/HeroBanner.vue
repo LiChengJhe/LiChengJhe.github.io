@@ -93,19 +93,6 @@
           </div>
         </a>
       </div>
-
-      <!-- CTA Buttons -->
-      <div class="hero-actions">
-        <a href="#birthday-card" class="btn btn-primary btn-lg shadow-glow">
-          <span class="btn-icon">💌</span>
-          <span>閱讀 10/23 生日卡片</span>
-        </a>
-
-        <a href="#itinerary" class="btn btn-glass btn-lg">
-          <span class="btn-icon">📅</span>
-          <span>回味 6 天行程足跡</span>
-        </a>
-      </div>
     </div>
   </section>
 </template>
@@ -401,27 +388,6 @@
   display: inline-block;
 }
 
-/* Actions */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.btn-lg {
-  padding: 0.9rem 1.75rem;
-  font-size: 1.05rem;
-}
-
-.btn-icon {
-  font-size: 1.25rem;
-}
-
-.hidden-mobile {
-  display: none;
-}
 
 @media (min-width: 768px) {
   .hidden-mobile {

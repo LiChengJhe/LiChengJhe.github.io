@@ -175,18 +175,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Jump to Itinerary Action Bar -->
-      <div class="flight-jump-bar glass-card">
-        <div class="jump-bar-left">
-          <span class="jump-bar-icon">🗾</span>
-          <span class="jump-bar-text">機票準備就緒！接著回味 6 天 5 夜的精彩關西冒險：</span>
-        </div>
-        <a href="#itinerary" class="btn btn-primary btn-sm jump-to-itinerary-btn">
-          <span>📅 查看 6 天 5 夜每日行程足跡</span>
-          <span class="btn-arrow">➔</span>
-        </a>
-      </div>
     </div>
   </section>
 </template>
@@ -324,47 +312,6 @@ const currentFlights = computed(() => {
   border: 1px solid rgba(184, 59, 50, 0.2);
 }
 
-/* Flight Jump to Itinerary Bar */
-.flight-jump-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding: 1.1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1.5px solid rgba(184, 59, 50, 0.2);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 6px 20px rgba(184, 59, 50, 0.08);
-}
-
-.jump-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.jump-bar-icon {
-  font-size: 1.4rem;
-}
-
-.jump-bar-text {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--kyoto-indigo);
-}
-
-.jump-to-itinerary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  text-decoration: none;
-}
-
-.jump-to-itinerary-btn:hover .btn-arrow {
-  transform: translateX(3px);
-}
 
 /* Tabs */
 .flight-tabs {

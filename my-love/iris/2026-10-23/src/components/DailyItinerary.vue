@@ -152,10 +152,6 @@
 
         <!-- Day Summary Bar -->
         <div class="day-footer-summary">
-          <div class="summary-left">
-            <span class="summary-icon">💡</span>
-            <span>溫馨提醒：當天行程可依兩人的步調與購物節奏彈性調整，輕鬆浪漫最重要！</span>
-          </div>
           <div class="summary-actions">
             <button
               v-if="activeDayNumber > 1"
@@ -803,7 +799,7 @@ function getItemIcon(item: any): string {
 .day-footer-summary {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   margin-top: 3rem;
@@ -811,17 +807,10 @@ function getItemIcon(item: any): string {
   border-top: 1px dashed rgba(0, 0, 0, 0.1);
 }
 
-.summary-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-}
-
 .summary-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
 }
 

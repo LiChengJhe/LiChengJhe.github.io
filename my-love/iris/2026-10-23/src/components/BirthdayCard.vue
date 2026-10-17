@@ -98,7 +98,7 @@
                 <li class="memory-item-clickable" @click="jumpToItineraryDay(5)" title="點擊查看 Day 05 行程">
                   <span class="mem-icon">🏰</span>
                   <div class="mem-text">
-                    <strong>環球影城 USJ 的冒險：</strong>在活米村看妳揮舞魔杖施法、敲磚塊收集金幣，在芙莉蓮主題餐廳為妳慶祝生日。還有我們手牽著手闖進《Resident Evil Requiem》深淵絕境去看里昂、鼓起勇氣挑戰殭屍工廠——雖然現場氣氛真的很可怕，但妳緊緊抓著我手臂的那一瞬間，我就在心裡默默發誓：這輩子不管遇到什麼恐懼與困難，都有我在妳前面，我會永遠保護妳。
+                    <strong>環球影城 USJ 的冒險：</strong>在活米村看妳揮舞魔杖施法、敲磚塊收集金幣，在芙莉蓮主題餐廳為妳慶生，晚上還一起在三根掃帚餐廳點了萬聖節套餐！還有我們手牽著手闖進《Resident Evil Requiem》深淵絕境去看里昂、鼓起勇氣挑戰殭屍工廠——雖然現場氣氛真的很可怕，但妳緊緊抓著我手臂的那一瞬間，我就在心裡默默發誓：這輩子不管遇到什麼恐懼與困難，都有我在妳前面，我會永遠保護妳。
                   </div>
                   <span class="mem-jump-chip">Day 05 ➔</span>
                 </li>

@@ -10,10 +10,6 @@
 
       <!-- Desktop Nav Links -->
       <nav class="nav-links">
-        <a href="#birthday-card" class="nav-link special-link">
-          <span class="nav-icon">💌</span>
-          <span>10/23 生日卡片</span>
-        </a>
         <a href="#flight" class="nav-link">
           <span class="nav-icon">✈️</span>
           <span>機票禮物</span>
@@ -21,6 +17,10 @@
         <a href="#itinerary" class="nav-link">
           <span class="nav-icon">📅</span>
           <span>行程導覽</span>
+        </a>
+        <a href="#birthday-card" class="nav-link special-link">
+          <span class="nav-icon">💌</span>
+          <span>10/23 生日卡片</span>
         </a>
       </nav>
 
