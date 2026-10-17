@@ -31,6 +31,9 @@ export interface ItineraryItem {
   mustTry?: string // 必吃必買特色
   transitInfo?: string // 交通乘車與轉乘指引
   romanticNote?: string // 承哲的專屬浪漫留言與心動便箋
+  image?: string // 景點精選照片/甜蜜合照
+  images?: string[] // 多張精選照片合集
+  imageCaption?: string // 照片說明標題
 }
 
 export interface DailyPlan {

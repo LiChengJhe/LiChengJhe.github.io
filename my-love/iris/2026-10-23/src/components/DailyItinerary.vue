@@ -147,6 +147,56 @@
 
               <p v-if="item.description" class="card-desc">{{ item.description }}</p>
 
+              <!-- 景點實景 / 甜蜜打卡合照 -->
+              <div
+                v-if="item.image || (item.images && item.images.length)"
+                class="itinerary-photo-card"
+                @click="openLightbox(getActivePhoto(item), item.imageCaption || item.title)"
+                title="點擊放大查看完整大圖"
+              >
+                <div class="photo-wrapper">
+                  <img
+                    :src="getActivePhoto(item)"
+                    :alt="item.imageCaption || item.title"
+                    class="itinerary-photo-img"
+                    loading="lazy"
+                  />
+                  <!-- 多圖切換按鈕 -->
+                  <template v-if="item.images && item.images.length > 1">
+                    <button
+                      class="photo-nav-btn prev-btn"
+                      @click.stop="prevPhoto(item)"
+                      aria-label="上一張照片"
+                      title="上一張合照"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      class="photo-nav-btn next-btn"
+                      @click.stop="nextPhoto(item)"
+                      aria-label="下一張照片"
+                      title="下一張合照"
+                    >
+                      ›
+                    </button>
+                    <div class="photo-dots">
+                      <span
+                        v-for="(_, pIdx) in item.images"
+                        :key="pIdx"
+                        class="photo-dot"
+                        :class="{ active: (photoIndexMap[item.id] || 0) === pIdx }"
+                        @click.stop="photoIndexMap[item.id] = pIdx"
+                      ></span>
+                    </div>
+                  </template>
+                  <div class="photo-overlay-badge font-serif">
+                    <span class="badge-sparkle">✨</span>
+                    <span class="badge-text">{{ item.imageCaption || '行程甜蜜紀念' }}</span>
+                    <span class="badge-zoom-hint">🔍 點擊看大圖</span>
+                  </div>
+                </div>
+              </div>
+
               <!-- 浪漫留言便箋 -->
               <div v-if="item.romanticNote" class="romantic-note-box font-serif">
                 <div class="romantic-note-header">
@@ -186,6 +236,37 @@
         </div>
       </div>
     </div>
+
+    <!-- 圖片點擊放大全螢幕 Lightbox 光箱 -->
+    <Teleport to="body">
+      <Transition name="lightbox-fade">
+        <div
+          v-if="lightboxUrl"
+          class="photo-lightbox-backdrop"
+          @click="closeLightbox"
+        >
+          <div class="lightbox-content" @click.stop>
+            <button
+              class="lightbox-close-btn"
+              @click="closeLightbox"
+              aria-label="關閉放大視窗"
+              title="關閉"
+            >
+              ✕
+            </button>
+            <img
+              :src="lightboxUrl"
+              :alt="lightboxCaption"
+              class="lightbox-full-img"
+            />
+            <div v-if="lightboxCaption" class="lightbox-caption font-serif">
+              <span class="lightbox-sparkle">💖</span>
+              <span>{{ lightboxCaption }}</span>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </section>
 </template>
 
@@ -195,6 +276,40 @@ import { itineraryData } from '../data/itinerary'
 
 const activeDayNumber = ref(1)
 const activePlanVariant = ref<'A' | 'B'>('A')
+const photoIndexMap = ref<Record<string, number>>({})
+
+const lightboxUrl = ref('')
+const lightboxCaption = ref('')
+
+function openLightbox(url: string, caption?: string) {
+  lightboxUrl.value = url
+  lightboxCaption.value = caption || ''
+}
+
+function closeLightbox() {
+  lightboxUrl.value = ''
+  lightboxCaption.value = ''
+}
+
+function getActivePhoto(item: any): string {
+  if (item.images && item.images.length > 0) {
+    const idx = photoIndexMap.value[item.id] || 0
+    return item.images[idx]
+  }
+  return item.image || ''
+}
+
+function nextPhoto(item: any) {
+  if (!item.images || item.images.length <= 1) return
+  const current = photoIndexMap.value[item.id] || 0
+  photoIndexMap.value[item.id] = (current + 1) % item.images.length
+}
+
+function prevPhoto(item: any) {
+  if (!item.images || item.images.length <= 1) return
+  const current = photoIndexMap.value[item.id] || 0
+  photoIndexMap.value[item.id] = (current - 1 + item.images.length) % item.images.length
+}
 
 function handleSelectDayEvent(e: any) {
   if (e.detail && typeof e.detail === 'number') {
@@ -1145,5 +1260,257 @@ function getItemIcon(item: any): string {
   font-weight: 500;
   letter-spacing: 0.02em;
   margin: 0;
+}
+
+/* 行程打卡合照卡片 */
+.itinerary-photo-card {
+  margin-top: 1.1rem;
+  margin-bottom: 0.6rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(26, 42, 74, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: #ffffff;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.itinerary-photo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26, 42, 74, 0.18);
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0f172a;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-in;
+}
+
+.itinerary-photo-img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.itinerary-photo-card:hover .itinerary-photo-img {
+  transform: scale(1.015);
+}
+
+.photo-overlay-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.badge-sparkle {
+  color: #ffd166;
+  font-size: 0.95rem;
+}
+
+.badge-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge-zoom-hint {
+  font-size: 0.76rem;
+  color: #ffd166;
+  opacity: 0.9;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .itinerary-photo-img {
+    max-height: 440px;
+  }
+  .photo-overlay-badge {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    font-size: 0.78rem;
+    padding: 0.45rem 0.75rem;
+  }
+  .badge-zoom-hint {
+    display: none;
+  }
+}
+
+/* 多照片輪播切換按鈕與指示點 */
+.photo-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.photo-nav-btn:hover {
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-50%) scale(1.1);
+  border-color: #ffd166;
+}
+
+.photo-nav-btn.prev-btn {
+  left: 10px;
+}
+
+.photo-nav-btn.next-btn {
+  right: 10px;
+}
+
+.photo-dots {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.65);
+  padding: 4px 8px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  z-index: 5;
+}
+
+.photo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.photo-dot.active {
+  background: #ffd166;
+  width: 16px;
+  border-radius: 4px;
+}
+
+/* Lightbox 全螢幕檢視彈窗 */
+.photo-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 30, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  cursor: zoom-out;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -42px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(90deg);
+}
+
+.lightbox-full-img {
+  max-width: 92vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-caption {
+  margin-top: 0.85rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.7);
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-sparkle {
+  color: #ff4d6d;
+}
+
+.lightbox-fade-enter-active,
+.lightbox-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-fade-enter-from,
+.lightbox-fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -6,11 +6,22 @@ export const itineraryData: DailyPlan[] = [
     dateStr: '2026/10/08',
     weekday: '週四 (Thu)',
     title: '抵達關西・心齋橋商圈漫步',
-    subtitle: '抵達關西 ➔ 喜來登福朋入住 ➔ 心齋橋 PARCO 自嘲熊 ➔ 心齋橋筋採買',
+    subtitle: '台灣虎航啟程 ➔ 抵達關西 ➔ 喜來登福朋入住 ➔ 心齋橋 PARCO 自嘲熊 ➔ 心齋橋筋採買',
     weatherSummary: '🍂 關西初秋 18°C ~ 24°C，微風舒適，適合逛街採買',
     transportPass: '南海特急 Rapi:t / 大阪地鐵御堂筋線',
-    tags: ['關西機場', '南海特急', '心齋橋', 'PARCO', '自嘲熊', '心齋橋筋'],
+    tags: ['台灣虎航', '關西機場', '南海特急', '心齋橋', 'PARCO', '自嘲熊'],
     itemsPlanA: [
+      {
+        id: 'd1-0',
+        time: '06:40 - 10:25',
+        title: '✈️ 台灣虎航 IT210 啟程飛往大阪關西',
+        description: '搭乘清晨 06:40 台灣虎航 IT210 班機從桃園第一航廈起飛，兩人靠窗並肩而坐，帶著滿滿期待展開 6 天 5 夜的甜蜜關西冒險！',
+        category: 'flight',
+        icon: 'PlaneTakeoff',
+        image: './images/flight-departure-cabin.jpg',
+        imageCaption: '✈️ 承哲 & Iris 在台灣虎航機艙內甜蜜合影，準備啟程！',
+        romanticNote: '清晨的機艙裡，看著妳戴著口罩依然藏不住期待笑意的眼睛，牽著妳的手飛向藍天，這趟屬於我們倆的關西生日之旅正式出發囉！'
+      },
       {
         id: 'd1-1',
         time: '10:25 - 11:45',
@@ -145,6 +156,9 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Landmark',
         mustTry: '拿 10 圓硬幣與鳳凰堂合影、鳳翔館雲中供養菩薩',
+        image: './images/byodoin-phoenix-hall.jpg',
+        imageCaption: '📸 承哲 & Iris 在平等院鳳凰堂前甜蜜合影',
+        romanticNote: '晴朗藍天下的鳳凰堂阿字池畔，牽著妳的手留下這張合照，陽光灑在妳臉上的笑容，是我心中最珍貴的風景。',
         elderTips: '園區步道平緩好走，池畔微風徐徐，適時坐在長椅休息賞景。'
       },
       {
@@ -175,6 +189,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'activity',
         icon: 'Gamepad2',
         mustTry: '雙人巨大控制器挑戰、專屬特製硬幣互動卡、官方限定紀念周邊',
+        image: './images/nintendo-museum-giant-controller.jpg',
+        imageCaption: '🎮 承哲 & Iris 雙人合力挑戰巨大紅白機手把！',
         romanticNote: '兩個人一起手忙腳亂拍打巨大紅白機手把，看妳笑到眼淚都流出來，那是我好久沒有過的單純快樂。',
         elderTips: '館內全無障礙設計，動線平坦寬敞，可輕鬆悠閒參觀拍照。'
       },
@@ -226,6 +242,9 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Mountain',
         mustTry: '展望台胯下窺看留影、智惠之圈投擲瓦片祈福',
+        image: './images/amanohashidate-viewland.jpg',
+        imageCaption: '📸 承哲 & Iris 在天橋立飛龍觀展望台甜蜜合影',
+        romanticNote: '登上海拔展望台俯瞰日本三景，蔚藍海灣在陽光下閃爍，但最讓我心動的，是身邊比晴空還要燦爛耀眼的妳。',
         elderTips: '纜車有封閉式大車廂與單人吊椅，搭大車廂平穩安全、視野開闊。'
       },
       {
@@ -246,6 +265,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'activity',
         icon: 'Ship',
         mustTry: '船上餵海鷗甜蜜合影、欣賞舟屋傳統木造建築群',
+        image: './images/ine-bay-cruise.jpg',
+        imageCaption: '🚢 承哲 & Iris 在伊根觀光遊覽船上海景合影',
         romanticNote: '在微涼的海風中，妳拿著蝦味先餵海鷗笑得像個小女孩，依偎在我身邊的妳，就是海天一色裡最美的風景。',
         elderTips: '遊覽船行駛平穩，坐在船艙內也能透過全景大窗欣賞美景。'
       },
@@ -266,6 +287,9 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Landmark',
         mustTry: '智恩寺扇子籤、旋轉橋開合奇景、天橋立白砂青松',
+        image: './images/amanohashidate-rotating-bridge.jpg',
+        imageCaption: '🌉 承哲 & Iris 在天橋立迴旋橋（旋轉橋）前留影',
+        romanticNote: '微風輕拂水道旁的翠綠松林，倚在橋欄上和妳並肩合照，好希望這段平靜悠閒的美好時光能永遠停留。',
         elderTips: '智恩寺周邊道路平坦，可品嚐知名的「智惠之餅」紅豆麻糬。'
       },
       {
@@ -331,6 +355,9 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Camera',
         mustTry: '湖中鳥居絕美合影、白鬚延壽御守',
+        image: './images/shirahige-jinja-torii.jpg',
+        imageCaption: '⛩️ 承哲 & Iris 在白鬚神社觀景台合影湖中鳥居',
+        romanticNote: '站在平台上看著佇立琵琶湖中的朱紅鳥居，看妳開心地指著鳥居拍照，我悄悄在心中向神明祈願：保佑我身邊的女孩永遠健康幸福。',
         elderTips: '請於「藍湖白鬚台」專屬觀景台拍照，切勿橫越馬路，安全第一。'
       },
       {
@@ -341,6 +368,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Mountain',
         mustTry: '無邊際水池露台俯瞰琵琶湖全景、藍色琵琶湖特調蘇打',
+        image: './images/biwako-valley-terrace.jpg',
+        imageCaption: '🚠 承哲 & Iris 在琵琶湖山谷 1,100m 觀景台合影',
         romanticNote: '站在 1,100 公尺的山頂露台俯瞰整片蔚藍的琵琶湖，想把全世界的遼闊與溫柔，通通擁抱給身旁的妳。'
       },
       {
@@ -350,7 +379,10 @@ export const itineraryData: DailyPlan[] = [
         description: '造訪建於琵琶湖上的朱紅浮橋古剎，漫步湖中棧道長廊，感受近江八景「堅田落雁」的詩意與禪境。',
         category: 'attraction',
         icon: 'Landmark',
-        mustTry: '浮禦堂湖中全景、近江八景石碑打卡'
+        mustTry: '浮禦堂湖中全景、近江八景石碑打卡',
+        image: './images/mangetsu-temple-ukimido.jpg',
+        imageCaption: '🌊 承哲 & Iris 在滿月寺浮禦堂前牽手深情相望',
+        romanticNote: '波光粼粼的琵琶湖畔，牽著妳的手回頭相視而笑，在這座浮於水上的古寺前，我只想這樣一直牽著妳，走到很遠很遠的以後。'
       },
       {
         id: 'd4-5',
@@ -360,6 +392,8 @@ export const itineraryData: DailyPlan[] = [
         category: 'attraction',
         icon: 'Sparkles',
         mustTry: '童話草屋綠意迴廊合照留念、挑選明日早餐與人氣點心',
+        image: './images/la-collina-fairy-tale-grass-house.jpg',
+        imageCaption: '🏡 承哲 & Iris 在吉卜力童話草屋前合影',
         romanticNote: '走在綠意盎然的童話草屋前幫妳拍美照、一起挑選明天去環球影城的美味早餐，只要身邊是妳，處處都是最動人的風景。'
       },
       {
@@ -407,7 +441,10 @@ export const itineraryData: DailyPlan[] = [
         title: '🎢 抵達日本環球影城',
         description: '準時抵達日本環球影城 (USJ) 大門，準備開啟奇幻精彩的一整天冒險之旅。',
         category: 'activity',
-        icon: 'Sparkles'
+        icon: 'Sparkles',
+        image: './images/usj-main-gate-entrance.jpg',
+        imageCaption: '🎢 承哲 & Iris 在日本環球影城經典大門拱門前打卡！',
+        romanticNote: '站在期待已久的環球影城大門前，陽光燦爛，牽起妳的手，一整天專屬於我們的奇幻冒險正式啟航！'
       },
       {
         id: 'd5-2',
@@ -426,7 +463,15 @@ export const itineraryData: DailyPlan[] = [
         description: '進入由水管連接的繽紛瑪利歐王國！敲擊問號磚塊積點、與角色合影，感受滿滿任天堂童年情懷。',
         category: 'activity',
         icon: 'Gamepad2',
-        mustTry: '能量手環互動敲磚、奇諾比奧問號方塊'
+        mustTry: '能量手環互動敲磚、奇諾比奧問號方塊',
+        image: './images/usj-mario-world-pipe-entrance.jpg',
+        images: [
+          './images/usj-mario-world-pipe-entrance.jpg',
+          './images/usj-mario-world-peach-castle.jpg',
+          './images/usj-mario-world.jpg'
+        ],
+        imageCaption: '🍄 承哲 & Iris 瑪利歐世界冒險合集（共 3 張，可左右切換）',
+        romanticNote: '戴著能量手環跟妳在繽紛童話般的瑪利歐世界到處敲磚塊積點，看到妳開懷大笑的模樣，就是我最想守護的寶藏。'
       },
       {
         id: 'd5-4',
@@ -512,9 +557,13 @@ export const itineraryData: DailyPlan[] = [
         id: 'd5-13',
         time: '16:51 - 17:35',
         title: '🍌 小小兵瘋狂任務～成為大壞蛋之路～',
-        description: '加入小小兵的壞蛋測試任務，享受歡笑不斷的可愛互動關卡。',
+        description: '走上動態步道、手持特製電光衝鋒射擊槍，加入小小兵的狂歡惡作劇測試，享受歡笑不斷的可愛射擊互動！',
         category: 'activity',
-        icon: 'Smile'
+        icon: 'Smile',
+        mustTry: '手持發光射擊槍瞄準靶心得分、趣味惡作劇互動',
+        image: './images/usj-minion-villain-con.jpg',
+        imageCaption: '🍌 承哲 & Iris 手持特製衝鋒槍挑戰成為大壞蛋！',
+        romanticNote: '拿著發光衝鋒槍一起認真瞄準靶心，看妳玩得那麼投入可愛，無論妳當大壞蛋還是小可愛，我都是妳最死忠的夥伴！'
       },
       {
         id: 'd5-14',
@@ -529,11 +578,14 @@ export const itineraryData: DailyPlan[] = [
       {
         id: 'd5-15',
         time: '18:45 - 19:21',
-        title: '🪄 活米村 遊玩互動式魔杖設施',
-        description: '揮動互動魔杖在活米村的櫥窗與壁爐施展魔法咒語，點燃火焰或讓物體漂浮，體驗成為真正巫師的樂趣！',
+        title: '🪄 活米村 互動魔杖施法 ＆ 霍格華茲城堡夜景煙火合影',
+        description: '揮動互動魔杖在活米村的櫥窗施展魔法咒語，並漫步至黑湖橋畔，仰望夜空煙火與流光照耀下的霍格華茲城堡夜景！',
         category: 'activity',
         icon: 'Wand2',
-        mustTry: '櫥窗施咒魔法互動、霍格華茲夜景'
+        mustTry: '櫥窗施咒魔法互動、霍格華茲城堡夜景合影',
+        image: './images/usj-hogwarts-castle-night-fireworks.jpg',
+        imageCaption: '🏰 承哲 & Iris 在璀璨煙火與霍格華茲城堡夜景前合影',
+        romanticNote: '夜空煙火綻放、金碧輝煌的魔法城堡在夜色中閃閃發光，牽著妳的手站在橋畔，就像走進了最浪漫的童話電影。'
       },
       {
         id: 'd5-16',
@@ -541,7 +593,10 @@ export const itineraryData: DailyPlan[] = [
         title: '🦕 侏羅紀公園 夜間乘船遊',
         description: '在夜霧瀰漫的熱帶雨林河流中航行，遭遇巨大暴龍後從 25 公尺高處激流俯衝！',
         category: 'activity',
-        icon: 'Ship'
+        icon: 'Ship',
+        image: './images/usj-jurassic-park-night.jpg',
+        imageCaption: '🦕 承哲 & Iris 在侏羅紀公園探索木屋前合影！',
+        romanticNote: '夜幕下的侏羅紀雨林帶著一絲神秘，但只要轉頭看見妳笑瞇瞇比讚的模樣，所有冒險都變成了專屬於我們的浪漫回憶。'
       },
       {
         id: 'd5-17',
@@ -567,7 +622,10 @@ export const itineraryData: DailyPlan[] = [
         description: '滿懷快樂回憶與滿滿戰利品離開環球影城，搭乘電車返回心齋橋，於 22:23 返抵飯店泡澡休息。',
         category: 'transport',
         icon: 'Moon',
-        transitInfo: '由 Universal City 站搭乘 JR 轉地鐵回心齋橋'
+        transitInfo: '由 Universal City 站搭乘 JR 轉地鐵回心齋橋',
+        image: './images/usj-night-departure-harbor.jpg',
+        imageCaption: '🌙 承哲 & Iris 離開環球前在海灣夜景前甜蜜合影',
+        romanticNote: '繁星點點的夜空下，環球影城的燈火倒映在波光粼粼的水面。走了一整天雖然有些疲憊，但牽著妳的手依偎在微涼的夜風裡，這份溫暖讓我一輩子都忘不了。'
       }
     ]
   },
@@ -662,6 +720,8 @@ export const itineraryData: DailyPlan[] = [
         icon: 'Train',
         cost: '¥1,490 / 人',
         transitInfo: '車程 40 分鐘，大件行李專屬放置區',
+        image: './images/nankai-rapit-return-cabin.jpg',
+        imageCaption: '🚆 承哲 & Iris 在回程南海特急 Rapi:t 車廂內溫馨合影',
         romanticNote: '望著窗外飛逝的大阪街景，這趟旅程雖然到了尾聲，但我們專屬的冒險才剛開始。下一次，我一定還要和妳兩個人單獨去更多美麗的地方！'
       },
       {
