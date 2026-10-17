@@ -2,15 +2,15 @@
   <footer class="footer-section">
     <div class="container footer-content">
       <div class="footer-seal">
-        <span class="seal-icon">🍁</span>
+        <span class="seal-icon">🌸</span>
       </div>
 
       <h3 class="footer-title font-serif">
-        2026 關西秋日浪漫之旅 • 彥伃 10/23 生日特別紀念
+        2026 關西浪漫之旅 • 彥伃 10/23 生日特別紀念
       </h3>
 
       <p class="footer-romantic-quote font-serif">
-        「每一次啟程都是因為愛，願這趟秋日關西之旅，在妳心裡留下永恆閃耀的溫暖回憶。」
+        「每一次啟程都是因為愛，願這趟關西之旅，在妳心裡留下永恆閃耀的溫暖回憶。」
       </p>
 
       <div class="footer-credits">
@@ -18,13 +18,13 @@
           <span>💖 承哲 ＆ 彥伃 的甜蜜旅行專屬網頁</span>
         </div>
         <div class="family-badge">
-          <span>👨‍👩‍👧‍👧 同行家人：彥伃 • 承哲 • 爸爸 • 媽媽 • 大姐 • 二姐</span>
+          <span>💑 甜蜜同遊：彥伃 (壽星公主) • 承哲 (專屬領隊)</span>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p class="copyright">
-          © 2026 Maple Kansai • Designed with Love by 李承哲 for 林彥伃 (Iris Lin)
+          © 2026 Kansai Journey • Designed with Love by 承哲 for 彥伃 (Iris)
         </p>
         <button class="back-to-top-btn" @click="scrollToTop">
           <span>⬆️ 回到頂部</span>

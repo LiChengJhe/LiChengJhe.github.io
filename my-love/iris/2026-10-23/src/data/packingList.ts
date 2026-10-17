@@ -10,11 +10,11 @@ export const defaultPackingList: PackingItem[] = [
   { id: 'doc-6', category: 'documents', name: '日本實體網卡 / eSIM / 漫遊開通', requiredFor: '全體成員', completed: true },
   { id: 'doc-7', category: 'documents', name: '日幣現鈔 (¥) & 雙幣信用卡/感應支付', requiredFor: '全體成員', completed: true },
 
-  // 長輩與常備健康
-  { id: 'med-1', category: 'elderCare', name: '長輩平日個人慢性病藥品 (備足份量+隨身帶)', requiredFor: '長輩必備', completed: true },
-  { id: 'med-2', category: 'elderCare', name: '常備綜合感冒藥、止痛藥、腸胃藥、止瀉藥', requiredFor: '全體成員', completed: false },
-  { id: 'med-3', category: 'elderCare', name: '休足時間 / 痠痛貼布 (晚間腿部放鬆必備)', requiredFor: '全體成員', completed: false },
-  { id: 'med-4', category: 'elderCare', name: '長輩保溫水瓶 (隨時裝溫水暖胃)', requiredFor: '長輩必備', completed: false },
+  // 個人健康與日常保健
+  { id: 'med-1', category: 'elderCare', name: '個人日常藥品、維他命與隨身保健品', requiredFor: '必備隨身', completed: true },
+  { id: 'med-2', category: 'elderCare', name: '常備綜合感冒藥、止痛藥、腸胃藥、止瀉藥', requiredFor: '兩人備用', completed: false },
+  { id: 'med-3', category: 'elderCare', name: '休足時間 / 痠痛貼布 (晚間腿部放鬆必備)', requiredFor: '兩人必備', completed: false },
+  { id: 'med-4', category: 'elderCare', name: '隨身保溫水瓶 (裝溫水暖胃舒緩)', requiredFor: '隨身攜帶', completed: false },
   { id: 'med-5', category: 'elderCare', name: '舒適好走耐磨氣墊球鞋 (極為重要)', requiredFor: '全體成員', completed: false },
 
   // 秋日衣物與配件

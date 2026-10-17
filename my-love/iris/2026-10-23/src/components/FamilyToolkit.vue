@@ -3,10 +3,10 @@
     <div class="container">
       <!-- Section Title -->
       <div class="section-title-wrap">
-        <span class="section-tag">Family Travel Toolkit</span>
-        <h2 class="section-title">🧳 家族旅行錦囊 & 行李清單</h2>
+        <span class="section-tag">Travel Toolkit</span>
+        <h2 class="section-title">🧳 旅行錦囊 & 行李清單</h2>
         <p class="section-desc">
-          李領隊貼心準備 • 6 人行李準備清單、即時日幣匯率換算與長輩同遊貼心叮嚀
+          承哲貼心準備 • 雙人行李準備清單、即時日幣匯率換算與自由行貼心叮嚀
         </p>
       </div>
 
@@ -205,7 +205,7 @@ import { PackingItem } from '../types'
 const packingCategories = [
   { key: 'all', label: '全部' },
   { key: 'documents', label: '證件憑證' },
-  { key: 'elderCare', label: '長輩與健康' },
+  { key: 'elderCare', label: '健康常備' },
   { key: 'clothing', label: '衣物配件' },
   { key: 'electronics', label: '3C 配件' },
   { key: 'shopping', label: '採購備品' }

@@ -10,13 +10,13 @@
       <div class="modal-header">
         <div class="header-ribbon">
           <span class="ribbon-icon">🎉</span>
-          <span>10/23 專屬生日特輯 • 壽星林彥伃</span>
+          <span>10/23 專屬生日特輯 • 壽星彥伃</span>
         </div>
         <h2 class="modal-title font-serif">
           Happy Birthday, Iris! 🎂
         </h2>
         <p class="modal-subtitle">
-          李承哲專屬獻上 • 點擊蛋糕或吹熄蠟燭來許下今年的生日願望吧！
+          承哲專屬獻上 • 點擊蛋糕或吹熄蠟燭來許下今年的生日願望吧！
         </p>
       </div>
 
@@ -123,21 +123,30 @@
         <h3 class="letter-title font-serif">給最親愛的彥伃：</h3>
         <div class="letter-body font-serif">
           <p>
-            祝妳 10/23 生日快樂！🎂✨
+            祝我最愛的女孩、我心裡唯一的 Iris，10/23 生日快樂！🎂✨
           </p>
           <p>
-            能和妳在一起的每一天都充滿了溫暖與歡笑。今年秋天，我特別贊助妳這趟關西來回機票作為生日禮物，不僅是我們兩人的甜蜜旅行，更是一場能和把拔、馬麻、大姐與二姐一同出遊的溫馨家族回憶。
+            能和妳在一起的每一天，對我來說都是無比幸福的恩賜。今年秋天，我特別送給妳這趟關西來回機票作為生日禮物，牽著妳的手漫步在秋日關西，每一刻都是我們專屬的甜蜜回憶。
           </p>
           <p>
-            我們要在心齋橋和梅田帶走妳最愛的自嘲熊、西村優志的熊貓與 YOSISTAMP 熊熊、在京都漫步千本鳥居、在任天堂博物館一起按超大手把、在伊根舟屋吹著海風餵海鷗、在琵琶湖 Terrace 俯瞰絕景，還要帶全家人吃美味的和牛燒肉與甜點！
+            看著妳在心齋橋拿著自嘲熊吊飾笑得像個小女孩、在宇治表參道喝著抹茶拿鐵、在任天堂博物館一起手忙腳亂拍打巨大手把、在伊根舟屋依偎著我吹海風餵海鷗、在琵琶湖山谷俯瞰蔚藍湖景並在童話草屋吃年輪蛋糕，還有在環球影城戴著手環敲磚塊、揮舞魔杖遊玩、在芙莉蓮餐廳為妳慶生，以及我們牽著手去《Resident Evil Requiem》看里昂和挑戰殭屍工廠——雖然現場真的很可怕，但只要有我在，我永遠都會第一時間擋在妳身前保護妳！
+          </p>
+          <p class="modal-next-trip">
+            ✨ <strong>我藏在心底、最想對妳說的心願：</strong><br />
+            回到台灣翻看照片時，我的心裡其實最期待一件事——<strong>我真的好希望、好期待下一次，能和妳兩個人單獨一起出國旅遊！</strong><br />
+            只有我們兩個人，不必在乎任何繁瑣的行程，手牽著手睡到自然醒，踩著我們最舒服的步調漫步異國街頭。只要身邊是妳，世界上任何風景都是最美的。
+          </p>
+          <p class="modal-proposal">
+            💍 <strong>悄悄藏在心底的真心話：</strong><br />
+            雖然這一次在關西向妳求婚，妳還沒有準備好答應我，但完全沒關係，我會用更多的愛和行動讓妳安心踏實。我會繼續努力，<strong>希望下一次當我再次拿出戒指、向妳求婚的時候，妳可以甜甜地對我點頭答應我：「好，我願意！」💍✨</strong>
           </p>
           <p>
-            願妳新的一歲永遠平安健康、笑容燦爛。未來的每一個生日與每一次旅行，我都會一直陪在妳身邊，繼續寵妳、愛妳。❤️
+            願我的寶貝新的一歲平安順心、天天笑逐顏開。未來的每一個生日與每一次旅行，我都會一直牽著妳的手，永遠當妳最堅強的依靠，繼續寵妳、深愛妳。❤️
           </p>
           <div class="letter-signature">
             <span class="sig-title">永遠愛妳的男友</span>
-            <span class="sig-name font-display">李承哲 筆 🍁</span>
-            <span class="sig-date">2026 年秋 • 關西旅途前夕</span>
+            <span class="sig-name font-display">承哲 筆 💖</span>
+            <span class="sig-date">2026 年 10 月 23 日 • 關西旅程回憶與慶生獻禮 🎂</span>
           </div>
         </div>
       </div>
@@ -509,6 +518,25 @@ function sendHeart() {
   margin: 0.2rem 0;
 }
 
+.modal-next-trip {
+  background: rgba(232, 99, 128, 0.08);
+  border: 1.5px dashed rgba(232, 99, 128, 0.45);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  color: #88221b;
+  margin: 1rem 0 !important;
+}
+
+.modal-proposal {
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.95), rgba(254, 247, 235, 0.95));
+  border: 1.5px solid rgba(229, 169, 60, 0.6);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  color: #7a201a;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 12px rgba(229, 169, 60, 0.1);
+}
+
 .sig-date {
   font-size: 0.8rem;
   color: var(--text-secondary);
@@ -517,5 +545,46 @@ function sendHeart() {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .modal-container {
+    padding: 2rem 1.25rem 1.5rem;
+    max-height: 94vh;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .cake-stage {
+    padding: 1.5rem 0 1rem;
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+
+  .cake-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cake-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .letter-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .letter-stamp {
+    position: static;
+    margin-bottom: 0.75rem;
+    display: inline-flex;
+  }
 }
 </style>

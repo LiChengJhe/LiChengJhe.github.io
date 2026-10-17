@@ -19,21 +19,23 @@
           <div class="gift-badge-row">
             <span class="badge badge-maple">承哲專屬心意</span>
             <span class="badge badge-gold">10/23 彥伃生日禮物</span>
-            <span class="badge badge-blush">家族 6 人同行</span>
+            <span class="badge badge-blush">兩人浪漫同行</span>
           </div>
           <h3 class="gift-title font-serif">
             「親愛的彥伃，這趟旅行的來回機票是送給妳的生日禮物！」
           </h3>
           <p class="gift-text">
-            承哲特別贊助彥伃的台灣虎航來回機票作為 10/23 專屬生日禮物（去程 28A/B、回程 28E/F 舒適座位含 20kg 托運），並與全家 6 人（爸爸、媽媽、大姐、二姐、承哲、彥伃）一同展開 6 天 5 夜溫馨又浪漫的關西秋日之旅！
+            承哲特別贊助彥伃的台灣虎航來回機票作為 10/23 專屬生日禮物（去程 28A/B、回程 28E/F 舒適座位含 20kg 托運），兩人一同展開 6 天 5 夜浪漫甜蜜的關西秋日之旅！
           </p>
-          <div class="family-avatars">
-            <span class="avatar-tag active-avatar">👸 林彥伃 (壽星)</span>
-            <span class="avatar-tag active-avatar">🤴 李承哲 (領隊 / 贊助彥伃機票)</span>
-            <span class="avatar-tag">👨 爸爸</span>
-            <span class="avatar-tag">👩 媽媽</span>
-            <span class="avatar-tag">👧 大姐</span>
-            <span class="avatar-tag">👧 二姐</span>
+          <div class="gift-footer-action">
+            <div class="family-avatars">
+              <span class="avatar-tag active-avatar">👸 彥伃 (壽星公主 💖)</span>
+              <span class="avatar-tag active-avatar">🤴 承哲 (專屬領隊 / 贊助機票 ✈️)</span>
+            </div>
+            <a href="#birthday-card" class="btn-gift-to-card">
+              <span>💌 閱讀承哲手寫生日卡片</span>
+              <span class="btn-arrow">➔</span>
+            </a>
           </div>
         </div>
       </div>
@@ -89,8 +91,10 @@
 
               <div class="route-middle">
                 <div class="flight-duration">{{ flight.duration }}</div>
-                <div class="flight-line">
-                  <div class="plane-icon-mid">✈️</div>
+                <div class="flight-track">
+                  <span class="track-line"></span>
+                  <span class="plane-icon-mid">✈️</span>
+                  <span class="track-line"></span>
                 </div>
                 <div class="flight-number-tag font-display">{{ flight.flightNo }}</div>
               </div>
@@ -108,8 +112,8 @@
             <div class="pass-info-grid">
               <div class="info-cell">
                 <div class="info-label">PASSENGER / 乘客姓名</div>
-                <div class="info-value font-display text-maple">LIN, YEN-YU / 林彥伃 (壽星)</div>
-                <div class="info-sub">同行乘客：LI, CHENG-JHE / 李承哲</div>
+                <div class="info-value font-display text-maple">YEN-YU / 彥伃 (壽星)</div>
+                <div class="info-sub">同行乘客：CHENG-JHE / 承哲</div>
               </div>
               <div class="info-cell">
                 <div class="info-label">SEAT / 指定座位</div>
@@ -139,7 +143,7 @@
           <!-- Right Ticket Stub -->
           <div class="pass-stub">
             <div class="stub-header">
-              <span class="stub-logo">🍁 2026</span>
+              <span class="stub-logo">✈️ 2026</span>
               <span class="stub-gift-tag">BIRTHDAY GIFT</span>
             </div>
 
@@ -149,7 +153,7 @@
 
               <div class="stub-detail">
                 <div class="stub-label">PASSENGER</div>
-                <div class="stub-name">林彥伃 & 李承哲</div>
+                <div class="stub-name">彥伃 & 承哲</div>
               </div>
 
               <div class="stub-detail">
@@ -170,6 +174,18 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Jump to Itinerary Action Bar -->
+      <div class="flight-jump-bar glass-card">
+        <div class="jump-bar-left">
+          <span class="jump-bar-icon">🗾</span>
+          <span class="jump-bar-text">機票準備就緒！接著回味 6 天 5 夜的精彩關西冒險：</span>
+        </div>
+        <a href="#itinerary" class="btn btn-primary btn-sm jump-to-itinerary-btn">
+          <span>📅 查看 6 天 5 夜每日行程足跡</span>
+          <span class="btn-arrow">➔</span>
+        </a>
       </div>
     </div>
   </section>
@@ -254,6 +270,44 @@ const currentFlights = computed(() => {
   gap: 0.5rem;
 }
 
+.gift-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-gift-to-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  background: rgba(232, 99, 128, 0.12);
+  border: 1.5px solid rgba(232, 99, 128, 0.4);
+  color: #c92a2a;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.btn-gift-to-card:hover {
+  background: var(--accent-blush, #e86380);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(232, 99, 128, 0.35);
+}
+
+.btn-gift-to-card .btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-gift-to-card:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
 .avatar-tag {
   font-size: 0.8rem;
   font-weight: 600;
@@ -268,6 +322,48 @@ const currentFlights = computed(() => {
   color: var(--primary-maple);
   font-weight: 700;
   border: 1px solid rgba(184, 59, 50, 0.2);
+}
+
+/* Flight Jump to Itinerary Bar */
+.flight-jump-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid rgba(184, 59, 50, 0.2);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 6px 20px rgba(184, 59, 50, 0.08);
+}
+
+.jump-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.jump-bar-icon {
+  font-size: 1.4rem;
+}
+
+.jump-bar-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--kyoto-indigo);
+}
+
+.jump-to-itinerary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.jump-to-itinerary-btn:hover .btn-arrow {
+  transform: translateX(3px);
 }
 
 /* Tabs */
@@ -404,6 +500,8 @@ const currentFlights = computed(() => {
 
 .route-city {
   flex: 1;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .text-right {
@@ -422,11 +520,14 @@ const currentFlights = computed(() => {
   font-weight: 700;
   color: var(--kyoto-indigo);
   margin-top: 0.2rem;
+  word-break: break-word;
 }
 
 .airport-name {
   font-size: 0.75rem;
   color: var(--text-muted);
+  word-break: break-word;
+  line-height: 1.35;
 }
 
 .time-large {
@@ -440,44 +541,54 @@ const currentFlights = computed(() => {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent-ginkgo-dark);
+  word-break: break-word;
 }
 
 .route-middle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1rem;
+  justify-content: center;
+  padding: 0 0.85rem;
+  flex-shrink: 0;
 }
 
 .flight-duration {
   font-size: 0.8rem;
   color: var(--text-muted);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+  white-space: nowrap;
 }
 
-.flight-line {
-  position: relative;
-  width: 100px;
-  height: 2px;
-  background: #d4a59a;
+.flight-track {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.track-line {
+  width: 36px;
+  height: 2px;
+  background: #d4a59a;
+  border-radius: 1px;
 }
 
 .plane-icon-mid {
-  position: absolute;
-  top: -10px;
-  font-size: 1.1rem;
-  background: white;
-  padding: 0 4px;
+  font-size: 1.15rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flight-number-tag {
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--primary-maple-dark);
-  margin-top: 0.4rem;
+  margin-top: 0.45rem;
+  white-space: nowrap;
 }
 
 /* Info Grid */
@@ -496,6 +607,11 @@ const currentFlights = computed(() => {
   }
 }
 
+.info-cell {
+  min-width: 0;
+  word-break: break-word;
+}
+
 .info-label {
   font-size: 0.7rem;
   font-weight: 700;
@@ -508,6 +624,7 @@ const currentFlights = computed(() => {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-main);
+  word-break: break-word;
 }
 
 .text-maple {
@@ -522,6 +639,7 @@ const currentFlights = computed(() => {
   font-size: 0.72rem;
   color: var(--text-secondary);
   margin-top: 0.15rem;
+  word-break: break-word;
 }
 
 /* Perforation */
@@ -668,5 +786,113 @@ const currentFlights = computed(() => {
   color: var(--text-muted);
   margin-top: 0.3rem;
   font-family: monospace;
+}
+
+/* Mobile Friendly Optimization */
+@media (max-width: 640px) {
+  .flight-section {
+    padding: 3.5rem 0;
+  }
+  .gift-banner {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+  .gift-seal {
+    width: 52px;
+    height: 52px;
+  }
+  .gift-title {
+    font-size: 1.15rem;
+  }
+  .gift-text {
+    font-size: 0.88rem;
+  }
+  .family-avatars {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .flight-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .flight-tab-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+  }
+  .pass-main {
+    padding: 1.25rem 0.85rem;
+  }
+  .pass-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .pass-route {
+    margin-bottom: 1.25rem;
+  }
+  .city-code {
+    font-size: 1.65rem;
+  }
+  .city-name {
+    font-size: 0.88rem;
+  }
+  .airport-name {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+  .time-large {
+    font-size: 1.25rem;
+  }
+  .date-tag {
+    font-size: 0.72rem;
+  }
+  .route-middle {
+    padding: 0 0.25rem;
+    flex-shrink: 0;
+  }
+  .track-line {
+    width: 20px;
+  }
+  .plane-icon-mid {
+    font-size: 0.95rem;
+  }
+  .flight-number-tag {
+    font-size: 0.82rem;
+    margin-top: 0.35rem;
+  }
+  .flight-duration {
+    font-size: 0.7rem;
+    margin-bottom: 0.25rem;
+  }
+  .pass-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    padding: 0.9rem;
+  }
+  .info-cell:first-child {
+    grid-column: 1 / -1;
+  }
+  .info-value {
+    font-size: 0.9rem;
+  }
+  .pass-stub {
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .track-line {
+    width: 12px;
+  }
+  .city-code {
+    font-size: 1.4rem;
+  }
+  .pass-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .info-cell:first-child {
+    grid-column: auto;
+  }
 }
 </style>

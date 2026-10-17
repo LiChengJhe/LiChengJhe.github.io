@@ -42,6 +42,7 @@ export interface DailyPlan {
   weatherSummary: string
   transportPass: string
   tags: string[]
+  albumUrl?: string
   hasAlternative?: boolean
   planAName?: string
   planBName?: string

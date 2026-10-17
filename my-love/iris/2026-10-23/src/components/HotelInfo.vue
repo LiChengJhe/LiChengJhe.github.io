@@ -16,13 +16,30 @@
           <div class="hotel-left">
             <div class="hotel-img-box">
               <img
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop"
-                alt="Hotel"
+                :src="currentPhoto.url"
+                :alt="currentPhoto.title"
                 class="hotel-photo"
+                loading="lazy"
               />
               <div class="hotel-badge">
-                <span>⭐ Sheraton Brand</span>
+                <span>⭐ Marriott Bonvoy • Sheraton</span>
               </div>
+              <div class="hotel-photo-caption">
+                {{ currentPhoto.title }}
+              </div>
+            </div>
+
+            <!-- Photo Switcher Tabs -->
+            <div class="hotel-photo-tabs">
+              <button
+                v-for="(photo, index) in hotelInfo.photos"
+                :key="index"
+                class="photo-tab-btn"
+                :class="{ active: activePhotoIndex === index }"
+                @click="activePhotoIndex = index"
+              >
+                {{ photo.title }}
+              </button>
             </div>
 
             <div class="hotel-time-grid">
@@ -78,16 +95,25 @@
               </div>
             </div>
 
-            <!-- Quick Map Action -->
+            <!-- Quick Map & Official Site Actions -->
             <div class="hotel-actions">
               <a
-                :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(hotelInfo.name + ' ' + hotelInfo.address)"
+                :href="hotelInfo.googleMapsUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn btn-primary"
               >
                 <span>🗺️</span>
-                <span>在 Google Maps 中開啟導航</span>
+                <span>Google Maps 導航</span>
+              </a>
+              <a
+                :href="hotelInfo.officialUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary"
+              >
+                <span>🏨</span>
+                <span>萬豪官方網站專頁</span>
               </a>
             </div>
           </div>
@@ -98,7 +124,13 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { hotelInfo } from '../data/flights'
+
+const activePhotoIndex = ref(0)
+const currentPhoto = computed(() => {
+  return hotelInfo.photos[activePhotoIndex.value] || hotelInfo.photos[0]
+})
 </script>
 
 <style scoped>
@@ -167,6 +199,52 @@ import { hotelInfo } from '../data/flights'
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   backdrop-filter: blur(4px);
+}
+
+.hotel-photo-caption {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  background: rgba(18, 21, 36, 0.8);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+.hotel-photo-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.photo-tab-btn {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(184, 59, 50, 0.25);
+  background: #ffffff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.photo-tab-btn:hover {
+  border-color: var(--primary-maple);
+  color: var(--primary-maple);
+}
+
+.photo-tab-btn.active {
+  background: var(--primary-maple);
+  color: #ffffff;
+  border-color: var(--primary-maple);
+  box-shadow: 0 2px 8px rgba(184, 59, 50, 0.25);
 }
 
 .hotel-time-grid {
@@ -292,6 +370,29 @@ import { hotelInfo } from '../data/flights'
 }
 
 .hotel-actions {
-  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .hotel-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .hotel-grid {
+    gap: 1.25rem;
+  }
+
+  .hotel-name {
+    font-size: 1.25rem;
+  }
+
+  .hotel-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

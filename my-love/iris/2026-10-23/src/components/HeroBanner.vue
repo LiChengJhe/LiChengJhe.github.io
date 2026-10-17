@@ -11,19 +11,19 @@
       <div class="hero-badge-wrap">
         <span class="hero-pill animate-pulse-glow">
           <span class="pill-sparkle">💖</span>
-          <span>Happy Birthday to Yen-Yu (林彥伃) • 10/23 專屬紀念</span>
+          <span>Happy Birthday to Yen-Yu (彥伃) • 10/23 專屬紀念</span>
         </span>
       </div>
 
       <!-- Main Title -->
       <h1 class="hero-title font-serif">
-        2026 關西秋日浪漫之旅
-        <span class="hero-title-highlight font-display">Maple Kansai • 承哲 & 彥伃</span>
+        2026 關西初秋浪漫之旅
+        <span class="hero-title-highlight font-display">Kansai Journey • 承哲 & 彥伃</span>
       </h1>
 
       <!-- Subtitle Description -->
       <p class="hero-desc">
-        「把秋天最璀璨的紅葉、京都悠遠的古街、伊根蔚藍的海浪，以及全家人的歡笑聲，<br class="hidden-mobile"/>
+        「把京都悠遠的茶香古街、伊根蔚藍的海浪、琵琶湖的湖光山色，以及我們彼此的甜蜜笑聲，<br class="hidden-mobile"/>
         化作這張飛往日本的來回機票，送給最特別的妳。」
       </p>
 
@@ -34,74 +34,76 @@
           <span class="tag-text"><strong>生日禮物</strong>：贊助彥伃來回機票 (承哲 贈)</span>
         </div>
         <div class="hero-tag-item">
-          <span class="tag-icon">🍁</span>
+          <span class="tag-icon">📅</span>
           <span class="tag-text"><strong>旅行日期</strong>：2026/10/08 (四) ～ 10/13 (二)</span>
         </div>
         <div class="hero-tag-item">
-          <span class="tag-icon">👨‍👩‍👧‍👧</span>
-          <span class="tag-text"><strong>甜蜜同遊</strong>：彥伃 • 承哲 • 爸媽 • 大姐 • 二姐</span>
+          <span class="tag-icon">💑</span>
+          <span class="tag-text"><strong>甜蜜同遊</strong>：彥伃 • 承哲 兩人專屬旅程</span>
         </div>
       </div>
 
       <!-- Countdowns & Date Milestones -->
       <div class="hero-countdown-grid">
-        <div class="countdown-card glass-card">
+        <a href="#itinerary" class="countdown-card glass-card clickable-card">
           <div class="cd-header">
-            <span class="cd-icon">🛫</span>
-            <span class="cd-label">關西啟程倒數</span>
+            <span class="cd-icon">🌟</span>
+            <span class="cd-label">關西旅行足跡</span>
           </div>
           <div class="cd-body">
-            <div class="cd-number font-display">{{ tripDaysRemaining }}</div>
-            <div class="cd-unit">天 (Days)</div>
+            <div class="cd-number font-display">6<span class="cd-sub">天</span>5<span class="cd-sub">夜</span></div>
+            <div class="cd-unit">圓滿甜蜜回憶</div>
           </div>
-          <div class="cd-date">2026/10/08 (四) 出發</div>
-        </div>
+          <div class="cd-date">2026/10/08 ～ 10/13 同行</div>
+          <div class="card-jump-hint">
+            <span>瀏覽每日行程</span>
+            <span class="jump-arrow">➔</span>
+          </div>
+        </a>
 
-        <div class="countdown-card glass-card cd-birthday-card">
+        <a href="#birthday-card" class="countdown-card glass-card cd-birthday-card clickable-card">
           <div class="cd-header">
             <span class="cd-icon">🎂</span>
-            <span class="cd-label">彥伃生日倒數</span>
+            <span class="cd-label">10/23 彥伃生日</span>
           </div>
           <div class="cd-body">
-            <div class="cd-number font-display text-blush">{{ bdayDaysRemaining }}</div>
-            <div class="cd-unit">天 (Days)</div>
+            <div class="cd-number font-display text-blush">10/23</div>
+            <div class="cd-unit">Iris 壽星大快樂 🎉</div>
           </div>
-          <div class="cd-date">10/23 壽星大快樂 🎉</div>
-        </div>
+          <div class="cd-date">手寫卡片與滿滿祝福</div>
+          <div class="card-jump-hint hint-blush">
+            <span>閱讀生日情書</span>
+            <span class="jump-arrow">➔</span>
+          </div>
+        </a>
 
-        <div class="countdown-card glass-card">
+        <a href="#itinerary" class="countdown-card glass-card clickable-card">
           <div class="cd-header">
             <span class="cd-icon">🗾</span>
             <span class="cd-label">精彩跨城巡禮</span>
           </div>
           <div class="cd-body">
-            <div class="cd-number font-display">6<span class="cd-sub">天</span>5<span class="cd-sub">夜</span></div>
-            <div class="cd-unit">大阪 • 京都 • 滋賀</div>
+            <div class="cd-number font-display">大阪•京都•滋賀</div>
+            <div class="cd-unit">雙人專屬回憶</div>
           </div>
-          <div class="cd-date">天橋立 • 伊根 • 宇治 • 琵琶湖</div>
-        </div>
+          <div class="cd-date">心齋橋 • 宇治 • 伊根 • USJ</div>
+          <div class="card-jump-hint">
+            <span>查看景點足跡</span>
+            <span class="jump-arrow">➔</span>
+          </div>
+        </a>
       </div>
 
       <!-- CTA Buttons -->
       <div class="hero-actions">
-        <button class="btn btn-primary btn-lg shadow-glow" @click="$emit('openSurprise')">
-          <span class="btn-icon">🎂</span>
-          <span>點我拆開 10/23 生日驚喜</span>
-        </button>
-
-        <a href="#flight" class="btn btn-gold btn-lg">
-          <span class="btn-icon">✈️</span>
-          <span>查看機票禮物</span>
+        <a href="#birthday-card" class="btn btn-primary btn-lg shadow-glow">
+          <span class="btn-icon">💌</span>
+          <span>閱讀 10/23 生日卡片</span>
         </a>
 
         <a href="#itinerary" class="btn btn-glass btn-lg">
           <span class="btn-icon">📅</span>
-          <span>瀏覽 6 天行程</span>
-        </a>
-
-        <a href="#gallery" class="btn btn-glass btn-lg">
-          <span class="btn-icon">📷</span>
-          <span>旅途相簿回憶</span>
+          <span>回味 6 天行程足跡</span>
         </a>
       </div>
     </div>
@@ -305,11 +307,59 @@ const bdayDaysRemaining = computed(() => {
   position: relative;
   overflow: hidden;
   border: 1.5px solid rgba(255, 255, 255, 0.7);
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.clickable-card {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clickable-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(184, 59, 50, 0.16);
+  border-color: rgba(184, 59, 50, 0.35);
 }
 
 .cd-birthday-card {
   border-color: rgba(232, 99, 128, 0.35);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(253, 238, 242, 0.85));
+}
+
+.cd-birthday-card.clickable-card:hover {
+  box-shadow: 0 14px 32px rgba(232, 99, 128, 0.25);
+  border-color: rgba(232, 99, 128, 0.5);
+}
+
+.card-jump-hint {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(184, 59, 50, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-maple);
+  transition: all 0.2s ease;
+}
+
+.card-jump-hint.hint-blush {
+  color: var(--accent-blush);
+  border-color: rgba(232, 99, 128, 0.2);
+}
+
+.jump-arrow {
+  transition: transform 0.2s ease;
+}
+
+.clickable-card:hover .jump-arrow {
+  transform: translateX(4px);
 }
 
 .cd-header {
@@ -397,6 +447,44 @@ const bdayDaysRemaining = computed(() => {
 @media (min-width: 768px) {
   .hidden-mobile {
     display: inline;
+  }
+}
+
+/* Mobile Friendly Optimization */
+@media (max-width: 576px) {
+  .hero-section {
+    padding-top: 6.5rem;
+    padding-bottom: 3rem;
+  }
+  .hero-title {
+    font-size: 1.95rem;
+  }
+  .hero-title-highlight {
+    font-size: 1.45rem;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .hero-countdown-grid {
+    gap: 0.85rem;
+  }
+  .countdown-card {
+    padding: 1.15rem 1rem;
+  }
+  .cd-number {
+    font-size: 2.1rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.98rem;
+    justify-content: center;
   }
 }
 </style>
