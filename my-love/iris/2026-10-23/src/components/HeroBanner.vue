@@ -68,7 +68,7 @@
           </div>
           <div class="cd-body">
             <div class="cd-number font-display text-blush">10/23</div>
-            <div class="cd-unit">Iris 壽星大快樂 🎉</div>
+            <div class="cd-unit">彥伃壽星大快樂 🎉</div>
           </div>
           <div class="cd-date">手寫卡片與滿滿祝福</div>
           <div class="card-jump-hint hint-blush">

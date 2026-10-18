@@ -24,7 +24,7 @@
 
       <div class="footer-bottom">
         <p class="copyright">
-          © 2026 Kansai Journey • Designed with Love by 承哲 for 彥伃 (Iris)
+          © 2026 Kansai Journey • Designed with Love by 承哲 for 彥伃
         </p>
         <button class="back-to-top-btn" @click="scrollToTop">
           <span>⬆️ 回到頂部</span>

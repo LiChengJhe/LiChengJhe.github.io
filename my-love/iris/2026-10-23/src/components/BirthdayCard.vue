@@ -17,7 +17,7 @@
           <div class="wax-seal" @click="toggleLetterFold" :title="isLetterExpanded ? '點擊折疊信件' : '點擊展開信件'">
             <span class="wax-icon">💌</span>
             <span class="wax-date font-display">10/23</span>
-            <span class="wax-name font-serif">Iris</span>
+            <span class="wax-name font-serif">彥伃</span>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
               <span class="badge badge-blush">永遠愛妳</span>
             </div>
             <h3 class="letter-salutation font-serif">
-              親愛的彥伃（我的 Iris）：
+              親愛的彥伃：
             </h3>
             <div class="letter-wishes-highlight font-display">
               🎂 Happy 10/23 Birthday! 生日大快樂！✨
@@ -47,7 +47,7 @@
           <!-- Letter Body Text (Collapsible) -->
           <div v-show="isLetterExpanded" class="letter-content font-serif">
             <p class="letter-p indent">
-              祝我最愛的女孩、我心裡最在乎的 Iris 生日快樂！🎂✨
+              祝我最愛的女孩、我心裡最在乎的彥伃生日快樂！🎂✨
             </p>
             <p class="letter-p indent">
               從關西回來這幾天，每當我翻看手機裡那一張張照片，總會不自覺地傻笑。這趟 6 天 5 夜的旅程是我送給妳的 10/23 生日禮物，但對我來說，能牽著妳的手、看著妳因為沿途風景而展露笑顏，才是我收過最珍貴、最幸福的禮物。

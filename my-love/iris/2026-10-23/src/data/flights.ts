@@ -14,7 +14,7 @@ export interface BirthdayGiftInfo {
 
 export const birthdayGiftData: BirthdayGiftInfo = {
   giver: '承哲 (Cheng-Jhe)',
-  receiver: '彥伃 (Iris / Yen-Yu)',
+  receiver: '彥伃',
   occasion: '彥伃 10/23 專屬生日特別獻禮 🎂',
   birthdayDate: '2026-10-23',
   tripDates: '2026/10/08 (四) ～ 2026/10/13 (二)',

@@ -13,7 +13,7 @@
           <span>10/23 專屬生日特輯 • 壽星彥伃</span>
         </div>
         <h2 class="modal-title font-serif">
-          Happy Birthday, Iris! 🎂
+          Happy Birthday, 彥伃! 🎂
         </h2>
         <p class="modal-subtitle">
           承哲專屬獻上 • 點擊蛋糕或吹熄蠟燭來許下今年的生日願望吧！
@@ -123,7 +123,7 @@
         <h3 class="letter-title font-serif">給最親愛的彥伃：</h3>
         <div class="letter-body font-serif">
           <p>
-            祝我最愛的女孩、我心裡唯一的 Iris，10/23 生日快樂！🎂✨
+            祝我最愛的女孩、我心裡唯一的彥伃，10/23 生日快樂！🎂✨
           </p>
           <p>
             能和妳在一起的每一天，對我來說都是無比幸福的恩賜。今年秋天，我特別送給妳這趟關西來回機票作為生日禮物，牽著妳的手漫步在秋日關西，每一刻都是我們專屬的甜蜜回憶。

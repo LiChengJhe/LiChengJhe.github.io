@@ -66,7 +66,7 @@
                 <span class="m-icon">💌</span>
                 <div class="m-text">
                   <div class="m-title">10/23 承哲手寫生日卡片</div>
-                  <div class="m-desc">給最在乎的 Iris • 藏在心底的真情告白</div>
+                  <div class="m-desc">給最在乎的彥伃 • 藏在心底的真情告白</div>
                 </div>
                 <span class="m-badge">精選</span>
               </a>

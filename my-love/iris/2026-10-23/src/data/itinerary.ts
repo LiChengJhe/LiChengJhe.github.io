@@ -19,7 +19,7 @@ export const itineraryData: DailyPlan[] = [
         category: 'flight',
         icon: 'PlaneTakeoff',
         image: './images/flight-departure-cabin.jpg',
-        imageCaption: '✈️ 承哲 & Iris 在台灣虎航機艙內甜蜜合影，準備啟程！',
+        imageCaption: '✈️ 承哲 & 彥伃 在台灣虎航機艙內甜蜜合影，準備啟程！',
         romanticNote: '清晨的機艙裡，看著妳戴著口罩依然藏不住期待笑意的眼睛，牽著妳的手飛向藍天，這趟屬於我們倆的關西生日之旅正式出發囉！'
       },
       {
@@ -38,8 +38,6 @@ export const itineraryData: DailyPlan[] = [
         description: '於關西機場餐廳享用道地熱騰騰的日式蕎麥麵，暖胃並補足精神體力。',
         category: 'food',
         icon: 'Utensils',
-        cost: '約 ¥1,200 / 人',
-        mustTry: '日式高湯蕎麥麵、天婦羅炸蝦蕎麥麵'
       },
       {
         id: 'd1-3',
@@ -48,7 +46,6 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘帥氣鐵面騎士 13:05 南海特急 Rapi:t 對號座列車，平穩舒適直達難波站。',
         category: 'transport',
         icon: 'Train',
-        cost: '¥1,490 / 人',
         transitInfo: '車程 40 分鐘，大件行李有專屬置物鎖'
       },
       {
@@ -68,7 +65,6 @@ export const itineraryData: DailyPlan[] = [
         description: '朝聖心齋橋 PARCO 官方 Nagano Market，採買滿滿的自嘲熊（ナガノのくま / Joke Bear）限定玩偶、吊飾與周邊！',
         category: 'shopping',
         icon: 'ShoppingBag',
-        mustTry: '自嘲熊限定玩偶、壓克力吊飾與特色周邊',
         romanticNote: '看見妳在自嘲熊專區拿著吊飾笑得那麼燦爛，那一刻妳的笑容比大阪所有的燈火都要閃亮！'
       },
       {
@@ -82,12 +78,10 @@ export const itineraryData: DailyPlan[] = [
       {
         id: 'd1-7',
         time: '18:00 - 19:30',
-        title: '🍲 心齋橋享用丼飯晚餐',
-        description: '在心齋橋商圈品嚐香氣濃郁的日式丼飯，享受美味溫暖的大阪第一夜晚餐。',
+        title: '🍲 吉野家享用丼飯與炸物晚餐',
+        description: '在心齋橋吉野家品嚐熱騰騰經典日式牛丼、各色丼飯與香脆炸物，享受美味滿足的大阪第一夜晚餐。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥1,500 / 人',
-        mustTry: '日式特選燒肉丼、海鮮丼或炸蝦天丼'
       },
       {
         id: 'd1-8',
@@ -125,8 +119,7 @@ export const itineraryData: DailyPlan[] = [
         title: '🍔 早餐享用摩斯漢堡',
         description: '早晨享用新鮮現做的摩斯漢堡元氣早餐與熱飲，補足活力。',
         category: 'food',
-        icon: 'Coffee',
-        cost: '約 ¥700 / 人'
+        icon: 'Coffee'
       },
       {
         id: 'd2-2',
@@ -144,8 +137,6 @@ export const itineraryData: DailyPlan[] = [
         description: '漫步古色古香的平等院表參道，品味現刷濃醇的宇治抹茶拿鐵，茶香四溢。',
         category: 'food',
         icon: 'Coffee',
-        cost: '約 ¥650 / 人',
-        mustTry: '現刷宇治抹茶拿鐵、抹茶冰淇淋',
         romanticNote: '飄著焙茶香氣的宇治街頭，牽著妳的手一起喝抹茶拿鐵，時間彷彿都為我們放慢了腳步。'
       },
       {
@@ -155,9 +146,8 @@ export const itineraryData: DailyPlan[] = [
         description: '參觀日本十圓硬幣與萬元紙鈔上的國寶「平等院鳳凰堂」，欣賞映照在阿字池上的絕美倒影，並入館參觀鳳翔館珍貴歷史文物。',
         category: 'attraction',
         icon: 'Landmark',
-        mustTry: '拿 10 圓硬幣與鳳凰堂合影、鳳翔館雲中供養菩薩',
         image: './images/byodoin-phoenix-hall.jpg',
-        imageCaption: '📸 承哲 & Iris 在平等院鳳凰堂前甜蜜合影',
+        imageCaption: '📸 承哲 & 彥伃 在平等院鳳凰堂前甜蜜合影',
         romanticNote: '晴朗藍天下的鳳凰堂阿字池畔，牽著妳的手留下這張合照，陽光灑在妳臉上的笑容，是我心中最珍貴的風景。',
         elderTips: '園區步道平緩好走，池畔微風徐徐，適時坐在長椅休息賞景。'
       },
@@ -168,8 +158,6 @@ export const itineraryData: DailyPlan[] = [
         description: '在表參道特色餐廳享用香醇可口的日式咖哩飯定食，稍作休息補足能量。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥1,300 / 人',
-        mustTry: '宇治特製抹茶咖哩、日式牛肉咖哩定食'
       },
       {
         id: 'd2-6',
@@ -178,7 +166,6 @@ export const itineraryData: DailyPlan[] = [
         description: '移動至小倉站周邊日系咖啡廳，品嚐甜點與香醇咖啡/茶飲，手機充飽電，悠閒等待任天堂博物館預約入場。',
         category: 'food',
         icon: 'Coffee',
-        cost: '約 ¥1,000 / 人',
         elderTips: '咖啡廳內有舒適軟座，讓大家放鬆雙腿充電。'
       },
       {
@@ -188,20 +175,18 @@ export const itineraryData: DailyPlan[] = [
         description: '進入由任天堂宇治小倉工廠改建的夢幻殿堂！巨大手把雙人合作遊戲、光線槍射擊、歷代主機遊戲展覽，並於官方旗艦店採買限定紀念品。',
         category: 'activity',
         icon: 'Gamepad2',
-        mustTry: '雙人巨大控制器挑戰、專屬特製硬幣互動卡、官方限定紀念周邊',
         image: './images/nintendo-museum-giant-controller.jpg',
-        imageCaption: '🎮 承哲 & Iris 雙人合力挑戰巨大紅白機手把！',
+        imageCaption: '🎮 承哲 & 彥伃 雙人合力挑戰巨大紅白機手把！',
         romanticNote: '兩個人一起手忙腳亂拍打巨大紅白機手把，看妳笑到眼淚都流出來，那是我好久沒有過的單純快樂。',
         elderTips: '館內全無障礙設計，動線平坦寬敞，可輕鬆悠閒參觀拍照。'
       },
       {
         id: 'd2-8',
         time: '19:40 - 20:45',
-        title: '🥟 享用中華料理晚餐',
-        description: '在周邊餐廳享用溫暖美味的中華料理，熱騰騰的炒菜、煎餃與湯品讓人身心溫暖。',
+        title: '🍜 享用中華料理晚餐（擔擔麵・炒飯・什錦麵）',
+        description: '在周邊餐廳享用溫暖道地的中華料理晚餐，品嚐香氣濃郁的擔擔麵、粒粒分明的炒飯與料多鮮美的什錦麵，暖胃又滿足。',
         category: 'food',
-        icon: 'Utensils',
-        cost: '約 ¥1,800 / 人'
+        icon: 'UtensilsCrossed',
       },
       {
         id: 'd2-9',
@@ -219,12 +204,20 @@ export const itineraryData: DailyPlan[] = [
     dateStr: '2026/10/10',
     weekday: '週六 (Sat)',
     title: '海之京都・天橋立與伊根舟屋',
-    subtitle: '天橋立飛龍觀 ➔ 舟屋海上遊覽船 ➔ 智恩寺旋轉橋 ➔ 心齋橋購物',
+    subtitle: '毛豆飯糰早餐 ➔ 天橋立飛龍觀 ➔ 舟屋海上遊覽船 ➔ 智恩寺旋轉橋 ➔ 漢堡王晚餐',
     weatherSummary: '🌊 日本海沿岸 15°C ~ 21°C，海風徐徐，建議準備薄外套與防風帽',
     transportPass: '專車一日遊（免轉車全程舒適接送）',
     tags: ['天橋立', '伊根舟屋', '飛龍觀', '智恩寺', '旋轉橋', '海之京都'],
     albumUrl: 'https://photos.app.goo.gl/epxWcGQwhSgwaqgs6',
     itemsPlanA: [
+      {
+        id: 'd3-0',
+        time: '06:30 - 07:15',
+        title: '🍙 早餐享用毛豆飯糰',
+        description: '出發前享用清爽可口的日式毛豆飯糰與熱飲，補充活力元氣，準備出發前往海之京都！',
+        category: 'food',
+        icon: 'Coffee',
+      },
       {
         id: 'd3-1',
         time: '07:15~',
@@ -241,9 +234,8 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘景觀纜車登頂，俯瞰日本三景之一「天橋立」，體驗經典倒立「胯下窺看 (股のぞき)」如飛龍在天的壯觀景象。',
         category: 'attraction',
         icon: 'Mountain',
-        mustTry: '展望台胯下窺看留影、智惠之圈投擲瓦片祈福',
         image: './images/amanohashidate-viewland.jpg',
-        imageCaption: '📸 承哲 & Iris 在天橋立飛龍觀展望台甜蜜合影',
+        imageCaption: '📸 承哲 & 彥伃 在天橋立飛龍觀展望台甜蜜合影',
         romanticNote: '登上海拔展望台俯瞰日本三景，蔚藍海灣在陽光下閃爍，但最讓我心動的，是身邊比晴空還要燦爛耀眼的妳。',
         elderTips: '纜車有封閉式大車廂與單人吊椅，搭大車廂平穩安全、視野開闊。'
       },
@@ -254,8 +246,6 @@ export const itineraryData: DailyPlan[] = [
         description: '品嚐日本海直送當季新鮮海味御膳，享用鮮甜海鮮、烤魚與特色日式小菜。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥2,000 / 人',
-        mustTry: '丹後海鮮御膳、鮮烤魚乾'
       },
       {
         id: 'd3-4',
@@ -264,9 +254,8 @@ export const itineraryData: DailyPlan[] = [
         description: '登上遊覽船環繞世界唯一水上聚落「伊根舟屋」，手拿蝦味先吸引滿天海鷗與老鷹盤旋飛舞。',
         category: 'activity',
         icon: 'Ship',
-        mustTry: '船上餵海鷗甜蜜合影、欣賞舟屋傳統木造建築群',
         image: './images/ine-bay-cruise.jpg',
-        imageCaption: '🚢 承哲 & Iris 在伊根觀光遊覽船上海景合影',
+        imageCaption: '🚢 承哲 & 彥伃 在伊根觀光遊覽船上海景合影',
         romanticNote: '在微涼的海風中，妳拿著蝦味先餵海鷗笑得像個小女孩，依偎在我身邊的妳，就是海天一色裡最美的風景。',
         elderTips: '遊覽船行駛平穩，坐在船艙內也能透過全景大窗欣賞美景。'
       },
@@ -277,7 +266,6 @@ export const itineraryData: DailyPlan[] = [
         description: '漫步於寧靜純樸的伊根舟屋水上小鎮，穿梭在百年木造漁村街道，感受宛如世外桃源的靜謐氛圍。',
         category: 'attraction',
         icon: 'Sparkles',
-        mustTry: '舟屋街景合影、伊根特色手作小店'
       },
       {
         id: 'd3-6',
@@ -286,9 +274,8 @@ export const itineraryData: DailyPlan[] = [
         description: '參拜文殊菩薩祈求智慧與平安，求取招牌扇子籤；接著觀看供船隻通行的「迴旋橋（旋轉橋）」特殊開合運作，漫步松林沙洲。',
         category: 'attraction',
         icon: 'Landmark',
-        mustTry: '智恩寺扇子籤、旋轉橋開合奇景、天橋立白砂青松',
         image: './images/amanohashidate-rotating-bridge.jpg',
-        imageCaption: '🌉 承哲 & Iris 在天橋立迴旋橋（旋轉橋）前留影',
+        imageCaption: '🌉 承哲 & 彥伃 在天橋立迴旋橋（旋轉橋）前留影',
         romanticNote: '微風輕拂水道旁的翠綠松林，倚在橋欄上和妳並肩合照，好希望這段平靜悠閒的美好時光能永遠停留。',
         elderTips: '智恩寺周邊道路平坦，可品嚐知名的「智惠之餅」紅豆麻糬。'
       },
@@ -303,11 +290,10 @@ export const itineraryData: DailyPlan[] = [
       {
         id: 'd3-8',
         time: '19:30 - 21:00',
-        title: '🍲 千日周邊享用晚餐',
-        description: '在千日前周邊商圈享用道地美味晚餐，品嚐大阪特色美食或溫暖鍋物料理。',
+        title: '🍔 晚餐享用漢堡王 (Burger King)',
+        description: '專車返抵大阪市區後，前往享用熱氣騰騰的漢堡王火烤牛肉堡與香脆薯條，大口享受美式滿足！',
         category: 'food',
-        icon: 'Utensils',
-        cost: '約 ¥2,000 / 人'
+        icon: 'UtensilsCrossed',
       },
       {
         id: 'd3-9',
@@ -354,9 +340,8 @@ export const itineraryData: DailyPlan[] = [
         description: '朝聖擁有兩千年歷史的近江最古老神社，站在專屬觀景平台拍下佇立琵琶湖中的朱紅大鳥居，祈求長壽與勝運。',
         category: 'attraction',
         icon: 'Camera',
-        mustTry: '湖中鳥居絕美合影、白鬚延壽御守',
         image: './images/shirahige-jinja-torii.jpg',
-        imageCaption: '⛩️ 承哲 & Iris 在白鬚神社觀景台合影湖中鳥居',
+        imageCaption: '⛩️ 承哲 & 彥伃 在白鬚神社觀景台合影湖中鳥居',
         romanticNote: '站在平台上看著佇立琵琶湖中的朱紅鳥居，看妳開心地指著鳥居拍照，我悄悄在心中向神明祈願：保佑我身邊的女孩永遠健康幸福。',
         elderTips: '請於「藍湖白鬚台」專屬觀景台拍照，切勿橫越馬路，安全第一。'
       },
@@ -367,9 +352,8 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘日本最速全景高空纜車直達海拔 1,100 公尺的 Biwako Terrace，俯瞰宛如大海般無邊際的蔚藍湖景並享用午餐。',
         category: 'attraction',
         icon: 'Mountain',
-        mustTry: '無邊際水池露台俯瞰琵琶湖全景、藍色琵琶湖特調蘇打',
         image: './images/biwako-valley-terrace.jpg',
-        imageCaption: '🚠 承哲 & Iris 在琵琶湖山谷 1,100m 觀景台合影',
+        imageCaption: '🚠 承哲 & 彥伃 在琵琶湖山谷 1,100m 觀景台合影',
         romanticNote: '站在 1,100 公尺的山頂露台俯瞰整片蔚藍的琵琶湖，想把全世界的遼闊與溫柔，通通擁抱給身旁的妳。'
       },
       {
@@ -379,9 +363,8 @@ export const itineraryData: DailyPlan[] = [
         description: '造訪建於琵琶湖上的朱紅浮橋古剎，漫步湖中棧道長廊，感受近江八景「堅田落雁」的詩意與禪境。',
         category: 'attraction',
         icon: 'Landmark',
-        mustTry: '浮禦堂湖中全景、近江八景石碑打卡',
         image: './images/mangetsu-temple-ukimido.jpg',
-        imageCaption: '🌊 承哲 & Iris 在滿月寺浮禦堂前牽手深情相望',
+        imageCaption: '🌊 承哲 & 彥伃 在滿月寺浮禦堂前牽手深情相望',
         romanticNote: '波光粼粼的琵琶湖畔，牽著妳的手回頭相視而笑，在這座浮於水上的古寺前，我只想這樣一直牽著妳，走到很遠很遠的以後。'
       },
       {
@@ -391,9 +374,8 @@ export const itineraryData: DailyPlan[] = [
         description: '走進建築大師藤森照信打造的童話草屋（La Collina 近江八幡），宛如置身吉卜力奇幻童話國度！在綠意盎然的草屋迴廊拍下仙氣滿滿的美照，並為明日一早的環球影城大冒險挑選美味早餐與人氣點心。',
         category: 'attraction',
         icon: 'Sparkles',
-        mustTry: '童話草屋綠意迴廊合照留念、挑選明日早餐與人氣點心',
         image: './images/la-collina-fairy-tale-grass-house.jpg',
-        imageCaption: '🏡 承哲 & Iris 在吉卜力童話草屋前合影',
+        imageCaption: '🏡 承哲 & 彥伃 在吉卜力童話草屋前合影',
         romanticNote: '走在綠意盎然的童話草屋前幫妳拍美照、一起挑選明天去環球影城的美味早餐，只要身邊是妳，處處都是最動人的風景。'
       },
       {
@@ -411,8 +393,6 @@ export const itineraryData: DailyPlan[] = [
         description: '在道頓堀周邊的 YAYOI 軒（彌生軒）享用溫暖豐盛的日式定食，白飯與熱湯暖胃飽足。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥1,200 / 人',
-        mustTry: '日式生薑燒肉定食、炸豬排定食'
       },
       {
         id: 'd4-8',
@@ -443,18 +423,17 @@ export const itineraryData: DailyPlan[] = [
         category: 'activity',
         icon: 'Sparkles',
         image: './images/usj-main-gate-entrance.jpg',
-        imageCaption: '🎢 承哲 & Iris 在日本環球影城經典大門拱門前打卡！',
+        imageCaption: '🎢 承哲 & 彥伃 在日本環球影城經典大門拱門前打卡！',
         romanticNote: '站在期待已久的環球影城大門前，陽光燦爛，牽起妳的手，一整天專屬於我們的奇幻冒險正式啟航！'
       },
       {
         id: 'd5-2',
         time: '08:40 - 09:10',
-        title: '🏰 進入活米村 ➔ 揮舞魔杖遊玩 ＆ 08:52 體驗哈利波特禁忌之旅',
-        description: '開園直奔活米村！拿著專屬互動魔杖在各個魔法景點與櫥窗施法遊玩，並於 08:52 順利體驗經典設施「哈利波特禁忌之旅」，騎乘飛天掃帚穿梭於霍格華茲城堡上空。',
+        title: '🏰 進入活米村 ＆ 08:52 體驗哈利波特禁忌之旅',
+        description: '開園直奔活米村！於 08:52 順利體驗經典設施「哈利波特禁忌之旅」，騎乘飛天掃帚穿梭於霍格華茲城堡上空，感受極致魔法飛行震撼。',
         category: 'activity',
-        icon: 'Wand2',
-        mustTry: '揮舞互動魔杖施法遊玩、霍格華茲城堡合影、禁忌之旅沉浸飛行',
-        romanticNote: '看著妳認真揮舞魔杖施法的可愛模樣，我心裡悄悄許願：未來的每一個魔法瞬間，我都想陪在妳身邊。'
+        icon: 'Sparkles',
+        romanticNote: '牽著妳的手一起在霍格華茲城堡上空飛翔冒險，看著妳驚喜又興奮的笑臉，這趟生日旅程的第一個魔法願望已經成真！'
       },
       {
         id: 'd5-3',
@@ -463,14 +442,13 @@ export const itineraryData: DailyPlan[] = [
         description: '進入由水管連接的繽紛瑪利歐王國！敲擊問號磚塊積點、與角色合影，感受滿滿任天堂童年情懷。',
         category: 'activity',
         icon: 'Gamepad2',
-        mustTry: '能量手環互動敲磚、奇諾比奧問號方塊',
         image: './images/usj-mario-world-pipe-entrance.jpg',
         images: [
           './images/usj-mario-world-pipe-entrance.jpg',
           './images/usj-mario-world-peach-castle.jpg',
           './images/usj-mario-world.jpg'
         ],
-        imageCaption: '🍄 承哲 & Iris 瑪利歐世界冒險合集（共 3 張，可左右切換）',
+        imageCaption: '🍄 承哲 & 彥伃 瑪利歐世界冒險合集（共 3 張，可左右切換）',
         romanticNote: '戴著能量手環跟妳在繽紛童話般的瑪利歐世界到處敲磚塊積點，看到妳開懷大笑的模樣，就是我最想守護的寶藏。'
       },
       {
@@ -488,7 +466,6 @@ export const itineraryData: DailyPlan[] = [
         description: '體驗惡靈古堡萬聖節限定實境恐怖射擊體驗，近距離看最帥氣的里昂（Leon）對決喪屍！雖然現場非常可怕，但有承哲在身邊牽著手保護妳，安心沉浸破關！',
         category: 'activity',
         icon: 'Skull',
-        mustTry: '與帥氣里昂並肩作戰、沉浸式惡靈古堡逃脫',
         romanticNote: '雖然現場真的很可怕，但感受到妳緊緊抓著我手臂的那一刻，我就知道——這輩子不管遇到什麼，我都會永遠保護妳！'
       },
       {
@@ -498,8 +475,6 @@ export const itineraryData: DailyPlan[] = [
         description: '在聯名主題餐廳享用精緻魔法料理，為壽星彥伃慶生！在滿滿芙莉蓮奇幻氛圍中度過甜蜜浪漫的午餐時光。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥2,500 / 人',
-        mustTry: '芙莉蓮主題魔法餐點、藍月草特調飲品'
       },
       {
         id: 'd5-7',
@@ -515,8 +490,7 @@ export const itineraryData: DailyPlan[] = [
         title: '🧝 芙莉蓮故事徒步之旅',
         description: '走進欣梅爾與芙莉蓮的冒險回憶徒步展覽，沉浸於勇者小隊溫暖動人的足跡之中。',
         category: 'attraction',
-        icon: 'Wand2',
-        mustTry: '欣梅爾銅像打卡合影、魔導書紀念品'
+        icon: 'Wand2'
       },
       {
         id: 'd5-9',
@@ -532,8 +506,7 @@ export const itineraryData: DailyPlan[] = [
         title: '🥖 點心時光：里昂的吉拿棒',
         description: '品嚐熱騰騰酥脆的《惡靈古堡》里昂聯名特色吉拿棒，邊吃邊稍作休息。',
         category: 'food',
-        icon: 'Utensils',
-        cost: '約 ¥750'
+        icon: 'Utensils'
       },
       {
         id: 'd5-11',
@@ -542,7 +515,6 @@ export const itineraryData: DailyPlan[] = [
         description: '挑戰萬聖節驚悚主題迷宮「殭屍工廠」，尖叫聲此起彼落！雖然這項特別可怕，但有承哲在身邊緊緊牽著妳保護妳，勇敢闖關！',
         category: 'activity',
         icon: 'Skull',
-        mustTry: '恐怖殭屍工廠突圍、男友力爆發隨身守護'
       },
       {
         id: 'd5-12',
@@ -551,7 +523,6 @@ export const itineraryData: DailyPlan[] = [
         description: '伴隨座椅高音質音樂在天空中高速翱翔俯衝，極度暢快的雲霄飛車體驗！',
         category: 'activity',
         icon: 'Sparkles',
-        mustTry: '選播聯名主題音樂在空中飛翔'
       },
       {
         id: 'd5-13',
@@ -560,52 +531,48 @@ export const itineraryData: DailyPlan[] = [
         description: '走上動態步道、手持特製電光衝鋒射擊槍，加入小小兵的狂歡惡作劇測試，享受歡笑不斷的可愛射擊互動！',
         category: 'activity',
         icon: 'Smile',
-        mustTry: '手持發光射擊槍瞄準靶心得分、趣味惡作劇互動',
         image: './images/usj-minion-villain-con.jpg',
-        imageCaption: '🍌 承哲 & Iris 手持特製衝鋒槍挑戰成為大壞蛋！',
+        imageCaption: '🍌 承哲 & 彥伃 手持特製衝鋒槍挑戰成為大壞蛋！',
         romanticNote: '拿著發光衝鋒槍一起認真瞄準靶心，看妳玩得那麼投入可愛，無論妳當大壞蛋還是小可愛，我都是妳最死忠的夥伴！'
       },
       {
         id: 'd5-14',
         time: '17:40 - 18:40',
-        title: '🎃 活米村 三根掃帚餐廳享用萬聖節套餐',
-        description: '走進活米村最經典著名的「三根掃帚餐廳 (Three Broomsticks)」，在魔法古老客棧的溫暖氛圍中，享用期間限定的萬聖節特別套餐！',
+        title: '🎃 活米村 三根掃帚餐廳享用萬聖節晚餐',
+        description: '走進活米村最經典著名的「三根掃帚餐廳 (Three Broomsticks)」，在魔法古老客棧的溫暖氛圍中，享用期間限定的萬聖節特別套餐晚餐！',
         category: 'food',
         icon: 'UtensilsCrossed',
-        mustTry: '萬聖節限定套餐',
         romanticNote: '走了一整天，在溫暖的客棧裡一起大口吃萬聖節大餐，看著妳吃飽滿足的笑臉，就是最踏實的幸福。'
       },
       {
         id: 'd5-15',
-        time: '18:45 - 19:21',
-        title: '🪄 活米村 互動魔杖施法 ＆ 霍格華茲城堡夜景煙火合影',
-        description: '揮動互動魔杖在活米村的櫥窗施展魔法咒語，並漫步至黑湖橋畔，仰望夜空煙火與流光照耀下的霍格華茲城堡夜景！',
+        time: '18:45 - 19:20',
+        title: '🪄 活米村 互動魔杖施法遊玩 ＆ 霍格華茲城堡夜景合影',
+        description: '晚餐吃飽後直接漫步活米村！揮動專屬互動魔杖在櫥窗施展魔法咒語，並漫步至黑湖橋畔，仰望夜空煙火與流光照耀下的霍格華茲城堡夜景！',
         category: 'activity',
         icon: 'Wand2',
-        mustTry: '櫥窗施咒魔法互動、霍格華茲城堡夜景合影',
         image: './images/usj-hogwarts-castle-night-fireworks.jpg',
-        imageCaption: '🏰 承哲 & Iris 在璀璨煙火與霍格華茲城堡夜景前合影',
-        romanticNote: '夜空煙火綻放、金碧輝煌的魔法城堡在夜色中閃閃發光，牽著妳的手站在橋畔，就像走進了最浪漫的童話電影。'
+        imageCaption: '🏰 承哲 & 彥伃 在璀璨煙火與霍格華茲城堡夜景前合影',
+        romanticNote: '夜空煙火綻放、金碧輝煌的魔法城堡在夜色中閃閃發光，看著妳在夜色中認真揮舞魔杖施法的可愛模樣，牽著妳的手站在橋畔，就像走進了最浪漫的童話電影。'
       },
       {
         id: 'd5-16',
-        time: '19:30 - 20:00',
+        time: '19:30 - 19:45',
         title: '🦕 侏羅紀公園 夜間乘船遊',
         description: '在夜霧瀰漫的熱帶雨林河流中航行，遭遇巨大暴龍後從 25 公尺高處激流俯衝！',
         category: 'activity',
         icon: 'Ship',
         image: './images/usj-jurassic-park-night.jpg',
-        imageCaption: '🦕 承哲 & Iris 在侏羅紀公園探索木屋前合影！',
+        imageCaption: '🦕 承哲 & 彥伃 在侏羅紀公園探索木屋前合影！',
         romanticNote: '夜幕下的侏羅紀雨林帶著一絲神秘，但只要轉頭看見妳笑瞇瞇比讚的模樣，所有冒險都變成了專屬於我們的浪漫回憶。'
       },
       {
         id: 'd5-17',
-        time: '20:00 - 20:55',
+        time: '20:00 - 20:50',
         title: '🎃 欣賞萬聖節遊行 & 伴手禮採買',
-        description: '夜幕降臨，全園區殭屍傾巢而出！加入熱血沸騰的萬聖節街頭群舞派對，並把握最後機會採購園區限定伴手禮。',
+        description: '夜幕降臨，全園區殭屍傾巢而出！加入熱血沸騰的萬聖節街頭群舞派對，並把握機會採購園區限定伴手禮。',
         category: 'activity',
         icon: 'Music',
-        mustTry: 'Zombie de Dance 街頭殭屍舞狂歡派對'
       },
       {
         id: 'd5-18',
@@ -624,7 +591,7 @@ export const itineraryData: DailyPlan[] = [
         icon: 'Moon',
         transitInfo: '由 Universal City 站搭乘 JR 轉地鐵回心齋橋',
         image: './images/usj-night-departure-harbor.jpg',
-        imageCaption: '🌙 承哲 & Iris 離開環球前在海灣夜景前甜蜜合影',
+        imageCaption: '🌙 承哲 & 彥伃 離開環球前在海灣夜景前甜蜜合影',
         romanticNote: '繁星點點的夜空下，環球影城的燈火倒映在波光粼粼的水面。走了一整天雖然有些疲憊，但牽著妳的手依偎在微涼的夜風裡，這份溫暖讓我一輩子都忘不了。'
       }
     ]
@@ -653,8 +620,7 @@ export const itineraryData: DailyPlan[] = [
         title: '🍳 心齋橋站周邊早餐店享用早餐',
         description: '在心齋橋站周邊人氣早餐店享用溫暖美味的晨間套餐，品嚐香醇咖啡、烤吐司與日式朝食。',
         category: 'food',
-        icon: 'Coffee',
-        cost: '約 ¥800 / 人'
+        icon: 'Coffee'
       },
       {
         id: 'd6-3',
@@ -672,8 +638,6 @@ export const itineraryData: DailyPlan[] = [
         description: '在梅田百貨商圈餐廳享用精緻現做的義大利麵套餐，搭配熱湯與甜點，享受愜意的午間時光。',
         category: 'food',
         icon: 'UtensilsCrossed',
-        cost: '約 ¥1,600 / 人',
-        mustTry: '義式海鮮義大利麵、焗烤千層麵'
       },
       {
         id: 'd6-5',
@@ -682,7 +646,6 @@ export const itineraryData: DailyPlan[] = [
         description: '朝聖位於大丸梅田 13F 的官方旗艦店 Nintendo OSAKA，採購各大人氣角色限定玩偶、文具與聯名周邊！',
         category: 'shopping',
         icon: 'Gamepad2',
-        mustTry: 'Nintendo OSAKA 限定周邊、瑪利歐與皮卡丘商品'
       },
       {
         id: 'd6-6',
@@ -718,10 +681,9 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘 17:00 開出的南海特急 Rapi:t 藍色鐵面騎士列車，舒適對號座直達關西國際機場第一航廈（17:40 抵達）。',
         category: 'transport',
         icon: 'Train',
-        cost: '¥1,490 / 人',
         transitInfo: '車程 40 分鐘，大件行李專屬放置區',
         image: './images/nankai-rapit-return-cabin.jpg',
-        imageCaption: '🚆 承哲 & Iris 在回程南海特急 Rapi:t 車廂內溫馨合影',
+        imageCaption: '🚆 承哲 & 彥伃 在回程南海特急 Rapi:t 車廂內溫馨合影',
         romanticNote: '望著窗外飛逝的大阪街景，這趟旅程雖然到了尾聲，但我們專屬的冒險才剛開始。下一次，我一定還要和妳兩個人單獨去更多美麗的地方！'
       },
       {
@@ -731,7 +693,6 @@ export const itineraryData: DailyPlan[] = [
         description: '辦理台灣虎航 IT213 登機與托運行李手續，順利通過安檢出境，把握登機前最後時光採買 Royce 生巧克力、白色戀人等免稅伴手禮。',
         category: 'flight',
         icon: 'ShoppingBag',
-        mustTry: '關空免稅店限定伴手禮、Royce 生巧克力、白色戀人'
       },
       {
         id: 'd6-11',
@@ -740,7 +701,6 @@ export const itineraryData: DailyPlan[] = [
         description: '搭乘 IT213 航班平安返抵桃園第一航廈，提領行李出關，為這趟關西 6 天 5 夜的甜蜜慶生冒險畫下完美句點！',
         category: 'flight',
         icon: 'HeartHandshake',
-        mustTry: '全家人滿載而歸的溫馨大合照！'
       }
     ]
   }
