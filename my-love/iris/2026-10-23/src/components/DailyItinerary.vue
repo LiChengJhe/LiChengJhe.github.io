@@ -215,14 +215,14 @@
             <button
               v-if="activeDayNumber > 1"
               class="btn btn-outline btn-sm"
-              @click="activeDayNumber--"
+              @click="goToPrevDay"
             >
               ← 前一天 (Day 0{{ activeDayNumber - 1 }})
             </button>
             <button
               v-if="activeDayNumber < 6"
               class="btn btn-primary btn-sm"
-              @click="activeDayNumber++"
+              @click="goToNextDay"
             >
               下一天 (Day 0{{ activeDayNumber + 1 }}) →
             </button>
@@ -325,6 +325,34 @@ onUnmounted(() => {
   window.removeEventListener('select-day', handleSelectDayEvent)
 })
 
+function scrollToItinerary() {
+  requestAnimationFrame(() => {
+    const el = document.getElementById('itinerary')
+    if (el) {
+      const navOffset = 75
+      const topPos = el.getBoundingClientRect().top + window.scrollY - navOffset
+      window.scrollTo({
+        top: Math.max(0, topPos),
+        behavior: 'smooth'
+      })
+    }
+  })
+}
+
+function goToNextDay() {
+  if (activeDayNumber.value < 6) {
+    activeDayNumber.value++
+    scrollToItinerary()
+  }
+}
+
+function goToPrevDay() {
+  if (activeDayNumber.value > 1) {
+    activeDayNumber.value--
+    scrollToItinerary()
+  }
+}
+
 const currentDay = computed(() => {
   return itineraryData.find(d => d.dayNumber === activeDayNumber.value) || itineraryData[0]
 })
@@ -402,6 +430,7 @@ function getItemIcon(item: any): string {
 .itinerary-section {
   padding: 5rem 0;
   position: relative;
+  scroll-margin-top: 4.5rem;
 }
 
 /* Day Tabs */
